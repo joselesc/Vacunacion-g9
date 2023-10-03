@@ -89,4 +89,9 @@ class Vacuna {
     public Vacuna() {
     }
 
+    @Override
+    public String toString() {
+        return "Vacuna{" + "nroSerieDosis=" + nroSerieDosis + ", cuit_laboratorio=" + cuit_laboratorio + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", colocada=" + colocada + '}';
+    }
+
 }

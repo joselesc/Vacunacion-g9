@@ -65,4 +65,9 @@ public class Laboratorio {
     public Laboratorio() {
     }
 
+    @Override
+    public String toString() {
+        return "Laboratorio{" + "cuit=" + cuit + ", nomLaboratorio=" + nomLaboratorio + ", pais=" + pais + ", domComercial=" + domComercial + '}';
+    }
+
 }
