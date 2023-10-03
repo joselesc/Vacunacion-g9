@@ -19,7 +19,30 @@ class Vacuna {
     private String marca;
     private double medida;
     private Date fechaCaduca;
+    private int stock;
     private boolean colocada;
+
+    public Vacuna(int nroSerieDosis, int cuit_laboratorio, String marca, double medida, Date fechaCaduca, int stock, boolean colocada) {
+        this.nroSerieDosis = nroSerieDosis;
+        this.cuit_laboratorio = cuit_laboratorio;
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaCaduca = fechaCaduca;
+        this.stock = stock;
+        this.colocada = colocada;
+    }
+
+    public Vacuna(int cuit_laboratorio, String marca, double medida, Date fechaCaduca, int stock, boolean colocada) {
+        this.cuit_laboratorio = cuit_laboratorio;
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaCaduca = fechaCaduca;
+        this.stock = stock;
+        this.colocada = colocada;
+    }
+
+    public Vacuna() {
+    }
 
     public int getNroSerieDosis() {
         return nroSerieDosis;
@@ -61,6 +84,14 @@ class Vacuna {
         this.fechaCaduca = fechaCaduca;
     }
 
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+
     public boolean isColocada() {
         return colocada;
     }
@@ -69,29 +100,9 @@ class Vacuna {
         this.colocada = colocada;
     }
 
-    public Vacuna(int cuit_laboratorio, String marca, double medida, Date fechaCaduca, boolean colocada) {
-        this.cuit_laboratorio = cuit_laboratorio;
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaCaduca = fechaCaduca;
-        this.colocada = colocada;
-    }
-
-    public Vacuna(int nroSerieDosis, int cuit_laboratorio, String marca, double medida, Date fechaCaduca, boolean colocada) {
-        this.nroSerieDosis = nroSerieDosis;
-        this.cuit_laboratorio = cuit_laboratorio;
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaCaduca = fechaCaduca;
-        this.colocada = colocada;
-    }
-
-    public Vacuna() {
-    }
-
     @Override
     public String toString() {
-        return "Vacuna{" + "nroSerieDosis=" + nroSerieDosis + ", cuit_laboratorio=" + cuit_laboratorio + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", colocada=" + colocada + '}';
+        return "Vacuna{" + "nroSerieDosis=" + nroSerieDosis + ", cuit_laboratorio=" + cuit_laboratorio + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
     }
 
 }
