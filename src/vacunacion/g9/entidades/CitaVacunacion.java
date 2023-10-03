@@ -31,7 +31,7 @@ public class CitaVacunacion {
         this.dosis = dosis;
     }
 
-    public CitaVacunacion(Ciudadano persona, int codRefuerzo, StringfechaHoraCita, String centroVacunacion, LocalDateTime fechaHoraColocacion, Vacuna dosis) {
+    public CitaVacunacion(Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDateTime fechaHoraColocacion, Vacuna dosis) {
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
