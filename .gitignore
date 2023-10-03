@@ -22,8 +22,9 @@
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 replay_pid*
-/Vacunacion-g9/build/
-/Vacunacion-g9/test/
-/Vacunacion-g9/dist/
-/Vacunacion-g9/nbproject/private/
+
 /build/
+/test/
+/dist/
+/nbproject/private/
+
