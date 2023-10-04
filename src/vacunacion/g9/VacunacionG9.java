@@ -9,6 +9,5 @@ public class VacunacionG9 {
         VacunacionG9Vista ingreso = new VacunacionG9Vista();
         ingreso.main(args);
         Conexion.getConexion();
-    }
-    
+    }  
 }

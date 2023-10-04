@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 04-10-2023 a las 23:52:01
+-- Tiempo de generación: 05-10-2023 a las 01:16:27
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -59,28 +59,28 @@ CREATE TABLE `ciudadano` (
 --
 
 INSERT INTO `ciudadano` (`dni`, `apellido`, `nombre`, `email`, `celular`, `zona`, `patologia`, `ambitoTrabajo`) VALUES
-(0, 'Pereyra', 'Luciana', 'luciana@gmail.com', 2147483647, '', 'Ninguna', 'Profesor'),
-(10101010, 'Molina', 'Francisco', 'francisco@gmail.com', 1122334455, '', '', 'Médico'),
-(10101011, 'Soto', 'Paula', 'paula@gmail.com', 1122334455, '', '', 'Ingeniero'),
-(11111111, 'González', 'Juan', 'juan@gmail.com', 1122334455, '', '', 'Médico'),
-(11111112, 'Cabrera', 'Martina', 'martina@gmail.com', 1122334455, '', '', 'Médico'),
-(11111114, 'Hernández', 'Lautaro', 'lautaro@gmail.com', 1122334455, '', 'Hipertensión', 'Profesor'),
-(12121212, 'Gómez', 'Lucía', 'lucia@gmail.com', 1122334455, '', 'Hipertensión', 'Abogado'),
-(12121213, 'Vega', 'Alejandra', 'alejandra@gmail.com', 1122334455, '', 'Asma', 'Médico'),
-(12121214, 'Cardozo', 'Marta', 'marta@gmail.com', 1122334455, '', 'Asma', 'Médico'),
-(20202020, 'Herrera', 'Isabella', 'isabella@gmail.com', 2147483647, '', 'Asma', 'Enfermera'),
-(20202021, 'Rosales', 'Leandro', 'leandro@gmail.com', 2147483647, '', 'Diabetes', 'Médico'),
-(22222222, 'Pérez', 'María', 'maria@gmail.com', 2147483647, '', NULL, 'Enfermera'),
-(22222223, 'Acosta', 'Maximiliano', 'maximiliano@gmail.com', 2147483647, '', 'Asma', 'Enfermera'),
-(22222225, 'Fernández', 'Clara', 'clara@gmail.com', 2147483647, '', 'Alergias', 'Médico'),
-(23232323, 'Vega', 'Javier', 'javier@gmail.com', 2147483647, '', NULL, 'Ingeniero'),
-(23232325, 'Arias', 'Agustín', 'agustin@gmail.com', 2147483647, '', '', 'Enfermera'),
-(30303030, 'Silva', 'Lucas', 'lucas@gmail.com', 2147483647, '', 'Diabetes', 'Médico'),
-(30303031, 'Paredes', 'Abril', 'abril@gmail.com', 2147483647, '', '', 'Enfermera'),
-(33333333, 'López', 'Carlos', 'carlos@gmail.com', 2147483647, '', 'Alergias', 'Profesor'),
-(33333334, 'Gutiérrez', 'Isabel', 'isabel@gmail.com', 2147483647, '', 'Hipertensión', 'Médico'),
-(33333335, 'Moreno', 'Renzo', 'renzo@gmail.com', 2147483647, '', '', 'Enfermera'),
-(34343434, 'Suárez', 'Marta', 'marta@gmail.com', 2147483647, '', 'Alergias', 'Contador'),
+(0, 'Pereyra', 'Luciana', 'luciana@gmail.com', 2147483647, 'NORTE', NULL, 'Profesor'),
+(10101010, 'Molina', 'Francisco', 'francisco@gmail.com', 1122334455, 'SUR', NULL, 'Médico'),
+(10101011, 'Soto', 'Paula', 'paula@gmail.com', 1122334455, 'ESTE', NULL, 'Ingeniero'),
+(11111111, 'González', 'Juan', 'juan@gmail.com', 1122334455, 'OESTE', NULL, 'Médico'),
+(11111112, 'Cabrera', 'Martina', 'martina@gmail.com', 1122334455, 'NORTE', NULL, 'Médico'),
+(11111114, 'Hernández', 'Lautaro', 'lautaro@gmail.com', 1122334455, 'SUR', 'Hipertensión', 'Profesor'),
+(12121212, 'Gómez', 'Lucía', 'lucia@gmail.com', 1122334455, 'ESTE', 'Hipertensión', 'Abogado'),
+(12121213, 'Vega', 'Alejandra', 'alejandra@gmail.com', 1122334455, 'OESTE', 'Asma', 'Médico'),
+(12121214, 'Cardozo', 'Marta', 'marta@gmail.com', 1122334455, 'NORTE', 'Asma', 'Médico'),
+(20202020, 'Herrera', 'Isabella', 'isabella@gmail.com', 2147483647, 'SUR', 'Asma', 'Enfermera'),
+(20202021, 'Rosales', 'Leandro', 'leandro@gmail.com', 2147483647, 'ESTE', 'Diabetes', 'Médico'),
+(22222222, 'Pérez', 'María', 'maria@gmail.com', 2147483647, 'OESTE', NULL, 'Enfermera'),
+(22222223, 'Acosta', 'Maximiliano', 'maximiliano@gmail.com', 2147483647, 'NORTE', 'Asma', 'Enfermera'),
+(22222225, 'Fernández', 'Clara', 'clara@gmail.com', 2147483647, 'SUR', 'Alergias', 'Médico'),
+(23232323, 'Vega', 'Javier', 'javier@gmail.com', 2147483647, 'ESTE', NULL, 'Ingeniero'),
+(23232325, 'Arias', 'Agustín', 'agustin@gmail.com', 2147483647, 'OESTE', NULL, 'Enfermera'),
+(30303030, 'Silva', 'Lucas', 'lucas@gmail.com', 2147483647, 'NORTE', 'Diabetes', 'Médico'),
+(30303031, 'Paredes', 'Abril', 'abril@gmail.com', 2147483647, 'SUR', '', 'Enfermera'),
+(33333333, 'López', 'Carlos', 'carlos@gmail.com', 2147483647, 'ESTE', 'Alergias', 'Profesor'),
+(33333334, 'Gutiérrez', 'Isabel', 'isabel@gmail.com', 2147483647, 'OESTE', 'Hipertensión', 'Médico'),
+(33333335, 'Moreno', 'Renzo', 'renzo@gmail.com', 2147483647, 'NORTE', NULL, 'Enfermera'),
+(34343434, 'Suárez', 'Marta', 'marta@gmail.com', 2147483647, 'SUR', 'Alergias', 'Contador'),
 (34343435, 'Castillo', 'Gabriela', 'gabriela@gmail.com', 2147483647, '', '', 'Profesor'),
 (40404040, 'Ramos', 'Valeria', 'valeria@gmail.com', 2147483647, '', '', 'Profesor'),
 (40404041, 'Ferreira', 'Facundo', 'facundo@gmail.com', 2147483647, '', 'Alergias', 'Profesor'),

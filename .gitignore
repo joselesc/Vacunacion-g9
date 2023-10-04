@@ -27,4 +27,7 @@ replay_pid*
 /test/
 /dist/
 /nbproject/private/
-
+/Vacunacion-g9/build/
+/Vacunacion-g9/test/
+/Vacunacion-g9/dist/
+/Vacunacion-g9/nbproject/private/
