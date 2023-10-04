@@ -163,7 +163,7 @@
     <Container class="javax.swing.JDesktopPane" name="escritorio">
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_CreateCodeCustom" type="java.lang.String" value="new javax.swing.JDesktopPane(){&#xa;    public void paintComponent(Graphics g){&#xa;        g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);&#xa;    }&#xa;}"/>
-        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono=new ImageIcon(getClass().getResource(&quot;/vacunacion/g9/imagenes/fondo.png&quot;));&#xa;Image miImagen=icono.getImage();"/>
+        <AuxValue name="JavaCodeGenerator_CreateCodePre" type="java.lang.String" value="ImageIcon icono=new ImageIcon(getClass().getResource(&quot;/vacunacion/g9/imagenes/vacunacion-covid-fullhd.png&quot;));&#xa;Image miImagen=icono.getImage();"/>
       </AuxValues>
 
       <Layout>

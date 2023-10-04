@@ -31,7 +31,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        ImageIcon icono=new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fondo.png"));
+        ImageIcon icono=new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/vacunacion-covid-fullhd.png"));
         Image miImagen=icono.getImage();
         escritorio = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
