@@ -16,31 +16,32 @@ public class Ciudadano {
    private String apellido;
     private String  email;
     private int celular;
+    private String zona;
     private String patologia=null;
     private String ambitoTrabajo;
 
-    public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String patologia, String ambitoTrabajo) {
+    public Ciudadano() {
+    }
+
+    public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String zona, String patologia, String ambitoTrabajo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.celular = celular;
+        this.zona = zona;
         this.patologia = patologia;
         this.ambitoTrabajo = ambitoTrabajo;
     }
-    
-    
-      public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String ambitoTrabajo) {
+
+    public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String zona, String ambitoTrabajo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.celular = celular;
+        this.zona = zona;
         this.ambitoTrabajo = ambitoTrabajo;
-    }
-    
-
-    public Ciudadano() {
     }
 
     public int getDni() {
@@ -83,6 +84,14 @@ public class Ciudadano {
         this.celular = celular;
     }
 
+    public String getZona() {
+        return zona;
+    }
+
+    public void setZona(String zona) {
+        this.zona = zona;
+    }
+
     public String getPatologia() {
         return patologia;
     }
@@ -99,12 +108,9 @@ public class Ciudadano {
         this.ambitoTrabajo = ambitoTrabajo;
     }
 
-    @Override
+  @Override
     public String toString() {
         return  dni + " - " + nombre + " " + apellido + " - "+ email + " - " + celular + " - " + patologia + " - " + ambitoTrabajo ;
-    }
-    
-    
-           
+    }          
     
 }
