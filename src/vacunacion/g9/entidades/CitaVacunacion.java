@@ -1,16 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vacunacion.g9.entidades;
 
 import java.time.LocalDateTime;
 
-/**
- *
- * @author josel
- */
 public class CitaVacunacion {
     
     private int codCita;
