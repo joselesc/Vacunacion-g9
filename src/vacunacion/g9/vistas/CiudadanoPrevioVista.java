@@ -9,6 +9,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import vacunacion.g9.VacunacionG9;
 
 /**
  *
@@ -57,7 +58,12 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
 
         jMenuItem4.setText("jMenuItem4");
 
+        setResizable(true);
+        setMinimumSize(new java.awt.Dimension(1212, 966));
         setPreferredSize(new java.awt.Dimension(1212, 966));
+
+        EscritorioCiudadano.setMinimumSize(new java.awt.Dimension(1196, 880));
+        EscritorioCiudadano.setPreferredSize(new java.awt.Dimension(1196, 880));
 
         javax.swing.GroupLayout EscritorioCiudadanoLayout = new javax.swing.GroupLayout(EscritorioCiudadano);
         EscritorioCiudadano.setLayout(EscritorioCiudadanoLayout);
@@ -67,7 +73,7 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         );
         EscritorioCiudadanoLayout.setVerticalGroup(
             EscritorioCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 456, Short.MAX_VALUE)
+            .addGap(0, 0, Short.MAX_VALUE)
         );
 
         jMenuBar1.setPreferredSize(new java.awt.Dimension(204, 50));
@@ -108,6 +114,11 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         });
 
         jMenuItem7.setText("Exit");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem7ActionPerformed(evt);
+            }
+        });
         jMenu4.add(jMenuItem7);
 
         jMenuBar1.add(jMenu4);
@@ -118,11 +129,11 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioCiudadano, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(EscritorioCiudadano, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(EscritorioCiudadano)
+            .addComponent(EscritorioCiudadano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
@@ -139,13 +150,22 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
          EscritorioCiudadano.repaint();
         CiudadanoVista cv = new CiudadanoVista();
         setContentPane(EscritorioCiudadano);
-        setSize(800, 600);
+        setSize(1212, 966);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cv.setVisible(true);
          EscritorioCiudadano.add(cv);
         EscritorioCiudadano.moveToFront(cv);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+      this.dispose();
+      VacunacionG9Vista v=new VacunacionG9Vista();
+      v.setVisible(true);
+     
+
+      
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

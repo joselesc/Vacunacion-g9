@@ -11,7 +11,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         jCPatologia.setVisible(false);
         jLDescripcion.setVisible(false);
         jTDescripcion.setVisible(false);
-      
+
     }
 
     @SuppressWarnings("unchecked")
@@ -85,6 +85,12 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         jCBZona.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jCBZona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NORTE", "SUR", "ESTE", "OESTE" }));
 
+        jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCheckBox2ActionPerformed(evt);
+            }
+        });
+
         jCPatologia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jCPatologia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOBREPESO", "HIPERTENSO", "DIABETES", "ASMA", "OTROS.." }));
 
@@ -109,6 +115,11 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         jBCerrar.setMaximumSize(new java.awt.Dimension(150, 30));
         jBCerrar.setMinimumSize(new java.awt.Dimension(150, 30));
         jBCerrar.setPreferredSize(new java.awt.Dimension(150, 30));
+        jBCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCerrarActionPerformed(evt);
+            }
+        });
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("OCUPACION");
@@ -202,7 +213,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 23, Short.MAX_VALUE))
+                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -231,45 +242,60 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
 
     private void jBRegistrarseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBRegistrarseActionPerformed
 
-        
-        try{
-        if (jTApellido.getText().isEmpty() || jTNombre.getText().isEmpty() || jTDni.getText().isEmpty() || jTEmail.getText().isEmpty()
+        try {
+            if (jTApellido.getText().isEmpty() || jTNombre.getText().isEmpty() || jTDni.getText().isEmpty() || jTEmail.getText().isEmpty()
+                    || jTCelular.getText().isEmpty()) {
 
-                || jTCelular.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos");
 
-            JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos");
+            } else {
 
-        } else {
-
-            String apellido = jTApellido.getText();
-            String nombre = jTNombre.getText();
-            int dni = Integer.parseInt(jTDni.getText());
-            String email = jTApellido.getText();
-            int celular = Integer.parseInt(jTCelular.getText());
-            String zona = (String) jCBZona.getSelectedItem();
-            String ocupacion=jTOcupacion.getText();
-             String patologia=null;
-            if (jCheckBox2.isSelected()) {
-                jCPatologia.setVisible(true);
-                jLDescripcion.setVisible(true);
-                jTDescripcion.setVisible(true);
+                String apellido = jTApellido.getText();
+                String nombre = jTNombre.getText();
+                int dni = Integer.parseInt(jTDni.getText());
+                String email = jTEmail.getText();
+                int celular = Integer.parseInt(jTCelular.getText());
+                String zona = (String) jCBZona.getSelectedItem();
+                String ocupacion = jTOcupacion.getText();
+                String patologia = null;
                 
-                patologia = (String) jCPatologia.getSelectedItem();
-                if (patologia.equals("otros")) {
-                    patologia = jTDescripcion.getText();
+                if (jCheckBox2.isSelected()) {
+                  
+                    patologia = (String) jCPatologia.getSelectedItem();
+                    if (patologia.equals("otros")) {
+                        patologia = jTDescripcion.getText();
+                    }
+
                 }
 
+                Ciudadano c = new Ciudadano(dni, nombre, apellido, email, celular, zona, patologia, ocupacion);
+                CiudadanoData cd = new CiudadanoData();
+                cd.registrarCiudadano(c);
             }
-        
-                Ciudadano c=new Ciudadano(dni,nombre,apellido,email,celular,zona,patologia,ocupacion);
-                CiudadanoData cd= new CiudadanoData();
-                cd.registrarCiudadano();
-        }
-        }catch(NumberFormatException ex) {
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en campo numerico -" + ex.getMessage());
         }
     }//GEN-LAST:event_jBRegistrarseActionPerformed
-    
+
+    private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
+
+        this.dispose();
+    }//GEN-LAST:event_jBCerrarActionPerformed
+
+    private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
+      if(jCheckBox2.isSelected()) {
+          jCPatologia.setVisible(true);
+        jLDescripcion.setVisible(true);
+        jTDescripcion.setVisible(true);
+      }else{
+            jCPatologia.setVisible(false);
+        jLDescripcion.setVisible(false);
+        jTDescripcion.setVisible(false);
+      }
+        
+        
+    }//GEN-LAST:event_jCheckBox2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCerrar;
