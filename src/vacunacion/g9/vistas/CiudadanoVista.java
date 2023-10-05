@@ -124,6 +124,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel10.setText("OCUPACION");
 
+        jTOcupacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTOcupacion.setMinimumSize(new java.awt.Dimension(6, 28));
         jTOcupacion.setPreferredSize(new java.awt.Dimension(6, 28));
 
@@ -136,7 +137,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 36, Short.MAX_VALUE))
+                        .addGap(0, 4, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -216,7 +217,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                         .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jTOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jTOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(24, 24, 24)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -258,9 +259,9 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                 String zona = (String) jCBZona.getSelectedItem();
                 String ocupacion = jTOcupacion.getText();
                 String patologia = null;
-                
+
                 if (jCheckBox2.isSelected()) {
-                  
+
                     patologia = (String) jCPatologia.getSelectedItem();
                     if (patologia.equals("otros")) {
                         patologia = jTDescripcion.getText();
@@ -271,6 +272,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                 Ciudadano c = new Ciudadano(dni, nombre, apellido, email, celular, zona, patologia, ocupacion);
                 CiudadanoData cd = new CiudadanoData();
                 cd.registrarCiudadano(c);
+                limpiar();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en campo numerico -" + ex.getMessage());
@@ -283,17 +285,17 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-      if(jCheckBox2.isSelected()) {
-          jCPatologia.setVisible(true);
-        jLDescripcion.setVisible(true);
-        jTDescripcion.setVisible(true);
-      }else{
+        if (jCheckBox2.isSelected()) {
+            jCPatologia.setVisible(true);
+            jLDescripcion.setVisible(true);
+            jTDescripcion.setVisible(true);
+        } else {
             jCPatologia.setVisible(false);
-        jLDescripcion.setVisible(false);
-        jTDescripcion.setVisible(false);
-      }
-        
-        
+            jLDescripcion.setVisible(false);
+            jTDescripcion.setVisible(false);
+        }
+
+
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
 
@@ -321,4 +323,14 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTNombre;
     private javax.swing.JTextField jTOcupacion;
     // End of variables declaration//GEN-END:variables
+
+    private void limpiar() {
+        jTApellido.setText("");
+        jTNombre.setText("");
+        jTDni.setText("");
+        jTEmail.setText("");
+        jTCelular.setText("");
+        jTOcupacion.setText("");
+        jCheckBox2.setSelected(false);
+    }
 }
