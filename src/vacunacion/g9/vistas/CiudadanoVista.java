@@ -1,6 +1,7 @@
 package vacunacion.g9.vistas;
 
 import javax.swing.JOptionPane;
+import vacunacion.g9.accesoADatos.CiudadanoData;
 import vacunacion.g9.entidades.Ciudadano;
 
 public class CiudadanoVista extends javax.swing.JInternalFrame {
@@ -10,7 +11,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         jCPatologia.setVisible(false);
         jLDescripcion.setVisible(false);
         jTDescripcion.setVisible(false);
-        jCheckBox2.setVisible(false);
+      
     }
 
     @SuppressWarnings("unchecked")
@@ -233,7 +234,9 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         
         try{
         if (jTApellido.getText().isEmpty() || jTNombre.getText().isEmpty() || jTDni.getText().isEmpty() || jTEmail.getText().isEmpty()
+
                 || jTCelular.getText().isEmpty()) {
+
             JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos");
 
         } else {
@@ -250,7 +253,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                 jCPatologia.setVisible(true);
                 jLDescripcion.setVisible(true);
                 jTDescripcion.setVisible(true);
-                jCheckBox2.setVisible(true);
+                
                 patologia = (String) jCPatologia.getSelectedItem();
                 if (patologia.equals("otros")) {
                     patologia = jTDescripcion.getText();
@@ -259,7 +262,8 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
             }
         
                 Ciudadano c=new Ciudadano(dni,nombre,apellido,email,celular,zona,patologia,ocupacion);
-                
+                CiudadanoData cd= new CiudadanoData();
+                cd.registrarCiudadano();
         }
         }catch(NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en campo numerico -" + ex.getMessage());
