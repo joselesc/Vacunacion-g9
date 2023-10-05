@@ -1,11 +1,9 @@
 package vacunacion.g9.accesoADatos;
 
-import java.awt.List;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import vacunacion.g9.entidades.Ciudadano;
 
@@ -23,7 +21,7 @@ public class CiudadanoData {
     
     public Ciudadano buscarCiudadano(int dni){
         Ciudadano c = null;
-        String sql = "SELECT * FROM materia WHERE idMateria = ?";
+        String sql = "SELECT * FROM ciudadano WHERE dni = ?";
 
         try {
 
