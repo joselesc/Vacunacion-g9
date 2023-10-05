@@ -1,7 +1,5 @@
 package vacunacion.g9.vistas;
 
-import java.time.LocalDate;
-import java.time.ZoneId;
 import javax.swing.JOptionPane;
 import vacunacion.g9.accesoADatos.CiudadanoData;
 import vacunacion.g9.entidades.Ciudadano;
@@ -236,7 +234,9 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         
         try{
         if (jTApellido.getText().isEmpty() || jTNombre.getText().isEmpty() || jTDni.getText().isEmpty() || jTEmail.getText().isEmpty()
-                || jTCelular.getText().isEmpty() ) {
+
+                || jTCelular.getText().isEmpty()) {
+
             JOptionPane.showMessageDialog(this, "Error: Uno o más campos están vacíos");
 
         } else {
