@@ -125,8 +125,6 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
         jLabel10.setText("OCUPACION");
 
         jTOcupacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jTOcupacion.setMinimumSize(new java.awt.Dimension(6, 28));
-        jTOcupacion.setPreferredSize(new java.awt.Dimension(6, 28));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -156,7 +154,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                                     .addComponent(jTDni)
                                     .addComponent(jTApellido)
                                     .addComponent(jTNombre)
-                                    .addComponent(jTOcupacion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(jTOcupacion)))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -183,8 +181,8 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                         .addGap(221, 221, 221)
                         .addComponent(jLDescripcion))
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22)
+                        .addComponent(jTDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
