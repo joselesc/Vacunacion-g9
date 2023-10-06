@@ -46,15 +46,15 @@
                                   <Component id="jLabel9" alignment="0" min="-2" pref="132" max="-2" attributes="0"/>
                                   <Component id="jLabel10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" pref="58" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jTCelular" alignment="0" pref="583" max="32767" attributes="0"/>
-                                  <Component id="jTEmail" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace type="separate" pref="24" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jTApellido" alignment="0" pref="574" max="32767" attributes="0"/>
                                   <Component id="jTDni" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTApellido" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTNombre" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTOcupacion" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTEmail" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTCelular" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jTNombre" max="32767" attributes="0"/>
                               </Group>
+                              <EmptySpace pref="24" max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -71,10 +71,9 @@
                                       <Component id="jCPatologia" min="-2" pref="239" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace max="32767" attributes="0"/>
                   </Group>
               </Group>
           </Group>
@@ -85,15 +84,18 @@
               <Component id="jBCerrar" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
-                      <Component id="jLDescripcion" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                      <Component id="jTDescripcion" min="-2" pref="741" max="-2" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jTOcupacion" alignment="1" min="-2" pref="574" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" attributes="0">
+                          <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                          <Component id="jLDescripcion" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <Group type="102" alignment="0" attributes="0">
+                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                          <Component id="jTDescripcion" min="-2" pref="741" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
