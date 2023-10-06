@@ -162,12 +162,15 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jCBZona, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel12)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCheckBox2)
-                                        .addGap(53, 53, 53)
-                                        .addComponent(jCPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                            .addGap(62, 62, 62)
+                                            .addComponent(jLabel12)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jCheckBox2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(jCPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(jTDescripcion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
@@ -177,13 +180,8 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                 .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(138, 138, 138))
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(221, 221, 221)
-                        .addComponent(jLDescripcion))
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jTDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 733, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(256, 256, 256)
+                .addComponent(jLDescripcion)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -213,7 +211,7 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(29, 29, 29)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel10))
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jTOcupacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -226,9 +224,9 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                     .addComponent(jLabel12)
                     .addComponent(jCheckBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jCPatologia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
+                .addGap(34, 34, 34)
                 .addComponent(jLDescripcion)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jTDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(28, 28, 28)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -265,12 +263,12 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
                     if (patologia.equals("otros")) {
                         patologia = jTDescripcion.getText();
                     }
-
                 }
 
                 Ciudadano c = new Ciudadano(dni, nombre, apellido, email, celular, zona, patologia, ocupacion);
                 CiudadanoData cd = new CiudadanoData();
                 cd.registrarCiudadano(c);
+                limpiar();
             }
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en campo numerico -" + ex.getMessage());
@@ -280,22 +278,36 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
 
         this.dispose();
+        
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jCheckBox2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCheckBox2ActionPerformed
-      if(jCheckBox2.isSelected()) {
-          jCPatologia.setVisible(true);
-        jLDescripcion.setVisible(true);
-        jTDescripcion.setVisible(true);
-      }else{
-            jCPatologia.setVisible(false);
-        jLDescripcion.setVisible(false);
-        jTDescripcion.setVisible(false);
-      }
-        
-        
+        if (jCheckBox2.isSelected()) {
+            
+                jCPatologia.setVisible(true);
+                jLDescripcion.setVisible(true);
+                jTDescripcion.setVisible(true);
+            
+        } else {
+            
+                jCPatologia.setVisible(false);
+                jLDescripcion.setVisible(false);
+                jTDescripcion.setVisible(false);
+            
+        }        
     }//GEN-LAST:event_jCheckBox2ActionPerformed
 
+    public void limpiar(){
+        
+            jTApellido.setText("");
+            jTCelular.setText("");
+            jTDescripcion.setText("");
+            jTDni.setText("");
+            jTEmail.setText("");
+            jTNombre.setText("");
+            jTOcupacion.setText("");    
+
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCerrar;

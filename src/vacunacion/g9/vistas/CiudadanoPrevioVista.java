@@ -9,7 +9,6 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import vacunacion.g9.VacunacionG9;
 
 /**
  *
@@ -63,7 +62,6 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         setPreferredSize(new java.awt.Dimension(1212, 966));
 
         EscritorioCiudadano.setMinimumSize(new java.awt.Dimension(1196, 880));
-        EscritorioCiudadano.setPreferredSize(new java.awt.Dimension(1196, 880));
 
         javax.swing.GroupLayout EscritorioCiudadanoLayout = new javax.swing.GroupLayout(EscritorioCiudadano);
         EscritorioCiudadano.setLayout(EscritorioCiudadanoLayout);
@@ -92,6 +90,11 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Logearse");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
@@ -146,14 +149,14 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
       
-       EscritorioCiudadano.removeAll();
-         EscritorioCiudadano.repaint();
+        EscritorioCiudadano.removeAll();
+        EscritorioCiudadano.repaint();
         CiudadanoVista cv = new CiudadanoVista();
         setContentPane(EscritorioCiudadano);
         setSize(1212, 966);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cv.setVisible(true);
-         EscritorioCiudadano.add(cv);
+        EscritorioCiudadano.add(cv);
         EscritorioCiudadano.moveToFront(cv);
         
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -166,6 +169,19 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
 
       
     }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+            
+            EscritorioCiudadano.removeAll();
+            EscritorioCiudadano.repaint();
+            LoguearseVista lv = new LoguearseVista();
+            setContentPane(EscritorioCiudadano);
+            setSize(1212, 966);
+            setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            lv.setVisible(true);
+            EscritorioCiudadano.add(lv);
+            EscritorioCiudadano.moveToFront(lv);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
