@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 06-10-2023 a las 23:45:55
+-- Tiempo de generación: 07-10-2023 a las 01:38:58
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -26,6 +26,19 @@ USE `vacunacion-g9`;
 -- --------------------------------------------------------
 
 --
+-- Estructura de tabla para la tabla `centro`
+--
+
+CREATE TABLE `centro` (
+  `id_centro` int(11) NOT NULL,
+  `nombre` varchar(100) NOT NULL,
+  `dirrecion` varchar(100) NOT NULL,
+  `telefono` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Estructura de tabla para la tabla `citavacunacion`
 --
 
@@ -34,7 +47,7 @@ CREATE TABLE `citavacunacion` (
   `dni` int(11) NOT NULL,
   `nroSerieDosis` int(50) NOT NULL,
   `fechaHoraCita` datetime NOT NULL,
-  `centroVacunacion` varchar(100) NOT NULL,
+  `id_centro` int(11) NOT NULL,
   `fechaHoraColocada` datetime NOT NULL,
   `dosis` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -171,12 +184,19 @@ CREATE TABLE `vacuna` (
 --
 
 --
+-- Indices de la tabla `centro`
+--
+ALTER TABLE `centro`
+  ADD PRIMARY KEY (`id_centro`);
+
+--
 -- Indices de la tabla `citavacunacion`
 --
 ALTER TABLE `citavacunacion`
   ADD PRIMARY KEY (`codCita`),
   ADD KEY `dni` (`dni`),
-  ADD KEY `nroSerieDosis` (`nroSerieDosis`);
+  ADD KEY `nroSerieDosis` (`nroSerieDosis`),
+  ADD KEY `id_centro` (`id_centro`);
 
 --
 -- Indices de la tabla `ciudadano`
@@ -202,6 +222,12 @@ ALTER TABLE `vacuna`
 --
 
 --
+-- AUTO_INCREMENT de la tabla `centro`
+--
+ALTER TABLE `centro`
+  MODIFY `id_centro` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT de la tabla `citavacunacion`
 --
 ALTER TABLE `citavacunacion`
@@ -222,7 +248,8 @@ ALTER TABLE `vacuna`
 --
 ALTER TABLE `citavacunacion`
   ADD CONSTRAINT `citavacunacion_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `ciudadano` (`dni`),
-  ADD CONSTRAINT `citavacunacion_ibfk_2` FOREIGN KEY (`nroSerieDosis`) REFERENCES `vacuna` (`nroSerieDosis`);
+  ADD CONSTRAINT `citavacunacion_ibfk_2` FOREIGN KEY (`nroSerieDosis`) REFERENCES `vacuna` (`nroSerieDosis`),
+  ADD CONSTRAINT `citavacunacion_ibfk_3` FOREIGN KEY (`id_centro`) REFERENCES `centro` (`id_centro`);
 
 --
 -- Filtros para la tabla `vacuna`
