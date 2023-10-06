@@ -74,12 +74,15 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setMinimumSize(new java.awt.Dimension(204, 50));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(204, 50));
 
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/ciudadano.png"))); // NOI18N
         jMenuBar1.add(jMenu3);
 
         jMenu1.setText("Inicio");
+        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jMenu1.setHideActionText(true);
 
         jMenuItem2.setText("Registrarse");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
@@ -90,16 +93,12 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         jMenu1.add(jMenuItem2);
 
         jMenuItem3.setText("Logearse");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
         jMenu1.add(jMenuItem3);
 
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Consulta");
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         jMenuItem5.setText("FechaVacunacion");
         jMenu2.add(jMenuItem5);
@@ -110,6 +109,10 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         jMenuBar1.add(jMenu2);
 
         jMenu4.setText("Salir");
+        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jMenu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jMenu4.setMinimumSize(new java.awt.Dimension(49, 40));
+        jMenu4.setPreferredSize(new java.awt.Dimension(49, 40));
         jMenu4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenu4ActionPerformed(evt);
