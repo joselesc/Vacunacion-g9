@@ -1,4 +1,4 @@
-# Proyecto grupal Vacunacion-g9
+<h1 align="center">Proyecto grupal Vacunacion-g9</h1>
 
 ## Muestra de database
 
