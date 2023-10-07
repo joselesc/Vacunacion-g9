@@ -9,6 +9,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
 
     public VacunacionG9Vista() {
         initComponents();
+        transparencia();
     }
 
     /**
@@ -112,7 +113,21 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
+        public void transparencia(){
+            jButton1.setOpaque(false);
+            jButton1.setContentAreaFilled(false);
+            jButton1.setBorderPainted(false);
+            jButton2.setOpaque(false);
+            jButton2.setContentAreaFilled(false);
+            jButton2.setBorderPainted(false);
+            jButton3.setOpaque(false);
+            jButton3.setContentAreaFilled(false);
+            jButton3.setBorderPainted(false);
+            jButton4.setOpaque(false);
+            jButton4.setContentAreaFilled(false);
+            jButton4.setBorderPainted(false);
+        
+        }
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
         escritorio.removeAll();
