@@ -16,12 +16,11 @@ import javax.swing.JFrame;
  */
 public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form CiudadanoPrevioVista
-     */
+  
     public CiudadanoPrevioVista() {
         initComponents();
-    }
+        ((javax.swing.plaf.basic.BasicInternalFrameUI)this.getUI()).setNorthPane(null);
+     }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -57,7 +56,6 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
 
         jMenuItem4.setText("jMenuItem4");
 
-        setResizable(true);
         setMinimumSize(new java.awt.Dimension(1212, 966));
         setPreferredSize(new java.awt.Dimension(1212, 966));
 
@@ -84,6 +82,7 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         jMenu1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jMenu1.setHideActionText(true);
 
+        jMenuItem2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jMenuItem2.setText("Registrarse");
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +91,7 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         });
         jMenu1.add(jMenuItem2);
 
+        jMenuItem3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jMenuItem3.setText("Logearse");
         jMenu1.add(jMenuItem3);
 
@@ -100,9 +100,11 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         jMenu2.setText("Consulta");
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
+        jMenuItem5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jMenuItem5.setText("FechaVacunacion");
         jMenu2.add(jMenuItem5);
 
+        jMenuItem6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jMenuItem6.setText("CambioDeFecha");
         jMenu2.add(jMenuItem6);
 
@@ -119,6 +121,7 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jMenuItem7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jMenuItem7.setText("Exit");
         jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
