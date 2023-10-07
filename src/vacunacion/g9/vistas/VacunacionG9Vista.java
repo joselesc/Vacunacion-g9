@@ -41,6 +41,12 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/minimizar.png"))); // NOI18N
         jButton1.setText("ADMINISTRACION");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jButton2.setForeground(new java.awt.Color(255, 255, 255));
@@ -155,6 +161,12 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
     
         System.exit(0);
     }//GEN-LAST:event_jButton3ActionPerformed
+    /*metodo al apretar el jbuttomAdministracion() llama al loginAdministracionVista()*/
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        loginAdministracion ingresoPersonal = new loginAdministracion();
+        ingresoPersonal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
