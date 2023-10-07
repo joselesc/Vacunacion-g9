@@ -33,7 +33,7 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
 
         jMenuItem1 = new javax.swing.JMenuItem();
         jMenuItem4 = new javax.swing.JMenuItem();
-        ImageIcon icono=new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fondo.png"));
+        ImageIcon icono=new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/vacunacion-covid-fullhd.png"));
         Image miImagen=icono.getImage();
         EscritorioCiudadano = new javax.swing.JDesktopPane(){
             public void paintComponent(Graphics g){
