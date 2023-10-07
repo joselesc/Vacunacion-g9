@@ -1,7 +1,6 @@
 package vacunacion.g9.entidades;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 class Vacuna {
     
