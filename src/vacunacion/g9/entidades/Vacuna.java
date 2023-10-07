@@ -1,63 +1,45 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package vacunacion.g9.entidades;
 
+import java.time.LocalDate;
 import java.util.Date;
 
-/**
- *
- * @author jfaja
- */
 class Vacuna {
     
-    private int nroSerieDosis;
-    private int cuit_laboratorio;
+   private int nroSeriDosis;
+    private long cuit;
     private String marca;
     private double medida;
-    private Date fechaCaduca;
+    private LocalDate fechaCaduca;
     private int stock;
     private boolean colocada;
-
-    public Vacuna(int nroSerieDosis, int cuit_laboratorio, String marca, double medida, Date fechaCaduca, int stock, boolean colocada) {
-        this.nroSerieDosis = nroSerieDosis;
-        this.cuit_laboratorio = cuit_laboratorio;
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaCaduca = fechaCaduca;
-        this.stock = stock;
-        this.colocada = colocada;
-    }
-
-    public Vacuna(int cuit_laboratorio, String marca, double medida, Date fechaCaduca, int stock, boolean colocada) {
-        this.cuit_laboratorio = cuit_laboratorio;
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaCaduca = fechaCaduca;
-        this.stock = stock;
-        this.colocada = colocada;
-    }
 
     public Vacuna() {
     }
 
-    public int getNroSerieDosis() {
-        return nroSerieDosis;
+    public Vacuna(int nroSeriDosis, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock, boolean colocada) {
+        this.nroSeriDosis = nroSeriDosis;
+        this.cuit = cuit;
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaCaduca = fechaCaduca;
+        this.stock = stock;
+        this.colocada = colocada;
     }
 
-    public void setNroSerieDosis(int nroSerieDosis) {
-        this.nroSerieDosis = nroSerieDosis;
+    public int getNroSeriDosis() {
+        return nroSeriDosis;
     }
 
-    public int getCuit_laboratorio() {
-        return cuit_laboratorio;
+    public void setNroSeriDosis(int nroSeriDosis) {
+        this.nroSeriDosis = nroSeriDosis;
     }
 
-    public void setCuit_laboratorio(int cuit_laboratorio) {
-        this.cuit_laboratorio = cuit_laboratorio;
+    public long getCuit() {
+        return cuit;
+    }
+
+    public void setCuit(long cuit) {
+        this.cuit = cuit;
     }
 
     public String getMarca() {
@@ -76,11 +58,11 @@ class Vacuna {
         this.medida = medida;
     }
 
-    public Date getFechaCaduca() {
+    public LocalDate getFechaCaduca() {
         return fechaCaduca;
     }
 
-    public void setFechaCaduca(Date fechaCaduca) {
+    public void setFechaCaduca(LocalDate fechaCaduca) {
         this.fechaCaduca = fechaCaduca;
     }
 
@@ -102,7 +84,12 @@ class Vacuna {
 
     @Override
     public String toString() {
-        return "Vacuna{" + "nroSerieDosis=" + nroSerieDosis + ", cuit_laboratorio=" + cuit_laboratorio + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
+        return "nroSeriDosis=" + nroSeriDosis 
+                + ", cuit: " + cuit 
+                + ", marca: " + marca 
+                + ", medida: " + medida 
+                + ", fechaCaduca: " + fechaCaduca 
+                + ", stock: " + stock 
+                + ", colocada: " + colocada;
     }
-
 }
