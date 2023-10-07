@@ -25,10 +25,10 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
                 g.drawImage(miImagen,0,0,getWidth(),getHeight(),this);
             }
         };
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jBAdministracion = new javax.swing.JButton();
+        jBPerosnalSalud = new javax.swing.JButton();
+        jBSalir = new javax.swing.JButton();
+        jBCiudadano = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -44,48 +44,55 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/minimizar.png"))); // NOI18N
-        jButton1.setText("ADMINISTRACION");
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBAdministracion.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jBAdministracion.setForeground(new java.awt.Color(255, 255, 255));
+        jBAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/minimizar.png"))); // NOI18N
+        jBAdministracion.setText("ADMINISTRACION");
+        jBAdministracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBAdministracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBAdministracionActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/vacunacion13.png"))); // NOI18N
-        jButton2.setText("VACUNATORIO");
-
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/exit.png"))); // NOI18N
-        jButton3.setText("SALIR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBPerosnalSalud.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jBPerosnalSalud.setForeground(new java.awt.Color(255, 255, 255));
+        jBPerosnalSalud.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/vacunacion13.png"))); // NOI18N
+        jBPerosnalSalud.setText("VACUNATORIO");
+        jBPerosnalSalud.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBPerosnalSalud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBPerosnalSaludActionPerformed(evt);
             }
         });
 
-        jButton4.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/familia.png"))); // NOI18N
-        jButton4.setText("CIUDADANO");
-        jButton4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton4.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jBSalir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jBSalir.setForeground(new java.awt.Color(255, 255, 255));
+        jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/exit.png"))); // NOI18N
+        jBSalir.setText("SALIR");
+        jBSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jBSalirActionPerformed(evt);
             }
         });
 
-        escritorio.setLayer(jButton1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton3, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        escritorio.setLayer(jButton4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jBCiudadano.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jBCiudadano.setForeground(new java.awt.Color(255, 255, 255));
+        jBCiudadano.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/familia.png"))); // NOI18N
+        jBCiudadano.setText("CIUDADANO");
+        jBCiudadano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBCiudadano.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jBCiudadano.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBCiudadanoActionPerformed(evt);
+            }
+        });
+
+        escritorio.setLayer(jBAdministracion, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jBPerosnalSalud, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jBSalir, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        escritorio.setLayer(jBCiudadano, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout escritorioLayout = new javax.swing.GroupLayout(escritorio);
         escritorio.setLayout(escritorioLayout);
@@ -94,12 +101,12 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(70, 70, 70)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2))
+                    .addComponent(jBCiudadano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBPerosnalSalud))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 253, Short.MAX_VALUE)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBAdministracion)
+                    .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(145, 145, 145))
         );
         escritorioLayout.setVerticalGroup(
@@ -107,12 +114,12 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
             .addGroup(escritorioLayout.createSequentialGroup()
                 .addGap(111, 111, 111)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBCiudadano, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBAdministracion, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(152, 152, 152)
                 .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jBPerosnalSalud, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(203, Short.MAX_VALUE))
         );
 
@@ -135,21 +142,21 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
         public void transparencia(){
-            jButton1.setOpaque(false);
-            jButton1.setContentAreaFilled(false);
-            jButton1.setBorderPainted(false);
-            jButton2.setOpaque(false);
-            jButton2.setContentAreaFilled(false);
-            jButton2.setBorderPainted(false);
-            jButton3.setOpaque(false);
-            jButton3.setContentAreaFilled(false);
-            jButton3.setBorderPainted(false);
-            jButton4.setOpaque(false);
-            jButton4.setContentAreaFilled(false);
-            jButton4.setBorderPainted(false);
+            jBAdministracion.setOpaque(false);
+            jBAdministracion.setContentAreaFilled(false);
+            jBAdministracion.setBorderPainted(false);
+            jBPerosnalSalud.setOpaque(false);
+            jBPerosnalSalud.setContentAreaFilled(false);
+            jBPerosnalSalud.setBorderPainted(false);
+            jBSalir.setOpaque(false);
+            jBSalir.setContentAreaFilled(false);
+            jBSalir.setBorderPainted(false);
+            jBCiudadano.setOpaque(false);
+            jBCiudadano.setContentAreaFilled(false);
+            jBCiudadano.setBorderPainted(false);
         
         }
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jBCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCiudadanoActionPerformed
 
         escritorio.removeAll();
         escritorio.repaint();
@@ -162,19 +169,19 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         escritorio.moveToFront(cv);
         //[1212, 966]
 
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_jBCiudadanoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
     
         System.exit(0);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_jBSalirActionPerformed
     /*metodo al apretar el jbuttomAdministracion() 
     llama al loginAdministracionVista()*/
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdministracionActionPerformed
         loginAdministracion ingresoPersonal = new loginAdministracion();
         ingresoPersonal.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBAdministracionActionPerformed
     /*metodo para detectar cuando se sostiene el click del mouse*/
     private void formMousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMousePressed
         point = evt.getPoint();
@@ -193,6 +200,12 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         
         this.setLocation(x, y);
     }//GEN-LAST:event_formMouseDragged
+
+    private void jBPerosnalSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPerosnalSaludActionPerformed
+        loginAdministracion ingresoPersonal = new loginAdministracion();
+        ingresoPersonal.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jBPerosnalSaludActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -228,9 +241,9 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jBAdministracion;
+    private javax.swing.JButton jBCiudadano;
+    private javax.swing.JButton jBPerosnalSalud;
+    private javax.swing.JButton jBSalir;
     // End of variables declaration//GEN-END:variables
 }

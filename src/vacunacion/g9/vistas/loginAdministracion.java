@@ -130,7 +130,10 @@ public class loginAdministracion extends javax.swing.JFrame {
 
     private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
         if (jTEmail.getText().equalsIgnoreCase("1234") && jTDocumento.getText().equalsIgnoreCase("1234")) {
-            JOptionPane.showMessageDialog(null, "Felicidades ingresaste, a ningun lado");
+            PersonalSaludYAdministrativoVista psa = new PersonalSaludYAdministrativoVista();
+            psa.setVisible(true);
+            this.setVisible(false);
+            JOptionPane.showMessageDialog(null, "Bienvenido");
         }else{
             JOptionPane.showMessageDialog(null, "email o documento no aceptados");
         }
