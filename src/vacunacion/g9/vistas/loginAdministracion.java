@@ -48,6 +48,7 @@ public class loginAdministracion extends javax.swing.JFrame {
         jTDocumento.setBackground(new java.awt.Color(255, 255, 255));
 
         jTEmail.setBackground(new java.awt.Color(255, 255, 255));
+        jTEmail.setForeground(new java.awt.Color(0, 23, 31));
 
         jLEmail.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLEmail.setForeground(new java.awt.Color(255, 255, 255));
