@@ -5,6 +5,7 @@ import java.awt.Image;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 public class VacunacionG9Vista extends javax.swing.JFrame {
 
@@ -172,8 +173,10 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_jBCiudadanoActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
-    
-        System.exit(0);
+        int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
+        if (opcion == 0) {
+            System.exit(0); 
+        }
     }//GEN-LAST:event_jBSalirActionPerformed
     /*metodo al apretar el jbuttomAdministracion() 
     llama al loginAdministracionVista()*/

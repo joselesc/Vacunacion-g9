@@ -1,6 +1,7 @@
 package vacunacion.g9.vistas;
 
 import java.awt.Point;
+import javax.swing.JOptionPane;
 
 public class PersonalSaludYAdministrativoVista extends javax.swing.JFrame {
 
@@ -135,9 +136,12 @@ public class PersonalSaludYAdministrativoVista extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
-        this.dispose();
-        VacunacionG9Vista inicio = new VacunacionG9Vista();
-        inicio.setVisible(true);
+        int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
+        if (opcion == 0) {
+            this.dispose();
+            VacunacionG9Vista inicio = new VacunacionG9Vista();
+            inicio.setVisible(true);  
+        }
     }//GEN-LAST:event_jMenu4MouseClicked
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
