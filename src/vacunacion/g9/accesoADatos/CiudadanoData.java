@@ -67,4 +67,31 @@ public class CiudadanoData {
         return c;
     }
     
+    public boolean loguearse(int dni){
+        boolean ok=false;
+        Ciudadano c = null;
+        String sql = "SELECT dni FROM ciudadano WHERE dni = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                c = new Ciudadano();
+                c.setDni(rs.getInt("dni"));
+              if (c.getDni()==dni){
+                    JOptionPane.showMessageDialog(null, "Ingreso exitoso" );
+                    ok=true;
+              }
+                JOptionPane.showMessageDialog(null, "No hay ninguna cuenta co esta dni, debe registrarse primero" );
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
+      return ok;
+        
+    }
 }

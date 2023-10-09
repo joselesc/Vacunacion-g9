@@ -80,11 +80,11 @@ public class PersonalSaludYAdministrativoVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMenu2.setText("Centros vacaunacion");
+        jMenu2.setText("Centros vacunacion");
         jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuBar1.add(jMenu2);
 
-        jMenu3.setText("Stock vacaunas");
+        jMenu3.setText("Stock vacunas");
         jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuBar1.add(jMenu3);
 

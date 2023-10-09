@@ -47,14 +47,17 @@
                                   <Component id="jLabel10" alignment="0" min="-2" pref="114" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="separate" pref="24" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jTApellido" alignment="0" pref="574" max="32767" attributes="0"/>
-                                  <Component id="jTDni" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTEmail" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTCelular" alignment="0" max="32767" attributes="0"/>
-                                  <Component id="jTNombre" max="32767" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Component id="jTApellido" alignment="0" pref="574" max="32767" attributes="0"/>
+                                      <Component id="jTDni" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTEmail" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTCelular" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="jTNombre" max="32767" attributes="0"/>
+                                  </Group>
+                                  <Component id="jTOcupacion" min="-2" pref="574" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="24" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                           <Group type="102" attributes="0">
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -85,17 +88,14 @@
               <EmptySpace min="-2" pref="138" max="-2" attributes="0"/>
           </Group>
           <Group type="102" alignment="0" attributes="0">
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="jTOcupacion" alignment="1" min="-2" pref="574" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
-                          <Component id="jLDescripcion" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
-                          <Component id="jTDescripcion" min="-2" pref="741" max="-2" attributes="0"/>
-                      </Group>
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="221" max="-2" attributes="0"/>
+                      <Component id="jLDescripcion" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace min="-2" pref="22" max="-2" attributes="0"/>
+                      <Component id="jTDescripcion" min="-2" pref="741" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="32767" attributes="0"/>
@@ -131,17 +131,12 @@
                   <Component id="jLabel9" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jTCelular" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                      <Component id="jLabel10" max="32767" attributes="0"/>
-                  </Group>
-                  <Group type="102" attributes="0">
-                      <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jTOcupacion" min="-2" pref="28" max="-2" attributes="0"/>
-                  </Group>
+              <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="jLabel10" alignment="3" max="32767" attributes="0"/>
+                  <Component id="jTOcupacion" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
                   <Component id="jLabel8" alignment="3" min="-2" max="-2" attributes="0"/>
                   <Component id="jCBZona" alignment="3" min="-2" max="-2" attributes="0"/>
