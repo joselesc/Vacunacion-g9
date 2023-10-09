@@ -163,7 +163,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         escritorio.repaint();
         CiudadanoPrevioVista cv = new CiudadanoPrevioVista();
         setContentPane(escritorio);
-        setSize(1212, 966);
+       // setSize(1212, 966);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cv.setVisible(true);
         escritorio.add(cv);

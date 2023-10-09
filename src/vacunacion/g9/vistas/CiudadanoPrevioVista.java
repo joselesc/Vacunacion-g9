@@ -56,16 +56,17 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
 
         jMenuItem4.setText("jMenuItem4");
 
-        setMinimumSize(new java.awt.Dimension(1212, 966));
-        setPreferredSize(new java.awt.Dimension(1212, 966));
+        setMinimumSize(new java.awt.Dimension(1448, 966));
+        setPreferredSize(new java.awt.Dimension(1448, 966));
 
-        EscritorioCiudadano.setMinimumSize(new java.awt.Dimension(1196, 880));
+        EscritorioCiudadano.setMinimumSize(new java.awt.Dimension(1448, 966));
+        EscritorioCiudadano.setPreferredSize(new java.awt.Dimension(1448, 966));
 
         javax.swing.GroupLayout EscritorioCiudadanoLayout = new javax.swing.GroupLayout(EscritorioCiudadano);
         EscritorioCiudadano.setLayout(EscritorioCiudadanoLayout);
         EscritorioCiudadanoLayout.setHorizontalGroup(
             EscritorioCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 762, Short.MAX_VALUE)
+            .addGap(0, 1448, Short.MAX_VALUE)
         );
         EscritorioCiudadanoLayout.setVerticalGroup(
             EscritorioCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -174,7 +175,7 @@ public class CiudadanoPrevioVista extends javax.swing.JInternalFrame {
         EscritorioCiudadano.repaint();
         CiudadanoVista cv = new CiudadanoVista();
         setContentPane(EscritorioCiudadano);
-        setSize(1212, 966);
+        //setSize(1212, 966);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cv.setVisible(true);
         EscritorioCiudadano.add(cv);
