@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 07-10-2023 a las 01:38:58
+-- Tiempo de generación: 10-10-2023 a las 00:45:50
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -33,7 +33,8 @@ CREATE TABLE `centro` (
   `id_centro` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `dirrecion` varchar(100) NOT NULL,
-  `telefono` int(20) NOT NULL
+  `telefono` int(20) NOT NULL,
+  `zona` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
