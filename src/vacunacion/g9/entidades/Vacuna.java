@@ -2,7 +2,7 @@ package vacunacion.g9.entidades;
 
 import java.time.LocalDate;
 
-class Vacuna {
+public class Vacuna {
     
    private int nroSeriDosis;
     private long cuit;
@@ -83,12 +83,8 @@ class Vacuna {
 
     @Override
     public String toString() {
-        return "nroSeriDosis=" + nroSeriDosis 
-                + ", cuit: " + cuit 
-                + ", marca: " + marca 
-                + ", medida: " + medida 
-                + ", fechaCaduca: " + fechaCaduca 
-                + ", stock: " + stock 
-                + ", colocada: " + colocada;
+        return "Vacuna{" + "nroSeriDosis=" + nroSeriDosis + ", cuit=" + cuit + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
     }
+
+  
 }
