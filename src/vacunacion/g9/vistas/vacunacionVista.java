@@ -5,6 +5,7 @@
  */
 package vacunacion.g9.vistas;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -22,6 +23,7 @@ public class vacunacionVista extends javax.swing.JFrame {
     public vacunacionVista() {
         initComponents();
         transparencia();
+
     }
 
     /**
@@ -104,17 +106,18 @@ public class vacunacionVista extends javax.swing.JFrame {
             );
 
             pack();
+            setLocationRelativeTo(null);
         }// </editor-fold>//GEN-END:initComponents
-public void transparencia(){
-            jButton1.setOpaque(false);
-            jButton1.setContentAreaFilled(false);
-            jButton1.setBorderPainted(false);
+public void transparencia() {
+        jButton1.setOpaque(false);
+        jButton1.setContentAreaFilled(false);
+        jButton1.setBorderPainted(false);
 
-            jBSalir.setOpaque(false);
-            jBSalir.setContentAreaFilled(false);
-            jBSalir.setBorderPainted(false);
-        
-        }
+        jBSalir.setOpaque(false);
+        jBSalir.setContentAreaFilled(false);
+        jBSalir.setBorderPainted(false);
+
+    }
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed
         this.dispose();
         VacunacionG9Vista v = new VacunacionG9Vista();
@@ -126,13 +129,19 @@ public void transparencia(){
 //        
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
-        CiudadanoxFechaVista cxF=new CiudadanoxFechaVista();
-        setContentPane(jDesktopPane1);       
+        CiudadanoxFechaVista cxF = new CiudadanoxFechaVista();
+        setContentPane(jDesktopPane1);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cxF.setVisible(true);
         jDesktopPane1.add(cxF);
         jDesktopPane1.moveToFront(cxF);
-            
+       
+        
+        Dimension desktopSize = jDesktopPane1.getSize();
+        Dimension FrameSize = cxF.getSize();
+        cxF.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        cxF.show();
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
