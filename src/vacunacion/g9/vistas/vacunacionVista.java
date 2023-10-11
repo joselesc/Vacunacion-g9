@@ -11,7 +11,6 @@ public class vacunacionVista extends javax.swing.JFrame {
     public vacunacionVista() {
         initComponents();
         transparencia();
-
     }
 
     @SuppressWarnings("unchecked")
