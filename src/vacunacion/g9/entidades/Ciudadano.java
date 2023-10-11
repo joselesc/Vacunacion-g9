@@ -10,20 +10,21 @@ package vacunacion.g9.entidades;
  * @author josel
  */
 public class Ciudadano {
-    
+
     private int dni;
-   private String nombre;
-   private String apellido;
-    private String  email;
+    private String nombre;
+    private String apellido;
+    private String email;
     private int celular;
     private String zona;
-    private String patologia=null;
-    private String ambitoTrabajo;
+    private String patologia = null;
+    private boolean ambitoTrabajo;
+    private boolean riesgo;
 
     public Ciudadano() {
     }
 
-    public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String zona, String patologia, String ambitoTrabajo) {
+    public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String zona, String patologia, boolean ambitoTrabajo, boolean riesgo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -32,9 +33,10 @@ public class Ciudadano {
         this.zona = zona;
         this.patologia = patologia;
         this.ambitoTrabajo = ambitoTrabajo;
+        this.riesgo = riesgo;
     }
 
-    public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String zona, String ambitoTrabajo) {
+    public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String zona, boolean ambitoTrabajo, boolean riesgo) {
         this.dni = dni;
         this.nombre = nombre;
         this.apellido = apellido;
@@ -42,6 +44,7 @@ public class Ciudadano {
         this.celular = celular;
         this.zona = zona;
         this.ambitoTrabajo = ambitoTrabajo;
+        this.riesgo = riesgo;
     }
 
     public int getDni() {
@@ -100,17 +103,39 @@ public class Ciudadano {
         this.patologia = patologia;
     }
 
-    public String getAmbitoTrabajo() {
+    public boolean isAmbitoTrabajo() {
         return ambitoTrabajo;
     }
 
-    public void setAmbitoTrabajo(String ambitoTrabajo) {
+    public void setAmbitoTrabajo(boolean ambitoTrabajo) {
         this.ambitoTrabajo = ambitoTrabajo;
     }
 
-  @Override
+    public boolean isRiesgo() {
+        return riesgo;
+    }
+
+    public void setRiesgo(boolean riego) {
+        this.riesgo = riego;
+    }
+
+    @Override
     public String toString() {
-        return  dni + " - " + nombre + " " + apellido + " - "+ email + " - " + celular + " - " + patologia + " - " + ambitoTrabajo ;
-    }          
-    
+
+        String ambito = "";
+        String deRiesgo = "";
+        if (ambitoTrabajo == true) {
+            ambito = "de riesgo";
+        }
+        if (riesgo == true) {
+            deRiesgo = "de riesgo";
+        }
+        if(patologia==null){
+            patologia=" sin patologia preexistente";
+        }
+
+        return dni + " - " + nombre + " " + apellido + " - " + email + " - " + celular + " - " + zona + " - " + patologia
+                + " - " + ambito + " - " + deRiesgo;
+    }
+
 }

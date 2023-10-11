@@ -159,17 +159,13 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         }
     private void jBCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCiudadanoActionPerformed
 
-        escritorio.removeAll();
-        escritorio.repaint();
+        
         CiudadanoPrevioVista cv = new CiudadanoPrevioVista();
         setContentPane(escritorio);
-       // setSize(1212, 966);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cv.setVisible(true);
-        escritorio.add(cv);
-        escritorio.moveToFront(cv);
-        //[1212, 966]
-
+        this.setVisible(false);
+        
     }//GEN-LAST:event_jBCiudadanoActionPerformed
 
     private void jBSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalirActionPerformed

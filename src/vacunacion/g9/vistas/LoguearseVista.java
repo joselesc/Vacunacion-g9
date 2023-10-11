@@ -14,9 +14,8 @@ import vacunacion.g9.accesoADatos.CiudadanoData;
  */
 public class LoguearseVista extends javax.swing.JInternalFrame {
 
-    /**
-     * Creates new form LoguearseVista
-     */
+    private int dnireg;
+
     public LoguearseVista() {
         initComponents();
     }
@@ -123,12 +122,9 @@ public class LoguearseVista extends javax.swing.JInternalFrame {
         try {
             int dni = Integer.parseInt(jTFDni.getText());
             CiudadanoData cd = new CiudadanoData();
-            boolean ok=cd.loguearse(dni);
-            if(ok==true){
-                 CiudadanoPrevioVista cvp=new CiudadanoPrevioVista();
-                 cvp.habilita();
-            }
-          jTFDni.setText("");
+            cd.loguearse(dni);
+            jTFDni.setText("");
+            this.dispose();
 
         } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(this, "Error en el numero de codigo -" + ex.getMessage());
@@ -136,7 +132,7 @@ public class LoguearseVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBIngresarActionPerformed
 
     private void jBCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCancelarActionPerformed
-       
+
         this.dispose();
     }//GEN-LAST:event_jBCancelarActionPerformed
 

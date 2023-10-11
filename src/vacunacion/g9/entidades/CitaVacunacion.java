@@ -1,6 +1,6 @@
 package vacunacion.g9.entidades;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class CitaVacunacion {
     
@@ -9,10 +9,10 @@ public class CitaVacunacion {
     private int codRefuerzo;
     private String fechaHoraCita;
     private String centroVacunacion;
-    private LocalDateTime fechaHoraColocacion;
+    private LocalDate fechaHoraColocacion;
     private Vacuna dosis;
 
-    public CitaVacunacion(int codCita, Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDateTime fechaHoraColocacion, Vacuna dosis) {
+    public CitaVacunacion(int codCita, Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColocacion, Vacuna dosis) {
         this.codCita = codCita;
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
@@ -22,7 +22,7 @@ public class CitaVacunacion {
         this.dosis = dosis;
     }
 
-    public CitaVacunacion(Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDateTime fechaHoraColocacion, Vacuna dosis) {
+    public CitaVacunacion(Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDate fechaHoraColocacion, Vacuna dosis) {
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
@@ -75,11 +75,11 @@ public class CitaVacunacion {
         this.centroVacunacion = centroVacunacion;
     }
 
-    public LocalDateTime getFechaHoraColocacion() {
+    public LocalDate getFechaHoraColocacion() {
         return fechaHoraColocacion;
     }
 
-    public void setFechaHoraColocacion(LocalDateTime fechaHoraColocacion) {
+    public void setFechaHoraColocacion(LocalDate fechaHoraColocacion) {
         this.fechaHoraColocacion = fechaHoraColocacion;
     }
 
