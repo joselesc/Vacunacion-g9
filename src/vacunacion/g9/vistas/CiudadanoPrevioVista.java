@@ -5,6 +5,7 @@
  */
 package vacunacion.g9.vistas;
 
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
@@ -17,13 +18,10 @@ import vacunacion.g9.accesoADatos.CiudadanoData;
  */
 public class CiudadanoPrevioVista extends javax.swing.JFrame {
 
-   
-
     public CiudadanoPrevioVista() {
-    
+
         initComponents();
         this.setLocationRelativeTo(null);
-       
         ;
 
     }
@@ -170,6 +168,11 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         EscritorioCiudadano.add(cv);
         EscritorioCiudadano.moveToFront(cv);
 
+        Dimension desktopSize = EscritorioCiudadano.getSize();
+        Dimension FrameSize = cv.getSize();
+        cv.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        cv.show();
+
     }//GEN-LAST:event_jMIRegistrarseActionPerformed
 
     private void jMIExitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIExitActionPerformed
@@ -190,19 +193,24 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         lv.setVisible(true);
         EscritorioCiudadano.add(lv);
         EscritorioCiudadano.moveToFront(lv);
+
+        Dimension desktopSize = EscritorioCiudadano.getSize();
+        Dimension FrameSize = lv.getSize();
+        lv.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        lv.show();
     }//GEN-LAST:event_jMILoguearseActionPerformed
 
     private void jMICancelarCitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMICancelarCitaMouseClicked
 
-      CiudadanoData cd=new CiudadanoData();
-      cd.cancelarCita();
-       
+        CiudadanoData cd = new CiudadanoData();
+        cd.cancelarCita();
+
     }//GEN-LAST:event_jMICancelarCitaMouseClicked
 
     private void jMIFechaVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMIFechaVacunacionMouseClicked
-      
-      CiudadanoData cd=new CiudadanoData();
-      cd.mostrarCita();
+
+        CiudadanoData cd = new CiudadanoData();
+        cd.mostrarCita();
     }//GEN-LAST:event_jMIFechaVacunacionMouseClicked
 
 
@@ -222,5 +230,4 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
-  
 }
