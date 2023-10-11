@@ -217,13 +217,13 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarcabecera(){
-        modelo.addColumn("NOMBRE");
-        modelo.addColumn("APELLIDO");
-        modelo.addColumn("DNI");
-        modelo.addColumn("VACUNADO");
-        modelo.addColumn("VACUNATORIO");
-        modelo.addColumn("DOSIS");
-        modelo.addColumn("FECHA");
+        modelo.addColumn("NroDeSerie");
+        modelo.addColumn("CUIT");
+        modelo.addColumn("NombreComercial");
+        modelo.addColumn("MEDIDA");
+        modelo.addColumn("FechaVencimiento");
+        modelo.addColumn("STOCK");
+        modelo.addColumn("COLOCADA");
         jTablaxFecha.setModel(modelo);
         
     }
