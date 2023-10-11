@@ -9,6 +9,7 @@ public class loginAdministracion extends javax.swing.JFrame {
     public loginAdministracion() {
         initComponents();
         this.setLocationRelativeTo(null);
+        jRadioButton1.setSelected(true);
     }
 
     @SuppressWarnings("unchecked")
