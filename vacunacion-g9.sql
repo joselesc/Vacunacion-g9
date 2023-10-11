@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 11-10-2023 a las 23:40:23
+-- Tiempo de generación: 12-10-2023 a las 00:49:15
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -50,7 +50,8 @@ CREATE TABLE `citavacunacion` (
   `fechaHoraCita` datetime NOT NULL,
   `id_centro` int(11) NOT NULL,
   `fechaHoraColocada` datetime NOT NULL,
-  `dosis` varchar(100) NOT NULL
+  `dosis` varchar(100) NOT NULL,
+  `cancelado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
