@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2023 a las 00:49:15
+-- Tiempo de generación: 12-10-2023 a las 01:33:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -36,6 +36,24 @@ CREATE TABLE `centro` (
   `telefono` int(20) NOT NULL,
   `zona` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `centro`
+--
+
+INSERT INTO `centro` (`id_centro`, `nombre`, `dirrecion`, `telefono`, `zona`) VALUES
+(19, 'Hospital San Juan', 'Calle Principal 123', 1234567890, 'Norte'),
+(20, 'Hospital Santa María', 'Avenida Central 456', 2147483647, 'Norte'),
+(21, 'Hospital Santo Tomás', 'Calle Norte 789', 2147483647, 'Norte'),
+(22, 'Hospital San Pedro', 'Avenida Sur 123', 2147483647, 'Sur'),
+(23, 'Hospital Santa Clara', 'Calle Sur 456a', 2147483647, 'Sur'),
+(24, 'Hospital Santo Domingo', 'Avenida Este 123', 2147483647, 'Este'),
+(25, 'Hospital San Antonio', 'Calle Este 456', 2147483647, 'Este'),
+(26, 'Hospital San Francisco', 'Avenida Oeste 123', 123456789, 'Oeste'),
+(27, 'Hospital Santa Rosa', 'Calle Oeste 456', 1112223333, 'Oeste'),
+(28, 'Hospital San Martín', 'Avenida Principal 789', 2147483647, 'Norte'),
+(29, 'Hospital Santa Isabel', 'Calle Principal 567', 2147483647, 'Este'),
+(30, 'Hospital Santo Domingo', 'Avenida Central 789', 2147483647, 'Oeste');
 
 -- --------------------------------------------------------
 
@@ -196,6 +214,24 @@ CREATE TABLE `vacuna` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
+-- Volcado de datos para la tabla `vacuna`
+--
+
+INSERT INTO `vacuna` (`nroSerieDosis`, `cuit`, `marca`, `medida`, `fechaCaduca`, `stock`, `colocada`) VALUES
+(1, 30500772324, 'Comirnaty', 3, '2023-12-31', 1000, 0),
+(2, 30501152826, 'Spikevax', 3, '2023-12-31', 800, 0),
+(3, 30503518518, 'Vaxzevria', 3, '2023-12-31', 1200, 0),
+(4, 30598129246, 'Janssen COVID-19 Vaccine', 3, '2023-12-31', 600, 0),
+(5, 30500772324, 'Comirnaty', 5, '2023-12-31', 1000, 0),
+(6, 30501152826, 'Spikevax', 5, '2023-12-31', 800, 0),
+(7, 30503518518, 'Vaxzevria', 5, '2023-12-31', 1200, 0),
+(8, 30598129246, 'Janssen COVID-19 Vaccine', 5, '2023-12-31', 600, 0),
+(9, 30500772324, 'Comirnaty', 9, '2023-12-31', 1000, 0),
+(10, 30501152826, 'Spikevax', 9, '2023-12-31', 800, 0),
+(11, 30503518518, 'Vaxzevria', 9, '2023-12-31', 1200, 0),
+(12, 30598129246, 'Janssen COVID-19 Vaccine', 9, '2023-12-31', 600, 0);
+
+--
 -- Índices para tablas volcadas
 --
 
@@ -248,7 +284,7 @@ ALTER TABLE `vacuna`
 -- AUTO_INCREMENT de la tabla `centro`
 --
 ALTER TABLE `centro`
-  MODIFY `id_centro` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_centro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT de la tabla `citavacunacion`
@@ -266,7 +302,7 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de la tabla `vacuna`
 --
 ALTER TABLE `vacuna`
-  MODIFY `nroSerieDosis` int(50) NOT NULL AUTO_INCREMENT;
+  MODIFY `nroSerieDosis` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Restricciones para tablas volcadas
