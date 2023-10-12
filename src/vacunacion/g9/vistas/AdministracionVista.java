@@ -23,9 +23,9 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMAdministrarCentros = new javax.swing.JMenuItem();
         jMManejoDeDosis = new javax.swing.JMenu();
         jMAdministracionVacunas = new javax.swing.JMenuItem();
+        jMAdministracionDosis = new javax.swing.JMenuItem();
         jMCitas = new javax.swing.JMenu();
         jMListadoMensual = new javax.swing.JMenuItem();
-        jMAdministracionDosis = new javax.swing.JMenuItem();
         jMCiudadano = new javax.swing.JMenu();
         jMAdministracionCIudadanos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -96,6 +96,14 @@ public class AdministracionVista extends javax.swing.JFrame {
         });
         jMManejoDeDosis.add(jMAdministracionVacunas);
 
+        jMAdministracionDosis.setText("Administrar dosis");
+        jMAdministracionDosis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAdministracionDosisActionPerformed(evt);
+            }
+        });
+        jMManejoDeDosis.add(jMAdministracionDosis);
+
         jMenuBar1.add(jMManejoDeDosis);
 
         jMCitas.setText("Citas");
@@ -108,9 +116,6 @@ public class AdministracionVista extends javax.swing.JFrame {
             }
         });
         jMCitas.add(jMListadoMensual);
-
-        jMAdministracionDosis.setText("Administrar dosis");
-        jMCitas.add(jMAdministracionDosis);
 
         jMenuBar1.add(jMCitas);
 
@@ -213,6 +218,14 @@ public class AdministracionVista extends javax.swing.JFrame {
         escritorio.add(ciudadano);
         escritorio.moveToFront(ciudadano);
     }//GEN-LAST:event_jMAdministracionCIudadanosActionPerformed
+
+    private void jMAdministracionDosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionDosisActionPerformed
+        escritorioR();
+        AdministracionDosis dosis = new AdministracionDosis();
+        dosis.setVisible(true);
+        escritorio.add(dosis);
+        escritorio.moveToFront(dosis);
+    }//GEN-LAST:event_jMAdministracionDosisActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
