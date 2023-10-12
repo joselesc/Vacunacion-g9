@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2023 a las 01:33:10
+-- Tiempo de generación: 12-10-2023 a las 03:19:04
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -34,26 +34,27 @@ CREATE TABLE `centro` (
   `nombre` varchar(100) NOT NULL,
   `dirrecion` varchar(100) NOT NULL,
   `telefono` int(20) NOT NULL,
-  `zona` varchar(50) NOT NULL
+  `zona` varchar(50) NOT NULL,
+  `activo` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `centro`
 --
 
-INSERT INTO `centro` (`id_centro`, `nombre`, `dirrecion`, `telefono`, `zona`) VALUES
-(19, 'Hospital San Juan', 'Calle Principal 123', 1234567890, 'Norte'),
-(20, 'Hospital Santa María', 'Avenida Central 456', 2147483647, 'Norte'),
-(21, 'Hospital Santo Tomás', 'Calle Norte 789', 2147483647, 'Norte'),
-(22, 'Hospital San Pedro', 'Avenida Sur 123', 2147483647, 'Sur'),
-(23, 'Hospital Santa Clara', 'Calle Sur 456a', 2147483647, 'Sur'),
-(24, 'Hospital Santo Domingo', 'Avenida Este 123', 2147483647, 'Este'),
-(25, 'Hospital San Antonio', 'Calle Este 456', 2147483647, 'Este'),
-(26, 'Hospital San Francisco', 'Avenida Oeste 123', 123456789, 'Oeste'),
-(27, 'Hospital Santa Rosa', 'Calle Oeste 456', 1112223333, 'Oeste'),
-(28, 'Hospital San Martín', 'Avenida Principal 789', 2147483647, 'Norte'),
-(29, 'Hospital Santa Isabel', 'Calle Principal 567', 2147483647, 'Este'),
-(30, 'Hospital Santo Domingo', 'Avenida Central 789', 2147483647, 'Oeste');
+INSERT INTO `centro` (`id_centro`, `nombre`, `dirrecion`, `telefono`, `zona`, `activo`) VALUES
+(19, 'Hospital San Juan', 'Calle Principal 123', 1234567890, 'Norte', NULL),
+(20, 'Hospital Santa María', 'Avenida Central 456', 2147483647, 'Norte', NULL),
+(21, 'Hospital Santo Tomás', 'Calle Norte 789', 2147483647, 'Norte', NULL),
+(22, 'Hospital San Pedro', 'Avenida Sur 123', 2147483647, 'Sur', NULL),
+(23, 'Hospital Santa Clara', 'Calle Sur 456a', 2147483647, 'Sur', NULL),
+(24, 'Hospital Santo Domingo', 'Avenida Este 123', 2147483647, 'Este', NULL),
+(25, 'Hospital San Antonio', 'Calle Este 456', 2147483647, 'Este', NULL),
+(26, 'Hospital San Francisco', 'Avenida Oeste 123', 123456789, 'Oeste', NULL),
+(27, 'Hospital Santa Rosa', 'Calle Oeste 456', 1112223333, 'Oeste', NULL),
+(28, 'Hospital San Martín', 'Avenida Principal 789', 2147483647, 'Norte', NULL),
+(29, 'Hospital Santa Isabel', 'Calle Principal 567', 2147483647, 'Este', NULL),
+(30, 'Hospital Santo Domingo', 'Avenida Central 789', 2147483647, 'Oeste', NULL);
 
 -- --------------------------------------------------------
 
