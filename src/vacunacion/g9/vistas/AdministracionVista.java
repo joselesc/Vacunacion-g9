@@ -1,5 +1,6 @@
 package vacunacion.g9.vistas;
 
+import java.awt.Dimension;
 import java.awt.Point;
 import javax.swing.JOptionPane;
 
@@ -205,6 +206,11 @@ public class AdministracionVista extends javax.swing.JFrame {
         vacunas.setVisible(true);
         escritorio.add(vacunas);
         escritorio.moveToFront(vacunas); 
+        
+         Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = vacunas.getSize();
+        vacunas.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        vacunas.show();
     }//GEN-LAST:event_jMAdministracionVacunasActionPerformed
 
     private void jMListadoMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListadoMensualActionPerformed

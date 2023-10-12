@@ -34,6 +34,7 @@ public class vacunacionVista extends javax.swing.JFrame {
             jBSalir.setForeground(new java.awt.Color(255, 153, 0));
             jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/exit.png"))); // NOI18N
             jBSalir.setText("SALIR");
+            jBSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             jBSalir.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jBSalirActionPerformed(evt);
@@ -44,6 +45,7 @@ public class vacunacionVista extends javax.swing.JFrame {
             jButton1.setForeground(new java.awt.Color(255, 153, 0));
             jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/calendario.png"))); // NOI18N
             jButton1.setText("BUSCAR POR FECHA");
+            jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             jButton1.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
                     jButton1ActionPerformed(evt);

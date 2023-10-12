@@ -4,7 +4,7 @@ import java.time.LocalDate;
 
 public class Vacuna {
     
-   private int nroSeriDosis;
+   private int nroSeriDosis=-1;
     private long cuit;
     private String marca;
     private double medida;
@@ -13,6 +13,23 @@ public class Vacuna {
     private boolean colocada;
 
     public Vacuna() {
+    }
+
+    public Vacuna(long cuit, String marca, double medida, LocalDate fechaCaduca, int stock) {
+        this.cuit = cuit;
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaCaduca = fechaCaduca;
+        this.stock = stock;
+    }
+
+    public Vacuna(long cuit, String marca, double medida, LocalDate fechaCaduca, int stock, boolean colocada) {
+        this.cuit = cuit;
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaCaduca = fechaCaduca;
+        this.stock = stock;
+        this.colocada = colocada;
     }
 
     public Vacuna(int nroSeriDosis, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock, boolean colocada) {
