@@ -3,11 +3,11 @@ package vacunacion.g9.vistas;
 import java.awt.Point;
 import javax.swing.JOptionPane;
 
-public class PersonalSaludYAdministrativoVista extends javax.swing.JFrame {
+public class AdministracionVista extends javax.swing.JFrame {
 
     private Point point;
 
-    public PersonalSaludYAdministrativoVista() {
+    public AdministracionVista() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -19,10 +19,15 @@ public class PersonalSaludYAdministrativoVista extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         escritorio = new javax.swing.JDesktopPane();
         jMenuBar1 = new javax.swing.JMenuBar();
-        jMenu1 = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenu2 = new javax.swing.JMenu();
-        jMenu3 = new javax.swing.JMenu();
+        jMCentro = new javax.swing.JMenu();
+        jMAdministrarCentros = new javax.swing.JMenuItem();
+        jMManejoDeDosis = new javax.swing.JMenu();
+        jMAdministracionVacunas = new javax.swing.JMenuItem();
+        jMCitas = new javax.swing.JMenu();
+        jMListadoMensual = new javax.swing.JMenuItem();
+        jMAdministracionDosis = new javax.swing.JMenuItem();
+        jMCiudadano = new javax.swing.JMenu();
+        jMAdministracionCIudadanos = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -67,26 +72,59 @@ public class PersonalSaludYAdministrativoVista extends javax.swing.JFrame {
         jMenuBar1.setBackground(new java.awt.Color(0, 23, 31));
         jMenuBar1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jMenu1.setText("Ciudadanos registrados");
-        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMCentro.setText("Centros de vacunacion");
+        jMCentro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jMenuItem1.setText("Consultar ciudadanos");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMAdministrarCentros.setText("Administrar centros");
+        jMAdministrarCentros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMAdministrarCentrosActionPerformed(evt);
             }
         });
-        jMenu1.add(jMenuItem1);
+        jMCentro.add(jMAdministrarCentros);
 
-        jMenuBar1.add(jMenu1);
+        jMenuBar1.add(jMCentro);
 
-        jMenu2.setText("Centros vacunacion");
-        jMenu2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuBar1.add(jMenu2);
+        jMManejoDeDosis.setText("Manejo de dosis");
+        jMManejoDeDosis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
-        jMenu3.setText("Stock vacunas");
-        jMenu3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenuBar1.add(jMenu3);
+        jMAdministracionVacunas.setText("Administracion vacunas");
+        jMAdministracionVacunas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAdministracionVacunasActionPerformed(evt);
+            }
+        });
+        jMManejoDeDosis.add(jMAdministracionVacunas);
+
+        jMenuBar1.add(jMManejoDeDosis);
+
+        jMCitas.setText("Citas");
+        jMCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+
+        jMListadoMensual.setText("Listado mensual");
+        jMListadoMensual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMListadoMensualActionPerformed(evt);
+            }
+        });
+        jMCitas.add(jMListadoMensual);
+
+        jMAdministracionDosis.setText("Administrar dosis");
+        jMCitas.add(jMAdministracionDosis);
+
+        jMenuBar1.add(jMCitas);
+
+        jMCiudadano.setText("CIudadanos");
+
+        jMAdministracionCIudadanos.setText("Administrar ciudadano");
+        jMAdministracionCIudadanos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMAdministracionCIudadanosActionPerformed(evt);
+            }
+        });
+        jMCiudadano.add(jMAdministracionCIudadanos);
+
+        jMenuBar1.add(jMCiudadano);
 
         jMenu4.setText("Volver");
         jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -144,23 +182,56 @@ public class PersonalSaludYAdministrativoVista extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jMenu4MouseClicked
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        escritorio.removeAll();
-        escritorio.repaint();
-        VerCiudadano_AdministradorVista ciudadano = new VerCiudadano_AdministradorVista();
+    private void jMAdministrarCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministrarCentrosActionPerformed
+        escritorioR();
+        AdministracionCentrosVacunacion centro = new AdministracionCentrosVacunacion();
+        centro.setVisible(true);
+        escritorio.add(centro);
+        escritorio.moveToFront(centro);   
+    }//GEN-LAST:event_jMAdministrarCentrosActionPerformed
+
+    private void jMAdministracionVacunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionVacunasActionPerformed
+        escritorioR();
+        AdministracionVacunasVista vacunas = new AdministracionVacunasVista();
+        vacunas.setVisible(true);
+        escritorio.add(vacunas);
+        escritorio.moveToFront(vacunas); 
+    }//GEN-LAST:event_jMAdministracionVacunasActionPerformed
+
+    private void jMListadoMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListadoMensualActionPerformed
+        escritorioR();
+        AdministracionListadoMensualCitas citas = new AdministracionListadoMensualCitas();
+        citas.setVisible(true);
+        escritorio.add(citas);
+        escritorio.moveToFront(citas);
+    }//GEN-LAST:event_jMListadoMensualActionPerformed
+
+    private void jMAdministracionCIudadanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionCIudadanosActionPerformed
+        escritorioR();
+        AdministrarCiudadano ciudadano = new AdministrarCiudadano();
         ciudadano.setVisible(true);
         escritorio.add(ciudadano);
         escritorio.moveToFront(ciudadano);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_jMAdministracionCIudadanosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
-    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenuItem jMAdministracionCIudadanos;
+    private javax.swing.JMenuItem jMAdministracionDosis;
+    private javax.swing.JMenuItem jMAdministracionVacunas;
+    private javax.swing.JMenuItem jMAdministrarCentros;
+    private javax.swing.JMenu jMCentro;
+    private javax.swing.JMenu jMCitas;
+    private javax.swing.JMenu jMCiudadano;
+    private javax.swing.JMenuItem jMListadoMensual;
+    private javax.swing.JMenu jMManejoDeDosis;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
+    private void escritorioR(){
+        escritorio.removeAll();
+        escritorio.repaint();
+    }
+    
 }

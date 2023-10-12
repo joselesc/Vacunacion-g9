@@ -170,7 +170,7 @@ public class loginAdministracion extends javax.swing.JFrame {
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Bienvenido");
             }else if(jRadioButton2.isSelected()){
-                PersonalSaludYAdministrativoVista psa = new PersonalSaludYAdministrativoVista();
+                AdministracionVista psa = new AdministracionVista();
                 psa.setVisible(true);
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Bienvenido");
