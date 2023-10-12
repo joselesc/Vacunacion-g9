@@ -141,11 +141,11 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
-         int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
+        int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
         if (opcion == 0) {
             this.dispose();
             AdministracionVista volver = new AdministracionVista();
-            volver.setVisible(true);  
+            volver.setVisible(true);
         }
     }//GEN-LAST:event_jBCerrarActionPerformed
 

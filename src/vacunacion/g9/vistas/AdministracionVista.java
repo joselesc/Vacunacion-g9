@@ -28,6 +28,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMListadoMensual = new javax.swing.JMenuItem();
         jMCiudadano = new javax.swing.JMenu();
         jMAdministracionCIudadanos = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -128,6 +129,9 @@ public class AdministracionVista extends javax.swing.JFrame {
             }
         });
         jMCiudadano.add(jMAdministracionCIudadanos);
+
+        jMenuItem1.setText("Editar ciudadano");
+        jMCiudadano.add(jMenuItem1);
 
         jMenuBar1.add(jMCiudadano);
 
@@ -240,6 +244,7 @@ public class AdministracionVista extends javax.swing.JFrame {
     private javax.swing.JMenu jMManejoDeDosis;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
     private void escritorioR(){
