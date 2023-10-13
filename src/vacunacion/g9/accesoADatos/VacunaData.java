@@ -77,7 +77,7 @@ public class VacunaData {
 
     public void actualizarEstadoVacuna(int nroSerieDosis, boolean colocada) {
         try {
-            String sql = "UPDATE vacuna SET colocada = ? WHERE nroSerieDosis = ?";
+            String sql = "UPDATE vacuna SET colocada = ? WHERE lote = ?";
             PreparedStatement statement = con.prepareStatement(sql);
             statement.setBoolean(1, colocada);
             statement.setInt(2, nroSerieDosis);

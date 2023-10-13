@@ -14,7 +14,7 @@ public class Centro {
     private int id;
     private String nombre;
     private String direccion;
-    private int celular;
+    private int telefono;
     private String zona;
     private boolean activo;
 
@@ -24,7 +24,7 @@ public class Centro {
     public Centro(String nombre, String direccion, int celular, String zona, boolean activo) {
         this.nombre = nombre;
         this.direccion = direccion;
-        this.celular = celular;
+        this.telefono = celular;
         this.zona = zona;
         this.activo = activo;
     }
@@ -33,7 +33,7 @@ public class Centro {
         this.id = id;
         this.nombre = nombre;
         this.direccion = direccion;
-        this.celular = celular;
+        this.telefono = celular;
         this.zona = zona;
         this.activo = activo;
     }
@@ -62,12 +62,12 @@ public class Centro {
         this.direccion = direccion;
     }
 
-    public int getCelular() {
-        return celular;
+    public int getTelefono() {
+        return telefono;
     }
 
-    public void setCelular(int celular) {
-        this.celular = celular;
+    public void setTelefono(int telefono) {
+        this.telefono = telefono;
     }
 
     public String getZona() {
@@ -95,7 +95,7 @@ public class Centro {
             estado="baja";
         }
              
-        return  id + " - " + nombre + " - " + direccion + " - " + celular + " - " + zona + " - " + estado;
+        return  id + " - " + nombre + " - " + direccion + " - " + telefono + " - " + zona + " - " + estado;
     }
     
     
