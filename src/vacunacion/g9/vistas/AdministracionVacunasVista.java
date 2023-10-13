@@ -2,14 +2,24 @@ package vacunacion.g9.vistas;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import vacunacion.g9.accesoADatos.VacunaData;
 import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo = new DefaultTableModel() {
+        public boolean isCellEditable(int f,int c){
+        return false;
+        }};
+
     public AdministracionVacunasVista() {
         initComponents();
+        armarCabecera();
+        listarVacunas();
+        
 
     }
 
@@ -48,7 +58,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel2.setText("N° DE SERIE AI");
+        jLabel2.setText("LOTE");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -87,6 +97,11 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
 
         jBListar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBListar.setText("LISTAR");
+        jBListar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBListarActionPerformed(evt);
+            }
+        });
 
         jTListarVac.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jTListarVac.setModel(new javax.swing.table.DefaultTableModel(
@@ -97,7 +112,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                 {null, null, null, null, null, null, null}
             },
             new String [] {
-                "N° DE SERIE", "CUIT", "MARCA", "MEDIDA", "FEC DE VENC", "STOCK", "COLOCADA"
+                "LOTE", "CUIT", "MARCA", "MEDIDA", "FEC DE VENC", "STOCK", "COLOCADA"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -112,8 +127,8 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(jTListarVac);
 
         jBAgregar.setBackground(new java.awt.Color(255, 255, 102));
-        jBAgregar.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
-        jBAgregar.setText("AGREGAR");
+        jBAgregar.setFont(new java.awt.Font("Tahoma", 1, 21));
+        jBAgregar.setText("<html>A<br>G<br>R<br>E<br>G<br>A<br>R</html>");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAgregarActionPerformed(evt);
@@ -138,7 +153,6 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
@@ -174,14 +188,15 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                                     .addComponent(jBListar))))))
                                 .addGap(27, 27, 27)
-                                .addComponent(jBAgregar))))
+                                .addComponent(jBAgregar))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(289, 289, 289)
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(340, 340, 340)
                         .addComponent(jButton2)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -225,17 +240,16 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                                     .addComponent(jBModificar)
                                     .addComponent(jBEliminar)
                                     .addComponent(jBListar))))
-                        .addGap(18, 18, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jBAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(18, 18, 18)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE))
+                    .addComponent(jBAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jButton2)
                 .addGap(14, 14, 14))
         );
 
-        jBAgregar.getAccessibleContext().setAccessibleName("A\nG\nR\nE\nG\nA\nR");
+        jBAgregar.getAccessibleContext().setAccessibleName("");
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -251,30 +265,38 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
-        System.out.println("entro en el metodo");
-        try {
-               System.out.println("try"); 
 
+        try {
             long cuit = Long.parseLong(jTFCuit.getText());
             String marca = jTFMarca.getText();
             double medida = Double.parseDouble(jTFMedida.getText());
-            System.out.println("medida");
             LocalDate fechaCaduca = LocalDate.parse(jTFFechaVenc.getText(), DateTimeFormatter.ISO_DATE);
             int stock = Integer.parseInt(jTFStock.getText());
-//            boolean colocada = false;
 
-            Vacuna nuevaVacuna = new Vacuna(cuit, marca, medida, fechaCaduca, stock);
-            VacunaData vacunaData = new VacunaData();
-            vacunaData.insertarVacuna(nuevaVacuna);
-            System.out.println("llego al if");
-
-            JOptionPane.showMessageDialog(this, "campos vacios verifique la correcta complexion del formulario!!");
-
+            // Validación de entrada
+            if (cuit > 0 && !marca.isEmpty() && medida > 0 && stock >= 0) {
+                boolean colocada = false;
+                Vacuna nuevaVacuna = new Vacuna(cuit, marca, medida, fechaCaduca, stock);
+                VacunaData vacunaData = new VacunaData();
+                vacunaData.insertarVacuna(nuevaVacuna);
+                JOptionPane.showMessageDialog(this, "Vacuna agregada exitosamente");
+            } else {
+                JOptionPane.showMessageDialog(this, "Por favor, ingrese datos válidos en todos los campos");
+            }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Error en el/los campos numericos!!!  ");
+            JOptionPane.showMessageDialog(this, "Error en los campos numéricos");
+        } catch (DateTimeParseException e) {
+            JOptionPane.showMessageDialog(this, "Error en el formato de fecha");
+
+
     }//GEN-LAST:event_jBAgregarActionPerformed
     }
-  
+    private void jBListarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBListarActionPerformed
+
+
+    }//GEN-LAST:event_jBListarActionPerformed
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBEliminar;
@@ -300,4 +322,31 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFStock;
     private javax.swing.JTable jTListarVac;
     // End of variables declaration//GEN-END:variables
+
+    private void listarVacunas() {
+        VacunaData vD = new VacunaData();
+        for (Vacuna v : vD.obtenerVacunasDisponibles()) {
+            modelo.addRow(new Object[]{
+                v.getLote(),
+                v.getCuit(),
+                v.getMarca(),
+                v.getMedida(),
+                v.getFechaCaduca(),
+                v.getStock(),
+                v.isColocada()
+            });
+        }
+    }
+
+    private void armarCabecera() {
+        modelo.addColumn("LOTE");
+        modelo.addColumn("CUIT");
+        modelo.addColumn("MARCA");
+        modelo.addColumn("MEDIDA");
+        modelo.addColumn("fEC DE VENC");
+        modelo.addColumn("STOCK");
+        modelo.addColumn("COLOCADA");
+        jTListarVac.setModel(modelo);
+    }
+
 }
