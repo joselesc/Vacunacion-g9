@@ -21,32 +21,28 @@ public class VacunaData {
 
     public void insertarVacuna(Vacuna vacuna) {
 
-        String sql = "INSERT INTO vacuna (cuit, marca, medida, fechaCaduca, stock) "
-                + "VALUES ( ?, ?, ?, ?,?)";
+        String sql = "INSERT INTO vacuna (lote,cuit, marca, medida, fechaCaduca, stock) "
+                + "VALUES ( ?,?, ?, ?, ?,?)";
         System.out.println("data");
         try {
-//            if (vacuna != null) {
+//            
 
-                PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-
-                ps.setLong(1, vacuna.getCuit());
-                ps.setString(2, vacuna.getMarca());
-                ps.setDouble(3, vacuna.getMedida());
-                ps.setDate(4, Date.valueOf(vacuna.getFechaCaduca()));
-                ps.setInt(5, vacuna.getStock());
+                PreparedStatement ps = con.prepareStatement(sql);
+                
+                ps.setInt(1, vacuna.getLote());
+                ps.setLong(2, vacuna.getCuit());
+                ps.setString(3, vacuna.getMarca());
+                ps.setDouble(4, vacuna.getMedida());
+                ps.setDate(5, Date.valueOf(vacuna.getFechaCaduca()));
+                ps.setInt(6, vacuna.getStock());
                 System.out.println( Date.valueOf(vacuna.getFechaCaduca()));
                 ps.executeUpdate();
                 ResultSet rs = ps.getGeneratedKeys();
                 
-                System.out.println("entro al if del data");
-                if (rs.next()) {
-                    vacuna.setNroSeriDosis(rs.getInt(1));
-                } else {
-                    JOptionPane.showMessageDialog(null, "no se pudo recuperar el numero de serie");
-                }
+                
                 ps.close();
                 rs.close();
-//            }
+
             JOptionPane.showMessageDialog(null, "VACUNA CARGADA.");
 
         } catch (SQLException e) {
@@ -62,7 +58,7 @@ public class VacunaData {
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
                 Vacuna vacuna = new Vacuna(
-                        resultSet.getInt("nroSerieDosis"),
+                        resultSet.getInt("Lote"),
                         resultSet.getLong("cuit"),
                         resultSet.getString("marca"),
                         resultSet.getDouble("medida"),

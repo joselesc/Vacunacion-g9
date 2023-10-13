@@ -3,8 +3,9 @@ package vacunacion.g9.entidades;
 import java.time.LocalDate;
 
 public class Vacuna {
-    
-   private int nroSeriDosis=-1;
+
+
+    private int lote;
     private long cuit;
     private String marca;
     private double medida;
@@ -32,8 +33,8 @@ public class Vacuna {
         this.colocada = colocada;
     }
 
-    public Vacuna(int nroSeriDosis, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock, boolean colocada) {
-        this.nroSeriDosis = nroSeriDosis;
+    public Vacuna(int lote, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock, boolean colocada) {
+        this.lote = lote;
         this.cuit = cuit;
         this.marca = marca;
         this.medida = medida;
@@ -42,12 +43,12 @@ public class Vacuna {
         this.colocada = colocada;
     }
 
-    public int getNroSeriDosis() {
-        return nroSeriDosis;
+    public int getLote() {
+        return lote;
     }
 
-    public void setNroSeriDosis(int nroSeriDosis) {
-        this.nroSeriDosis = nroSeriDosis;
+    public void setLote(int nroSeriDosis) {
+        this.lote = lote;
     }
 
     public long getCuit() {
@@ -100,8 +101,7 @@ public class Vacuna {
 
     @Override
     public String toString() {
-        return "Vacuna{" + "nroSeriDosis=" + nroSeriDosis + ", cuit=" + cuit + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
+        return "Vacuna{" + "nroSeriDosis=" + lote + ", cuit=" + cuit + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
     }
 
-  
 }
