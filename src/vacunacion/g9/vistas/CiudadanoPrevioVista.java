@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.accesoADatos.CiudadanoData;
 
 /**
@@ -201,16 +202,20 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jMILoguearseActionPerformed
 
     private void jMICancelarCitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMICancelarCitaMouseClicked
-
-        CiudadanoData cd = new CiudadanoData();
-        cd.cancelarCita();
+        
+        LoguearseVista lv=new LoguearseVista();
+        int dni=lv.getDnireg();
+        CitaData cd = new CitaData();
+        cd.cancelarCitaCiudadano(WIDTH);
 
     }//GEN-LAST:event_jMICancelarCitaMouseClicked
 
     private void jMIFechaVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMIFechaVacunacionMouseClicked
 
-        CiudadanoData cd = new CiudadanoData();
-        cd.mostrarCita();
+        LoguearseVista lv=new LoguearseVista();
+        int dni=lv.getDnireg();
+        CitaData cd = new CitaData();
+        cd.mostrarCitaCiudadano(dni);
     }//GEN-LAST:event_jMIFechaVacunacionMouseClicked
 
 

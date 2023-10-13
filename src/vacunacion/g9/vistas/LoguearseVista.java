@@ -145,4 +145,14 @@ public class LoguearseVista extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField jTFDni;
     // End of variables declaration//GEN-END:variables
+
+    public int getDnireg() {
+        return dnireg;
+    }
+
+    public void setDnireg(int dnireg) {
+        this.dnireg = dnireg;
+    }
+
+
 }
