@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 12-10-2023 a las 03:19:04
+-- Tiempo de generación: 14-10-2023 a las 01:19:30
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -65,7 +65,7 @@ INSERT INTO `centro` (`id_centro`, `nombre`, `dirrecion`, `telefono`, `zona`, `a
 CREATE TABLE `citavacunacion` (
   `codCita` int(11) NOT NULL,
   `dni` int(11) NOT NULL,
-  `nroSerieDosis` int(50) NOT NULL,
+  `lote` int(50) NOT NULL,
   `fechaHoraCita` datetime NOT NULL,
   `id_centro` int(11) NOT NULL,
   `fechaHoraColocada` datetime NOT NULL,
@@ -205,7 +205,7 @@ CREATE TABLE `login` (
 --
 
 CREATE TABLE `vacuna` (
-  `nroSerieDosis` int(50) NOT NULL,
+  `lote` int(50) NOT NULL,
   `cuit` bigint(20) NOT NULL,
   `marca` varchar(30) NOT NULL,
   `medida` double NOT NULL,
@@ -218,7 +218,7 @@ CREATE TABLE `vacuna` (
 -- Volcado de datos para la tabla `vacuna`
 --
 
-INSERT INTO `vacuna` (`nroSerieDosis`, `cuit`, `marca`, `medida`, `fechaCaduca`, `stock`, `colocada`) VALUES
+INSERT INTO `vacuna` (`lote`, `cuit`, `marca`, `medida`, `fechaCaduca`, `stock`, `colocada`) VALUES
 (1, 30500772324, 'Comirnaty', 3, '2023-12-31', 1000, 0),
 (2, 30501152826, 'Spikevax', 3, '2023-12-31', 800, 0),
 (3, 30503518518, 'Vaxzevria', 3, '2023-12-31', 1200, 0),
@@ -248,8 +248,8 @@ ALTER TABLE `centro`
 ALTER TABLE `citavacunacion`
   ADD PRIMARY KEY (`codCita`),
   ADD KEY `dni` (`dni`),
-  ADD KEY `nroSerieDosis` (`nroSerieDosis`),
-  ADD KEY `id_centro` (`id_centro`);
+  ADD KEY `id_centro` (`id_centro`),
+  ADD KEY `citavacunacion_ibfk_2` (`lote`);
 
 --
 -- Indices de la tabla `ciudadano`
@@ -274,7 +274,7 @@ ALTER TABLE `login`
 -- Indices de la tabla `vacuna`
 --
 ALTER TABLE `vacuna`
-  ADD PRIMARY KEY (`nroSerieDosis`),
+  ADD PRIMARY KEY (`lote`),
   ADD KEY `cuit` (`cuit`);
 
 --
@@ -300,12 +300,6 @@ ALTER TABLE `login`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT de la tabla `vacuna`
---
-ALTER TABLE `vacuna`
-  MODIFY `nroSerieDosis` int(50) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
-
---
 -- Restricciones para tablas volcadas
 --
 
@@ -314,7 +308,7 @@ ALTER TABLE `vacuna`
 --
 ALTER TABLE `citavacunacion`
   ADD CONSTRAINT `citavacunacion_ibfk_1` FOREIGN KEY (`dni`) REFERENCES `ciudadano` (`dni`),
-  ADD CONSTRAINT `citavacunacion_ibfk_2` FOREIGN KEY (`nroSerieDosis`) REFERENCES `vacuna` (`nroSerieDosis`),
+  ADD CONSTRAINT `citavacunacion_ibfk_2` FOREIGN KEY (`lote`) REFERENCES `vacuna` (`Lote`),
   ADD CONSTRAINT `citavacunacion_ibfk_3` FOREIGN KEY (`id_centro`) REFERENCES `centro` (`id_centro`);
 
 --

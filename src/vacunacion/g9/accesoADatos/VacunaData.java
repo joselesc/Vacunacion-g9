@@ -53,7 +53,7 @@ public class VacunaData {
     public List<Vacuna> obtenerVacunasDisponibles() {
         List<Vacuna> vacunas = new ArrayList<>();
         try {
-            String sql = "SELECT * FROM vacuna WHERE colocada = false";
+            String sql = "SELECT * FROM vacuna WHERE stock>0";
             PreparedStatement statement = con.prepareStatement(sql);
             ResultSet resultSet = statement.executeQuery();
             while (resultSet.next()) {
