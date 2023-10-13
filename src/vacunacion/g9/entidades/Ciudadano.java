@@ -1,14 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vacunacion.g9.entidades;
 
-/**
- *
- * @author josel
- */
+import java.time.LocalDate;
+
 public class Ciudadano {
 
     private int dni;
@@ -20,8 +13,16 @@ public class Ciudadano {
     private String patologia = null;
     private boolean ambitoTrabajo;
     private boolean riesgo;
+    private LocalDate fechaInscripcion;
 
     public Ciudadano() {
+    }
+    //Utilizado por AdministrarCiudadanoVista();
+    public Ciudadano(int dni, boolean ambitoTrabajo, boolean riesgo, LocalDate fechaInscripcion) {
+        this.dni = dni;
+        this.ambitoTrabajo = ambitoTrabajo;
+        this.riesgo = riesgo;
+        this.fechaInscripcion = fechaInscripcion;
     }
 
     public Ciudadano(int dni, String nombre, String apellido, String email, int celular, String zona, String patologia, boolean ambitoTrabajo, boolean riesgo) {
@@ -119,6 +120,14 @@ public class Ciudadano {
         this.riesgo = riego;
     }
 
+    public LocalDate getFechaInscripcion() {
+        return fechaInscripcion;
+    }
+
+    public void setFechaInscripcion(LocalDate fechaInscripcion) {
+        this.fechaInscripcion = fechaInscripcion;
+    }
+
     @Override
     public String toString() {
 
@@ -135,7 +144,7 @@ public class Ciudadano {
         }
 
         return dni + " - " + nombre + " " + apellido + " - " + email + " - " + celular + " - " + zona + " - " + patologia
-                + " - " + ambito + " - " + deRiesgo;
+                + " - " + ambito + " - " + deRiesgo + " - " + fechaInscripcion;
     }
 
 }
