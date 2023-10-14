@@ -6,9 +6,9 @@ import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 
-public class vacunacionVista extends javax.swing.JFrame {
+public class VacunacionVista extends javax.swing.JFrame {
 
-    public vacunacionVista() {
+    public VacunacionVista() {
         initComponents();
         transparencia();
     }

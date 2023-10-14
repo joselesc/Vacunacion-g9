@@ -3,10 +3,10 @@ package vacunacion.g9.vistas;
 import java.awt.Point;
 import javax.swing.JOptionPane;
 
-public class loginAdministracion extends javax.swing.JFrame {
+public class LoginAdministracion extends javax.swing.JFrame {
     
     private Point point;
-    public loginAdministracion() {
+    public LoginAdministracion() {
         initComponents();
         this.setLocationRelativeTo(null);
         jRadioButton1.setSelected(true);
@@ -46,9 +46,6 @@ public class loginAdministracion extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(0, 126, 167));
 
-        jTDocumento.setBackground(new java.awt.Color(255, 255, 255));
-
-        jTEmail.setBackground(new java.awt.Color(255, 255, 255));
         jTEmail.setForeground(new java.awt.Color(0, 23, 31));
 
         jLEmail.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -165,7 +162,7 @@ public class loginAdministracion extends javax.swing.JFrame {
     private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
         if (jTEmail.getText().equalsIgnoreCase("1") && jTDocumento.getText().equalsIgnoreCase("1")) {
             if (jRadioButton2.isSelected()) {
-                vacunacionVista vacunacion = new vacunacionVista();
+                VacunacionVista vacunacion = new VacunacionVista();
                 vacunacion.setVisible(true);
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Bienvenido");

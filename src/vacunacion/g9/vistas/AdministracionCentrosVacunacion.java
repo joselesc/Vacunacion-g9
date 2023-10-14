@@ -257,7 +257,6 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
             boolean activo = Boolean.parseBoolean(jTCentrosVacunacion.getValueAt(filaS, 5).toString());
             Centro c = new Centro(id, nombre, direccion, telefono, zona, activo);
             centro.modificarCentro(c);
-            JOptionPane.showMessageDialog(null, "Modificacion exitosa");
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex);
         }finally {
@@ -270,7 +269,6 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
             int filaS = jTCentrosVacunacion.getSelectedRow();
             int id = Integer.parseInt(jTCentrosVacunacion.getValueAt(filaS, 0).toString());
             centro.eliminarCentro(id);
-            JOptionPane.showMessageDialog(null, "Eliminacion exitosa");
         }catch(NumberFormatException ex){
             JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex);
         }finally {

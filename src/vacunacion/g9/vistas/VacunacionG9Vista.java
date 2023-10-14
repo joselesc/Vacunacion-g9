@@ -227,7 +227,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
     /*metodo al apretar el jbuttomAdministracion() 
     llama al loginAdministracionVista()*/
     private void jBAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdministracionActionPerformed
-        loginAdministracion ingresoPersonal = new loginAdministracion();
+        LoginAdministracion ingresoPersonal = new LoginAdministracion();
         ingresoPersonal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jBAdministracionActionPerformed
@@ -251,7 +251,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
     }//GEN-LAST:event_formMouseDragged
 
     private void jBPerosnalSaludActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBPerosnalSaludActionPerformed
-        loginAdministracion ingresoPersonal = new loginAdministracion();
+        LoginAdministracion ingresoPersonal = new LoginAdministracion();
         ingresoPersonal.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jBPerosnalSaludActionPerformed

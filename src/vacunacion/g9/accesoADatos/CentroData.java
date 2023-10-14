@@ -85,7 +85,7 @@ public class CentroData {
 
     public void eliminarCentro(int id) {
 
-        String query = "UPDATE materia SET estado = 0 WHERE id_centro = ?";
+        String query = "UPDATE centro SET activo = 0 WHERE id_centro = ?";
 
         try {
 
@@ -113,7 +113,7 @@ public class CentroData {
         List<Centro> centros = new ArrayList<>();
 
         try {
-            String sql = "select * from centro where activo = 1 ";
+            String sql = "SELECT * FROM centro";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

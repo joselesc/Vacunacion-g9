@@ -195,7 +195,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
             
         dispose();
-        vacunacionVista vV=new vacunacionVista();
+        VacunacionVista vV=new VacunacionVista();
         vV.setVisible(true);
       
     }//GEN-LAST:event_jButton1ActionPerformed
