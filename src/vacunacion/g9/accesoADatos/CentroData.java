@@ -124,16 +124,46 @@ public class CentroData {
         List<Centro> centros = new ArrayList<>();
 
         try {
-            String sql = "select * from centro where estado = 1 ";
+            String sql = "select * from centro where activo = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Centro c = new Centro();
 
-                c.setId(rs.getInt("idCentro"));
+                //c.setId(rs.getInt("idCentro"));
                 c.setNombre(rs.getString("nombre"));
                 c.setDireccion(rs.getString("direccion"));
-                c.setTelefono(rs.getInt("celular"));
+                c.setTelefono(rs.getInt("telefono"));
+                c.setZona(rs.getString("zona"));
+                c.setActivo(rs.getBoolean("activo"));
+                centros.add(c);
+
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
+        }
+
+        return centros;
+
+    }
+     
+      public List<Centro> listarCentrosNorte() {
+
+        List<Centro> centros = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM centro WHERE zona = Norte AND activo = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Centro c = new Centro();
+
+                //c.setId(rs.getInt("idCentro"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setTelefono(rs.getInt("telefono"));
                 c.setZona(rs.getString("zona"));
                 c.setActivo(rs.getBoolean("activo"));
                 centros.add(c);

@@ -169,7 +169,8 @@ public class AdministrarCiudadano extends javax.swing.JInternalFrame {
     }
     
     private void cargarDatos(){
-        List <Ciudadano> ciudadano = new ArrayList();
+        List <Ciudadano> ciudadano = new ArrayList<>();
         modelo.setRowCount(0);
+        
     }
 }

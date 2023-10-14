@@ -1,11 +1,17 @@
 package vacunacion.g9.vistas;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vacunacion.g9.accesoADatos.CentroData;
+import vacunacion.g9.entidades.Centro;
 
 public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo = new DefaultTableModel();
     public AdministracionCentrosVacunacion() {
         initComponents();
+        cabecera();
+        cargarDatosATabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -31,13 +37,13 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
 
         jTCentrosVacunacion.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Nombre", "Direccion", "Telefono", "Zona", "Activo"
             }
         ));
         jScrollPane1.setViewportView(jTCentrosVacunacion);
@@ -53,6 +59,11 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
 
         buttonGroup1.add(jRNorte);
         jRNorte.setText("Norte");
+        jRNorte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRNorteActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jROeste);
         jROeste.setText("Oeste");
@@ -116,10 +127,10 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
                     .addComponent(jRTodos)
                     .addComponent(jRDepositoCentral))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36)
                 .addComponent(jBCerrar)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -132,9 +143,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -148,6 +157,11 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
             volver.setVisible(true);
         }
     }//GEN-LAST:event_jBCerrarActionPerformed
+
+    private void jRNorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRNorteActionPerformed
+        jRNorte.setSelected(true);
+        cargarDatosATabla();
+    }//GEN-LAST:event_jRNorteActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -163,4 +177,37 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTCentrosVacunacion;
     // End of variables declaration//GEN-END:variables
+    private void cabecera(){
+        modelo.addColumn("Nombre");
+        modelo.addColumn("Direccion");
+        modelo.addColumn("Telefono");
+        modelo.addColumn("Zona");
+        modelo.addColumn("activo");
+        jTCentrosVacunacion.setModel(modelo);
+    }
+    
+    private void cargarDatosATabla(){
+        jRTodos.setSelected(true);
+        CentroData centro = new CentroData();      
+        modelo.setRowCount(0);
+        if (jRTodos.isSelected()) {
+            for (Centro c : centro.listarCentros()) {
+            modelo.addRow(new Object[]{
+                c.getNombre(),
+                c.getDireccion(),
+                c.getTelefono(),
+                c.getZona(),
+                c.isActivo()});
+            }
+        }else if(jRNorte.isSelected()){
+            for (Centro c : centro.listarCentrosNorte()) {
+            modelo.addRow(new Object[]{
+                c.getNombre(),
+                c.getDireccion(),
+                c.getTelefono(),
+                c.getZona(),
+                c.isActivo()});
+            }
+        }
+    }
 }

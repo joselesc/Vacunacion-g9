@@ -198,6 +198,11 @@ public class AdministracionVista extends javax.swing.JFrame {
         centro.setVisible(true);
         escritorio.add(centro);
         escritorio.moveToFront(centro);   
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = centro.getSize();
+        centro.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        centro.show();
     }//GEN-LAST:event_jMAdministrarCentrosActionPerformed
 
     private void jMAdministracionVacunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionVacunasActionPerformed
@@ -207,7 +212,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         escritorio.add(vacunas);
         escritorio.moveToFront(vacunas); 
         
-         Dimension desktopSize = escritorio.getSize();
+        Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = vacunas.getSize();
         vacunas.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         vacunas.show();
@@ -219,6 +224,11 @@ public class AdministracionVista extends javax.swing.JFrame {
         citas.setVisible(true);
         escritorio.add(citas);
         escritorio.moveToFront(citas);
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = citas.getSize();
+        citas.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        citas.show();
     }//GEN-LAST:event_jMListadoMensualActionPerformed
 
     private void jMAdministracionCIudadanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionCIudadanosActionPerformed
@@ -227,6 +237,11 @@ public class AdministracionVista extends javax.swing.JFrame {
         ciudadano.setVisible(true);
         escritorio.add(ciudadano);
         escritorio.moveToFront(ciudadano);
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = ciudadano.getSize();
+        ciudadano.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        ciudadano.show();
     }//GEN-LAST:event_jMAdministracionCIudadanosActionPerformed
 
     private void jMAdministracionDosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionDosisActionPerformed
@@ -235,6 +250,11 @@ public class AdministracionVista extends javax.swing.JFrame {
         dosis.setVisible(true);
         escritorio.add(dosis);
         escritorio.moveToFront(dosis);
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = dosis.getSize();
+        dosis.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        dosis.show();
     }//GEN-LAST:event_jMAdministracionDosisActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
