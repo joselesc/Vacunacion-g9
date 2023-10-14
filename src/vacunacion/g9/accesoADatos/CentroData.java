@@ -30,74 +30,73 @@ public class CentroData {
         con = Conexion.getConexion();
     }
 
-    public void agregarCentro(Centro c){
-        
-         String query = "INSERT INTO centro(nombre, direccion, telefono, zona, activo) VALUES (?,?,?,?,?) ";
+    public void agregarCentro(Centro c) {
 
-            try {
+        String query = "INSERT INTO centro(nombre, direccion, telefono, zona, activo) VALUES (?,?,?,?,?) ";
 
-                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, c.getNombre());
-                ps.setString(2, c.getDireccion());
-                ps.setInt(3, c.getTelefono());
-                ps.setString(4, c.getZona());
-                ps.setBoolean(3, c.isActivo());
-                ps.executeUpdate();
-                ResultSet rs = ps.getGeneratedKeys();
+        try {
 
-                if (rs.next()) {
-                   c.setId(rs.getInt(1));
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
-                }
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, c.getNombre());
+            ps.setString(2, c.getDireccion());
+            ps.setInt(3, c.getTelefono());
+            ps.setString(4, c.getZona());
+            ps.setBoolean(3, c.isActivo());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
 
-                ps.close();
-                rs.close();
-                JOptionPane.showMessageDialog(null, "Centro añadida con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+            if (rs.next()) {
+                c.setId(rs.getInt(1));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
             }
-     
+
+            ps.close();
+            rs.close();
+            JOptionPane.showMessageDialog(null, "Centro añadida con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
+
     }
-    
-    public void modificarCentro(Centro c){
-        
+
+    public void modificarCentro(Centro c) {
+
         String query = "UPDATE centro SET nombre=?, direccion=?, telefono=?, zona=?, activo=? WHERE idCentro=? ";
 
-            try {
+        try {
 
-                PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, c.getNombre());
-                ps.setString(2, c.getDireccion());
-                ps.setInt(3, c.getTelefono());
-                ps.setString(4, c.getZona());
-                ps.setBoolean(5, c.isActivo());
-                ps.setInt(6, c.getId());
-                ps.executeUpdate();
-                ResultSet rs = ps.getGeneratedKeys();
+            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            ps.setString(1, c.getNombre());
+            ps.setString(2, c.getDireccion());
+            ps.setInt(3, c.getTelefono());
+            ps.setString(4, c.getZona());
+            ps.setBoolean(5, c.isActivo());
+            ps.setInt(6, c.getId());
+            ps.executeUpdate();
+            ResultSet rs = ps.getGeneratedKeys();
 
-                if (rs.next()) {
-                   c.setId(rs.getInt(1));
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
-                }
-
-                ps.close();
-                rs.close();
-                JOptionPane.showMessageDialog(null, "Centro añadido con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
-
-            } catch (SQLException ex) {
-                JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+            if (rs.next()) {
+                c.setId(rs.getInt(1));
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
             }
-     
-        
+
+            ps.close();
+            rs.close();
+            JOptionPane.showMessageDialog(null, "Centro añadido con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
+
     }
-    
-    public void eliminarCentro(int id){
-        
-          String query = "UPDATE materia SET estado = 0 WHERE idCentro = ?";
-      
+
+    public void eliminarCentro(int id) {
+
+        String query = "UPDATE materia SET estado = 0 WHERE idCentro = ?";
+
         try {
 
             PreparedStatement ps = con.prepareStatement(query);
@@ -116,10 +115,10 @@ public class CentroData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
-     
+
     }
-    
-     public List<Centro> listarCentros() {
+
+    public List<Centro> listarCentros() {
 
         List<Centro> centros = new ArrayList<>();
 
@@ -148,13 +147,133 @@ public class CentroData {
         return centros;
 
     }
-     
-      public List<Centro> listarCentrosNorte() {
+
+    public List<Centro> listarCentrosNorte() {
 
         List<Centro> centros = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM centro WHERE zona = Norte AND activo = 1 ";
+            String sql = "SELECT * FROM centro WHERE zona = 'Norte' AND activo = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Centro c = new Centro();
+
+                //c.setId(rs.getInt("idCentro"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setTelefono(rs.getInt("telefono"));
+                c.setZona(rs.getString("zona"));
+                c.setActivo(rs.getBoolean("activo"));
+                centros.add(c);
+
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
+        }
+
+        return centros;
+
+    }
+
+    public List<Centro> listarCentrosSur() {
+
+        List<Centro> centros = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM centro WHERE zona = 'Sur' AND activo = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Centro c = new Centro();
+
+                //c.setId(rs.getInt("idCentro"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setTelefono(rs.getInt("telefono"));
+                c.setZona(rs.getString("zona"));
+                c.setActivo(rs.getBoolean("activo"));
+                centros.add(c);
+
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
+        }
+
+        return centros;
+
+    }
+
+    public List<Centro> listarCentrosEste() {
+
+        List<Centro> centros = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM centro WHERE zona = 'Este' AND activo = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Centro c = new Centro();
+
+                //c.setId(rs.getInt("idCentro"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setTelefono(rs.getInt("telefono"));
+                c.setZona(rs.getString("zona"));
+                c.setActivo(rs.getBoolean("activo"));
+                centros.add(c);
+
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
+        }
+
+        return centros;
+
+    }
+
+    public List<Centro> listarCentrosOeste() {
+
+        List<Centro> centros = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM centro WHERE zona = 'Oeste' AND activo = 1 ";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Centro c = new Centro();
+
+                //c.setId(rs.getInt("idCentro"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setTelefono(rs.getInt("telefono"));
+                c.setZona(rs.getString("zona"));
+                c.setActivo(rs.getBoolean("activo"));
+                centros.add(c);
+
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
+        }
+
+        return centros;
+
+    }
+
+    public List<Centro> listarCentrosDepositoCentral() {
+
+        List<Centro> centros = new ArrayList<>();
+
+        try {
+            String sql = "SELECT * FROM centro WHERE zona = 'Deposito central' AND activo = 1 ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
@@ -208,7 +327,5 @@ public class CentroData {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
         }
     }
-    
-    
 
 }

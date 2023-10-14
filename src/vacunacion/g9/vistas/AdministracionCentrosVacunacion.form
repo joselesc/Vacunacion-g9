@@ -181,6 +181,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Sur"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRSurActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jREste">
           <Properties>
@@ -189,6 +192,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Este"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jREsteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRNorte">
           <Properties>
@@ -208,6 +214,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Oeste"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jROesteActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRTodos">
           <Properties>
@@ -216,6 +225,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Todos"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRTodosActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JRadioButton" name="jRDepositoCentral">
           <Properties>
@@ -224,6 +236,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Deposito central"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRDepositoCentralActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="jBCerrar">
           <Properties>

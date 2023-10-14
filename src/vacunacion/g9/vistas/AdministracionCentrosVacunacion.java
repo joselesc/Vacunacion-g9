@@ -53,9 +53,19 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
 
         buttonGroup1.add(jRSur);
         jRSur.setText("Sur");
+        jRSur.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRSurActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jREste);
         jREste.setText("Este");
+        jREste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jREsteActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRNorte);
         jRNorte.setText("Norte");
@@ -67,12 +77,27 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
 
         buttonGroup1.add(jROeste);
         jROeste.setText("Oeste");
+        jROeste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jROesteActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRTodos);
         jRTodos.setText("Todos");
+        jRTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRTodosActionPerformed(evt);
+            }
+        });
 
         buttonGroup1.add(jRDepositoCentral);
         jRDepositoCentral.setText("Deposito central");
+        jRDepositoCentral.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRDepositoCentralActionPerformed(evt);
+            }
+        });
 
         jBCerrar.setText("Cerrar");
         jBCerrar.addActionListener(new java.awt.event.ActionListener() {
@@ -159,9 +184,28 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
     }//GEN-LAST:event_jBCerrarActionPerformed
 
     private void jRNorteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRNorteActionPerformed
-        jRNorte.setSelected(true);
         cargarDatosATabla();
     }//GEN-LAST:event_jRNorteActionPerformed
+
+    private void jRSurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRSurActionPerformed
+        cargarDatosATabla();
+    }//GEN-LAST:event_jRSurActionPerformed
+
+    private void jREsteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jREsteActionPerformed
+        cargarDatosATabla();
+    }//GEN-LAST:event_jREsteActionPerformed
+
+    private void jROesteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jROesteActionPerformed
+        cargarDatosATabla();
+    }//GEN-LAST:event_jROesteActionPerformed
+
+    private void jRDepositoCentralActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRDepositoCentralActionPerformed
+        cargarDatosATabla();
+    }//GEN-LAST:event_jRDepositoCentralActionPerformed
+
+    private void jRTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRTodosActionPerformed
+        cargarDatosATabla();
+    }//GEN-LAST:event_jRTodosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -187,7 +231,10 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
     }
     
     private void cargarDatosATabla(){
-        jRTodos.setSelected(true);
+        if (!jRTodos.isSelected() && !jRNorte.isSelected() && !jRSur.isSelected() 
+        && !jREste.isSelected() && !jROeste.isSelected() && !jRDepositoCentral.isSelected()) {
+            jRTodos.setSelected(true);  
+        }
         CentroData centro = new CentroData();      
         modelo.setRowCount(0);
         if (jRTodos.isSelected()) {
@@ -201,6 +248,42 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
             }
         }else if(jRNorte.isSelected()){
             for (Centro c : centro.listarCentrosNorte()) {
+            modelo.addRow(new Object[]{
+                c.getNombre(),
+                c.getDireccion(),
+                c.getTelefono(),
+                c.getZona(),
+                c.isActivo()});
+            }
+        }else if(jRSur.isSelected()){
+            for (Centro c : centro.listarCentrosSur()) {
+            modelo.addRow(new Object[]{
+                c.getNombre(),
+                c.getDireccion(),
+                c.getTelefono(),
+                c.getZona(),
+                c.isActivo()});
+            }
+        }else if(jREste.isSelected()){
+            for (Centro c : centro.listarCentrosEste()) {
+            modelo.addRow(new Object[]{
+                c.getNombre(),
+                c.getDireccion(),
+                c.getTelefono(),
+                c.getZona(),
+                c.isActivo()});
+            }
+        }else if(jROeste.isSelected()){
+            for (Centro c : centro.listarCentrosOeste()) {
+            modelo.addRow(new Object[]{
+                c.getNombre(),
+                c.getDireccion(),
+                c.getTelefono(),
+                c.getZona(),
+                c.isActivo()});
+            }
+        }else if(jRDepositoCentral.isSelected()){
+            for (Centro c : centro.listarCentrosDepositoCentral()) {
             modelo.addRow(new Object[]{
                 c.getNombre(),
                 c.getDireccion(),
