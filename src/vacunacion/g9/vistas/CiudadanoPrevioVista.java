@@ -49,6 +49,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMCambioFecha = new javax.swing.JMenu();
         jMIFechaVacunacion = new javax.swing.JMenuItem();
         jMICancelarCita = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
         jMSalir = new javax.swing.JMenu();
         jMIExit = new javax.swing.JMenuItem();
 
@@ -123,6 +124,15 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMCambioFecha.add(jMICancelarCita);
 
         jMenuBar1.add(jMCambioFecha);
+
+        jMenu2.setText("Ayuda");
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu2MouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMenu2);
 
         jMSalir.setText("Salir");
         jMSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -218,6 +228,11 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         cd.mostrarCitaCiudadano(dni);
     }//GEN-LAST:event_jMIFechaVacunacionMouseClicked
 
+    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
+       
+        
+    }//GEN-LAST:event_jMenu2MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane EscritorioCiudadano;
@@ -229,6 +244,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIRegistrarse;
     private javax.swing.JMenu jMSalir;
     private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;

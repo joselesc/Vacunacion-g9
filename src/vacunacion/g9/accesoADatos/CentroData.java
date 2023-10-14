@@ -63,30 +63,29 @@ public class CentroData {
 
     public void modificarCentro(Centro c) {
 
-        String query = "UPDATE centro SET nombre=?, direccion=?, telefono=?, zona=?, activo=? WHERE idCentro=? ";
+        String query = "UPDATE centro SET nombre=?, direccion=?, telefono=?, zona=?, activo=? WHERE id_centro=? ";
 
         try {
 
-            PreparedStatement ps = con.prepareStatement(query, Statement.RETURN_GENERATED_KEYS);
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, c.getNombre());
             ps.setString(2, c.getDireccion());
             ps.setInt(3, c.getTelefono());
             ps.setString(4, c.getZona());
             ps.setBoolean(5, c.isActivo());
             ps.setInt(6, c.getId());
-            ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
+           
+            int mod = ps.executeUpdate();
 
-            if (rs.next()) {
-                c.setId(rs.getInt(1));
+            if (mod == 1) {
+                JOptionPane.showMessageDialog(null, "Centro modificado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
+
             } else {
-                JOptionPane.showMessageDialog(null, "No se pudo recuperar el Id");
+                JOptionPane.showMessageDialog(null, "El codigo del Centro no existe");
             }
-
             ps.close();
-            rs.close();
-            JOptionPane.showMessageDialog(null, "Centro añadido con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
-
+           
+           
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
