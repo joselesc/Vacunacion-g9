@@ -49,6 +49,64 @@ public class VacunaData {
             System.err.println("Error al acceder a la tabla vacuna: " + e.getMessage());
         }
     }
+    
+    public void modificarVacuna(Vacuna vacuna){
+        
+         String query = "UPDATE vacuna SET cuit=?, marca=?, medida=?, fechaCaduca=?, stock=? WHERE lote=? ";
+
+            try {
+                
+
+                PreparedStatement ps = con.prepareStatement(query);
+                ps.setLong(1, vacuna.getCuit());
+                ps.setString(2, vacuna.getMarca());
+                ps.setDouble(3, vacuna.getMedida());
+                ps.setDate(4, Date.valueOf(vacuna.getFechaCaduca()));
+                ps.setInt(5, vacuna.getStock());
+                ps.setInt(6, vacuna.getLote());
+                int mod=ps.executeUpdate();
+                
+                 if (mod == 1) {
+                JOptionPane.showMessageDialog(null, "Vacuna modificada con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El lote de la vacuna no existe");
+            }
+                
+               ps.close();
+               
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+            }
+     
+        
+    }
+    
+    public void eliminarVacuna(int lote){
+        
+          String sql= "DELETE FROM vacuna WHERE lote=?";
+        
+         try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, lote);
+
+            int mod = ps.executeUpdate();
+
+            if (mod == 1) {
+                JOptionPane.showMessageDialog(null, "Ciudadano borrado.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null, "El dni del ciudadano no existe");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
+        
+    }
 
     public List<Vacuna> obtenerVacunasDisponibles() {
         List<Vacuna> vacunas = new ArrayList<>();
@@ -74,7 +132,8 @@ public class VacunaData {
         }
         return vacunas;
     }
-
+    
+    
     public void actualizarEstadoVacuna(int nroSerieDosis, boolean colocada) {
         try {
             String sql = "UPDATE vacuna SET colocada = ? WHERE lote = ?";
@@ -87,4 +146,6 @@ public class VacunaData {
             System.err.println("Error al actualizar estado de la vacuna: " + e.getMessage());
         }
     }
+    
+    
 }

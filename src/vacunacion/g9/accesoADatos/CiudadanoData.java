@@ -76,32 +76,6 @@ public class CiudadanoData {
         return c;
     }
 
-    public int loguearse(int dni) {
-
-        int c = 0;
-        String sql = "SELECT dni FROM ciudadano WHERE dni = ?";
-
-        try (PreparedStatement ps = con.prepareStatement(sql)) {
-            ps.setInt(1, dni);
-            try (ResultSet rs = ps.executeQuery()) {
-
-                if (rs.next()) {
-
-                    JOptionPane.showMessageDialog(null, "Ingreso exitoso");
-                    c = rs.getInt("dni");
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "No hay ninguna cuenta co esta dni, debe registrarse primero");
-                }
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
-        }
-        dniReg = c;
-        return c;
-
-    }
-
     public List<Ciudadano> listarCiudadano() {
 
         List<Ciudadano> ciu = new ArrayList<>();
@@ -159,6 +133,32 @@ public class CiudadanoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
+    }
+    
+    public int loguearse(int dni) {
+
+        int c = 0;
+        String sql = "SELECT dni FROM ciudadano WHERE dni = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            ps.setInt(1, dni);
+            try (ResultSet rs = ps.executeQuery()) {
+
+                if (rs.next()) {
+
+                    JOptionPane.showMessageDialog(null, "Ingreso exitoso");
+                    c = rs.getInt("dni");
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "No hay ninguna cuenta co esta dni, debe registrarse primero");
+                }
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
+        dniReg = c;
+        return c;
+
     }
 
     }
