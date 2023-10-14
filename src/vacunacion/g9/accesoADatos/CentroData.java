@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vacunacion.g9.accesoADatos;
 
 import java.sql.Connection;
@@ -18,10 +13,6 @@ import vacunacion.g9.entidades.Centro;
 import java.time.LocalDateTime;
 import vacunacion.g9.entidades.Vacuna;
 
-/**
- *
- * @author josel
- */
 public class CentroData {
 
     private Connection con = null;
@@ -63,7 +54,7 @@ public class CentroData {
 
     public void modificarCentro(Centro c) {
 
-        String query = "UPDATE centro SET nombre=?, direccion=?, telefono=?, zona=?, activo=? WHERE idCentro=? ";
+        String query = "UPDATE centro SET nombre=?, direccion=?, telefono=?, zona=?, activo=? WHERE id_centro=? ";
 
         try {
 
@@ -95,7 +86,7 @@ public class CentroData {
 
     public void eliminarCentro(int id) {
 
-        String query = "UPDATE materia SET estado = 0 WHERE idCentro = ?";
+        String query = "UPDATE materia SET estado = 0 WHERE id_centro = ?";
 
         try {
 
@@ -129,7 +120,7 @@ public class CentroData {
             while (rs.next()) {
                 Centro c = new Centro();
 
-                //c.setId(rs.getInt("idCentro"));
+                c.setId(rs.getInt("id_centro"));
                 c.setNombre(rs.getString("nombre"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getInt("telefono"));
@@ -159,7 +150,7 @@ public class CentroData {
             while (rs.next()) {
                 Centro c = new Centro();
 
-                //c.setId(rs.getInt("idCentro"));
+                c.setId(rs.getInt("id_centro"));
                 c.setNombre(rs.getString("nombre"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getInt("telefono"));
@@ -189,7 +180,7 @@ public class CentroData {
             while (rs.next()) {
                 Centro c = new Centro();
 
-                //c.setId(rs.getInt("idCentro"));
+                c.setId(rs.getInt("id_centro"));
                 c.setNombre(rs.getString("nombre"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getInt("telefono"));
@@ -219,7 +210,7 @@ public class CentroData {
             while (rs.next()) {
                 Centro c = new Centro();
 
-                //c.setId(rs.getInt("idCentro"));
+                c.setId(rs.getInt("id_centro"));
                 c.setNombre(rs.getString("nombre"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getInt("telefono"));
@@ -249,7 +240,7 @@ public class CentroData {
             while (rs.next()) {
                 Centro c = new Centro();
 
-                //c.setId(rs.getInt("idCentro"));
+                c.setId(rs.getInt("id_centro"));
                 c.setNombre(rs.getString("nombre"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getInt("telefono"));
@@ -279,7 +270,7 @@ public class CentroData {
             while (rs.next()) {
                 Centro c = new Centro();
 
-                //c.setId(rs.getInt("idCentro"));
+                c.setId(rs.getInt("id_centro"));
                 c.setNombre(rs.getString("nombre"));
                 c.setDireccion(rs.getString("direccion"));
                 c.setTelefono(rs.getInt("telefono"));

@@ -8,6 +8,7 @@ import vacunacion.g9.entidades.Centro;
 public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel();
+    CentroData centro = new CentroData();
     public AdministracionCentrosVacunacion() {
         initComponents();
         cabecera();
@@ -30,6 +31,9 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         jRTodos = new javax.swing.JRadioButton();
         jRDepositoCentral = new javax.swing.JRadioButton();
         jBCerrar = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
+        jBModificar = new javax.swing.JButton();
+        jBEliminar = new javax.swing.JButton();
 
         setPreferredSize(new java.awt.Dimension(800, 600));
 
@@ -106,6 +110,27 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
             }
         });
 
+        jBAgregar.setText("Agregar");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBAgregarActionPerformed(evt);
+            }
+        });
+
+        jBModificar.setText("Modificar");
+        jBModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBModificarActionPerformed(evt);
+            }
+        });
+
+        jBEliminar.setText("Eliminar");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -131,7 +156,13 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
                                 .addGap(18, 18, 18)
                                 .addComponent(jRTodos))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(616, 616, 616)
+                                .addGap(25, 25, 25)
+                                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBModificar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jBEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(117, 117, 117)
                                 .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 9, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -154,7 +185,11 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
-                .addComponent(jBCerrar)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBCerrar)
+                    .addComponent(jBAgregar)
+                    .addComponent(jBModificar)
+                    .addComponent(jBEliminar))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
@@ -207,9 +242,48 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         cargarDatosATabla();
     }//GEN-LAST:event_jRTodosActionPerformed
 
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
+        //Crear un JFrame para cargar los datos
+    }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+        try{
+            int filaS = jTCentrosVacunacion.getSelectedRow();
+            int id = Integer.parseInt(jTCentrosVacunacion.getValueAt(filaS, 0).toString());
+            String nombre = jTCentrosVacunacion.getValueAt(filaS, 1).toString();
+            String direccion = jTCentrosVacunacion.getValueAt(filaS, 2).toString();
+            int telefono = Integer.parseInt(jTCentrosVacunacion.getValueAt(filaS, 3).toString());
+            String zona = jTCentrosVacunacion.getValueAt(filaS, 4).toString();
+            boolean activo = Boolean.parseBoolean(jTCentrosVacunacion.getValueAt(filaS, 5).toString());
+            Centro c = new Centro(id, nombre, direccion, telefono, zona, activo);
+            centro.modificarCentro(c);
+            JOptionPane.showMessageDialog(null, "Modificacion exitosa");
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex);
+        }finally {
+            cargarDatosATabla();
+        }      
+    }//GEN-LAST:event_jBModificarActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+        try{
+            int filaS = jTCentrosVacunacion.getSelectedRow();
+            int id = Integer.parseInt(jTCentrosVacunacion.getValueAt(filaS, 0).toString());
+            centro.eliminarCentro(id);
+            JOptionPane.showMessageDialog(null, "Eliminacion exitosa");
+        }catch(NumberFormatException ex){
+            JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex);
+        }finally {
+            cargarDatosATabla();
+        }  
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jBCerrar;
+    private javax.swing.JButton jBEliminar;
+    private javax.swing.JButton jBModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRDepositoCentral;
@@ -222,6 +296,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
     private javax.swing.JTable jTCentrosVacunacion;
     // End of variables declaration//GEN-END:variables
     private void cabecera(){
+        modelo.addColumn("ID");
         modelo.addColumn("Nombre");
         modelo.addColumn("Direccion");
         modelo.addColumn("Telefono");
@@ -234,12 +309,12 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         if (!jRTodos.isSelected() && !jRNorte.isSelected() && !jRSur.isSelected() 
         && !jREste.isSelected() && !jROeste.isSelected() && !jRDepositoCentral.isSelected()) {
             jRTodos.setSelected(true);  
-        }
-        CentroData centro = new CentroData();      
+        }              
         modelo.setRowCount(0);
         if (jRTodos.isSelected()) {
             for (Centro c : centro.listarCentros()) {
             modelo.addRow(new Object[]{
+                c.getId(),
                 c.getNombre(),
                 c.getDireccion(),
                 c.getTelefono(),
@@ -249,6 +324,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         }else if(jRNorte.isSelected()){
             for (Centro c : centro.listarCentrosNorte()) {
             modelo.addRow(new Object[]{
+                c.getId(),
                 c.getNombre(),
                 c.getDireccion(),
                 c.getTelefono(),
@@ -258,6 +334,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         }else if(jRSur.isSelected()){
             for (Centro c : centro.listarCentrosSur()) {
             modelo.addRow(new Object[]{
+                c.getId(),
                 c.getNombre(),
                 c.getDireccion(),
                 c.getTelefono(),
@@ -267,6 +344,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         }else if(jREste.isSelected()){
             for (Centro c : centro.listarCentrosEste()) {
             modelo.addRow(new Object[]{
+                c.getId(),
                 c.getNombre(),
                 c.getDireccion(),
                 c.getTelefono(),
@@ -276,6 +354,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         }else if(jROeste.isSelected()){
             for (Centro c : centro.listarCentrosOeste()) {
             modelo.addRow(new Object[]{
+                c.getId(),
                 c.getNombre(),
                 c.getDireccion(),
                 c.getTelefono(),
@@ -285,6 +364,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         }else if(jRDepositoCentral.isSelected()){
             for (Centro c : centro.listarCentrosDepositoCentral()) {
             modelo.addRow(new Object[]{
+                c.getId(),
                 c.getNombre(),
                 c.getDireccion(),
                 c.getTelefono(),
