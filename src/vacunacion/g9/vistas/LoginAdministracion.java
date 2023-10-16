@@ -161,12 +161,12 @@ public class LoginAdministracion extends javax.swing.JFrame {
 
     private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
         if (jTEmail.getText().equalsIgnoreCase("1") && jTDocumento.getText().equalsIgnoreCase("1")) {
-            if (jRadioButton2.isSelected()) {
+            if (jRadioButton1.isSelected()) {
                 VacunacionVista vacunacion = new VacunacionVista();
                 vacunacion.setVisible(true);
                 this.setVisible(false);
                 JOptionPane.showMessageDialog(null, "Bienvenido");
-            }else if(jRadioButton1.isSelected()){
+            }else if(jRadioButton2.isSelected()){
                 AdministracionVista psa = new AdministracionVista();
                 psa.setVisible(true);
                 this.setVisible(false);
