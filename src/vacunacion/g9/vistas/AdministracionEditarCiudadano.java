@@ -1,11 +1,18 @@
 package vacunacion.g9.vistas;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vacunacion.g9.accesoADatos.CiudadanoData;
+import vacunacion.g9.entidades.Ciudadano;
 
 public class AdministracionEditarCiudadano extends javax.swing.JInternalFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
+
     public AdministracionEditarCiudadano() {
         initComponents();
+        modelo = (DefaultTableModel) jTable1.getModel();
+        cargarTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -17,16 +24,20 @@ public class AdministracionEditarCiudadano extends javax.swing.JInternalFrame {
         jTDni = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
+        jBCerrar = new javax.swing.JButton();
 
         jLDni.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLDni.setText("Buscar por DNI");
 
-        jTDni.setText("Ingresa el dni a buscar");
+        jTDni.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                jTDniKeyPressed(evt);
+            }
+        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "DNI", "Apellido", "Nombre", "email", "Celular", "Zona", "Patologia", "Esencial", "Riesgo"
@@ -42,11 +53,11 @@ public class AdministracionEditarCiudadano extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton1.setText("Cerrar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBCerrar.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jBCerrar.setText("Cerrar");
+        jBCerrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBCerrarActionPerformed(evt);
             }
         });
 
@@ -59,7 +70,7 @@ public class AdministracionEditarCiudadano extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 789, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -78,7 +89,7 @@ public class AdministracionEditarCiudadano extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 315, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(38, 38, 38))
         );
 
@@ -96,21 +107,76 @@ public class AdministracionEditarCiudadano extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBCerrarActionPerformed
         int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
         if (opcion == 0) {
             this.dispose();
             AdministracionVista volver = new AdministracionVista();
-            volver.setVisible(true);  
+            volver.setVisible(true);
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBCerrarActionPerformed
+
+    private void jTDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDniKeyPressed
+
+        borrarFilas();
+      
+        CiudadanoData cd = new CiudadanoData();
+
+        for (Ciudadano c : cd.listarCiudadano()) {
+
+            String dni = Integer.toString(c.getDni());
+            System.out.println(dni + "");
+
+            if (dni.startsWith(jTDni.getText())) {
+
+                modelo.addRow(new Object[]{
+                    c.getDni(),
+                    c.getApellido(),
+                    c.getNombre(),
+                    c.getEmail(),
+                    c.getCelular(),
+                    c.getZona(),
+                    c.getPatologia(),
+                    c.isAmbitoTrabajo(),
+                    c.isRiesgo(),}
+                );
+            }
+        }
+    }//GEN-LAST:event_jTDniKeyPressed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jBCerrar;
     private javax.swing.JLabel jLDni;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTDni;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
+
+    private void cargarTabla() {
+
+        CiudadanoData cd = new CiudadanoData();
+
+        for (Ciudadano c : cd.listarCiudadano()) {
+
+            modelo.addRow(new Object[]{
+                c.getDni(),
+                c.getApellido(),
+                c.getNombre(),
+                c.getEmail(),
+                c.getCelular(),
+                c.getZona(),
+                c.getPatologia(),
+                c.isAmbitoTrabajo(),
+                c.isRiesgo(),});
+        }
+
+    }
+
+    private void borrarFilas() {
+        int filas = jTable1.getRowCount() - 1;
+        for (int f = filas; f >= 0; f--) {
+            modelo.removeRow(f);
+        }
+    }
 }
