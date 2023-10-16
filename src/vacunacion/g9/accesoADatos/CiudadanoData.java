@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.Ciudadano;
@@ -21,6 +23,8 @@ public class CiudadanoData {
     }
 
     public void registrarCiudadano(Ciudadano ciudadano) {
+        
+         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Inscripcion.png"));
 
         String sql = "INSERT INTO ciudadano(dni, apellido, nombre, email, celular, zona, patologia, ambitoTrabajo, deRiesgo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,? )";
@@ -38,7 +42,7 @@ public class CiudadanoData {
             ps.setBoolean(9, ciudadano.isRiesgo());
             ps.executeUpdate();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Registro exitoso!!!te van a vacunar");
+            JOptionPane.showMessageDialog(null, "Registro exitoso!!!","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -47,6 +51,8 @@ public class CiudadanoData {
     }
 
     public Ciudadano buscarCiudadano(int dni) {
+        
+      
         Ciudadano c = null;
         String sql = "SELECT * FROM ciudadano WHERE dni = ?";
 
@@ -113,6 +119,8 @@ public class CiudadanoData {
     
     public void eliminarCiudadano(int dni){
         
+        Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/ciudadano.png"));
+        
         String sql= "DELETE FROM ciudadano WHERE dni=?";
         
          try {
@@ -123,10 +131,10 @@ public class CiudadanoData {
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "Ciudadano borrado.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Ciudadano borrado.","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
             } else {
-                JOptionPane.showMessageDialog(null, "El dni del ciudadano no existe");
+                JOptionPane.showMessageDialog(null, "El dni del ciudadano no existe","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
             }
             ps.close();
 
@@ -137,6 +145,7 @@ public class CiudadanoData {
     
     public int loguearse(int dni) {
 
+         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/login.png"));
         int c = 0;
         String sql = "SELECT dni FROM ciudadano WHERE dni = ?";
 
@@ -146,7 +155,7 @@ public class CiudadanoData {
 
                 if (rs.next()) {
 
-                    JOptionPane.showMessageDialog(null, "Ingreso exitoso");
+                    JOptionPane.showMessageDialog(null, "Ingreso exitoso","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
                     c = rs.getInt("dni");
 
                 } else {

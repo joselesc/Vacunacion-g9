@@ -10,6 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.accesoADatos.CiudadanoData;
 
@@ -83,6 +84,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMenu1.setHideActionText(true);
 
         jMIRegistrarse.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jMIRegistrarse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Inscripcion.png"))); // NOI18N
         jMIRegistrarse.setText("Registrarse");
         jMIRegistrarse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -92,6 +94,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMenu1.add(jMIRegistrarse);
 
         jMILoguearse.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jMILoguearse.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/login.png"))); // NOI18N
         jMILoguearse.setText("Logearse");
         jMILoguearse.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -106,25 +109,28 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMCambioFecha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
 
         jMIFechaVacunacion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jMIFechaVacunacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fechaVac.png"))); // NOI18N
         jMIFechaVacunacion.setText("FechaVacunacion");
-        jMIFechaVacunacion.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMIFechaVacunacionMouseClicked(evt);
+        jMIFechaVacunacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMIFechaVacunacionActionPerformed(evt);
             }
         });
         jMCambioFecha.add(jMIFechaVacunacion);
 
         jMICancelarCita.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jMICancelarCita.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/CambioFecha.png"))); // NOI18N
         jMICancelarCita.setText("CambioDeFecha");
-        jMICancelarCita.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMICancelarCitaMouseClicked(evt);
+        jMICancelarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMICancelarCitaActionPerformed(evt);
             }
         });
         jMCambioFecha.add(jMICancelarCita);
 
         jMenuBar1.add(jMCambioFecha);
 
+        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Ayuda.png"))); // NOI18N
         jMenu2.setText("Ayuda");
         jMenu2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -141,6 +147,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMSalir.setPreferredSize(new java.awt.Dimension(49, 40));
 
         jMIExit.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jMIExit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/salir.png"))); // NOI18N
         jMIExit.setText("Confirma Salida");
         jMIExit.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,27 +218,44 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         lv.show();
     }//GEN-LAST:event_jMILoguearseActionPerformed
 
-    private void jMICancelarCitaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMICancelarCitaMouseClicked
-        
-        LoguearseVista lv=new LoguearseVista();
-        int dni=lv.getDnireg();
-        CitaData cd = new CitaData();
-        cd.cancelarCitaCiudadano(WIDTH);
-
-    }//GEN-LAST:event_jMICancelarCitaMouseClicked
-
-    private void jMIFechaVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMIFechaVacunacionMouseClicked
-
-        LoguearseVista lv=new LoguearseVista();
-        int dni=lv.getDnireg();
-        CitaData cd = new CitaData();
-        cd.mostrarCitaCiudadano(dni);
-    }//GEN-LAST:event_jMIFechaVacunacionMouseClicked
-
     private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
        
-        
+        EscritorioCiudadano.removeAll();
+        EscritorioCiudadano.repaint();
+        AyudaVista av = new AyudaVista();
+        setContentPane(EscritorioCiudadano);
+        //setSize(1212, 966);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        av.setVisible(true);
+        EscritorioCiudadano.add(av);
+        EscritorioCiudadano.moveToFront(av);
+
+        Dimension desktopSize = EscritorioCiudadano.getSize();
+        Dimension FrameSize = av.getSize();
+        av.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        av.show();
     }//GEN-LAST:event_jMenu2MouseClicked
+
+    private void jMIFechaVacunacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFechaVacunacionActionPerformed
+       
+        LoguearseVista lv=new LoguearseVista();
+        int dni=lv.getDnireg();
+        System.out.println(dni);
+        if(dni==0){
+             JOptionPane.showMessageDialog(this, "Debe loguearse primero");
+        }
+    }//GEN-LAST:event_jMIFechaVacunacionActionPerformed
+
+    private void jMICancelarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICancelarCitaActionPerformed
+
+        LoguearseVista lv=new LoguearseVista();
+        int dni=lv.getDnireg();
+        if(dni==0){
+             JOptionPane.showMessageDialog(this, "Debe loguearse primero");
+        }
+        CitaData cd = new CitaData();
+        cd.cancelarCitaCiudadano(WIDTH);       
+    }//GEN-LAST:event_jMICancelarCitaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
