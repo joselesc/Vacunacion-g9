@@ -263,7 +263,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "LABORATORIO AGREGADO!!!");
             limpiar();
             limpiartablaLaboratorio();
-//            listarLaboratorio();
+
     }//GEN-LAST:event_jBAgregarActionPerformed
     }
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
@@ -290,8 +290,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "LABORATORIO MODIFICADO!!!");
             limpiar();
             limpiartablaLaboratorio();
-            // recargar
-//            listarLaboratorio();
+            
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
@@ -313,8 +312,7 @@ long cuit = 0;
         JOptionPane.showMessageDialog(this, "LABORATORIO ELIMINADO!!!");
         limpiar();
         limpiartablaLaboratorio();
-        // recargar
-//        listarLaboratorio();
+
     } else {
         JOptionPane.showMessageDialog(this, "LABORATORIO INEXISTENTE!!!");
     }        

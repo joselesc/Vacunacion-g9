@@ -94,9 +94,9 @@ public class LaboratorioData {
 
     public void eliminar(long cuit) {
 
-        String sql= "DELETE FROM laboratorio WHERE cuit=?";
-        
-         try {
+        String sql = "DELETE FROM laboratorio WHERE cuit=?";
+
+        try {
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setLong(1, cuit);
@@ -107,13 +107,13 @@ public class LaboratorioData {
                 JOptionPane.showMessageDialog(null, "LABORATORIO Eliminado!!!.");
 
             } else {
-                JOptionPane.showMessageDialog(null, "EL  NO EXISTE");
+                JOptionPane.showMessageDialog(null, "EL LABORATORIO NO EXISTE");
             }
             ps.close();
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
-        }       
+        }
     }
 
     public void modificar(Laboratorio laboratorio) {
@@ -139,5 +139,5 @@ public class LaboratorioData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
-    }    
+    }
 }
