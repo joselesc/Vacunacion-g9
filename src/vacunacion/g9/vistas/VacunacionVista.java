@@ -110,7 +110,7 @@ public void transparencia() {
     }//GEN-LAST:event_jBSalirActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        
+
         jDesktopPane1.removeAll();
         jDesktopPane1.repaint();
         CiudadanoxFechaVista cxF = new CiudadanoxFechaVista();
@@ -118,8 +118,7 @@ public void transparencia() {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         cxF.setVisible(true);
         jDesktopPane1.add(cxF);
-        jDesktopPane1.moveToFront(cxF);
-       
+        jDesktopPane1.moveToFront(cxF);      
         
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = cxF.getSize();
