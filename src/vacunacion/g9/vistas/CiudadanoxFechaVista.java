@@ -6,6 +6,8 @@
 package vacunacion.g9.vistas;
 
 import javax.swing.table.DefaultTableModel;
+import vacunacion.g9.accesoADatos.VacunaData;
+import vacunacion.g9.entidades.Vacuna;
 
 /**
  *
@@ -24,6 +26,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     public CiudadanoxFechaVista() {
         initComponents();
         armarcabecera();
+        listarVacunas();
     }
 
     /**
@@ -217,7 +220,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarcabecera(){
-        modelo.addColumn("NroDeSerie");
+        modelo.addColumn("Lote");
         modelo.addColumn("CUIT");
         modelo.addColumn("NombreComercial");
         modelo.addColumn("MEDIDA");
@@ -226,5 +229,19 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         modelo.addColumn("COLOCADA");
         jTablaxFecha.setModel(modelo);
         
+    }
+       public void listarVacunas() {
+        VacunaData vD = new VacunaData();
+        for (Vacuna v : vD.obtenerVacunasDisponibles()) {
+            modelo.addRow(new Object[]{
+                v.getLote(),
+                v.getCuit(),
+                v.getMarca(),
+                v.getMedida(),
+                v.getFechaCaduca(),
+                v.getStock(),
+                v.isColocada()
+            });
+        }
     }
 }
