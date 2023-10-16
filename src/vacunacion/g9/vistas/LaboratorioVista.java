@@ -262,7 +262,8 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             ld.guardarLaboratorio(nl);
             JOptionPane.showMessageDialog(this, "LABORATORIO AGREGADO!!!");
             limpiar();
-            listarLaboratorio();
+            limpiartablaLaboratorio();
+//            listarLaboratorio();
     }//GEN-LAST:event_jBAgregarActionPerformed
     }
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
@@ -288,8 +289,9 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             ld.modificar(nl); // Llama al método para modificar el laboratorio
             JOptionPane.showMessageDialog(this, "LABORATORIO MODIFICADO!!!");
             limpiar();
+            limpiartablaLaboratorio();
             // recargar
-            listarLaboratorio();
+//            listarLaboratorio();
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
@@ -310,8 +312,9 @@ long cuit = 0;
         ld.eliminar(cuit); // Llama al método
         JOptionPane.showMessageDialog(this, "LABORATORIO ELIMINADO!!!");
         limpiar();
+        limpiartablaLaboratorio();
         // recargar
-        listarLaboratorio();
+//        listarLaboratorio();
     } else {
         JOptionPane.showMessageDialog(this, "LABORATORIO INEXISTENTE!!!");
     }        
@@ -364,4 +367,18 @@ long cuit = 0;
         jTFPais.setText("");
         jTFnomComercial.setText("");
     }
+    private void limpiartablaLaboratorio() {
+    // Limpia la tabla
+    modelo.setRowCount(0);
+
+    LaboratorioData ld = new LaboratorioData();
+    for (Laboratorio v : ld.listarLaboratorio()) {
+        modelo.addRow(new Object[]{
+            v.getCuit(),
+            v.getNomLaboratorio(),
+            v.getPais(),
+            v.getDomComercial()
+        });
+    }
+}
 }
