@@ -1,25 +1,35 @@
 package vacunacion.g9.vistas;
 
+import java.awt.Component;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import java.util.List;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import vacunacion.g9.accesoADatos.LaboratorioData;
 import vacunacion.g9.accesoADatos.VacunaData;
+import vacunacion.g9.entidades.Laboratorio;
 import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
 
     private DefaultTableModel modelo = new DefaultTableModel() {
-        public boolean isCellEditable(int f,int c){
-        return false;
-        }};
+        public boolean isCellEditable(int f, int c) {
+            return false;
+        }
+    };
+
+    LaboratorioData laboratorios = new LaboratorioData();
 
     public AdministracionVacunasVista() {
         initComponents();
         armarCabecera();
         listarVacunas();
-        
+        cargarComboBox();
 
     }
 
@@ -36,7 +46,6 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jRColocada = new javax.swing.JRadioButton();
-        jTFCuit = new javax.swing.JTextField();
         jTFMarca = new javax.swing.JTextField();
         jTFMedida = new javax.swing.JTextField();
         jTFStock = new javax.swing.JTextField();
@@ -49,6 +58,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jTListarVac = new javax.swing.JTable();
         jBAgregar = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jCCuit = new javax.swing.JComboBox<>();
         jMenuBar1 = new javax.swing.JMenuBar();
 
         setTitle("ADMINISTRACION DE VACUNAS");
@@ -94,6 +104,11 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
 
         jBEliminar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBEliminar.setText("ELIMINAR");
+        jBEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBEliminarActionPerformed(evt);
+            }
+        });
 
         jBListar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBListar.setText("LISTAR");
@@ -142,6 +157,12 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jCCuit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCCuitActionPerformed(evt);
+            }
+        });
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,28 +186,30 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                                             .addGap(18, 18, 18)
                                             .addComponent(jTFNDeSerie))
                                         .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addGap(19, 19, 19)
-                                            .addComponent(jTFCuit, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                     .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                                     .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                                            .addGap(19, 19, 19)
-                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                                .addComponent(jTFStock, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                                .addComponent(jTFFechaVenc)
-                                                .addComponent(jTFMedida)
-                                                .addComponent(jTFMarca)
+                                                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                                 .addGroup(layout.createSequentialGroup()
-                                                    .addComponent(jBModificar)
-                                                    .addGap(44, 44, 44)
-                                                    .addComponent(jBEliminar)
-                                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                    .addComponent(jBListar))))))
+                                                    .addGap(19, 19, 19)
+                                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                                        .addComponent(jTFStock, javax.swing.GroupLayout.DEFAULT_SIZE, 461, Short.MAX_VALUE)
+                                                        .addComponent(jTFFechaVenc)
+                                                        .addComponent(jTFMedida)
+                                                        .addComponent(jTFMarca)
+                                                        .addGroup(layout.createSequentialGroup()
+                                                            .addComponent(jBModificar)
+                                                            .addGap(44, 44, 44)
+                                                            .addComponent(jBEliminar)
+                                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                            .addComponent(jBListar))))
+                                                .addGroup(layout.createSequentialGroup()
+                                                    .addGap(18, 18, 18)
+                                                    .addComponent(jCCuit, javax.swing.GroupLayout.PREFERRED_SIZE, 461, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                                 .addGap(27, 27, 27)
                                 .addComponent(jBAgregar))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 762, javax.swing.GroupLayout.PREFERRED_SIZE)))
@@ -208,10 +231,10 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jTFNDeSerie, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
-                            .addComponent(jTFCuit, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jCCuit, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel4)
@@ -240,7 +263,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                                     .addComponent(jBModificar)
                                     .addComponent(jBEliminar)
                                     .addComponent(jBListar))))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 4, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE))
                     .addComponent(jBAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -267,7 +290,11 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
 
         try {
-            long cuit = Long.parseLong(jTFCuit.getText());
+//            Laboratorio laboratorio = (Laboratorio) jCCuit.getSelectedItem();
+//Alumno alumno = (Alumno) jCAlumnos.getSelectedItem();
+            
+
+           Long cuit=(Long)jCCuit.getSelectedItem();
             String marca = jTFMarca.getText();
             double medida = Double.parseDouble(jTFMedida.getText());
             LocalDate fechaCaduca = LocalDate.parse(jTFFechaVenc.getText(), DateTimeFormatter.ISO_DATE);
@@ -296,6 +323,19 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
 
     }//GEN-LAST:event_jBListarActionPerformed
 
+    private void jCCuitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCCuitActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCCuitActionPerformed
+
+    private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
+// AlumnoData alumnoData = new AlumnoData();
+//            alumnoData.eliminarAlumno(dni);
+VacunaData vd=new VacunaData();
+        int lote = 0;
+        
+vd.eliminarVacuna(lote);
+    }//GEN-LAST:event_jBEliminarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
@@ -303,6 +343,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     private javax.swing.JButton jBListar;
     private javax.swing.JButton jBModificar;
     private javax.swing.JButton jButton2;
+    private javax.swing.JComboBox<Laboratorio> jCCuit;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -314,7 +355,6 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JRadioButton jRColocada;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTFCuit;
     private javax.swing.JTextField jTFFechaVenc;
     private javax.swing.JTextField jTFMarca;
     private javax.swing.JTextField jTFMedida;
@@ -323,7 +363,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTListarVac;
     // End of variables declaration//GEN-END:variables
 
-    private void listarVacunas() {
+    public void listarVacunas() {
         VacunaData vD = new VacunaData();
         for (Vacuna v : vD.obtenerVacunasDisponibles()) {
             modelo.addRow(new Object[]{
@@ -343,10 +383,32 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         modelo.addColumn("CUIT");
         modelo.addColumn("MARCA");
         modelo.addColumn("MEDIDA");
-        modelo.addColumn("fEC DE VENC");
+        modelo.addColumn("FEC DE VENC");
         modelo.addColumn("STOCK");
         modelo.addColumn("COLOCADA");
         jTListarVac.setModel(modelo);
     }
 
+    private void cargarComboBox() {
+        DefaultComboBoxModel<Laboratorio> modeloL = new DefaultComboBoxModel<>();
+
+        List<Laboratorio> laboratorios = this.laboratorios.listarLaboratorio();
+        for (Laboratorio laboratorio : laboratorios) {
+            modeloL.addElement(laboratorio);
+        }
+        jCCuit.setModel(modeloL);
+        jCCuit.setRenderer(new DefaultListCellRenderer() {
+
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Laboratorio) {
+                    Laboratorio laboratorio = (Laboratorio) value;
+                    long nombreCompleto = laboratorio.getCuit();
+                    value = nombreCompleto;
+                    System.out.println(nombreCompleto);
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
+    }
 }

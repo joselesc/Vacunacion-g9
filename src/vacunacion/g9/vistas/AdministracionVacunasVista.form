@@ -45,32 +45,36 @@
                                           <EmptySpace type="separate" max="-2" attributes="0"/>
                                           <Component id="jTFNDeSerie" max="32767" attributes="0"/>
                                       </Group>
-                                      <Group type="102" attributes="0">
-                                          <Component id="jLabel3" max="32767" attributes="0"/>
-                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                          <Component id="jTFCuit" min="-2" pref="461" max="-2" attributes="0"/>
-                                      </Group>
-                                      <Group type="102" attributes="0">
-                                          <Group type="103" groupAlignment="1" attributes="0">
-                                              <Component id="jLabel7" min="-2" pref="163" max="-2" attributes="0"/>
-                                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                      <Group type="102" alignment="1" attributes="0">
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel7" alignment="1" min="-2" pref="163" max="-2" attributes="0"/>
+                                              <Group type="103" alignment="1" groupAlignment="1" max="-2" attributes="0">
                                                   <Component id="jLabel6" pref="163" max="32767" attributes="0"/>
                                                   <Component id="jLabel5" alignment="0" max="32767" attributes="0"/>
                                                   <Component id="jLabel4" max="32767" attributes="0"/>
                                               </Group>
+                                              <Component id="jLabel3" max="32767" attributes="0"/>
                                           </Group>
-                                          <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="jTFStock" min="-2" pref="461" max="-2" attributes="0"/>
-                                              <Component id="jTFFechaVenc" max="32767" attributes="0"/>
-                                              <Component id="jTFMedida" max="32767" attributes="0"/>
-                                              <Component id="jTFMarca" max="32767" attributes="0"/>
+                                          <Group type="103" groupAlignment="0" attributes="0">
+                                              <Group type="102" attributes="0">
+                                                  <EmptySpace min="19" pref="19" max="-2" attributes="0"/>
+                                                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                      <Component id="jTFStock" pref="461" max="32767" attributes="0"/>
+                                                      <Component id="jTFFechaVenc" max="32767" attributes="0"/>
+                                                      <Component id="jTFMedida" max="32767" attributes="0"/>
+                                                      <Component id="jTFMarca" max="32767" attributes="0"/>
+                                                      <Group type="102" alignment="0" attributes="0">
+                                                          <Component id="jBModificar" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
+                                                          <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
+                                                          <EmptySpace max="32767" attributes="0"/>
+                                                          <Component id="jBListar" min="-2" max="-2" attributes="0"/>
+                                                      </Group>
+                                                  </Group>
+                                              </Group>
                                               <Group type="102" alignment="0" attributes="0">
-                                                  <Component id="jBModificar" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace min="-2" pref="44" max="-2" attributes="0"/>
-                                                  <Component id="jBEliminar" min="-2" max="-2" attributes="0"/>
-                                                  <EmptySpace max="32767" attributes="0"/>
-                                                  <Component id="jBListar" min="-2" max="-2" attributes="0"/>
+                                                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                                                  <Component id="jCCuit" min="-2" pref="461" max="-2" attributes="0"/>
                                               </Group>
                                           </Group>
                                       </Group>
@@ -106,12 +110,12 @@
                           <Component id="jTFNDeSerie" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel3" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jTFCuit" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jCCuit" alignment="3" pref="27" max="32767" attributes="0"/>
                       </Group>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jTFMarca" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -148,7 +152,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="4" max="32767" attributes="0"/>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                   </Group>
                   <Component id="jBAgregar" max="32767" attributes="0"/>
               </Group>
@@ -234,8 +238,6 @@
     </Component>
     <Component class="javax.swing.JRadioButton" name="jRColocada">
     </Component>
-    <Component class="javax.swing.JTextField" name="jTFCuit">
-    </Component>
     <Component class="javax.swing.JTextField" name="jTFMarca">
     </Component>
     <Component class="javax.swing.JTextField" name="jTFMedida">
@@ -264,6 +266,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="ELIMINAR"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jBEliminarActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JButton" name="jBListar">
       <Properties>
@@ -375,6 +380,19 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
       </Events>
+    </Component>
+    <Component class="javax.swing.JComboBox" name="jCCuit">
+      <Properties>
+        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+          <StringArray count="0"/>
+        </Property>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCCuitActionPerformed"/>
+      </Events>
+      <AuxValues>
+        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Laboratorio&gt;"/>
+      </AuxValues>
     </Component>
   </SubComponents>
 </Form>

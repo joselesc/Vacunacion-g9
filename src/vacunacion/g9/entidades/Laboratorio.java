@@ -1,17 +1,17 @@
 package vacunacion.g9.entidades;
 
 public class Laboratorio {
-    
-    private int cuit;
+
+    private long cuit;
     private String nomLaboratorio;
     private String pais;
     private String domComercial;
 
-    public int getCuit() {
+    public long getCuit() {
         return cuit;
     }
 
-    public void setCuit(int cuit) {
+    public void setCuit(long cuit) {
         this.cuit = cuit;
     }
 
@@ -45,7 +45,7 @@ public class Laboratorio {
         this.domComercial = domComercial;
     }
 
-    public Laboratorio(int cuit, String nomLaboratorio, String pais, String domComercial) {
+    public Laboratorio(long cuit, String nomLaboratorio, String pais, String domComercial) {
         this.cuit = cuit;
         this.nomLaboratorio = nomLaboratorio;
         this.pais = pais;
