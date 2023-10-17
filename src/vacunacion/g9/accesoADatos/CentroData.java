@@ -293,7 +293,7 @@ public class CentroData {
         List<Vacuna> vac = new ArrayList<>();
 
         try {
-            String sql = "select * "
+            String sql = "SELECT * "
                     + "FROM vacuna INNER JOIN citavacunacion ON citavacunacion.lote=vacuna.lote"
                     + "JOIN centro ON citavacunacion.id_centro=centro.id_centro"
                     + " where colocada=1 and id_centro=? and fechacolocada=?";

@@ -3,36 +3,32 @@ package vacunacion.g9.entidades;
 import java.time.LocalDateTime;
 
 public class CitaVacunacion {
-    
+
     private int codCita;
     private Ciudadano persona;
     private int codRefuerzo;
-    private String fechaHoraCita;
+    private LocalDateTime fechaHoraCita;
     private String centroVacunacion;
-    private LocalDateTime fechaHoraColocacion;
-    private Vacuna dosis;
+   private Vacuna dosis;
+    private boolean cancelada;
 
-    public CitaVacunacion(int codCita, Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDateTime fechaHoraColocacion, Vacuna dosis) {
+    public CitaVacunacion(int codCita, Ciudadano persona, int codRefuerzo, LocalDateTime fechaHoraCita, String centroVacunacion, Vacuna dosis, boolean cancelada) {
         this.codCita = codCita;
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
         this.centroVacunacion = centroVacunacion;
-        this.fechaHoraColocacion = fechaHoraColocacion;
         this.dosis = dosis;
+        this.cancelada = cancelada;
     }
 
-    public CitaVacunacion(Ciudadano persona, int codRefuerzo, String fechaHoraCita, String centroVacunacion, LocalDateTime fechaHoraColocacion, Vacuna dosis) {
+    public CitaVacunacion(Ciudadano persona, int codRefuerzo, LocalDateTime fechaHoraCita, String centroVacunacion, Vacuna dosis, boolean cancelada) {
         this.persona = persona;
         this.codRefuerzo = codRefuerzo;
         this.fechaHoraCita = fechaHoraCita;
         this.centroVacunacion = centroVacunacion;
-        this.fechaHoraColocacion = fechaHoraColocacion;
         this.dosis = dosis;
-    }
-
-    
-    public CitaVacunacion() {
+        this.cancelada = cancelada;
     }
 
     public int getCodCita() {
@@ -59,11 +55,11 @@ public class CitaVacunacion {
         this.codRefuerzo = codRefuerzo;
     }
 
-    public String getFechaHoraCita() {
+    public LocalDateTime getFechaHoraCita() {
         return fechaHoraCita;
     }
 
-    public void setFechaHoraCita(String fechaHoraCita) {
+    public void setFechaHoraCita(LocalDateTime fechaHoraCita) {
         this.fechaHoraCita = fechaHoraCita;
     }
 
@@ -75,14 +71,6 @@ public class CitaVacunacion {
         this.centroVacunacion = centroVacunacion;
     }
 
-    public LocalDateTime getFechaHoraColocacion() {
-        return fechaHoraColocacion;
-    }
-
-    public void setFechaHoraColocacion(LocalDateTime fechaHoraColocacion) {
-        this.fechaHoraColocacion = fechaHoraColocacion;
-    }
-
     public Vacuna getDosis() {
         return dosis;
     }
@@ -91,10 +79,17 @@ public class CitaVacunacion {
         this.dosis = dosis;
     }
 
+    public boolean isCancelada() {
+        return cancelada;
+    }
+
+    public void setCancelada(boolean cancelada) {
+        this.cancelada = cancelada;
+    }
+
     @Override
     public String toString() {
-        return codCita + " - " + persona + " - " + codRefuerzo + " - " + fechaHoraCita + " - " + centroVacunacion + " - " + fechaHoraColocacion + " - " + dosis;
+        return codCita + " - " + persona + " - " + codRefuerzo + " - " + fechaHoraCita + " - " + centroVacunacion + " - "+ dosis + " - "+ cancelada;
     }
-    
-    
+
 }

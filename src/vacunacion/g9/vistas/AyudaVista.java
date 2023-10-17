@@ -53,13 +53,13 @@ public class AyudaVista extends javax.swing.JInternalFrame {
         jLabel4.setText("2- Una vez registrado, seleccione el menu Loguearse que tambien se encuentra dentro del menu Inicio. ");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel5.setText("3- Una vez logueado podra acceder al menu Consultas donde podra obtener la informacion de la fecha de vacunacion");
+        jLabel5.setText("3- Una vez logueado podra acceder al menu Consultas donde podra obtener la informacion de la fecha de vacunacion,");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel6.setText("y tambien podra Cancelar su cita por alguna imposibilidad de no poder concurrir estableciendose asi una nueva fecha");
+        jLabel6.setText(" tambien podra Cancelar su cita por alguna imposibilidad de no poder concurrir estableciendose asi una nueva fecha");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
-        jLabel7.setText("para su vacunacion.");
+        jLabel7.setText("para su vacunacion y podra modificar su informacion de ser necesesario.");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel8.setText("Recuerde al concurrir a su cita de vacunacion respestar la distancia minima para evitar contagio y concurrir con barbijo");

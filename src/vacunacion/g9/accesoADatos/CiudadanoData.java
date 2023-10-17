@@ -11,12 +11,12 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.Ciudadano;
-import vacunacion.g9.vistas.CiudadanoPrevioVista;
+
 
 public class CiudadanoData {
 
     private Connection con = null;
-    private int dniReg;
+    private int dniReg=0;
 
     public CiudadanoData() {
         con = Conexion.getConexion();
@@ -166,8 +166,28 @@ public class CiudadanoData {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
         dniReg = c;
+       
         return c;
 
     }
+    
+    public void mostrarCita(){
+        
+        
+    }
+    
+    public void cancelarCita(){
+        
+        
+    }
+    
+    public int getDniReg() {
+        return dniReg;
+    }
 
+    public void setDniReg(int dniReg) {
+        this.dniReg = dniReg;
+    }
+
+    
     }

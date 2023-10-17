@@ -29,7 +29,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMListadoMensual = new javax.swing.JMenuItem();
         jMCiudadano = new javax.swing.JMenu();
         jMAdministracionCIudadanos = new javax.swing.JMenuItem();
-        jMEditarCiudadano = new javax.swing.JMenuItem();
+        jMListarCiudadanos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
@@ -133,13 +133,13 @@ public class AdministracionVista extends javax.swing.JFrame {
         });
         jMCiudadano.add(jMAdministracionCIudadanos);
 
-        jMEditarCiudadano.setText("Editar ciudadano");
-        jMEditarCiudadano.addActionListener(new java.awt.event.ActionListener() {
+        jMListarCiudadanos.setText("Listar ciudadanos");
+        jMListarCiudadanos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMEditarCiudadanoActionPerformed(evt);
+                jMListarCiudadanosActionPerformed(evt);
             }
         });
-        jMCiudadano.add(jMEditarCiudadano);
+        jMCiudadano.add(jMListarCiudadanos);
 
         jMenuBar1.add(jMCiudadano);
 
@@ -290,10 +290,10 @@ public class AdministracionVista extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMEditarCiudadanoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMEditarCiudadanoActionPerformed
+    private void jMListarCiudadanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListarCiudadanosActionPerformed
       
          escritorioR();
-        AdministracionEditarCiudadano aec = new AdministracionEditarCiudadano();
+        AdministracionListarCiudadanos aec = new AdministracionListarCiudadanos();
         aec.setVisible(true);
         escritorio.add(aec);
         escritorio.moveToFront(aec);
@@ -302,7 +302,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         Dimension FrameSize = aec.getSize();
         aec.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         aec.show();
-    }//GEN-LAST:event_jMEditarCiudadanoActionPerformed
+    }//GEN-LAST:event_jMListarCiudadanosActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
@@ -313,8 +313,8 @@ public class AdministracionVista extends javax.swing.JFrame {
     private javax.swing.JMenu jMCentro;
     private javax.swing.JMenu jMCitas;
     private javax.swing.JMenu jMCiudadano;
-    private javax.swing.JMenuItem jMEditarCiudadano;
     private javax.swing.JMenuItem jMListadoMensual;
+    private javax.swing.JMenuItem jMListarCiudadanos;
     private javax.swing.JMenu jMManejoDeDosis;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;

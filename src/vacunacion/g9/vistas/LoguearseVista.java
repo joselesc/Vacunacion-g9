@@ -14,8 +14,7 @@ import vacunacion.g9.accesoADatos.CiudadanoData;
  */
 public class LoguearseVista extends javax.swing.JInternalFrame {
 
-    private int dnireg;
-
+   
     public LoguearseVista() {
         initComponents();
     }
@@ -146,13 +145,5 @@ public class LoguearseVista extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTFDni;
     // End of variables declaration//GEN-END:variables
 
-    public int getDnireg() {
-        return dnireg;
-    }
-
-    public void setDnireg(int dnireg) {
-        this.dnireg = dnireg;
-    }
-
-
+  
 }

@@ -50,6 +50,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMCambioFecha = new javax.swing.JMenu();
         jMIFechaVacunacion = new javax.swing.JMenuItem();
         jMICancelarCita = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
         jMSalir = new javax.swing.JMenu();
         jMIExit = new javax.swing.JMenuItem();
@@ -127,6 +128,10 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
             }
         });
         jMCambioFecha.add(jMICancelarCita);
+
+        jMenu4.setText("Actualizar Informacion");
+        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jMCambioFecha.add(jMenu4);
 
         jMenuBar1.add(jMCambioFecha);
 
@@ -238,23 +243,16 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
 
     private void jMIFechaVacunacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFechaVacunacionActionPerformed
        
-        LoguearseVista lv=new LoguearseVista();
-        int dni=lv.getDnireg();
-        System.out.println(dni);
-        if(dni==0){
-             JOptionPane.showMessageDialog(this, "Debe loguearse primero");
-        }
+        CiudadanoData cd=new CiudadanoData();
+        cd.mostrarCita();
+      
+       
     }//GEN-LAST:event_jMIFechaVacunacionActionPerformed
 
     private void jMICancelarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICancelarCitaActionPerformed
 
-        LoguearseVista lv=new LoguearseVista();
-        int dni=lv.getDnireg();
-        if(dni==0){
-             JOptionPane.showMessageDialog(this, "Debe loguearse primero");
-        }
-        CitaData cd = new CitaData();
-        cd.cancelarCitaCiudadano(WIDTH);       
+      CiudadanoData cd=new CiudadanoData();
+        cd.cancelarCita();   
     }//GEN-LAST:event_jMICancelarCitaActionPerformed
 
 
@@ -270,6 +268,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
