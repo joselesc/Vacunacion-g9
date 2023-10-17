@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 16-10-2023 a las 23:51:10
+-- Tiempo de generación: 17-10-2023 a las 23:47:53
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -43,7 +43,7 @@ CREATE TABLE `centro` (
 --
 
 INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`, `telefono`, `zona`, `activo`) VALUES
-(19, 'Hospital San Juan', 'Calle Principal 123', 1234567890, 'Norte', 1),
+(19, 'Hospital San Juan', 'Calle Principal 123', 1234567890, 'Norte', 0),
 (20, 'Hospital Santa María', 'Avenida Central 456', 2147483647, 'Norte', 1),
 (21, 'Hospital Santo Tomás', 'Calle Norte 789', 2147483647, 'Sur', 1),
 (22, 'Hospital San Pedro', 'Avenida Sur 123', 2147483647, 'Sur', 1),
@@ -52,9 +52,11 @@ INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`, `telefono`, `zona`, `a
 (25, 'Hospital San Antonio', 'Calle Este 456', 2147483647, 'Este', 1),
 (26, 'Hospital San Francisco', 'Avenida Oeste 123', 123456789, 'Oeste', 1),
 (27, 'Hospital Santa Rosa', 'Calle Oeste 456', 1112223333, 'Oeste', 1),
-(28, 'Hospital San Martín', 'Avenida Principal 789', 2147483647, 'Norte', 1),
+(28, 'Hospital San Martín', 'Avenida Principal 789', 2147483647, 'Norte', 0),
 (29, 'Hospital Santa Isabel', 'Calle Principal 567', 2147483647, 'Este', 0),
-(30, 'Hospital Santo Domingo', 'Avenida Central 789', 2147483647, 'Oeste', 1);
+(30, 'Hospital Santo Domingo', 'Avenida Central 789', 2147483647, 'Oeste', 1),
+(31, 'Centro de distribucion', '742 Evergreen Terrace Springfield', 45555555, 'Deposito Central', 1),
+(32, 'Centro de distribucion', '742 Evergreen Terrace Springfield', 45555555, 'Deposito Central', 0);
 
 -- --------------------------------------------------------
 
@@ -65,11 +67,12 @@ INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`, `telefono`, `zona`, `a
 CREATE TABLE `citavacunacion` (
   `codCita` int(11) NOT NULL,
   `dni` int(11) NOT NULL,
-  `lote` int(50) NOT NULL,
+  `lote` int(11) NOT NULL,
   `fechaHoraCita` datetime NOT NULL,
   `id_centro` int(11) NOT NULL,
   `fechaHoraColocada` datetime NOT NULL,
-  `dosis` varchar(100) NOT NULL,
+  `dosis` double NOT NULL,
+  `clocada` tinyint(1) NOT NULL,
   `cancelado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -285,7 +288,7 @@ ALTER TABLE `vacuna`
 -- AUTO_INCREMENT de la tabla `centro`
 --
 ALTER TABLE `centro`
-  MODIFY `id_centro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id_centro` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
 -- AUTO_INCREMENT de la tabla `citavacunacion`
