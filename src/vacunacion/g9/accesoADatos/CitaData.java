@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package vacunacion.g9.accesoADatos;
 
 import java.sql.Connection;
@@ -12,10 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author jfaja
- */
 public class CitaData {
 
     private Connection con = null;
@@ -24,8 +14,7 @@ public class CitaData {
         con = Conexion.getConexion();
     }
     
-    
-     public void mostrarCitaCiudadano( int dni){
+    public void mostrarCitaCiudadano( int dni){
         
         if(dniReg==0){
             JOptionPane.showMessageDialog(null, "Debe loguearse primero");
@@ -95,4 +84,12 @@ public class CitaData {
          
         }
     }
+    
+    public void listarCitas(int idCita){}
+    
+    public void modificarCita(int idCita){}
+    
+    public void eliminarCita(int idCita){}
+    
+    public void agregarCita(int idCita){}
 }
