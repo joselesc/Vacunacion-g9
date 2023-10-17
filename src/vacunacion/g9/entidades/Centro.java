@@ -1,14 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package vacunacion.g9.entidades;
 
-/**
- *
- * @author josel
- */
 public class Centro {
     
     private int id;
@@ -19,6 +10,14 @@ public class Centro {
     private boolean activo;
 
     public Centro() {
+    }
+
+    public Centro(int id, String nombre, String direccion, int telefono, String zona) {
+        this.id = id;
+        this.nombre = nombre;
+        this.direccion = direccion;
+        this.telefono = telefono;
+        this.zona = zona;
     }
 
     public Centro(String nombre, String direccion, int celular, String zona, boolean activo) {
@@ -88,18 +87,6 @@ public class Centro {
 
     @Override
     public String toString() {
-        String estado;
-        if (activo==true){
-            estado="act";
-        }else{
-            estado="baja";
-        }
-             
-        return  id + " - " + nombre + " - " + direccion + " - " + telefono + " - " + zona + " - " + estado;
+        return  id + " - " + nombre + " - " + direccion + " - " + telefono + " - " + zona + " - " + activo;
     }
-    
-    
-    
-    
-    
 }

@@ -32,7 +32,7 @@ public class CentroData {
             ps.setString(2, c.getDireccion());
             ps.setInt(3, c.getTelefono());
             ps.setString(4, c.getZona());
-            ps.setBoolean(3, c.isActivo());
+            ps.setBoolean(5, c.isActivo());
             ps.executeUpdate();
             ResultSet rs = ps.getGeneratedKeys();
 
@@ -48,7 +48,7 @@ public class CentroData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
-        }
+        } 
 
     }
 
