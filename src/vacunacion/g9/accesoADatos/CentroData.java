@@ -108,13 +108,21 @@ public class CentroData {
 
     }
 
-    public List<Centro> listarCentros() {
+    public List<Centro> listarCentros(String zona) {
 
         List<Centro> centros = new ArrayList<>();
-
+        String sql;
+        
         try {
-            String sql = "SELECT * FROM centro WHERE activo = 1";
+            if (zona == null) {
+                sql = "SELECT * FROM centro WHERE activo = 1";
+            }else {
+                sql = "SELECT * FROM centro WHERE activo = 1 AND zona = ?"; 
+            }
             PreparedStatement ps = con.prepareStatement(sql);
+            if (zona != null) {
+                ps.setString(1, zona);
+            }
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Centro c = new Centro();

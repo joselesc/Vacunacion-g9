@@ -357,8 +357,8 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
         if (opcion == 0) {
             this.dispose();
-            AdministracionVista volver = new AdministracionVista();
-            volver.setVisible(true);
+            //AdministracionVista volver = new AdministracionVista();
+            //volver.setVisible(true);
         }
     }//GEN-LAST:event_jBCerrarActionPerformed
 
@@ -497,7 +497,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
         }
         modelo.setRowCount(0);
         if (jRTodos.isSelected()) {
-            for (Centro c : centro.listarCentros()) {
+            for (Centro c : centro.listarCentros(null)) {
                 modelo.addRow(new Object[]{
                     c.getId(),
                     c.getNombre(),
