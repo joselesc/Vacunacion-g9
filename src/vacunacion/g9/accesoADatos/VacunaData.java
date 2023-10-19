@@ -5,6 +5,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -20,26 +21,27 @@ public class VacunaData {
 
     public void insertarVacuna(Vacuna vacuna) {
 
-        String sql = "INSERT INTO vacuna (lote,cuit, marca, medida, fechaCaduca, stock) "
-                + "VALUES ( ?,?, ?, ?, ?,?)";
-        System.out.println("data");
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
+        String sql = "INSERT INTO vacuna (lote, cuit, marca, medida, fechaCaduca, stock, colocada) "
+                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
 
+        try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, vacuna.getLote());
             ps.setLong(2, vacuna.getCuit());
             ps.setString(3, vacuna.getMarca());
             ps.setDouble(4, vacuna.getMedida());
             ps.setDate(5, Date.valueOf(vacuna.getFechaCaduca()));
             ps.setInt(6, vacuna.getStock());
+            ps.setBoolean(7, vacuna.isColocada());
 
             ps.executeUpdate();
-            ResultSet rs = ps.getGeneratedKeys();
 
-            ps.close();
-            rs.close();
-            JOptionPane.showMessageDialog(null, "VACUNA CARGADA.");
-
+            try (ResultSet rs = ps.getGeneratedKeys()) {
+                if (rs.next()) {
+                    long primaryKey = rs.getLong(1); // Suponiendo que la clave generada es de tipo numérico.            
+//                vacuna.setPrimaryKey(primaryKey); 
+// Almacena la clave generada en la entidad Vacuna si es necesario.
+                }
+            }
         } catch (SQLException e) {
             System.err.println("Error al acceder a la tabla vacuna: " + e.getMessage());
         }
@@ -60,10 +62,10 @@ public class VacunaData {
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "Vacuna modificada con exito.");
+                JOptionPane.showMessageDialog(null, "VACUNA MODIFICADA CON EXITO.");
 
             } else {
-                JOptionPane.showMessageDialog(null, "El lote de la vacuna no existe");
+                JOptionPane.showMessageDialog(null, "EL LOTE DE LA VACCUNA NO EXISTE!!!");
             }
             ps.close();
         } catch (SQLException ex) {
@@ -80,12 +82,11 @@ public class VacunaData {
             ps.setInt(1, lote);
 
             int mod = ps.executeUpdate();
-
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "VACUNA Eliminada!!!.");
+                JOptionPane.showMessageDialog(null, "VACUNA ELIMINADA!!!.");
 
             } else {
-                JOptionPane.showMessageDialog(null, "LA VACUNA NO EXISTE");
+                JOptionPane.showMessageDialog(null, "LA VACUNA NO EXISTE!!!!");
             }
             ps.close();
 
@@ -98,8 +99,8 @@ public class VacunaData {
         List<Vacuna> vacunas = new ArrayList<>();
         try {
             String sql = "SELECT * FROM vacuna WHERE stock>0";
-            PreparedStatement statement = con.prepareStatement(sql);
-            ResultSet rs = statement.executeQuery();
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Vacuna vacuna = new Vacuna(
                         rs.getInt("Lote"),
@@ -112,19 +113,19 @@ public class VacunaData {
                 );
                 vacunas.add(vacuna);
             }
-            statement.close();
+            ps.close();
         } catch (SQLException e) {
-            System.err.println("Error al obtener vacunas disponibles: " + e.getMessage());
+            System.err.println("ERRO AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
         }
         return vacunas;
     }
 
-    public void actualizarEstadoVacuna(int nroSerieDosis, boolean colocada) {
+    public void actualizarEstadoVacuna(int lote, boolean colocada) {
         try {
             String sql = "UPDATE vacuna SET colocada = ? WHERE lote = ?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setBoolean(1, colocada);
-            ps.setInt(2, nroSerieDosis);
+            ps.setInt(2, lote);
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
@@ -157,5 +158,23 @@ public class VacunaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "ERROR AL ACCEDER A LA TABLE LABORATORIO" + ex.getMessage());
         }
+    }
+
+    public boolean existeLote(int lote) {
+        String sql = "select count(*) from vacuna where lote=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, lote);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int cuenta = rs.getInt(1);
+                return cuenta > 0;
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL VERIFICAR EL LOTE EN LA TABLA VACUNA: " + ex.getMessage());
+        }
+        return false;
     }
 }

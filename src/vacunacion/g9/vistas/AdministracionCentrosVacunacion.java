@@ -441,7 +441,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
 
     private void jTCentrosVacunacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTCentrosVacunacionMouseClicked
         int filaS = jTCentrosVacunacion.getSelectedRow();
-        String nombre = jTCentrosVacunacion.getValueAt(filaS, 1).toString();
+           String nombre = jTCentrosVacunacion.getValueAt(filaS, 1).toString();
         String direccion = jTCentrosVacunacion.getValueAt(filaS, 2).toString();
         int telefono = Integer.parseInt(jTCentrosVacunacion.getValueAt(filaS, 3).toString());
         String zona = jTCentrosVacunacion.getValueAt(filaS, 4).toString();

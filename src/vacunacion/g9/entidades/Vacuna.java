@@ -47,7 +47,7 @@ public class Vacuna {
         return lote;
     }
 
-    public void setLote(int nroSeriDosis) {
+    public void setLote(int lote) {
         this.lote = lote;
     }
 
@@ -101,7 +101,7 @@ public class Vacuna {
 
     @Override
     public String toString() {
-        return "Vacuna{" + "nroSeriDosis=" + lote + ", cuit=" + cuit + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
+        return "Vacuna{" + "lote=" + lote + ", cuit=" + cuit + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
     }
 
 }

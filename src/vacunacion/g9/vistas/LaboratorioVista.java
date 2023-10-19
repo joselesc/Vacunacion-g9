@@ -72,6 +72,11 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTlistarLab.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTlistarLabMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTlistarLab);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
@@ -126,7 +131,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
         jBLimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBLimpiar.setText("LIMPIAR");
 
-        jBSalir.setBackground(new java.awt.Color(255, 255, 204));
+        jBSalir.setBackground(new java.awt.Color(255, 51, 51));
         jBSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBSalir.setText("SALIR");
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
@@ -144,7 +149,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
                 .addComponent(jLabel1)
                 .addGap(225, 225, 225))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(83, 83, 83)
+                .addGap(82, 82, 82)
                 .addComponent(jBEliminar)
                 .addGap(94, 94, 94)
                 .addComponent(jBModificar)
@@ -201,14 +206,14 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(1, 1, 1)
                         .addComponent(jBAgregar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(18, 18, 18)
+                .addGap(26, 26, 26)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBEliminar)
                     .addComponent(jBModificar)
                     .addComponent(jBLimpiar))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 128, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 147, Short.MAX_VALUE)
-                .addGap(14, 14, 14)
                 .addComponent(jBSalir)
                 .addContainerGap())
         );
@@ -317,6 +322,25 @@ long cuit = 0;
         JOptionPane.showMessageDialog(this, "LABORATORIO INEXISTENTE!!!");
     }        
     }//GEN-LAST:event_jBEliminarActionPerformed
+
+    private void jTlistarLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistarLabMouseClicked
+//           @Override
+           
+                int filaSeleccionada = jTlistarLab.getSelectedRow();
+                if (filaSeleccionada != -1) {
+                    // Obtener los datos de la fila seleccionada
+                    Object cuit = jTlistarLab.getValueAt(filaSeleccionada, 0);
+                    Object nombre = jTlistarLab.getValueAt(filaSeleccionada, 1);
+                    Object pais = jTlistarLab.getValueAt(filaSeleccionada, 2);
+                    Object domComercial = jTlistarLab.getValueAt(filaSeleccionada, 3);
+
+                    // Establecer los datos en los campos de texto
+                    jTFCuit.setText(cuit.toString());
+                    jTFNombre.setText(nombre.toString());
+                    jTFPais.setText(pais.toString());
+                    jTFnomComercial.setText(domComercial.toString());
+                }
+    }//GEN-LAST:event_jTlistarLabMouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

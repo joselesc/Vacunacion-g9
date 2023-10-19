@@ -104,7 +104,7 @@ public class LaboratorioData {
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "LABORATORIO Eliminado!!!.");
+                JOptionPane.showMessageDialog(null, "LABORATORIO ELIMINADO!!!.");
 
             } else {
                 JOptionPane.showMessageDialog(null, "EL LABORATORIO NO EXISTE");
@@ -140,4 +140,22 @@ public class LaboratorioData {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
     }
+
+    public boolean existeCuit(long cuit) {
+        String sql = "SELECT COUNT(*) FROM laboratorio WHERE cuit = ?";
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setLong(1, cuit);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0; // Si count es mayor que 0, el CUIT existe en la tabla.
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL VERIFICAR EL CUIT EN LA TABLA LABORATORIO: " + ex.getMessage());
+        }
+        return false; // En caso de error o si el CUIT no existe.
+    }
+
 }
