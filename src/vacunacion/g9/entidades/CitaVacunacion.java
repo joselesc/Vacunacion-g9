@@ -4,31 +4,28 @@ import java.time.LocalDateTime;
 
 public class CitaVacunacion {
 
-    private int codCita;
-    private Ciudadano persona;
-    private int codRefuerzo;
+    private int codCita, dni, lote, id_centro;
     private LocalDateTime fechaHoraCita;
-    private String centroVacunacion;
-   private Vacuna dosis;
-    private boolean cancelada;
+    private boolean colocada, cancelada;
 
-    public CitaVacunacion(int codCita, Ciudadano persona, int codRefuerzo, LocalDateTime fechaHoraCita, String centroVacunacion, Vacuna dosis, boolean cancelada) {
+    public CitaVacunacion() {
+    }
+
+    public CitaVacunacion(int codCita, int dni, int lote, int id_centro, LocalDateTime fechaHoraCita, boolean colocada, boolean cancelada) {
         this.codCita = codCita;
-        this.persona = persona;
-        this.codRefuerzo = codRefuerzo;
+        this.dni = dni;
+        this.lote = lote;
+        this.id_centro = id_centro;
         this.fechaHoraCita = fechaHoraCita;
-        this.centroVacunacion = centroVacunacion;
-        this.dosis = dosis;
+        this.colocada = colocada;
         this.cancelada = cancelada;
     }
 
-    public CitaVacunacion(Ciudadano persona, int codRefuerzo, LocalDateTime fechaHoraCita, String centroVacunacion, Vacuna dosis, boolean cancelada) {
-        this.persona = persona;
-        this.codRefuerzo = codRefuerzo;
+    public CitaVacunacion(int dni, int lote, int id_centro, LocalDateTime fechaHoraCita) {
+        this.dni = dni;
+        this.lote = lote;
+        this.id_centro = id_centro;
         this.fechaHoraCita = fechaHoraCita;
-        this.centroVacunacion = centroVacunacion;
-        this.dosis = dosis;
-        this.cancelada = cancelada;
     }
 
     public int getCodCita() {
@@ -39,20 +36,28 @@ public class CitaVacunacion {
         this.codCita = codCita;
     }
 
-    public Ciudadano getPersona() {
-        return persona;
+    public int getDni() {
+        return dni;
     }
 
-    public void setPersona(Ciudadano persona) {
-        this.persona = persona;
+    public void setDni(int dni) {
+        this.dni = dni;
     }
 
-    public int getCodRefuerzo() {
-        return codRefuerzo;
+    public int getLote() {
+        return lote;
     }
 
-    public void setCodRefuerzo(int codRefuerzo) {
-        this.codRefuerzo = codRefuerzo;
+    public void setLote(int lote) {
+        this.lote = lote;
+    }
+
+    public int getId_centro() {
+        return id_centro;
+    }
+
+    public void setId_centro(int id_centro) {
+        this.id_centro = id_centro;
     }
 
     public LocalDateTime getFechaHoraCita() {
@@ -63,20 +68,12 @@ public class CitaVacunacion {
         this.fechaHoraCita = fechaHoraCita;
     }
 
-    public String getCentroVacunacion() {
-        return centroVacunacion;
+    public boolean isColocada() {
+        return colocada;
     }
 
-    public void setCentroVacunacion(String centroVacunacion) {
-        this.centroVacunacion = centroVacunacion;
-    }
-
-    public Vacuna getDosis() {
-        return dosis;
-    }
-
-    public void setDosis(Vacuna dosis) {
-        this.dosis = dosis;
+    public void setColocada(boolean colocada) {
+        this.colocada = colocada;
     }
 
     public boolean isCancelada() {
@@ -89,7 +86,8 @@ public class CitaVacunacion {
 
     @Override
     public String toString() {
-        return codCita + " - " + persona + " - " + codRefuerzo + " - " + fechaHoraCita + " - " + centroVacunacion + " - "+ dosis + " - "+ cancelada;
+        return "CitaVacunacion{" + "codCita=" + codCita + ", dni=" + dni + ", lote=" + lote + ", id_centro=" + id_centro + ", fechaHoraCita=" + fechaHoraCita + ", colocada=" + colocada + ", cancelada=" + cancelada + '}';
     }
 
+    
 }

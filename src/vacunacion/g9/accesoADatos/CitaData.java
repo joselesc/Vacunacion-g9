@@ -1,6 +1,7 @@
 package vacunacion.g9.accesoADatos;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -91,7 +92,9 @@ public class CitaData {
     
     public void eliminarCita(int idCita){}
     
-    public void agregarCita(int idCita){}
+    public void agregarCita(int dni, String zona, int idCentro, Date fecha){
+        
+    }
     
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona){
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;

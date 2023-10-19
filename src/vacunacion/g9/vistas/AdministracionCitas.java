@@ -36,7 +36,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jDCFechaCita = new com.toedter.calendar.JDateChooser();
         jCCentrosDeVacunacion = new javax.swing.JComboBox<>();
         jLCentrosDeVacunacion = new javax.swing.JLabel();
-        jTCantidadDeTurnosPorDia = new javax.swing.JTextField();
         jLCantidadDeTurnosPorDia = new javax.swing.JLabel();
         jCZonas = new javax.swing.JComboBox<>();
         jLCentrosDeVacunacion1 = new javax.swing.JLabel();
@@ -51,6 +50,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jREsencial = new javax.swing.JRadioButton();
         jRMostrarTodosCiudadanos = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jCTurnosPorDia = new javax.swing.JComboBox<>();
 
         jPanel1.setBackground(new java.awt.Color(0, 52, 89));
 
@@ -137,10 +137,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLCentrosDeVacunacion.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLCentrosDeVacunacion.setForeground(new java.awt.Color(255, 255, 255));
         jLCentrosDeVacunacion.setText("Centros de vacunacion");
-
-        jTCantidadDeTurnosPorDia.setBackground(new java.awt.Color(255, 255, 255));
-        jTCantidadDeTurnosPorDia.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jTCantidadDeTurnosPorDia.setForeground(new java.awt.Color(0, 23, 31));
 
         jLCantidadDeTurnosPorDia.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLCantidadDeTurnosPorDia.setForeground(new java.awt.Color(255, 255, 255));
@@ -239,6 +235,16 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             }
         });
 
+        jCTurnosPorDia.setBackground(new java.awt.Color(255, 255, 255));
+        jCTurnosPorDia.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCTurnosPorDia.setForeground(new java.awt.Color(0, 23, 31));
+        jCTurnosPorDia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "5", "10", "15", "20", "25", "30" }));
+        jCTurnosPorDia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCTurnosPorDiaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -272,8 +278,8 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLCantidadDeTurnosPorDia)
-                            .addComponent(jTCantidadDeTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 234, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(253, Short.MAX_VALUE))
+                            .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(375, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,11 +342,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                             .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jRDeRiesgo)
                             .addComponent(jREsencial)
-                            .addComponent(jRMostrarTodosCiudadanos)))
+                            .addComponent(jRMostrarTodosCiudadanos)
+                            .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLCantidadDeTurnosPorDia)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jTCantidadDeTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(31, 31, 31)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2)
@@ -426,6 +432,10 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         cargarComboBox();
     }//GEN-LAST:event_jCZonasActionPerformed
 
+    private void jCTurnosPorDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTurnosPorDiaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCTurnosPorDiaActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
@@ -433,6 +443,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
+    private javax.swing.JComboBox<String> jCTurnosPorDia;
     private javax.swing.JComboBox<String> jCZonas;
     private com.toedter.calendar.JDateChooser jDCFechaCita;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia;
@@ -453,7 +464,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTCantidadDePersonas;
-    private javax.swing.JTextField jTCantidadDeTurnosPorDia;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private void cargarCantidadDeCiudadanos() {
