@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-10-2023 a las 23:49:25
+-- Tiempo de generación: 20-10-2023 a las 01:03:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -55,7 +55,7 @@ INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`, `telefono`, `zona`, `a
 (28, 'Hospital San Martín', 'Avenida Principal 789', 2147483647, 'Norte', 0),
 (29, 'Hospital Santa Isabel', 'Calle Principal 567', 2147483647, 'Este', 0),
 (30, 'Hospital Santo Domingo', 'Avenida Central 789', 2147483647, 'Oeste', 1),
-(31, 'Centro de distribucion', '742 Evergreen Terrace Springfield', 45555555, 'Deposito Central', 1);
+(31, 'Centro de distribucion', '742 Evergreen Terrace Springfield', 45555555, 'Deposito Central', 0);
 
 -- --------------------------------------------------------
 
@@ -69,7 +69,6 @@ CREATE TABLE `citavacunacion` (
   `lote` int(11) NOT NULL,
   `fechaHoraCita` datetime NOT NULL,
   `id_centro` int(11) NOT NULL,
-  `dosis` double NOT NULL,
   `colocada` tinyint(1) NOT NULL,
   `cancelado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
