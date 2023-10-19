@@ -144,8 +144,8 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
         int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
         if (opcion == 0) {
             this.dispose();
-            AdministracionVista volver = new AdministracionVista();
-            volver.setVisible(true);
+//            AdministracionVista volver = new AdministracionVista();
+//            volver.setVisible(true);
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
