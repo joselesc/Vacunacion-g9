@@ -1,6 +1,5 @@
 package vacunacion.g9.vistas;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -142,8 +141,8 @@ public class AdministrarCiudadano extends javax.swing.JInternalFrame {
         int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
         if (opcion == 0) {
             this.dispose();
-            AdministracionVista volver = new AdministracionVista();
-            volver.setVisible(true);  
+//            AdministracionVista volver = new AdministracionVista();
+//            volver.setVisible(true);  
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
