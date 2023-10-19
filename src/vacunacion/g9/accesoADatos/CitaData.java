@@ -1,12 +1,10 @@
 package vacunacion.g9.accesoADatos;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
-import vacunacion.g9.entidades.Ciudadano;
 
 public class CitaData {
 
@@ -95,15 +93,21 @@ public class CitaData {
     
     public void agregarCita(int idCita){}
     
-    public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo){
+    public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona){
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
-        String sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ?;";
+        String sql;
+        if (!zona.equalsIgnoreCase("Todos")) {
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ? AND zona = ?;";  
+        }else {
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ?;";        
+        }
         int conteo = 0;
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
             ps.setDate(1, fechaSql);
             ps.setBoolean(2, esencial);
             ps.setBoolean(3, riesgo);
+            ps.setString(4, zona);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {
@@ -118,13 +122,19 @@ public class CitaData {
         return conteo;
     }
     
-    public int conteoTodosLosCiudadano(java.util.Date fecha){
+    public int conteoTodosLosCiudadano(java.util.Date fecha, String zona){
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01';
-        String sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ?;";
+        String sql;
+        if (!zona.equalsIgnoreCase("Todos")) {
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND zona = ?;";   
+        }else{
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ?;";  
+        }
         int conteo = 0;
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
             ps.setDate(1, fechaSql);
+            ps.setString(2, zona);
 
             try (ResultSet rs = ps.executeQuery()) {
                 while (rs.next()) {

@@ -113,7 +113,7 @@ public class CentroData {
         List<Centro> centros = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM centro";
+            String sql = "SELECT * FROM centro WHERE activo = 1";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

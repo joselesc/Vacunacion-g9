@@ -1,13 +1,22 @@
 package vacunacion.g9.vistas;
 
-import java.sql.Date;
+import java.awt.Component;
+import java.util.ArrayList;
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.DefaultListCellRenderer;
+import javax.swing.JList;
 import javax.swing.JOptionPane;
+import vacunacion.g9.accesoADatos.CentroData;
 import vacunacion.g9.accesoADatos.CitaData;
+import vacunacion.g9.entidades.Centro;
 
 public class AdministracionCitas extends javax.swing.JInternalFrame {
 
-    public AdministracionCitas() {
+    CentroData centroData = new CentroData();
+    String zona;
+    public AdministracionCitas() {      
         initComponents();
+        cargarComboBox();
     }
 
     @SuppressWarnings("unchecked")
@@ -29,7 +38,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLCentrosDeVacunacion = new javax.swing.JLabel();
         jTCantidadDeTurnosPorDia = new javax.swing.JTextField();
         jLCantidadDeTurnosPorDia = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        jCZonas = new javax.swing.JComboBox<>();
         jLCentrosDeVacunacion1 = new javax.swing.JLabel();
         jRDeRiesgo = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -84,6 +93,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cerrar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setBackground(new java.awt.Color(0, 52, 89));
         jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -131,10 +145,15 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLCantidadDeTurnosPorDia.setForeground(new java.awt.Color(255, 255, 255));
         jLCantidadDeTurnosPorDia.setText("Cantidad de turno por dia");
 
-        jComboBox1.setBackground(new java.awt.Color(255, 255, 255));
-        jComboBox1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jComboBox1.setForeground(new java.awt.Color(0, 23, 31));
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Norte", "Sur", "Este", "Oeste" }));
+        jCZonas.setBackground(new java.awt.Color(255, 255, 255));
+        jCZonas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCZonas.setForeground(new java.awt.Color(0, 23, 31));
+        jCZonas.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Todos", "Norte", "Sur", "Este", "Oeste" }));
+        jCZonas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCZonasActionPerformed(evt);
+            }
+        });
 
         jLCentrosDeVacunacion1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLCentrosDeVacunacion1.setForeground(new java.awt.Color(255, 255, 255));
@@ -264,7 +283,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLCentrosDeVacunacion1)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(jCZonas, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jCCentrosDeVacunacion, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -301,7 +320,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jCCentrosDeVacunacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jTCantidadDeTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jCZonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLFechaCita)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -350,6 +369,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jDCFechaCitaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFechaCitaPropertyChange
+        jRMostrarTodosCiudadanos.setSelected(true);
         cargarCantidadDeCiudadanos();
     }//GEN-LAST:event_jDCFechaCitaPropertyChange
 
@@ -378,11 +398,23 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private void jRMostrarTodosCiudadanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRMostrarTodosCiudadanosActionPerformed
         if (jRMostrarTodosCiudadanos.isSelected()) {
             jRDeRiesgo.setSelected(false);
-            jREsencial.setSelected(false); 
+            jREsencial.setSelected(false);
         }
         cargarCantidadDeCiudadanos();
     }//GEN-LAST:event_jRMostrarTodosCiudadanosActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        int opcion = JOptionPane.showConfirmDialog(null, "Realmente deseas salir?", "Selecciona una opcion ", JOptionPane.YES_NO_OPTION);
+        if (opcion == 0) {
+            this.dispose();
+            AdministracionVista volver = new AdministracionVista();
+            volver.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCZonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCZonasActionPerformed
+        cargarCantidadDeCiudadanos();
+    }//GEN-LAST:event_jCZonasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
@@ -390,8 +422,8 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jCCentrosDeVacunacion;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
+    private javax.swing.JComboBox<String> jCZonas;
     private com.toedter.calendar.JDateChooser jDCFechaCita;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia1;
@@ -414,27 +446,50 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
     private void cargarCantidadDeCiudadanos() {
+        zona = (String) jCZonas.getSelectedItem();
         CitaData cd = new CitaData();
         java.util.Date fecha = jDCFechaCita.getDate();//solo lo aceptaba de esta manera
-        try{
+        try {
             if (fecha != null) {
-                if (!jRMostrarTodosCiudadanos.isSelected()){
+                if (!jRMostrarTodosCiudadanos.isSelected()) {
                     if (jREsencial.isSelected() && jRDeRiesgo.isSelected()) {
-                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, true, true)));
+                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, true, true, zona)));
                     } else if (!jREsencial.isSelected() && !jRDeRiesgo.isSelected()) {
-                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, false, false)));
+                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, false, false, zona)));
                     } else if (jREsencial.isSelected() && !jRDeRiesgo.isSelected()) {
-                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, true, false)));
+                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, true, false, zona)));
                     } else if (!jREsencial.isSelected() && jRDeRiesgo.isSelected()) {
-                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, false, true)));
-                    } 
-                }else{
-                    jTCantidadDePersonas.setText(Integer.toString(cd.conteoTodosLosCiudadano(fecha)));
+                        jTCantidadDePersonas.setText(Integer.toString(cd.conteoCiudadanoPorDia(fecha, false, true, zona)));
+                    }
+                } else {
+                    jTCantidadDePersonas.setText(Integer.toString(cd.conteoTodosLosCiudadano(fecha, zona)));
                 }
-            } 
-        }catch(Exception ex){
+            }
+        } catch (Exception ex) {
             System.out.println("Error " + ex);
         }
+    }
+
+    private void cargarComboBox() {
+        DefaultComboBoxModel<Centro> modeloCB = new DefaultComboBoxModel<>();
+        ArrayList<Centro> centros;
+        centros = (ArrayList<Centro>) centroData.listarCentros();
+        
+        for (Centro centro : centros) {
+            modeloCB.addElement(centro);
+        }
+        jCCentrosDeVacunacion.setModel(modeloCB);
+        jCCentrosDeVacunacion.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Centro) {
+                    Centro centro = (Centro) value;
+                    String nombreCompleto = centro.getNombre() + " - " + centro.getZona();
+                    value = nombreCompleto;
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
     }
 
 }
