@@ -5,14 +5,14 @@ import java.awt.Point;
 import javax.swing.JOptionPane;
 
 public class AdministracionVista extends javax.swing.JFrame {
-
+    
     private Point point;
-
+    
     public AdministracionVista() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -27,6 +27,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMAdministracionDosis = new javax.swing.JMenuItem();
         jMCitas = new javax.swing.JMenu();
         jMListadoMensual = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMCiudadano = new javax.swing.JMenu();
         jMAdministracionCIudadanos = new javax.swing.JMenuItem();
         jMListarCiudadanos = new javax.swing.JMenuItem();
@@ -121,6 +122,14 @@ public class AdministracionVista extends javax.swing.JFrame {
         });
         jMCitas.add(jMListadoMensual);
 
+        jMenuItem1.setText("Administrar citas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        jMCitas.add(jMenuItem1);
+
         jMenuBar1.add(jMCitas);
 
         jMCiudadano.setText("CIudadanos");
@@ -190,16 +199,20 @@ public class AdministracionVista extends javax.swing.JFrame {
     }//GEN-LAST:event_formMousePressed
 
     private void formMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseDragged
-        int CurrentX = this.getLocation().x;
-        int CurrentY = this.getLocation().y;
-
-        int MoveX = (CurrentX + evt.getX()) - (CurrentX + point.x);
-        int MoveY = (CurrentY + evt.getY()) - (CurrentY + point.y);
-
-        int x = CurrentX + MoveX;
-        int y = CurrentY + MoveY;
-
-        this.setLocation(x, y);
+        try {
+            int CurrentX = this.getLocation().x;
+            int CurrentY = this.getLocation().y;
+            
+            int MoveX = (CurrentX + evt.getX()) - (CurrentX + point.x);
+            int MoveY = (CurrentY + evt.getY()) - (CurrentY + point.y);
+            
+            int x = CurrentX + MoveX;
+            int y = CurrentY + MoveY;
+            
+            this.setLocation(x, y);
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, ex);
+        }
     }//GEN-LAST:event_formMouseDragged
 
     private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
@@ -217,7 +230,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         centro.setVisible(true);
         escritorio.add(centro);
         escritorio.moveToFront(centro);
-
+        
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = centro.getSize();
         centro.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -230,7 +243,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         vacunas.setVisible(true);
         escritorio.add(vacunas);
         escritorio.moveToFront(vacunas);
-
+        
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = vacunas.getSize();
         vacunas.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -243,7 +256,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         citas.setVisible(true);
         escritorio.add(citas);
         escritorio.moveToFront(citas);
-
+        
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = citas.getSize();
         citas.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -256,7 +269,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         ciudadano.setVisible(true);
         escritorio.add(ciudadano);
         escritorio.moveToFront(ciudadano);
-
+        
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = ciudadano.getSize();
         ciudadano.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -269,7 +282,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         dosis.setVisible(true);
         escritorio.add(dosis);
         escritorio.moveToFront(dosis);
-
+        
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = dosis.getSize();
         dosis.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -282,7 +295,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         lb.setVisible(true);
         escritorio.add(lb);
         escritorio.moveToFront(lb);
-
+        
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = lb.getSize();
         lb.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -291,18 +304,31 @@ public class AdministracionVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMListarCiudadanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListarCiudadanosActionPerformed
-      
-         escritorioR();
+        
+        escritorioR();
         AdministracionListarCiudadanos aec = new AdministracionListarCiudadanos();
         aec.setVisible(true);
         escritorio.add(aec);
         escritorio.moveToFront(aec);
-
+        
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = aec.getSize();
         aec.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         aec.show();
     }//GEN-LAST:event_jMListarCiudadanosActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        escritorioR();
+        AdministracionCitas cita = new AdministracionCitas();
+        cita.setVisible(true);
+        escritorio.add(cita);
+        escritorio.moveToFront(cita);
+        
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = cita.getSize();
+        cita.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        cita.show();
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
@@ -319,6 +345,7 @@ public class AdministracionVista extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
@@ -326,5 +353,5 @@ public class AdministracionVista extends javax.swing.JFrame {
         escritorio.removeAll();
         escritorio.repaint();
     }
-
+    
 }
