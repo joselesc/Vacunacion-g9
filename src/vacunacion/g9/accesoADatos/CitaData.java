@@ -12,7 +12,8 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class CitaData {
-
+    
+    Timestamp time;
     private Connection con = null;
         private int dniReg;
         public CitaData() {
