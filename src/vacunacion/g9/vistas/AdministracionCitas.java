@@ -8,16 +8,23 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import vacunacion.g9.accesoADatos.CentroData;
 import vacunacion.g9.accesoADatos.CitaData;
+import vacunacion.g9.accesoADatos.VacunaData;
 import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     CentroData centroData = new CentroData();
+    VacunaData vacunaData = new VacunaData();
     String zona;
     public AdministracionCitas() {      
         initComponents();
-        cargarComboBox();
+        cargarComboBoxCentros();
+        cargarComboBoxVacunas();
+        jCPrimeraDosis.setSelected(false);
+        jCPrimeraDosis.setEnabled(true);
+        jCSegundaDosis.setEnabled(false);
+        jCTerceraDosis.setEnabled(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -52,12 +59,13 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jRMostrarTodosCiudadanos = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         jCTurnosPorDia = new javax.swing.JComboBox<>();
-        jCCentrosDeVacunacion1 = new javax.swing.JComboBox<>();
-        jDCFechaCita1 = new com.toedter.calendar.JDateChooser();
+        jCVacunasPorLotes = new javax.swing.JComboBox<>();
+        jDCFechaCita = new com.toedter.calendar.JDateChooser();
         jLFechaCita1 = new javax.swing.JLabel();
-        jCheckBox1 = new javax.swing.JCheckBox();
-        jCheckBox2 = new javax.swing.JCheckBox();
-        jCheckBox3 = new javax.swing.JCheckBox();
+        jCPrimeraDosis = new javax.swing.JCheckBox();
+        jCSegundaDosis = new javax.swing.JCheckBox();
+        jCTerceraDosis = new javax.swing.JCheckBox();
+        jLFechaCita2 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 52, 89));
 
@@ -252,18 +260,18 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             }
         });
 
-        jCCentrosDeVacunacion1.setBackground(new java.awt.Color(255, 255, 255));
-        jCCentrosDeVacunacion1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jCCentrosDeVacunacion1.setForeground(new java.awt.Color(0, 23, 31));
+        jCVacunasPorLotes.setBackground(new java.awt.Color(255, 255, 255));
+        jCVacunasPorLotes.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCVacunasPorLotes.setForeground(new java.awt.Color(0, 23, 31));
 
-        jDCFechaCita1.setBackground(new java.awt.Color(255, 255, 255));
-        jDCFechaCita1.setForeground(new java.awt.Color(0, 23, 31));
-        jDCFechaCita1.setDateFormatString("yyyy-MM-dd");
-        jDCFechaCita1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jDCFechaCita1.setMinSelectableDate(new java.util.Date(-62135755133000L));
-        jDCFechaCita1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        jDCFechaCita.setBackground(new java.awt.Color(255, 255, 255));
+        jDCFechaCita.setForeground(new java.awt.Color(0, 23, 31));
+        jDCFechaCita.setDateFormatString("yyyy-MM-dd");
+        jDCFechaCita.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jDCFechaCita.setMinSelectableDate(new java.util.Date(-62135755133000L));
+        jDCFechaCita.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jDCFechaCita1PropertyChange(evt);
+                jDCFechaCitaPropertyChange(evt);
             }
         });
 
@@ -271,20 +279,26 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLFechaCita1.setForeground(new java.awt.Color(255, 255, 255));
         jLFechaCita1.setText("Fecha incripcion");
 
-        jCheckBox1.setBackground(new java.awt.Color(0, 52, 89));
-        jCheckBox1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox1.setText("0.3ml");
+        jCPrimeraDosis.setBackground(new java.awt.Color(0, 52, 89));
+        jCPrimeraDosis.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCPrimeraDosis.setForeground(new java.awt.Color(255, 255, 255));
+        jCPrimeraDosis.setText("0.3 ml");
 
-        jCheckBox2.setBackground(new java.awt.Color(0, 52, 89));
-        jCheckBox2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox2.setText("0.5ml");
+        jCSegundaDosis.setBackground(new java.awt.Color(0, 52, 89));
+        jCSegundaDosis.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCSegundaDosis.setForeground(new java.awt.Color(255, 255, 255));
+        jCSegundaDosis.setText("0.5 ml");
+        jCSegundaDosis.setEnabled(false);
 
-        jCheckBox3.setBackground(new java.awt.Color(0, 52, 89));
-        jCheckBox3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
-        jCheckBox3.setText("0.5ml");
+        jCTerceraDosis.setBackground(new java.awt.Color(0, 52, 89));
+        jCTerceraDosis.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCTerceraDosis.setForeground(new java.awt.Color(255, 255, 255));
+        jCTerceraDosis.setText("0.9 ml");
+        jCTerceraDosis.setEnabled(false);
+
+        jLFechaCita2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLFechaCita2.setForeground(new java.awt.Color(255, 255, 255));
+        jLFechaCita2.setText("Vacunas por lote");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -319,36 +333,38 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLCentrosDeVacunacion)
                                     .addComponent(jCCentrosDeVacunacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jDCFechaCita1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(jLFechaCita1))
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jCheckBox1)
-                                        .addComponent(jCheckBox3)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(jCheckBox2)
-                                            .addGap(18, 18, 18)
-                                            .addComponent(jCCentrosDeVacunacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                                .addComponent(jLCantidadDeTurnosPorDia1)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jRDeRiesgo)
-                                    .addGap(76, 76, 76)
-                                    .addComponent(jREsencial)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jRMostrarTodosCiudadanos)
-                                    .addGap(18, 18, 18)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLCantidadDeTurnosPorDia)
-                                        .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addGap(373, 373, 373)
-                                    .addComponent(jLabel1))))
-                        .addContainerGap(27, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jDCFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLFechaCita1))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jCPrimeraDosis)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLFechaCita2))
+                                    .addComponent(jCTerceraDosis)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jCSegundaDosis)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(jLCantidadDeTurnosPorDia1)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRDeRiesgo)
+                                .addGap(76, 76, 76)
+                                .addComponent(jREsencial)
+                                .addGap(18, 18, 18)
+                                .addComponent(jRMostrarTodosCiudadanos)
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLCantidadDeTurnosPorDia)
+                                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(373, 373, 373)
+                                .addComponent(jLabel1)))
+                        .addContainerGap(19, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
                 .addComponent(jRadioButton6)
@@ -397,17 +413,21 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                     .addComponent(jRMostrarTodosCiudadanos)
                     .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLFechaCita1)
-                    .addComponent(jCheckBox1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDCFechaCita1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jCCentrosDeVacunacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jCheckBox2)))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLFechaCita1)
+                            .addComponent(jCPrimeraDosis))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jDCFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLFechaCita2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jCSegundaDosis))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCheckBox3)
+                .addComponent(jCTerceraDosis)
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -488,16 +508,16 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     private void jCZonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCZonasActionPerformed
         cargarCantidadDeCiudadanos();
-        cargarComboBox();
+        cargarComboBoxCentros();
     }//GEN-LAST:event_jCZonasActionPerformed
 
     private void jCTurnosPorDiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTurnosPorDiaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jCTurnosPorDiaActionPerformed
 
-    private void jDCFechaCita1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFechaCita1PropertyChange
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jDCFechaCita1PropertyChange
+    private void jDCFechaCitaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFechaCitaPropertyChange
+  
+    }//GEN-LAST:event_jDCFechaCitaPropertyChange
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bGZonas;
@@ -506,13 +526,13 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
-    private javax.swing.JComboBox<Vacuna> jCCentrosDeVacunacion1;
+    private javax.swing.JCheckBox jCPrimeraDosis;
+    private javax.swing.JCheckBox jCSegundaDosis;
+    private javax.swing.JCheckBox jCTerceraDosis;
     private javax.swing.JComboBox<String> jCTurnosPorDia;
+    private javax.swing.JComboBox<Vacuna> jCVacunasPorLotes;
     private javax.swing.JComboBox<String> jCZonas;
-    private javax.swing.JCheckBox jCheckBox1;
-    private javax.swing.JCheckBox jCheckBox2;
-    private javax.swing.JCheckBox jCheckBox3;
-    private com.toedter.calendar.JDateChooser jDCFechaCita1;
+    private com.toedter.calendar.JDateChooser jDCFechaCita;
     private com.toedter.calendar.JDateChooser jDCFechaInscripcion;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia1;
@@ -520,6 +540,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLCentrosDeVacunacion1;
     private javax.swing.JLabel jLFechaCita;
     private javax.swing.JLabel jLFechaCita1;
+    private javax.swing.JLabel jLFechaCita2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRDeRiesgo;
@@ -560,7 +581,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         }
     }
 
-    private void cargarComboBox() {
+    private void cargarComboBoxCentros() {
         DefaultComboBoxModel<Centro> modeloCB = new DefaultComboBoxModel<>();
         ArrayList<Centro> centros;
         centros = (ArrayList<Centro>) centroData.listarCentros(zona);
@@ -582,4 +603,25 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         });
     }
 
+    private void cargarComboBoxVacunas() {
+        DefaultComboBoxModel<Vacuna> modeloCB = new DefaultComboBoxModel<>();
+        ArrayList<Vacuna> vacunas;
+        vacunas = (ArrayList<Vacuna>) vacunaData.obtenerVacunasDisponiblesxLote();
+        
+        for (Vacuna vacuna : vacunas) {
+            modeloCB.addElement(vacuna);
+        }
+        jCVacunasPorLotes.setModel(modeloCB);
+        jCVacunasPorLotes.setRenderer(new DefaultListCellRenderer() {
+            @Override
+            public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+                if (value instanceof Vacuna) {
+                    Vacuna vacuna = (Vacuna) value;
+                    String nombreCompleto = vacuna.getMarca() + " - " + vacuna.getLote();
+                    value = nombreCompleto;
+                }
+                return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            }
+        });
+    }
 }

@@ -16,8 +16,8 @@ public class CitaData {
     private Connection con = null;
         private int dniReg;
         public CitaData() {
-        con = Conexion.getConexion();
-    }
+            con = Conexion.getConexion();
+        }
     
     public void mostrarCitaCiudadano( int dni){
         
