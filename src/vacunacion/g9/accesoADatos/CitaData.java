@@ -3,37 +3,38 @@ package vacunacion.g9.accesoADatos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLDataException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JOptionPane;
+import vacunacion.g9.entidades.CitaVacunacion;
 
 public class CitaData {
     
     Timestamp time;
     private Connection con = null;
-        private int dniReg;
-        public CitaData() {
-            con = Conexion.getConexion();
-        }
-    
-    public void mostrarCitaCiudadano( int dni){
-        
-        if(dniReg==0){
+    private int dniReg;
+
+    public CitaData() {
+        con = Conexion.getConexion();
+    }
+
+    public void mostrarCitaCiudadano(int dni) {
+
+        if (dniReg == 0) {
             JOptionPane.showMessageDialog(null, "Debe loguearse primero");
-            
-        }else{
-            
-            String sql="SELECT * FROM `citavacunacion` WHERE dni=?";
-              try (PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, dniReg);
+        } else {
 
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+            String sql = "SELECT * FROM `citavacunacion` WHERE dni=?";
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+
+                ps.setInt(1, dniReg);
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
 //                    c = new Ciudadano();
 //                    c.setDni(rs.getInt("dni"));
 //                    c.setApellido(rs.getString("apellido"));
@@ -44,32 +45,32 @@ public class CitaData {
 //                    c.setPatologia(rs.getString("patologia"));
 //                    c.setAmbitoTrabajo(rs.getBoolean("ambitoTrabajo"));
 //                    c.setRiesgo(rs.getBoolean("deRiesgo"));
+                    }
                 }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
-         
-        }
-        
+
     }
-    
-    public void cancelarCitaCiudadano(int dni){
-        
-        if(dniReg==0){
+
+    public void cancelarCitaCiudadano(int dni) {
+
+        if (dniReg == 0) {
             JOptionPane.showMessageDialog(null, "Debe loguearse primero");
-            
-        }else{
-            
-            String sql="SELECT * FROM `citavacunacion` WHERE dni=?";
-              try (PreparedStatement ps = con.prepareStatement(sql)) {
 
-            ps.setInt(1, dniReg);
+        } else {
 
-            try (ResultSet rs = ps.executeQuery()) {
-                while (rs.next()) {
+            String sql = "SELECT * FROM `citavacunacion` WHERE dni=?";
+            try (PreparedStatement ps = con.prepareStatement(sql)) {
+
+                ps.setInt(1, dniReg);
+
+                try (ResultSet rs = ps.executeQuery()) {
+                    while (rs.next()) {
 //                    c = new Ciudadano();
 //                    c.setDni(rs.getInt("dni"));
 //                    c.setApellido(rs.getString("apellido"));
@@ -80,51 +81,54 @@ public class CitaData {
 //                    c.setPatologia(rs.getString("patologia"));
 //                    c.setAmbitoTrabajo(rs.getBoolean("ambitoTrabajo"));
 //                    c.setRiesgo(rs.getBoolean("deRiesgo"));
+                    }
                 }
+
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
-        }
-         
         }
     }
-    
-    public void listarCitas(int idCita){}
-    
-    public void modificarCita(int idCita){}
-    
-    public void eliminarCita(int idCita){}
-    
-    public void agregarCita(int dni, int lote, String zona, int idCentro, LocalDateTime fecha){
+
+    public void listarCitas(int idCita) {
+    }
+
+    public void modificarCita(int idCita) {
+    }
+
+    public void eliminarCita(int idCita) {
+    }
+
+    public void agregarCita(int dni, int lote, String zona, int idCentro, LocalDateTime fecha) {
         String sql;
         sql = "INSERT INTO `citavacunacion`(`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
                 + "VALUES (?, ?, ?, ?, ?, false, false)";
-        
-        try{
+
+        try {
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, dni);
             ps.setInt(2, lote);
             ps.setInt(3, idCentro);
             ps.setTimestamp(4, Timestamp.valueOf(fecha));
-            
+
             ps.executeUpdate();
             ps.close();
             JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
-        }catch(SQLException ex){
+        } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "    Algo salio mal\n   " + ex);
-        } 
-        
+        }
+
     }
-    
-    public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona){
+
+    public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
         String sql;
         if (!zona.equalsIgnoreCase("Todos")) {
-            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ? AND zona = ?;";  
-        }else {
-            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ?;";        
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ? AND zona = ?;";
+        } else {
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ?;";
         }
         int conteo = 0;
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -146,14 +150,14 @@ public class CitaData {
         }
         return conteo;
     }
-    
-    public int conteoTodosLosCiudadano(java.util.Date fecha, String zona){
+
+    public int conteoTodosLosCiudadano(java.util.Date fecha, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01';
         String sql;
         if (!zona.equalsIgnoreCase("Todos")) {
-            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND zona = ?;";   
-        }else{
-            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ?;";  
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ? AND zona = ?;";
+        } else {
+            sql = "SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = ?;";
         }
         int conteo = 0;
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -172,5 +176,38 @@ public class CitaData {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
         return conteo;
+    }
+
+    public List<CitaVacunacion> listarCitasPorFechaYCentro(LocalDateTime fecha, int idCentro) {
+        List<CitaVacunacion> citas = new ArrayList<>();
+        String sql = "SELECT * FROM citavacunacion WHERE DATE(fechaHoraCita) = ? AND id_centro = ?";
+
+        try (PreparedStatement ps = con.prepareStatement(sql)) {
+            
+            Timestamp fechaTimestamp = Timestamp.valueOf(fecha);
+            ps.setTimestamp(1, fechaTimestamp);
+            ps.setInt(2, idCentro);
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    CitaVacunacion cita = new CitaVacunacion();
+
+                    cita.setCodCita(rs.getInt("codCita"));
+                    cita.setDni(rs.getInt("dni"));
+                    cita.setLote(rs.getInt("lote"));
+                    cita.setId_centro(rs.getInt("id_centro"));
+                    fechaTimestamp=rs.getTimestamp("fechaHoraCita");
+                    cita.setColocada(rs.getBoolean("colocada"));
+                    cita.setCancelada(rs.getBoolean("cancelada"));
+
+                    citas.add(cita);
+                }
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
+        }
+
+        return citas;
     }
 }
