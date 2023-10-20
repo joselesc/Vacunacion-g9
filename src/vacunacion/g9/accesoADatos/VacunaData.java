@@ -187,8 +187,8 @@ public class VacunaData {
         ResultSet rs = ps.executeQuery();
 
         if (rs.next()) {
-            int count = rs.getInt(1);
-            return count > 0; // Si count es mayor que 0, el laboratorio tiene vacunas relacionadas.
+            int tiene = rs.getInt(1);
+            return tiene > 0; // Si "tiene" es mayor que 0, el laboratorio tiene vacunas relacionadas.
         }
 
         ps.close();
@@ -222,5 +222,12 @@ public class VacunaData {
             System.err.println("ERRO AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
         }
         return vacunas;
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////        
+//        LaboratorioData laboratorioData = new LaboratorioData();
+//        List<Vacuna> vacunasOrdenadasPorLote = laboratorioData.obtenerVacunasDisponiblesOrdenadasPorLote();
+/////////////////////////copia y pega para utilizar el metodo/////////////////////////////////////////////////
+
+
+        
 }
 }
