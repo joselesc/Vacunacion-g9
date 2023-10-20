@@ -12,19 +12,18 @@ import javax.swing.JOptionPane;
 import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.Ciudadano;
 
-
 public class CiudadanoData {
 
     private Connection con = null;
-    private int dniReg=0;
+    private int dniReg = 0;
 
     public CiudadanoData() {
         con = Conexion.getConexion();
     }
 
     public void registrarCiudadano(Ciudadano ciudadano) {
-        
-         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Inscripcion.png"));
+
+        Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Inscripcion.png"));
 
         String sql = "INSERT INTO ciudadano(dni, apellido, nombre, email, celular, zona, patologia, ambitoTrabajo, deRiesgo) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,? )";
@@ -42,17 +41,45 @@ public class CiudadanoData {
             ps.setBoolean(9, ciudadano.isRiesgo());
             ps.executeUpdate();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Registro exitoso!!!","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+            JOptionPane.showMessageDialog(null, "Registro exitoso!!!", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
         } catch (SQLException ex) {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al conectar database " + ex);
         }
     }
+    
+    public void modificarInfo(Ciudadano ciudadano){
+        
+          Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/actualizar.png"));
+
+        String sql = "UPDATE ciudadano SET apellido=?, nombre=? , email=? , celular=? , zona=? , patologia=? , ambitoTrabajo=? , deRiesgo=?  WHERE dni=?";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+           
+            ps.setString(1, ciudadano.getApellido());
+            ps.setString(2, ciudadano.getNombre());
+            ps.setString(3, ciudadano.getEmail());
+            ps.setInt(4, ciudadano.getCelular());
+            ps.setString(5, ciudadano.getZona());
+            ps.setString(6, ciudadano.getPatologia());
+            ps.setBoolean(7, ciudadano.isAmbitoTrabajo());
+            ps.setBoolean(8, ciudadano.isRiesgo());
+            ps.setInt(9, ciudadano.getDni());
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Actualizacion  exitosa!!!", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al conectar database " + ex);
+        }
+        
+    }
 
     public Ciudadano buscarCiudadano(int dni) {
-        
-      
+
         Ciudadano c = null;
         String sql = "SELECT * FROM ciudadano WHERE dni = ?";
 
@@ -87,12 +114,11 @@ public class CiudadanoData {
         List<Ciudadano> ciu = new ArrayList<>();
 
         try {
-            
-        
+
             String sql = " select * from ciudadano ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
-            
+
             while (rs.next()) {
                 Ciudadano c = new Ciudadano();
 
@@ -116,14 +142,14 @@ public class CiudadanoData {
 
         return ciu;
     }
-    
-    public void eliminarCiudadano(int dni){
-        
+
+    public void eliminarCiudadano(int dni) {
+
         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/ciudadano.png"));
-        
-        String sql= "DELETE FROM ciudadano WHERE dni=?";
-        
-         try {
+
+        String sql = "DELETE FROM ciudadano WHERE dni=?";
+
+        try {
 
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, dni);
@@ -131,10 +157,10 @@ public class CiudadanoData {
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "Ciudadano borrado.","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+                JOptionPane.showMessageDialog(null, "Ciudadano borrado.", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
             } else {
-                JOptionPane.showMessageDialog(null, "El dni del ciudadano no existe","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+                JOptionPane.showMessageDialog(null, "El dni del ciudadano no existe", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
             }
             ps.close();
 
@@ -142,10 +168,10 @@ public class CiudadanoData {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
     }
-    
+
     public int loguearse(int dni) {
 
-         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/login.png"));
+        Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/login.png"));
         int c = 0;
         String sql = "SELECT dni FROM ciudadano WHERE dni = ?";
 
@@ -155,7 +181,7 @@ public class CiudadanoData {
 
                 if (rs.next()) {
 
-                    JOptionPane.showMessageDialog(null, "Ingreso exitoso","Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+                    JOptionPane.showMessageDialog(null, "Ingreso exitoso", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
                     c = rs.getInt("dni");
 
                 } else {
@@ -166,21 +192,63 @@ public class CiudadanoData {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
         dniReg = c;
-       
+
         return c;
 
     }
-    
-    public void mostrarCita(){
-        
-        
+
+    public void mostrarCita() {
+
+    }
+
+    public void cancelarCita() {
+
+    }
+
+    public boolean validarInfo(int dni, String apellido, String email) {
+
+        Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/validar.png"));
+        boolean validar = false;
+        int d = 0;
+        String ape = "";
+        String em = "";
+
+        String sql = "SELECT dni, apellido, email FROM ciudadano where dni=? ";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                d = (rs.getInt("dni"));
+                ape = (rs.getString("apellido"));
+                em = (rs.getString("email"));
+
+            }
+
+            if (dni == d && apellido.equalsIgnoreCase(ape) && email.equalsIgnoreCase(em)) {
+
+                validar = true;
+                JOptionPane.showMessageDialog(null, "Validacion exitosa!!!", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+
+            } else {
+
+                JOptionPane.showMessageDialog(null, "No se puedo validar los datos");
+            }
+
+            ps.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error al conectar database " + ex);
+        }
+
+        return validar;
     }
     
-    public void cancelarCita(){
-        
-        
-    }
     
+
     public int getDniReg() {
         return dniReg;
     }
@@ -189,5 +257,4 @@ public class CiudadanoData {
         this.dniReg = dniReg;
     }
 
-    
-    }
+}

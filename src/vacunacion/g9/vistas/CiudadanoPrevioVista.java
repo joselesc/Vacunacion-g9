@@ -47,11 +47,11 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jMIRegistrarse = new javax.swing.JMenuItem();
         jMILoguearse = new javax.swing.JMenuItem();
+        jMActualizarInfo = new javax.swing.JMenuItem();
         jMCambioFecha = new javax.swing.JMenu();
         jMIFechaVacunacion = new javax.swing.JMenuItem();
         jMICancelarCita = new javax.swing.JMenuItem();
-        jMenu4 = new javax.swing.JMenu();
-        jMenu2 = new javax.swing.JMenu();
+        jMAyuda = new javax.swing.JMenu();
         jMSalir = new javax.swing.JMenu();
         jMIExit = new javax.swing.JMenuItem();
 
@@ -104,6 +104,16 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         });
         jMenu1.add(jMILoguearse);
 
+        jMActualizarInfo.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jMActualizarInfo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/actualizar.png"))); // NOI18N
+        jMActualizarInfo.setText("Actualizar informacion");
+        jMActualizarInfo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMActualizarInfoActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMActualizarInfo);
+
         jMenuBar1.add(jMenu1);
 
         jMCambioFecha.setText("Consulta");
@@ -129,21 +139,17 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         });
         jMCambioFecha.add(jMICancelarCita);
 
-        jMenu4.setText("Actualizar Informacion");
-        jMenu4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jMCambioFecha.add(jMenu4);
-
         jMenuBar1.add(jMCambioFecha);
 
-        jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Ayuda.png"))); // NOI18N
-        jMenu2.setText("Ayuda");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jMenu2.addMouseListener(new java.awt.event.MouseAdapter() {
+        jMAyuda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Ayuda.png"))); // NOI18N
+        jMAyuda.setText("Ayuda");
+        jMAyuda.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jMAyuda.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMenu2MouseClicked(evt);
+                jMAyudaMouseClicked(evt);
             }
         });
-        jMenuBar1.add(jMenu2);
+        jMenuBar1.add(jMAyuda);
 
         jMSalir.setText("Salir");
         jMSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -223,8 +229,8 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         lv.show();
     }//GEN-LAST:event_jMILoguearseActionPerformed
 
-    private void jMenu2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu2MouseClicked
-       
+    private void jMAyudaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMAyudaMouseClicked
+
         EscritorioCiudadano.removeAll();
         EscritorioCiudadano.repaint();
         AyudaVista av = new AyudaVista();
@@ -239,25 +245,45 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         Dimension FrameSize = av.getSize();
         av.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         av.show();
-    }//GEN-LAST:event_jMenu2MouseClicked
+    }//GEN-LAST:event_jMAyudaMouseClicked
 
     private void jMIFechaVacunacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFechaVacunacionActionPerformed
-       
-        CiudadanoData cd=new CiudadanoData();
+
+        CiudadanoData cd = new CiudadanoData();
         cd.mostrarCita();
-      
-       
+
+
     }//GEN-LAST:event_jMIFechaVacunacionActionPerformed
 
     private void jMICancelarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMICancelarCitaActionPerformed
 
-      CiudadanoData cd=new CiudadanoData();
-        cd.cancelarCita();   
+        CiudadanoData cd = new CiudadanoData();
+        cd.cancelarCita();
     }//GEN-LAST:event_jMICancelarCitaActionPerformed
 
+    private void jMActualizarInfoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMActualizarInfoActionPerformed
+        EscritorioCiudadano.removeAll();
+        EscritorioCiudadano.repaint();
+        ActualizarInfoVista aiv = new ActualizarInfoVista();
+        setContentPane(EscritorioCiudadano);
+        //setSize(1212, 966);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        aiv.setVisible(true);
+        EscritorioCiudadano.add(aiv);
+        EscritorioCiudadano.moveToFront(aiv);
+
+        Dimension desktopSize = EscritorioCiudadano.getSize();
+        Dimension FrameSize = aiv.getSize();
+        aiv.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        aiv.show();        // TODO add your handling code here:
+    }//GEN-LAST:event_jMActualizarInfoActionPerformed
+
+   
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane EscritorioCiudadano;
+    private javax.swing.JMenuItem jMActualizarInfo;
+    private javax.swing.JMenu jMAyuda;
     private javax.swing.JMenu jMCambioFecha;
     private javax.swing.JMenuItem jMICancelarCita;
     private javax.swing.JMenuItem jMIExit;
@@ -266,9 +292,7 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMIRegistrarse;
     private javax.swing.JMenu jMSalir;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
-    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem4;
