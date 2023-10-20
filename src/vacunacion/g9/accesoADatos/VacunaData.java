@@ -197,5 +197,30 @@ public class VacunaData {
     }
 
     return false; // En caso de error o si el laboratorio no tiene vacunas relacionadas.
+}    
+
+    public List<Vacuna> obtenerVacunasDisponiblesxLote() {
+        List<Vacuna> vacunas = new ArrayList<>();
+        try {
+            String sql = "SELECT * FROM vacuna WHERE lote>0";
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Vacuna vacuna = new Vacuna(
+                        rs.getInt("Lote"),
+                        rs.getLong("cuit"),
+                        rs.getString("marca"),
+                        rs.getDouble("medida"),
+                        rs.getDate("fechaCaduca").toLocalDate(),
+                        rs.getInt("stock"),
+                        rs.getBoolean("colocada")
+                );
+                vacunas.add(vacuna);
+            }
+            ps.close();
+        } catch (SQLException e) {
+            System.err.println("ERRO AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
+        }
+        return vacunas;
 }
 }
