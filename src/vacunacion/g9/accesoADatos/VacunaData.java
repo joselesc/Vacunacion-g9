@@ -177,4 +177,25 @@ public class VacunaData {
         }
         return false;
     }
+    public boolean laboratorioTieneVacunas(long cuit) {
+    try {
+        // Realiza una consulta para verificar si existen vacunas relacionadas con el laboratorio.
+        String sql = "SELECT COUNT(*) FROM vacuna WHERE cuit = ?";
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setLong(1, cuit);
+
+        ResultSet rs = ps.executeQuery();
+
+        if (rs.next()) {
+            int count = rs.getInt(1);
+            return count > 0; // Si count es mayor que 0, el laboratorio tiene vacunas relacionadas.
+        }
+
+        ps.close();
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al verificar si el laboratorio tiene vacunas: " + ex.getMessage());
+    }
+
+    return false; // En caso de error o si el laboratorio no tiene vacunas relacionadas.
+}
 }

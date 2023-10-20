@@ -93,27 +93,48 @@ public class LaboratorioData {
     }
 
     public void eliminar(long cuit) {
-
-        String sql = "DELETE FROM laboratorio WHERE cuit=?";
-
-        try {
-
+//
+//        String sql = "DELETE FROM laboratorio WHERE cuit=?";
+//
+//        try {
+//
+//            PreparedStatement ps = con.prepareStatement(sql);
+//            ps.setLong(1, cuit);
+//
+//            int mod = ps.executeUpdate();
+//
+//            if (mod == 1) {
+//                JOptionPane.showMessageDialog(null, "LABORATORIO ELIMINADO!!!.");
+//
+//            } else {
+//                JOptionPane.showMessageDialog(null, "EL LABORATORIO NO EXISTE");
+//            }
+//            ps.close();
+//
+//        } catch (SQLException ex) {
+//            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+//        }
+try {
+        // Antes de eliminar el laboratorio, verifica si se encuentra en uso (claves foráneas).
+        VacunaData lb=new VacunaData();
+        if (!lb.laboratorioTieneVacunas(cuit)) {
+            String sql = "DELETE FROM laboratorio WHERE cuit=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setLong(1, cuit);
-
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "LABORATORIO ELIMINADO!!!.");
-
+                JOptionPane.showMessageDialog(null, "LABORATORIO ELIMINADO.");
             } else {
-                JOptionPane.showMessageDialog(null, "EL LABORATORIO NO EXISTE");
+                JOptionPane.showMessageDialog(null, "EL LABORATORIO NO EXISTE.");
             }
             ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        } else {
+            JOptionPane.showMessageDialog(null, "No se puede eliminar el laboratorio, ya que está en uso (claves foráneas).");
         }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
+    }
     }
 
     public void modificar(Laboratorio laboratorio) {

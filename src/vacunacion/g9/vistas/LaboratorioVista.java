@@ -267,7 +267,8 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             ld.guardarLaboratorio(nl);
             JOptionPane.showMessageDialog(this, "LABORATORIO AGREGADO!!!");
             limpiar();
-            limpiartablaLaboratorio();
+//            listarLaboratorio();
+limpiartablaLaboratorio();
 
     }//GEN-LAST:event_jBAgregarActionPerformed
     }
@@ -294,52 +295,53 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             ld.modificar(nl); // Llama al método para modificar el laboratorio
             JOptionPane.showMessageDialog(this, "LABORATORIO MODIFICADO!!!");
             limpiar();
-            limpiartablaLaboratorio();
-            
+//            listarLaboratorio();
+limpiartablaLaboratorio();
+
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
     private void jBEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBEliminarActionPerformed
-long cuit = 0;
+        long cuit = 0;
 
-    try {
-        cuit = Long.parseLong(jTFCuit.getText());
-    } catch (NumberFormatException e) {
-        JOptionPane.showMessageDialog(null, "El CUIT debe ser un número válido.");
-        return;
-    }
+        try {
+            cuit = Long.parseLong(jTFCuit.getText());
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "El CUIT debe ser un número válido.");
+            return;
+        }
 
-    LaboratorioData ld = new LaboratorioData();
-    Laboratorio laboratorio = ld.buscarLaboratorioxCuit(cuit);
+        LaboratorioData ld = new LaboratorioData();
+        Laboratorio laboratorio = ld.buscarLaboratorioxCuit(cuit);
 
-    if (laboratorio != null) {
-        ld.eliminar(cuit); // Llama al método
-        JOptionPane.showMessageDialog(this, "LABORATORIO ELIMINADO!!!");
-        limpiar();
-        limpiartablaLaboratorio();
-
-    } else {
-        JOptionPane.showMessageDialog(this, "LABORATORIO INEXISTENTE!!!");
-    }        
+        if (laboratorio != null) {
+            ld.eliminar(cuit); // Llama al método
+  
+            limpiar();
+//        listarLaboratorio();
+            limpiartablaLaboratorio();
+        } else {
+            JOptionPane.showMessageDialog(this, "LABORATORIO INEXISTENTE!!!");
+        }
     }//GEN-LAST:event_jBEliminarActionPerformed
 
     private void jTlistarLabMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTlistarLabMouseClicked
 //           @Override
-           
-                int filaSeleccionada = jTlistarLab.getSelectedRow();
-                if (filaSeleccionada != -1) {
-                    // Obtener los datos de la fila seleccionada
-                    Object cuit = jTlistarLab.getValueAt(filaSeleccionada, 0);
-                    Object nombre = jTlistarLab.getValueAt(filaSeleccionada, 1);
-                    Object pais = jTlistarLab.getValueAt(filaSeleccionada, 2);
-                    Object domComercial = jTlistarLab.getValueAt(filaSeleccionada, 3);
 
-                    // Establecer los datos en los campos de texto
-                    jTFCuit.setText(cuit.toString());
-                    jTFNombre.setText(nombre.toString());
-                    jTFPais.setText(pais.toString());
-                    jTFnomComercial.setText(domComercial.toString());
-                }
+        int filaSeleccionada = jTlistarLab.getSelectedRow();
+        if (filaSeleccionada != -1) {
+            // Obtener los datos de la fila seleccionada
+            Object cuit = jTlistarLab.getValueAt(filaSeleccionada, 0);
+            Object nombre = jTlistarLab.getValueAt(filaSeleccionada, 1);
+            Object pais = jTlistarLab.getValueAt(filaSeleccionada, 2);
+            Object domComercial = jTlistarLab.getValueAt(filaSeleccionada, 3);
+
+            // Establecer los datos en los campos de texto
+            jTFCuit.setText(cuit.toString());
+            jTFNombre.setText(nombre.toString());
+            jTFPais.setText(pais.toString());
+            jTFnomComercial.setText(domComercial.toString());
+        }
     }//GEN-LAST:event_jTlistarLabMouseClicked
 
 
@@ -389,18 +391,18 @@ long cuit = 0;
         jTFPais.setText("");
         jTFnomComercial.setText("");
     }
-    private void limpiartablaLaboratorio() {
-    // Limpia la tabla
-    modelo.setRowCount(0);
 
-    LaboratorioData ld = new LaboratorioData();
-    for (Laboratorio v : ld.listarLaboratorio()) {
-        modelo.addRow(new Object[]{
-            v.getCuit(),
-            v.getNomLaboratorio(),
-            v.getPais(),
-            v.getDomComercial()
-        });
+    private void limpiartablaLaboratorio() {
+        // Limpia la tabla
+        modelo.setRowCount(0);
+        LaboratorioData ld = new LaboratorioData();
+        for (Laboratorio v : ld.listarLaboratorio()) {
+            modelo.addRow(new Object[]{
+                v.getCuit(),
+                v.getNomLaboratorio(),
+                v.getPais(),
+                v.getDomComercial()
+            });
+        }
     }
-}
 }

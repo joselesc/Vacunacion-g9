@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2023 a las 01:03:09
+-- Tiempo de generación: 20-10-2023 a las 16:00:51
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -1110,18 +1110,19 @@ CREATE TABLE `laboratorio` (
   `cuit` bigint(20) NOT NULL,
   `nombreLaboratorio` varchar(25) NOT NULL,
   `pais` varchar(30) NOT NULL,
-  `domComercial` varchar(50) NOT NULL
+  `domComercial` varchar(50) NOT NULL,
+  `activo` tinyint(4) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `laboratorio`
 --
 
-INSERT INTO `laboratorio` (`cuit`, `nombreLaboratorio`, `pais`, `domComercial`) VALUES
-(30500772324, 'Astra Zéneca S.A.', 'Inglaterra', 'Calle Puerto De Somport 21 23. 28050, Madrid'),
-(30501152826, 'Laboratorios Richmond S.A', 'Rusia', 'Av. Elcano 4938'),
-(30503518518, 'PFIZER S.R.L', 'Estados Unidos', 'Calle Carlos Berg 3669'),
-(30598129246, 'Janssen Cilag Farmacéutic', 'Estados Unidos', 'Mendoza 1259');
+INSERT INTO `laboratorio` (`cuit`, `nombreLaboratorio`, `pais`, `domComercial`, `activo`) VALUES
+(30500772324, 'Astra Zéneca S.A.', 'Inglaterra', 'Calle Puerto De Somport 21 23. 28050, Madrid', 0),
+(30501152826, 'Laboratorios Richmond S.A', 'Rusia', 'Av. Elcano 4938', 0),
+(30503518518, 'PFIZER S.R.L', 'Estados Unidos', 'Calle Carlos Berg 3669', 0),
+(30598129246, 'Janssen Cilag Farmacéutic', 'Estados Unidos', 'Mendoza 1259', 0);
 
 -- --------------------------------------------------------
 
