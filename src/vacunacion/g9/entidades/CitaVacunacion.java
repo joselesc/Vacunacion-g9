@@ -19,14 +19,7 @@ public class CitaVacunacion {
         this.fechaHoraCita = fechaHoraCita;
         this.colocada = colocada;
         this.cancelada = cancelada;
-    }
-
-    public CitaVacunacion(int dni, int lote, int id_centro, LocalDateTime fechaHoraCita) {
-        this.dni = dni;
-        this.lote = lote;
-        this.id_centro = id_centro;
-        this.fechaHoraCita = fechaHoraCita;
-    }
+    }   
 
     public int getCodCita() {
         return codCita;

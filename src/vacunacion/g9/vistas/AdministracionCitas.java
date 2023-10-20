@@ -9,6 +9,7 @@ import javax.swing.JOptionPane;
 import vacunacion.g9.accesoADatos.CentroData;
 import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.entidades.Centro;
+import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionCitas extends javax.swing.JInternalFrame {
 
@@ -23,7 +24,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        buttonGroup1 = new javax.swing.ButtonGroup();
+        bGZonas = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -33,7 +34,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLFechaCita = new javax.swing.JLabel();
-        jDCFechaCita = new com.toedter.calendar.JDateChooser();
+        jDCFechaInscripcion = new com.toedter.calendar.JDateChooser();
         jCCentrosDeVacunacion = new javax.swing.JComboBox<>();
         jLCentrosDeVacunacion = new javax.swing.JLabel();
         jLCantidadDeTurnosPorDia = new javax.swing.JLabel();
@@ -51,6 +52,12 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jRMostrarTodosCiudadanos = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
         jCTurnosPorDia = new javax.swing.JComboBox<>();
+        jCCentrosDeVacunacion1 = new javax.swing.JComboBox<>();
+        jDCFechaCita1 = new com.toedter.calendar.JDateChooser();
+        jLFechaCita1 = new javax.swing.JLabel();
+        jCheckBox1 = new javax.swing.JCheckBox();
+        jCheckBox2 = new javax.swing.JCheckBox();
+        jCheckBox3 = new javax.swing.JCheckBox();
 
         jPanel1.setBackground(new java.awt.Color(0, 52, 89));
 
@@ -117,16 +124,16 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
         jLFechaCita.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLFechaCita.setForeground(new java.awt.Color(255, 255, 255));
-        jLFechaCita.setText("Fecha de cita");
+        jLFechaCita.setText("Fecha incripcion");
 
-        jDCFechaCita.setBackground(new java.awt.Color(255, 255, 255));
-        jDCFechaCita.setForeground(new java.awt.Color(0, 23, 31));
-        jDCFechaCita.setDateFormatString("yyyy-MM-dd");
-        jDCFechaCita.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jDCFechaCita.setMinSelectableDate(new java.util.Date(-62135755133000L));
-        jDCFechaCita.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+        jDCFechaInscripcion.setBackground(new java.awt.Color(255, 255, 255));
+        jDCFechaInscripcion.setForeground(new java.awt.Color(0, 23, 31));
+        jDCFechaInscripcion.setDateFormatString("yyyy-MM-dd");
+        jDCFechaInscripcion.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jDCFechaInscripcion.setMinSelectableDate(new java.util.Date(-62135755133000L));
+        jDCFechaInscripcion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jDCFechaCitaPropertyChange(evt);
+                jDCFechaInscripcionPropertyChange(evt);
             }
         });
 
@@ -172,25 +179,25 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         });
 
         jRadioButton2.setBackground(new java.awt.Color(0, 52, 89));
-        buttonGroup1.add(jRadioButton2);
+        bGZonas.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Sur");
 
         jRadioButton3.setBackground(new java.awt.Color(0, 52, 89));
-        buttonGroup1.add(jRadioButton3);
+        bGZonas.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton3.setText("Este");
 
         jRadioButton4.setBackground(new java.awt.Color(0, 52, 89));
-        buttonGroup1.add(jRadioButton4);
+        bGZonas.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("Oeste");
 
         jRadioButton5.setBackground(new java.awt.Color(0, 52, 89));
-        buttonGroup1.add(jRadioButton5);
+        bGZonas.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton5.setText("Todos");
@@ -205,7 +212,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLCantidadDeTurnosPorDia1.setText("Cantidad de personas");
 
         jRadioButton6.setBackground(new java.awt.Color(0, 52, 89));
-        buttonGroup1.add(jRadioButton6);
+        bGZonas.add(jRadioButton6);
         jRadioButton6.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton6.setText("Norte");
@@ -245,53 +252,64 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             }
         });
 
+        jCCentrosDeVacunacion1.setBackground(new java.awt.Color(255, 255, 255));
+        jCCentrosDeVacunacion1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCCentrosDeVacunacion1.setForeground(new java.awt.Color(0, 23, 31));
+
+        jDCFechaCita1.setBackground(new java.awt.Color(255, 255, 255));
+        jDCFechaCita1.setForeground(new java.awt.Color(0, 23, 31));
+        jDCFechaCita1.setDateFormatString("yyyy-MM-dd");
+        jDCFechaCita1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jDCFechaCita1.setMinSelectableDate(new java.util.Date(-62135755133000L));
+        jDCFechaCita1.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDCFechaCita1PropertyChange(evt);
+            }
+        });
+
+        jLFechaCita1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jLFechaCita1.setForeground(new java.awt.Color(255, 255, 255));
+        jLFechaCita1.setText("Fecha incripcion");
+
+        jCheckBox1.setBackground(new java.awt.Color(0, 52, 89));
+        jCheckBox1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCheckBox1.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox1.setText("0.3ml");
+
+        jCheckBox2.setBackground(new java.awt.Color(0, 52, 89));
+        jCheckBox2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCheckBox2.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox2.setText("0.5ml");
+
+        jCheckBox3.setBackground(new java.awt.Color(0, 52, 89));
+        jCheckBox3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCheckBox3.setForeground(new java.awt.Color(255, 255, 255));
+        jCheckBox3.setText("0.5ml");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(379, 379, 379)
-                        .addComponent(jLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jRadioButton3)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLCantidadDeTurnosPorDia1)
-                                .addGroup(jPanel1Layout.createSequentialGroup()
-                                    .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jRDeRiesgo)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jREsencial)
-                                    .addGap(18, 18, 18)
-                                    .addComponent(jRMostrarTodosCiudadanos))))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLCantidadDeTurnosPorDia)
-                            .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(375, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(17, 17, 17))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDCFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jDCFechaInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLFechaCita))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,19 +318,53 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLCentrosDeVacunacion)
-                                    .addComponent(jCCentrosDeVacunacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(17, 17, 17))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jRadioButton6)
-                        .addGap(142, 142, 142)
-                        .addComponent(jRadioButton2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jRadioButton4)
-                        .addGap(126, 126, 126)
-                        .addComponent(jRadioButton5)
-                        .addGap(45, 45, 45))
-                    .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)))
+                                    .addComponent(jCCentrosDeVacunacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jDCFechaCita1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jLFechaCita1))
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jCheckBox1)
+                                        .addComponent(jCheckBox3)
+                                        .addGroup(jPanel1Layout.createSequentialGroup()
+                                            .addComponent(jCheckBox2)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(jCCentrosDeVacunacion1, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jLCantidadDeTurnosPorDia1)
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jRDeRiesgo)
+                                    .addGap(76, 76, 76)
+                                    .addComponent(jREsencial)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(jRMostrarTodosCiudadanos)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLCantidadDeTurnosPorDia)
+                                        .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jPanel1Layout.createSequentialGroup()
+                                    .addGap(373, 373, 373)
+                                    .addComponent(jLabel1))))
+                        .addContainerGap(27, Short.MAX_VALUE))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jRadioButton6)
+                .addGap(120, 120, 120)
+                .addComponent(jRadioButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRadioButton3)
+                .addGap(216, 216, 216)
+                .addComponent(jRadioButton4)
+                .addGap(106, 106, 106)
+                .addComponent(jRadioButton5)
+                .addGap(83, 83, 83))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -323,7 +375,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLFechaCita)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDCFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jDCFechaInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(jPanel1Layout.createSequentialGroup()
                             .addComponent(jLCentrosDeVacunacion)
@@ -333,39 +385,46 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                             .addComponent(jLCentrosDeVacunacion1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(jCZonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLCantidadDeTurnosPorDia1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jRDeRiesgo)
-                            .addComponent(jREsencial)
-                            .addComponent(jRMostrarTodosCiudadanos)
-                            .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLCantidadDeTurnosPorDia)
-                        .addGap(31, 31, 31)))
+                    .addComponent(jLCantidadDeTurnosPorDia1)
+                    .addComponent(jLCantidadDeTurnosPorDia))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jRDeRiesgo)
+                    .addComponent(jREsencial)
+                    .addComponent(jRMostrarTodosCiudadanos)
+                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLFechaCita1)
+                    .addComponent(jCheckBox1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jDCFechaCita1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jCCentrosDeVacunacion1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jCheckBox2)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jCheckBox3)
+                .addGap(18, 18, 18)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jRadioButton6)
+                    .addComponent(jRadioButton5)
+                    .addComponent(jRadioButton4)
+                    .addComponent(jRadioButton2)
+                    .addComponent(jRadioButton3))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 382, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
                     .addComponent(jButton2)
                     .addComponent(jButton3)
                     .addComponent(jButton4))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jRadioButton6)
-                        .addComponent(jRadioButton5)
-                        .addComponent(jRadioButton4)
-                        .addComponent(jRadioButton2))
-                    .addComponent(jRadioButton3, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(21, 21, 21)
-                .addComponent(jButton1)
                 .addContainerGap())
         );
 
@@ -383,10 +442,10 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jDCFechaCitaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFechaCitaPropertyChange
+    private void jDCFechaInscripcionPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFechaInscripcionPropertyChange
         jRMostrarTodosCiudadanos.setSelected(true);
         cargarCantidadDeCiudadanos();
-    }//GEN-LAST:event_jDCFechaCitaPropertyChange
+    }//GEN-LAST:event_jDCFechaInscripcionPropertyChange
 
     private void jRDeRiesgoPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jRDeRiesgoPropertyChange
         cargarCantidadDeCiudadanos();
@@ -436,21 +495,31 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jCTurnosPorDiaActionPerformed
 
+    private void jDCFechaCita1PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCFechaCita1PropertyChange
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jDCFechaCita1PropertyChange
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup bGZonas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
+    private javax.swing.JComboBox<Vacuna> jCCentrosDeVacunacion1;
     private javax.swing.JComboBox<String> jCTurnosPorDia;
     private javax.swing.JComboBox<String> jCZonas;
-    private com.toedter.calendar.JDateChooser jDCFechaCita;
+    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JCheckBox jCheckBox2;
+    private javax.swing.JCheckBox jCheckBox3;
+    private com.toedter.calendar.JDateChooser jDCFechaCita1;
+    private com.toedter.calendar.JDateChooser jDCFechaInscripcion;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia1;
     private javax.swing.JLabel jLCentrosDeVacunacion;
     private javax.swing.JLabel jLCentrosDeVacunacion1;
     private javax.swing.JLabel jLFechaCita;
+    private javax.swing.JLabel jLFechaCita1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRDeRiesgo;
@@ -469,7 +538,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private void cargarCantidadDeCiudadanos() {
         zona = (String) jCZonas.getSelectedItem();
         CitaData cd = new CitaData();
-        java.util.Date fecha = jDCFechaCita.getDate();//solo lo aceptaba de esta manera
+        java.util.Date fecha = jDCFechaInscripcion.getDate();//solo lo aceptaba de esta manera
         try {
             if (fecha != null) {
                 if (!jRMostrarTodosCiudadanos.isSelected()) {

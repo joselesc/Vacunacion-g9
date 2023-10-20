@@ -1,10 +1,14 @@
 package vacunacion.g9.accesoADatos;
 
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLDataException;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 public class CitaData {
@@ -92,7 +96,24 @@ public class CitaData {
     
     public void eliminarCita(int idCita){}
     
-    public void agregarCita(int dni, String zona, int idCentro, Date fecha){
+    public void agregarCita(int dni, int lote, String zona, int idCentro, LocalDateTime fecha){
+        String sql;
+        sql = "INSERT INTO `citavacunacion`(`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
+                + "VALUES (?, ?, ?, ?, ?, false, false)";
+        
+        try{
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ps.setInt(2, lote);
+            ps.setInt(3, idCentro);
+            ps.setTimestamp(4, Timestamp.valueOf(fecha));
+            
+            ps.executeUpdate();
+            ps.close();
+            JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "    Algo salio mal\n   " + ex);
+        } 
         
     }
     
