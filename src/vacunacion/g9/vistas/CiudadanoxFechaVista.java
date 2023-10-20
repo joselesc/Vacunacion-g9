@@ -5,15 +5,22 @@
  */
 package vacunacion.g9.vistas;
 
+import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import vacunacion.g9.accesoADatos.VacunaData;
 import vacunacion.g9.entidades.Vacuna;
+import vacunacion.g9.accesoADatos.CentroData;
+import vacunacion.g9.entidades.Centro;
+
 
 /**
  *
  * @author jfaja
  */
-public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
+public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {    
+    
+    private List<Centro>listaC;
+    private CentroData cd;
     
         private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
@@ -24,7 +31,14 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         
         
     public CiudadanoxFechaVista() {
+        
+        cd = new CentroData();
+        listaC = cd.listarCentrosDepositoCentral();
+        System.out.println("Número de elementos en listaC: " + listaC.size());
+
         initComponents();
+
+        cargarCentros();
         armarcabecera();
         listarVacunas();
     }
@@ -41,15 +55,15 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jDDesde = new com.toedter.calendar.JDateChooser();
-        jDHasta = new com.toedter.calendar.JDateChooser();
         jBuscarxFecha = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jRBVacunado = new javax.swing.JRadioButton();
         jRBNoVacunado = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaxFecha = new javax.swing.JTable();
+        jCBoxCentros = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(204, 255, 255));
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(153, 255, 255)));
@@ -74,9 +88,6 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel4.setText("DESDE");
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel5.setText("HASTA");
 
         jRBVacunado.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jRBVacunado.setText("vacunado");
@@ -105,71 +116,74 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         ));
         jScrollPane1.setViewportView(jTablaxFecha);
 
+        jCBoxCentros.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+
+        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setText("VACUNATORIOS DISPONIBLES");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addComponent(jLabel4)
+                .addGap(139, 139, 139)
+                .addComponent(jBuscarxFecha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addGap(121, 121, 121))
+                .addComponent(jButton1)
+                .addGap(156, 156, 156))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jDDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jDHasta, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jRBVacunado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRBNoVacunado)
-                        .addGap(88, 88, 88))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addGap(284, 284, 284)
-                                .addComponent(jBuscarxFecha)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap(24, Short.MAX_VALUE))
+                        .addGap(74, 74, 74))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jDDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(96, 96, 96)
+                                .addComponent(jCBoxCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(24, Short.MAX_VALUE))))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addGap(68, 68, 68)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
                 .addGap(224, 224, 224))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(323, 323, 323)
-                .addComponent(jButton1)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
-                .addGap(22, 22, 22)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jDHasta, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jDDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel1)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(jLabel4)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jDDesde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(9, 9, 9)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(jCBoxCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
+                        .addGap(9, 9, 9)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jRBNoVacunado)
                             .addComponent(jRBVacunado)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(15, 15, 15)
-                        .addComponent(jBuscarxFecha)
-                        .addGap(66, 66, 66)
+                        .addGap(75, 75, 75)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addComponent(jButton1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jBuscarxFecha))
                 .addContainerGap())
         );
 
@@ -181,15 +195,14 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 414, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 422, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBuscarxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarxFechaActionPerformed
-            String desde=jDDesde.getDateFormatString();
-            String hasta=jDHasta.getDateFormatString();
+            String desde=jDDesde.getDateFormatString();            
             boolean vacunado=jRBVacunado.isSelected();
             boolean noVacu=jRBNoVacunado.isSelected();
             
@@ -207,11 +220,11 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBuscarxFecha;
     private javax.swing.JButton jButton1;
+    private javax.swing.JComboBox<Centro> jCBoxCentros;
     private com.toedter.calendar.JDateChooser jDDesde;
-    private com.toedter.calendar.JDateChooser jDHasta;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRBNoVacunado;
     private javax.swing.JRadioButton jRBVacunado;
@@ -244,4 +257,12 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
             });
         }
     }
+       
+       private void cargarCentros(){
+       
+           for (Centro lista : listaC) {
+               jCBoxCentros.addItem(lista);
+               
+           }
+       }
 }
