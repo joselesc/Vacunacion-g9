@@ -1,25 +1,31 @@
 package vacunacion.g9.vistas;
 
 import java.awt.Component;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import vacunacion.g9.accesoADatos.CentroData;
 import vacunacion.g9.accesoADatos.CitaData;
+import vacunacion.g9.accesoADatos.CiudadanoData;
 import vacunacion.g9.accesoADatos.VacunaData;
 import vacunacion.g9.entidades.Centro;
+import vacunacion.g9.entidades.Ciudadano;
 import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     Calendar calendario = Calendar.getInstance();
     java.util.Date fechaMin = calendario.getTime();
-    //java.util.Date fechaMax = calendario.getTime();
+ 
     CentroData centroData = new CentroData();
     VacunaData vacunaData = new VacunaData();
+    CitaData cd = new CitaData();
+    CiudadanoData ciudadanoData = new CiudadanoData();
     String zona;
 
     public AdministracionCitas() {
@@ -132,6 +138,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jButton4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Agregar");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
 
         jLFechaCita.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLFechaCita.setForeground(new java.awt.Color(255, 255, 255));
@@ -532,6 +543,16 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         habilitarDosis();
     }//GEN-LAST:event_jCTerceraDosisActionPerformed
 
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        List<Ciudadano> ciudadanos = new ArrayList<>();
+        System.out.println("");
+        ciudadanos = ciudadanoData.listarCiudadano2(jDCFechaInscripcion.getDate(), jREsencial.isSelected(), 
+                jRDeRiesgo.isSelected(), (String) jCZonas.getSelectedItem());
+        for (Ciudadano ciudadano : ciudadanos) {
+            System.out.println(ciudadano);
+        }
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bGZonas;
     private javax.swing.JButton jButton1;
@@ -651,4 +672,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             jCTerceraDosis.setEnabled(false);
         }
     }
+    
+    
+    
+    private void fechaMinCita(){}
+    
+    private void fechaMaxCita(){}
+    
 }

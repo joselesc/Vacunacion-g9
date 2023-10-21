@@ -9,7 +9,6 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
-import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.Ciudadano;
 
 public class CiudadanoData {
@@ -48,16 +47,16 @@ public class CiudadanoData {
             JOptionPane.showMessageDialog(null, "Error al conectar database " + ex);
         }
     }
-    
-    public void modificarInfo(Ciudadano ciudadano){
-        
-          Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/actualizar.png"));
+
+    public void modificarInfo(Ciudadano ciudadano) {
+
+        Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/actualizar.png"));
 
         String sql = "UPDATE ciudadano SET apellido=?, nombre=? , email=? , celular=? , zona=? , patologia=? , ambitoTrabajo=? , deRiesgo=?  WHERE dni=?";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-           
+
             ps.setString(1, ciudadano.getApellido());
             ps.setString(2, ciudadano.getNombre());
             ps.setString(3, ciudadano.getEmail());
@@ -75,7 +74,7 @@ public class CiudadanoData {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error al conectar database " + ex);
         }
-        
+
     }
 
     public Ciudadano buscarCiudadano(int dni) {
@@ -109,14 +108,62 @@ public class CiudadanoData {
         return c;
     }
 
+    //para la Clase AdministracionListarCiudadano()
     public List<Ciudadano> listarCiudadano() {
 
         List<Ciudadano> ciu = new ArrayList<>();
 
         try {
 
-            String sql = " select * from ciudadano ";
+            String sql = "SELECT * FROM ciudadano";
+
             PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                Ciudadano c = new Ciudadano();
+
+                c.setDni(rs.getInt("dni"));
+                c.setApellido(rs.getString("apellido"));
+                c.setNombre(rs.getString("nombre"));
+                c.setEmail(rs.getString("email"));
+                c.setCelular(rs.getInt("celular"));
+                c.setZona(rs.getString("zona"));
+                c.setPatologia(rs.getString("patologia"));
+                c.setAmbitoTrabajo(rs.getBoolean("ambitoTrabajo"));
+                c.setRiesgo(rs.getBoolean("deRiesgo"));
+                ciu.add(c);
+
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Ciudadano" + ex.getMessage());
+        }
+
+        return ciu;
+    }
+
+    //para la Clase AdministrarCitas()
+    public List<Ciudadano> listarCiudadano2(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
+
+        List<Ciudadano> ciu = new ArrayList<>();
+        String sql;
+        try {
+            if (!"Todos".equals(zona)) {
+                sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ? AND zona = ?";
+            }else{
+                sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo";
+            }
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
+            ps.setDate(1, fechaSql);
+            ps.setBoolean(2, esencial);
+            ps.setBoolean(3, riesgo);
+            if (zona != null) {
+                ps.setString(4, zona);
+            }
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -246,8 +293,6 @@ public class CiudadanoData {
 
         return validar;
     }
-    
-    
 
     public int getDniReg() {
         return dniReg;
