@@ -271,7 +271,7 @@ public class CentroData {
         List<Centro> centros = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM centro WHERE zona = 'Deposito central' AND activo = 1 ";
+            String sql = "SELECT * FROM centro ";
             PreparedStatement ps = con.prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {

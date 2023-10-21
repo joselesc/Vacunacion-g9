@@ -169,14 +169,14 @@ try {
             ps.setLong(1, cuit);
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
-                int count = rs.getInt(1);
-                return count > 0; // Si count es mayor que 0, el CUIT existe en la tabla.
+                int existe = rs.getInt(1);
+                return existe > 0; 
             }
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "ERROR AL VERIFICAR EL CUIT EN LA TABLA LABORATORIO: " + ex.getMessage());
         }
-        return false; // En caso de error o si el CUIT no existe.
+        return false; 
     }
 
 }
