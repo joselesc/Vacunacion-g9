@@ -8,6 +8,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import vacunacion.g9.entidades.CitaVacunacion;
 
@@ -21,38 +23,45 @@ public class CitaData {
         con = Conexion.getConexion();
     }
 
-    public void mostrarCitaCiudadano(int dni) {
+    public void mostrarCitaCiudadano() {
 
-        if (dniReg == 0) {
+        CiudadanoData cd=new CiudadanoData();
+        int dniReg=cd.dniReg();
+        
+        if(dniReg==0){
             JOptionPane.showMessageDialog(null, "Debe loguearse primero");
+            
+        }else{
+        
+            Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fechaVac.png"));
+            String ciuNom, ape, cenNom, dire, zona;
+            int dni;
+            Timestamp fh;
+            LocalDateTime fhc;
+        
+        String query=" SELECT ciudadano.nombre, apellido, dni, fechaHoraCita, centro.nombre,direccion,centro.zona "
+                + "FROM ciudadano JOIN citavacunacion ON (ciuadano.dni=citavacunacion.dni) JOIN centro ON (citavacunacion.id_centro=crntro.id_centro) "
+                + "WHERE dni=?";
+        
+        try (PreparedStatement ps = con.prepareStatement(query)) {
+            ps.setInt(1, dniReg);
+            try (ResultSet rs = ps.executeQuery()) {
 
-        } else {
-
-            String sql = "SELECT * FROM `citavacunacion` WHERE dni=?";
-            try (PreparedStatement ps = con.prepareStatement(sql)) {
-
-                ps.setInt(1, dniReg);
-
-                try (ResultSet rs = ps.executeQuery()) {
-                    while (rs.next()) {
-//                    c = new Ciudadano();
-//                    c.setDni(rs.getInt("dni"));
-//                    c.setApellido(rs.getString("apellido"));
-//                    c.setNombre(rs.getString("nombre"));
-//                    c.setEmail(rs.getString("email"));
-//                    c.setCelular(rs.getInt("celular"));
-//                    c.setZona(rs.getString("zona"));
-//                    c.setPatologia(rs.getString("patologia"));
-//                    c.setAmbitoTrabajo(rs.getBoolean("ambitoTrabajo"));
-//                    c.setRiesgo(rs.getBoolean("deRiesgo"));
-                    }
-                }
-
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+                if (rs.next()) {
+                    ciuNom=rs.getString("ciudadano.nombre");
+                    ape=rs.getString("apellido");
+                    dni=rs.getInt("dni");
+                    fh=rs.getTimestamp("fechaHoraCita");
+                    fhc=fh.toLocalDateTime();
+                    cenNom=rs.getString("centro.nombre");
+                    dire=rs.getString("direccion");
+                    zona=rs.getString("zona");
+                    
+                };
             }
-
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
         }
 
     }

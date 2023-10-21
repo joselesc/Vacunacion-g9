@@ -249,8 +249,8 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
 
     private void jMIFechaVacunacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMIFechaVacunacionActionPerformed
 
-        CiudadanoData cd = new CiudadanoData();
-        cd.mostrarCita();
+        CitaData cd = new CitaData();
+        cd.mostrarCitaCiudadano();
 
 
     }//GEN-LAST:event_jMIFechaVacunacionActionPerformed
