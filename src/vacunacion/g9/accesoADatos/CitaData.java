@@ -194,14 +194,14 @@ public class CitaData {
         return conteo;
     }
 
-    public List<CitaVacunacion> listarCitasPorFechaYCentro(LocalDateTime fecha, int idCentro) {
+    public List<CitaVacunacion> listarCitasPorFechaYCentro(java.util.Date fecha, int idCentro) {
         List<CitaVacunacion> citas = new ArrayList<>();
-        String sql = "SELECT * FROM citavacunacion WHERE DATE(fechaHoraCita) = ? AND id_centro = ?";
+        String sql = "SELECT * FROM citavacunacion WHERE fechaHoraCita = ? AND id_centro = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
             
-            Timestamp fechaTimestamp = Timestamp.valueOf(fecha);
-            ps.setTimestamp(1, fechaTimestamp);
+//            Timestamp fechaTimestamp = Timestamp.valueOf(fecha);
+            ps.setTimestamp(1, new java.sql.Timestamp(fecha.getTime()));
             ps.setInt(2, idCentro);
 
             try (ResultSet rs = ps.executeQuery()) {
@@ -213,7 +213,10 @@ public class CitaData {
                     cita.setLote(rs.getInt("lote"));
                     cita.setId_centro(rs.getInt("id_centro"));
 //                    cita.setFechaHoraCita(rs.getDate("fechaCaduca").toLocalDate());
-                    fechaTimestamp=rs.getTimestamp("fechaHoraCita");
+//                    cita.setFechaHoraCita(new java.util.Date(rs.getTimestamp("fechaHoraCita").getTime()));
+                   Timestamp timestamp=rs.getTimestamp("fechaHoraCita");
+                   LocalDateTime lc=timestamp.toLocalDateTime();
+                   cita.setFechaHoraCita(lc);
                     cita.setColocada(rs.getBoolean("colocada"));
                     cita.setCancelada(rs.getBoolean("cancelada"));
 

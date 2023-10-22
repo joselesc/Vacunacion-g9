@@ -5,9 +5,6 @@
  */
 package vacunacion.g9.vistas;
 
-import java.sql.Date;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -101,18 +98,31 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
         jTablaxFecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "ID", "DNI", "LOTE", "FECHA CITA", "APLICADA", "CANCELADA"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTablaxFecha);
 
         jCBoxCentros.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jCBoxCentros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCBoxCentrosActionPerformed(evt);
+            }
+        });
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel2.setText("VACUNATORIOS DISPONIBLES");
@@ -202,12 +212,12 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         String desde = jDDesde.getDateFormatString();
         boolean vacunado = jRBVacunado.isSelected();
         boolean noVacu = jRBNoVacunado.isSelected();
-        if (vacunado==true) {
+        if (vacunado == true) {
             jRBVacunado.isEnabled();
-            
-        }else{
-            if (noVacu==true) {
-                vacunado=false;
+
+        } else {
+            if (noVacu == true) {
+                vacunado = false;
             }
         }
         listarcitas();
@@ -221,6 +231,10 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         vV.setVisible(true);
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jCBoxCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxCentrosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jCBoxCentrosActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -239,15 +253,15 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
 
     private void armarcabecera() {
-        modelo.addColumn("CITA");
-        modelo.addColumn("DNI");
-        modelo.addColumn("LOTE");
-        modelo.addColumn("id_CENTRO");
-        modelo.addColumn("FECHA");
-        modelo.addColumn("COLOCADA");
-        modelo.addColumn("CANCELADA");
-        jTablaxFecha.setModel(modelo);
-
+//        modelo.addColumn("CITA");
+//        modelo.addColumn("DNI");
+//        modelo.addColumn("LOTE");
+//        modelo.addColumn("id_CENTRO");
+//        modelo.addColumn("FECHA");
+//        modelo.addColumn("COLOCADA");
+//        modelo.addColumn("CANCELADA");
+//        jTablaxFecha.setModel(modelo);
+        modelo = (DefaultTableModel) jTablaxFecha.getModel();
     }
 //       public void listarVacunas() {
 //        VacunaData vD = new VacunaData();
@@ -277,29 +291,30 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
         // Obtén la fecha seleccionada del JDateChooser
 //        String desde = jDDesde.getDateFormatString();
-        Date selectedDate = (Date) jDDesde.getDate();
+        java.util.Date selectedDate = jDDesde.getDate();
 
         if (selectedDate != null) {
             // Convierte la fecha seleccionada a un LocalDateTime
-            LocalDateTime fecha = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+//            LocalDateTime fecha = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
             // Obtén el objeto Centro seleccionado en el JComboBox
             Centro centroSeleccionado = (Centro) jCBoxCentros.getSelectedItem();
 
+            System.out.println(centroSeleccionado);
             if (centroSeleccionado != null) {
                 int idCentro = centroSeleccionado.getId();
-
-                List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(fecha, idCentro);
-
-                DefaultTableModel modelo = (DefaultTableModel) jTablaxFecha.getModel();
+                List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(selectedDate, idCentro);
+                System.out.println(selectedDate);
+//                DefaultTableModel modelo = (DefaultTableModel) jTablaxFecha.getModel();
                 modelo.setRowCount(0); // Limpia las filas existentes en la tabla
 
                 for (CitaVacunacion c : citas) {
+                    System.out.println(c);
                     modelo.addRow(new Object[]{
                         c.getCodCita(),
                         c.getDni(),
                         c.getLote(),
-                        c.getId_centro(),
+//                        c.getId_centro(),
                         c.getFechaHoraCita(),
                         c.isColocada(),
                         c.isCancelada()
