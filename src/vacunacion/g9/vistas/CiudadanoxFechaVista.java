@@ -149,19 +149,19 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jCBoxCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jRBVacunado)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jRBNoVacunado)
                         .addGap(74, 74, 74))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jDDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(24, Short.MAX_VALUE))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(24, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jDDesde, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jCBoxCentros, 0, 701, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -209,17 +209,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
 
     private void jBuscarxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarxFechaActionPerformed
-        String desde = jDDesde.getDateFormatString();
-        boolean vacunado = jRBVacunado.isSelected();
-        boolean noVacu = jRBNoVacunado.isSelected();
-        if (vacunado == true) {
-            jRBVacunado.isEnabled();
-
-        } else {
-            if (noVacu == true) {
-                vacunado = false;
-            }
-        }
+       
         listarcitas();
 
     }//GEN-LAST:event_jBuscarxFechaActionPerformed
@@ -291,20 +281,23 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
         // Obtén la fecha seleccionada del JDateChooser
 //        String desde = jDDesde.getDateFormatString();
-        java.util.Date selectedDate = jDDesde.getDate();
+        java.util.Date fecha = jDDesde.getDate();
 
-        if (selectedDate != null) {
+        if (fecha != null) {
             // Convierte la fecha seleccionada a un LocalDateTime
+            
 //            LocalDateTime fecha = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
 
             // Obtén el objeto Centro seleccionado en el JComboBox
             Centro centroSeleccionado = (Centro) jCBoxCentros.getSelectedItem();
+            System.out.println(fecha);
+            
 
             System.out.println(centroSeleccionado);
             if (centroSeleccionado != null) {
                 int idCentro = centroSeleccionado.getId();
-                List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(selectedDate, idCentro);
-                System.out.println(selectedDate);
+                List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(fecha, idCentro);
+//                System.out.println(selectedDate);
 //                DefaultTableModel modelo = (DefaultTableModel) jTablaxFecha.getModel();
                 modelo.setRowCount(0); // Limpia las filas existentes en la tabla
 

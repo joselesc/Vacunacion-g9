@@ -218,7 +218,7 @@ public class CitaData {
                    LocalDateTime lc=timestamp.toLocalDateTime();
                    cita.setFechaHoraCita(lc);
                     cita.setColocada(rs.getBoolean("colocada"));
-                    cita.setCancelada(rs.getBoolean("cancelada"));
+//                    cita.setCancelada(rs.getBoolean("cancelada"));
 
                     citas.add(cita);
                 }
