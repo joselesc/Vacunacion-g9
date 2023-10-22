@@ -48,7 +48,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        jBAgregar = new javax.swing.JButton();
         jLFechaCita = new javax.swing.JLabel();
         jDCFechaInscripcion = new com.toedter.calendar.JDateChooser();
         jCCentrosDeVacunacion = new javax.swing.JComboBox<>();
@@ -134,13 +134,13 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jButton3.setForeground(new java.awt.Color(255, 255, 255));
         jButton3.setText("Modificar");
 
-        jButton4.setBackground(new java.awt.Color(0, 52, 89));
-        jButton4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jButton4.setText("Agregar");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        jBAgregar.setBackground(new java.awt.Color(0, 52, 89));
+        jBAgregar.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jBAgregar.setForeground(new java.awt.Color(255, 255, 255));
+        jBAgregar.setText("Agregar");
+        jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                jBAgregarActionPerformed(evt);
             }
         });
 
@@ -330,7 +330,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -367,22 +367,24 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                         .addComponent(jCSegundaDosis)
                                         .addGap(18, 18, 18)
                                         .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addComponent(jLCantidadDeTurnosPorDia1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRDeRiesgo)
-                                .addGap(76, 76, 76)
-                                .addComponent(jREsencial)
-                                .addGap(18, 18, 18)
-                                .addComponent(jRMostrarTodosCiudadanos)
+                                .addGap(373, 373, 373)
+                                .addComponent(jLabel1))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLCantidadDeTurnosPorDia1)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, 218, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jRDeRiesgo)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jREsencial)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jRMostrarTodosCiudadanos)))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLCantidadDeTurnosPorDia)
-                                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(373, 373, 373)
-                                .addComponent(jLabel1)))
+                                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(19, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
@@ -459,12 +461,12 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jButton2)
                         .addComponent(jButton3)
-                        .addComponent(jButton4)))
+                        .addComponent(jBAgregar))
+                    .addComponent(jButton1))
                 .addGap(72, 72, 72))
         );
 
@@ -543,22 +545,24 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         habilitarDosis();
     }//GEN-LAST:event_jCTerceraDosisActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         List<Ciudadano> ciudadanos = new ArrayList<>();
-        System.out.println("");
+        int contador = 0;
         ciudadanos = ciudadanoData.listarCiudadano2(jDCFechaInscripcion.getDate(), jREsencial.isSelected(), 
-                jRDeRiesgo.isSelected(), (String) jCZonas.getSelectedItem());
+                jRDeRiesgo.isSelected(), (String) jCZonas.getSelectedItem(), jRMostrarTodosCiudadanos.isSelected());
         for (Ciudadano ciudadano : ciudadanos) {
-            System.out.println(ciudadano);
+            
+            contador ++;
         }
-    }//GEN-LAST:event_jButton4ActionPerformed
+        System.out.println("se contaron " + contador + " personas");
+    }//GEN-LAST:event_jBAgregarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bGZonas;
+    private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
     private javax.swing.JCheckBox jCPrimeraDosis;
     private javax.swing.JCheckBox jCSegundaDosis;

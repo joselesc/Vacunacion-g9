@@ -146,23 +146,35 @@ public class CiudadanoData {
     }
 
     //para la Clase AdministrarCitas()
-    public List<Ciudadano> listarCiudadano2(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
+    public List<Ciudadano> listarCiudadano2(java.util.Date fecha, boolean esencial, boolean riesgo, String zona, boolean todos) {
 
         List<Ciudadano> ciu = new ArrayList<>();
         String sql;
         try {
-            if (!"Todos".equals(zona)) {
-                sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ? AND zona = ?";
+            if (todos == true && zona.equals("Todos")) {
+                    sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ?";
+            }else if(todos == false && zona.equals("Todos")){
+                    sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ?";
+            }else if(todos == true && !zona.equals("Todos")){
+                    sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND zona = ?";
             }else{
-                sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo";
+                if (zona.equals("Todos")) {
+                    sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ?";
+                }else{
+                    sql = "SELECT * FROM ciudadano WHERE fechaInscripcion = ? AND ambitoTrabajo = ? AND deRiesgo = ? AND zona = ?";
+                }
             }
 
             PreparedStatement ps = con.prepareStatement(sql);
             java.sql.Date fechaSql = new java.sql.Date(fecha.getTime());
             ps.setDate(1, fechaSql);
-            ps.setBoolean(2, esencial);
+            if (todos == true && !zona.equals("Todos")) {
+                ps.setString(2, zona);
+            }else{
+                ps.setBoolean(2, esencial);
+            }
             ps.setBoolean(3, riesgo);
-            if (zona != null) {
+            if (!zona.equals("Todos")) {
                 ps.setString(4, zona);
             }
             ResultSet rs = ps.executeQuery();
@@ -185,7 +197,9 @@ public class CiudadanoData {
             ps.close();
             rs.close();
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Ciudadano" + ex.getMessage());
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Ciudadano \n" + ex.getMessage());
+        }catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, " Debe seleccionar una fecha \n" + ex.getMessage());
         }
 
         return ciu;
