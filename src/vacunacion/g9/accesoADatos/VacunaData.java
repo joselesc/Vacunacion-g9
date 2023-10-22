@@ -115,7 +115,7 @@ public class VacunaData {
             }
             ps.close();
         } catch (SQLException e) {
-            System.err.println("ERRO AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
+            System.err.println("ERROR AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
         }
         return vacunas;
     }
@@ -129,7 +129,7 @@ public class VacunaData {
             ps.executeUpdate();
             ps.close();
         } catch (SQLException e) {
-            System.err.println("Error al actualizar estado de la vacuna: " + e.getMessage());
+            System.err.println("ERROR AL ACTUALIZAR: " + e.getMessage());
         }
     }
 
@@ -219,7 +219,7 @@ public class VacunaData {
             }
             ps.close();
         } catch (SQLException e) {
-            System.err.println("ERRO AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
+            System.err.println("ERROR AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
         }
         return vacunas;
 //////////////////////////////////////////////////////////////////////////////////////////////////////////////        

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 20-10-2023 a las 16:00:51
+-- Tiempo de generación: 22-10-2023 a las 02:33:09
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -72,6 +72,15 @@ CREATE TABLE `citavacunacion` (
   `colocada` tinyint(1) NOT NULL,
   `cancelado` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Volcado de datos para la tabla `citavacunacion`
+--
+
+INSERT INTO `citavacunacion` (`codCita`, `dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) VALUES
+(3, 5070989, 1, '2023-10-21 09:00:00', 19, 1, 0),
+(4, 5252856, 2, '2023-10-21 09:00:00', 20, 1, 0),
+(5, 5330578, 3, '2023-10-21 09:00:00', 21, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -1119,6 +1128,7 @@ CREATE TABLE `laboratorio` (
 --
 
 INSERT INTO `laboratorio` (`cuit`, `nombreLaboratorio`, `pais`, `domComercial`, `activo`) VALUES
+(1, 'a', 'g', 'g', 0),
 (30500772324, 'Astra Zéneca S.A.', 'Inglaterra', 'Calle Puerto De Somport 21 23. 28050, Madrid', 0),
 (30501152826, 'Laboratorios Richmond S.A', 'Rusia', 'Av. Elcano 4938', 0),
 (30503518518, 'PFIZER S.R.L', 'Estados Unidos', 'Calle Carlos Berg 3669', 0),
@@ -1230,7 +1240,7 @@ ALTER TABLE `centro`
 -- AUTO_INCREMENT de la tabla `citavacunacion`
 --
 ALTER TABLE `citavacunacion`
-  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `login`

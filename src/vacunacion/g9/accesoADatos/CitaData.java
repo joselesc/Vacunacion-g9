@@ -205,6 +205,7 @@ public class CitaData {
                     cita.setDni(rs.getInt("dni"));
                     cita.setLote(rs.getInt("lote"));
                     cita.setId_centro(rs.getInt("id_centro"));
+//                    cita.setFechaHoraCita(rs.getDate("fechaCaduca").toLocalDate());
                     fechaTimestamp=rs.getTimestamp("fechaHoraCita");
                     cita.setColocada(rs.getBoolean("colocada"));
                     cita.setCancelada(rs.getBoolean("cancelada"));

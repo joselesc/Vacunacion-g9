@@ -130,6 +130,11 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
         jBLimpiar.setBackground(new java.awt.Color(255, 255, 204));
         jBLimpiar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBLimpiar.setText("LIMPIAR");
+        jBLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBLimpiarActionPerformed(evt);
+            }
+        });
 
         jBSalir.setBackground(new java.awt.Color(255, 51, 51));
         jBSalir.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
@@ -252,7 +257,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
         try {
             cuit = Long.parseLong(jTFCuit.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El CUIT debe ser un número válido.");
+            JOptionPane.showMessageDialog(null, "El CUIT DEBE SER UN NUMERO VALIDO!!.");
             return;
         }
 
@@ -261,18 +266,23 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             return;
 
         } else {
-            // Si llegamos aquí, todos los valores son válidos
-            Laboratorio nl = new Laboratorio(cuit, NomLaboratorio, pais, DomComercial);
+            // Realiza la validación del CUIT en la base de datos
             LaboratorioData ld = new LaboratorioData();
+            if (ld.existeCuit(cuit)) {
+                JOptionPane.showMessageDialog(this, "LABORATORIO INEXISTENTE!!!");
+                return;// Si llegamos aquí, todos los valores son válidos
+            }
+            Laboratorio nl = new Laboratorio(cuit, NomLaboratorio, pais, DomComercial);
             ld.guardarLaboratorio(nl);
             JOptionPane.showMessageDialog(this, "LABORATORIO AGREGADO!!!");
             limpiar();
 //            listarLaboratorio();
-limpiartablaLaboratorio();
+            limpiartablaLaboratorio();
 
     }//GEN-LAST:event_jBAgregarActionPerformed
     }
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
+
         long cuit = 0;
         String NomLaboratorio = jTFNombre.getText();
         String pais = jTFPais.getText();
@@ -281,23 +291,26 @@ limpiartablaLaboratorio();
         try {
             cuit = Long.parseLong(jTFCuit.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El CUIT debe ser un número válido.");
+            JOptionPane.showMessageDialog(null, "El CUIT DEBE SER UN NUMERO VALIDO!!."+e.getMessage());
             return;
         }
 
         if (NomLaboratorio.isEmpty() || pais.isEmpty() || DomComercial.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Todos los campos deben ser completados.");
+            JOptionPane.showMessageDialog(null, "TODOS LOS CAMPOS DEBEN SER COMPLETADOS!!.");
             return;
         } else {
-            // todos válidos
-            Laboratorio nl = new Laboratorio(cuit, NomLaboratorio, pais, DomComercial);
+//            // Realiza la validación del CUIT en la base de datos
             LaboratorioData ld = new LaboratorioData();
-            ld.modificar(nl); // Llama al método para modificar el laboratorio
+//            if (ld.existeCuit(cuit)) {
+//                JOptionPane.showMessageDialog(this, "El CUIT ya existe en la base de datos. No se puede modificar.");
+//                return;
+//            }
+
+            // Si el CUIT no existe en la base de datos, continúa con la modificación
+            Laboratorio nl = new Laboratorio(cuit, NomLaboratorio, pais, DomComercial);
+            ld.modificar(nl);
             JOptionPane.showMessageDialog(this, "LABORATORIO MODIFICADO!!!");
             limpiar();
-//            listarLaboratorio();
-limpiartablaLaboratorio();
-
         }
     }//GEN-LAST:event_jBModificarActionPerformed
 
@@ -307,7 +320,7 @@ limpiartablaLaboratorio();
         try {
             cuit = Long.parseLong(jTFCuit.getText());
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "El CUIT debe ser un número válido.");
+            JOptionPane.showMessageDialog(null, "El CUIT DEBE SER UN NUMERO VALIDO!!.");
             return;
         }
 
@@ -316,7 +329,7 @@ limpiartablaLaboratorio();
 
         if (laboratorio != null) {
             ld.eliminar(cuit); // Llama al método
-  
+
             limpiar();
 //        listarLaboratorio();
             limpiartablaLaboratorio();
@@ -343,6 +356,10 @@ limpiartablaLaboratorio();
             jTFnomComercial.setText(domComercial.toString());
         }
     }//GEN-LAST:event_jTlistarLabMouseClicked
+
+    private void jBLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBLimpiarActionPerformed
+        limpiar();
+    }//GEN-LAST:event_jBLimpiarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
