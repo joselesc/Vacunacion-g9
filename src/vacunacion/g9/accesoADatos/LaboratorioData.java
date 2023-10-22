@@ -93,27 +93,7 @@ public class LaboratorioData {
     }
 
     public void eliminar(long cuit) {
-//
-//        String sql = "DELETE FROM laboratorio WHERE cuit=?";
-//
-//        try {
-//
-//            PreparedStatement ps = con.prepareStatement(sql);
-//            ps.setLong(1, cuit);
-//
-//            int mod = ps.executeUpdate();
-//
-//            if (mod == 1) {
-//                JOptionPane.showMessageDialog(null, "LABORATORIO ELIMINADO!!!.");
-//
-//            } else {
-//                JOptionPane.showMessageDialog(null, "EL LABORATORIO NO EXISTE");
-//            }
-//            ps.close();
-//
-//        } catch (SQLException ex) {
-//            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
-//        }
+
 try {
         // Antes de eliminar el laboratorio, verifica si se encuentra en uso (claves foráneas).
         VacunaData lb=new VacunaData();
@@ -151,7 +131,7 @@ try {
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "laboratorio modificado con exito.");
+                JOptionPane.showMessageDialog(null, "APURATE HOLGAZAN!!");
 
             } else {
                 JOptionPane.showMessageDialog(null, "El cuit del laboratorio no existe");

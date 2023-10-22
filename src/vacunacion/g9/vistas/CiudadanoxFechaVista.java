@@ -16,26 +16,23 @@ import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.CitaVacunacion;
 
-
 /**
  *
  * @author jfaja
  */
-public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {    
-    
-    private List<Centro>listaC;
+public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
+
+    private List<Centro> listaC;
     private CentroData cd;
-    
-        private DefaultTableModel modelo = new DefaultTableModel() {
+
+    private DefaultTableModel modelo = new DefaultTableModel() {
         public boolean isCellEditable(int f, int c) {
             return false;
         }
     };
-        
-        
-        
+
     public CiudadanoxFechaVista() {
-        
+
         cd = new CentroData();
         listaC = cd.listarCentrosDepositoCentral();
         System.out.println("Número de elementos en listaC: " + listaC.size());
@@ -43,11 +40,10 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         initComponents();
         cargarCentros();
         armarcabecera();
-        listarcitas();
+
 //        listarVacunas();
     }
 
-   
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -131,9 +127,20 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton1)
                 .addGap(156, 156, 156))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(68, 68, 68)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(224, 224, 224))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jCBoxCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(43, 43, 43)
                         .addComponent(jRBVacunado)
@@ -143,19 +150,8 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jDDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(96, 96, 96)
-                                .addComponent(jCBoxCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(24, Short.MAX_VALUE))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel1))
-                .addGap(224, 224, 224))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -200,21 +196,30 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-        
+
 
     private void jBuscarxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarxFechaActionPerformed
-        String desde=jDDesde.getDateFormatString();            
-            boolean vacunado=jRBVacunado.isSelected();
-            boolean noVacu=jRBNoVacunado.isSelected();
+        String desde = jDDesde.getDateFormatString();
+        boolean vacunado = jRBVacunado.isSelected();
+        boolean noVacu = jRBNoVacunado.isSelected();
+        if (vacunado==true) {
+            jRBVacunado.isEnabled();
             
+        }else{
+            if (noVacu==true) {
+                vacunado=false;
+            }
+        }
+        listarcitas();
+
     }//GEN-LAST:event_jBuscarxFechaActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-            
+
         dispose();
-        VacunacionVista vV=new VacunacionVista();
+        VacunacionVista vV = new VacunacionVista();
         vV.setVisible(true);
-      
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -233,16 +238,16 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTablaxFecha;
     // End of variables declaration//GEN-END:variables
 
-    private void armarcabecera(){
+    private void armarcabecera() {
         modelo.addColumn("CITA");
         modelo.addColumn("DNI");
         modelo.addColumn("LOTE");
+        modelo.addColumn("id_CENTRO");
         modelo.addColumn("FECHA");
         modelo.addColumn("COLOCADA");
         modelo.addColumn("CANCELADA");
-//        modelo.addColumn("COLOCADA");
         jTablaxFecha.setModel(modelo);
-        
+
     }
 //       public void listarVacunas() {
 //        VacunaData vD = new VacunaData();
@@ -258,51 +263,54 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 //            });
 //        }
 //    }
-       
-       private void cargarCentros(){
-       
-           for (Centro lista : listaC) {
-               jCBoxCentros.addItem(lista);
-               
-           }
-       }
-public void listarcitas() {
-    CitaData cd = new CitaData();
-    
-    // Obtén la fecha seleccionada del JDateChooser
-    Date selectedDate = (Date) jDDesde.getDate();
-    
-    if (selectedDate != null) {
-        // Convierte la fecha seleccionada a un LocalDateTime
-        LocalDateTime fecha = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
-        
-        // Obtén el objeto Centro seleccionado en el JComboBox
-        Centro centroSeleccionado = (Centro) jCBoxCentros.getSelectedItem();
-        
-        if (centroSeleccionado != null) {
-            int idCentro = centroSeleccionado.getId();
 
-            List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(fecha, idCentro);
+    private void cargarCentros() {
 
-            DefaultTableModel modelo = (DefaultTableModel) jTablaxFecha.getModel();
-            modelo.setRowCount(0); // Limpia las filas existentes en la tabla
+        for (Centro lista : listaC) {
+            jCBoxCentros.addItem(lista);
 
-            for (CitaVacunacion c : citas) {
-                modelo.addRow(new Object[]{
-                    c.getCodCita(),
-                    c.getDni(),
-                    c.getLote(),
-                    c.getFechaHoraCita(),
-                    c.isColocada(),
-                    c.isCancelada()
-                });
+        }
+    }
+
+    public void listarcitas() {
+        CitaData cd = new CitaData();
+
+        // Obtén la fecha seleccionada del JDateChooser
+//        String desde = jDDesde.getDateFormatString();
+        Date selectedDate = (Date) jDDesde.getDate();
+
+        if (selectedDate != null) {
+            // Convierte la fecha seleccionada a un LocalDateTime
+            LocalDateTime fecha = selectedDate.toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
+
+            // Obtén el objeto Centro seleccionado en el JComboBox
+            Centro centroSeleccionado = (Centro) jCBoxCentros.getSelectedItem();
+
+            if (centroSeleccionado != null) {
+                int idCentro = centroSeleccionado.getId();
+
+                List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(fecha, idCentro);
+
+                DefaultTableModel modelo = (DefaultTableModel) jTablaxFecha.getModel();
+                modelo.setRowCount(0); // Limpia las filas existentes en la tabla
+
+                for (CitaVacunacion c : citas) {
+                    modelo.addRow(new Object[]{
+                        c.getCodCita(),
+                        c.getDni(),
+                        c.getLote(),
+                        c.getId_centro(),
+                        c.getFechaHoraCita(),
+                        c.isColocada(),
+                        c.isCancelada()
+                    });
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Seleccione un centro primero.");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Seleccione un centro primero.");
+            JOptionPane.showMessageDialog(null, "Seleccione una fecha primero.");
         }
-    } else {
-        JOptionPane.showMessageDialog(null, "Seleccione una fecha primero.");
     }
-}
 
 }
