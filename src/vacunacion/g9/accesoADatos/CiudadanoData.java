@@ -16,7 +16,8 @@ import vacunacion.g9.entidades.Ciudadano;
 public class CiudadanoData {
 
     private Connection con = null;
-    private int dniReg = 0;
+    private int dniReg;
+    
     public CiudadanoData() {
         con = Conexion.getConexion();
     }
@@ -231,10 +232,10 @@ public class CiudadanoData {
         }
     }
 
-    public int loguearse(int dni) {
+    public void loguearse(int dni) {
 
         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/login.png"));
-        int c = 0;
+    
         String sql = "SELECT dni FROM ciudadano WHERE dni = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
@@ -244,8 +245,7 @@ public class CiudadanoData {
                 if (rs.next()) {
 
                     JOptionPane.showMessageDialog(null, "Ingreso exitoso", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
-                    c = rs.getInt("dni");
-
+ 
                 } else {
                     JOptionPane.showMessageDialog(null, "No hay ninguna cuenta co esta dni, debe registrarse primero");
                 }
@@ -253,19 +253,9 @@ public class CiudadanoData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
-        dniReg = c;
+        dniReg = dni;
 
-        return c;
-
-    }
-
-    public int dniReg() {
-        
-       return dniReg;
-
-    }
-
-    public void cancelarCita() {
+//        return dniReg;
 
     }
 

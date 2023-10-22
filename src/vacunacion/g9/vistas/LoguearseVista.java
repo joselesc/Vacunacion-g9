@@ -6,6 +6,7 @@
 package vacunacion.g9.vistas;
 
 import javax.swing.JOptionPane;
+import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.accesoADatos.CiudadanoData;
 
 /**
@@ -118,10 +119,13 @@ public class LoguearseVista extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBIngresarActionPerformed
+       
         try {
             int dni = Integer.parseInt(jTFDni.getText());
             CiudadanoData cd = new CiudadanoData();
             cd.loguearse(dni);
+//            CitaData cit=new CitaData(dni);
+          
             jTFDni.setText("");
             this.dispose();
 
