@@ -11,7 +11,10 @@ import java.util.List;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.CitaVacunacion;
+import vacunacion.g9.entidades.Ciudadano;
+import vacunacion.g9.entidades.Vacuna;
 
 public class CitaData {
     
@@ -110,26 +113,30 @@ public class CitaData {
     public void eliminarCita(int idCita) {
     }
 
-    public void agregarCita(int dni, int lote, String zona, int idCentro, LocalDateTime fecha) {
-        String sql;
-        sql = "INSERT INTO `citavacunacion`(`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
-                + "VALUES (?, ?, ?, ?, ?, false, false)";
+    public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
+        String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
+                + "VALUES (?, ?, ?, ?, false, false)";
 
         try {
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, dni);
-            ps.setInt(2, lote);
-            ps.setInt(3, idCentro);
-            ps.setTimestamp(4, Timestamp.valueOf(fecha));
+            ps.setInt(1, ciudadano.getDni());
+            ps.setInt(2, vacuna.getLote());
+            ps.setTimestamp(3, new java.sql.Timestamp(fecha.getTime()));
+            ps.setInt(4, centro.getId());
 
-            ps.executeUpdate();
+            int rowsAffected = ps.executeUpdate();
             ps.close();
-            JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "    Algo salio mal\n   " + ex);
-        }
 
-    }
+            if (rowsAffected > 0) {
+                //JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Algo salió mal:\n" + ex);
+        }
+}
+
 
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;

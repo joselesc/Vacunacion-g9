@@ -21,7 +21,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     Calendar calendario = Calendar.getInstance();
     java.util.Date fechaMin = calendario.getTime();
- 
+
     CentroData centroData = new CentroData();
     VacunaData vacunaData = new VacunaData();
     CitaData cd = new CitaData();
@@ -547,14 +547,23 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         List<Ciudadano> ciudadanos = new ArrayList<>();
-        int contador = 0;
-        ciudadanos = ciudadanoData.listarCiudadano2(jDCFechaInscripcion.getDate(), jREsencial.isSelected(), 
+        ciudadanos = ciudadanoData.listarCiudadano2(jDCFechaInscripcion.getDate(), jREsencial.isSelected(),
                 jRDeRiesgo.isSelected(), (String) jCZonas.getSelectedItem(), jRMostrarTodosCiudadanos.isSelected());
-        for (Ciudadano ciudadano : ciudadanos) {
-            
-            contador ++;
+        String selectedValue = (String) jCTurnosPorDia.getSelectedItem();
+        Vacuna vacunaSeleccionada = (Vacuna) jCVacunasPorLotes.getSelectedItem();
+        Centro centroSeleccionada = (Centro) jCCentrosDeVacunacion.getSelectedItem();
+        int cantTurnos = Integer.parseInt(selectedValue);
+        int contador = 0;
+        if (jCZonas.getSelectedItem().toString().equals("Todos")) {
+            JOptionPane.showMessageDialog(null, "Debe seleccionar una zona");
+        } else {
+                for (Ciudadano ciudadano : ciudadanos) {
+                    cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaCita.getDate());
+                    if (contador == cantTurnos) {
+                        break;
+                    }
+            }
         }
-        System.out.println("se contaron " + contador + " personas");
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -676,11 +685,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             jCTerceraDosis.setEnabled(false);
         }
     }
-    
-    
-    
-    private void fechaMinCita(){}
-    
-    private void fechaMaxCita(){}
-    
+
+    private void fechaMinCita() {
+    }
+
+    private void fechaMaxCita() {
+    }
+
 }
