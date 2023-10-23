@@ -131,7 +131,7 @@ try {
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "APURATE HOLGAZAN!!");
+                 JOptionPane.showMessageDialog(null, "LABORATORIO MODIFICADO!!!");
 
             } else {
                 JOptionPane.showMessageDialog(null, "El cuit del laboratorio no existe");

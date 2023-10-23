@@ -24,12 +24,10 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMAdministrarCentros = new javax.swing.JMenuItem();
         jMManejoDeDosis = new javax.swing.JMenu();
         jMAdministracionVacunas = new javax.swing.JMenuItem();
-        jMAdministracionDosis = new javax.swing.JMenuItem();
         jMCitas = new javax.swing.JMenu();
         jMListadoMensual = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
         jMCiudadano = new javax.swing.JMenu();
-        jMAdministracionCIudadanos = new javax.swing.JMenuItem();
         jMListarCiudadanos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
@@ -101,14 +99,6 @@ public class AdministracionVista extends javax.swing.JFrame {
         });
         jMManejoDeDosis.add(jMAdministracionVacunas);
 
-        jMAdministracionDosis.setText("Administrar dosis");
-        jMAdministracionDosis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMAdministracionDosisActionPerformed(evt);
-            }
-        });
-        jMManejoDeDosis.add(jMAdministracionDosis);
-
         jMenuBar1.add(jMManejoDeDosis);
 
         jMCitas.setText("Citas");
@@ -133,14 +123,6 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMenuBar1.add(jMCitas);
 
         jMCiudadano.setText("CIudadanos");
-
-        jMAdministracionCIudadanos.setText("Administrar ciudadano");
-        jMAdministracionCIudadanos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMAdministracionCIudadanosActionPerformed(evt);
-            }
-        });
-        jMCiudadano.add(jMAdministracionCIudadanos);
 
         jMListarCiudadanos.setText("Listar ciudadanos");
         jMListarCiudadanos.addActionListener(new java.awt.event.ActionListener() {
@@ -263,32 +245,6 @@ public class AdministracionVista extends javax.swing.JFrame {
         citas.show();
     }//GEN-LAST:event_jMListadoMensualActionPerformed
 
-    private void jMAdministracionCIudadanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionCIudadanosActionPerformed
-        escritorioR();
-        AdministrarCiudadano ciudadano = new AdministrarCiudadano();
-        ciudadano.setVisible(true);
-        escritorio.add(ciudadano);
-        escritorio.moveToFront(ciudadano);
-        
-        Dimension desktopSize = escritorio.getSize();
-        Dimension FrameSize = ciudadano.getSize();
-        ciudadano.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        ciudadano.show();
-    }//GEN-LAST:event_jMAdministracionCIudadanosActionPerformed
-
-    private void jMAdministracionDosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMAdministracionDosisActionPerformed
-        escritorioR();
-        AdministracionDosis dosis = new AdministracionDosis();
-        dosis.setVisible(true);
-        escritorio.add(dosis);
-        escritorio.moveToFront(dosis);
-        
-        Dimension desktopSize = escritorio.getSize();
-        Dimension FrameSize = dosis.getSize();
-        dosis.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        dosis.show();
-    }//GEN-LAST:event_jMAdministracionDosisActionPerformed
-
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         escritorioR();
         LaboratorioVista lb = new LaboratorioVista();
@@ -332,8 +288,6 @@ public class AdministracionVista extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
-    private javax.swing.JMenuItem jMAdministracionCIudadanos;
-    private javax.swing.JMenuItem jMAdministracionDosis;
     private javax.swing.JMenuItem jMAdministracionVacunas;
     private javax.swing.JMenuItem jMAdministrarCentros;
     private javax.swing.JMenu jMCentro;
