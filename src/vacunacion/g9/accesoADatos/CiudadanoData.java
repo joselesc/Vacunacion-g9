@@ -16,7 +16,7 @@ import vacunacion.g9.entidades.Ciudadano;
 public class CiudadanoData {
 
     private Connection con = null;
-    private int dniReg;
+    private static int dniReg;
     
     public CiudadanoData() {
         con = Conexion.getConexion();

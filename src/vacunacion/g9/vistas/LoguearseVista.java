@@ -124,13 +124,13 @@ public class LoguearseVista extends javax.swing.JInternalFrame {
             int dni = Integer.parseInt(jTFDni.getText());
             CiudadanoData cd = new CiudadanoData();
             cd.loguearse(dni);
-//            CitaData cit=new CitaData(dni);
-          
+            CitaData cit = new CitaData(dni);
+
             jTFDni.setText("");
             this.dispose();
 
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Error en el numero de codigo -" + ex.getMessage());
+            JOptionPane.showMessageDialog(this, "Error en el numero de dni -" + ex.getMessage());
         }
     }//GEN-LAST:event_jBIngresarActionPerformed
 

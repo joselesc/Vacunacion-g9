@@ -16,6 +16,7 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
 
   
     private int dniAct;
+    
     public ActualizarInfoVista() {
         initComponents();
         jBModificar.setEnabled(false);
@@ -380,7 +381,7 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
 
                 CiudadanoData cd = new CiudadanoData();
                 boolean validar = cd.validarInfo(dniAct, apellido, email);
-                System.out.println(validar);
+               
              
                 if (validar == true) {
                   jBModificar.setEnabled(validar);  
@@ -398,7 +399,7 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
         
         jLabel8.setEnabled(true);jTNombre.setEnabled(true);jLabel9.setEnabled(true); jTApellido1.setEnabled(true); jLabel10.setEnabled(true);
-        jTDni1.setEnabled(true); jLabel11.setEnabled(true); jTEmail1.setEnabled(true); jLabel12.setEnabled(true); jTCelular.setEnabled(true);
+        jTDni1.setEnabled(false); jLabel11.setEnabled(true); jTEmail1.setEnabled(true); jLabel12.setEnabled(true); jTCelular.setEnabled(true);
         jLabel13.setEnabled(true); jCBZona.setEnabled(true); jLabel14.setEnabled(true); jRBOcupacion.setEnabled(true); jLabel15.setEnabled(true);
         jRBOcupacion.setEnabled(true); jRBRiesgo.setEnabled(true); jLabel16.setEnabled(true); jCheckBox2.setEnabled(true);  jCPatologia.setVisible(false); 
         jLDescripcion.setVisible(false); jTDescripcion.setVisible(false);jBActualizar.setEnabled(true);
@@ -429,11 +430,11 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
                 if (jCPatologia.getItemAt(i).equalsIgnoreCase(info.getPatologia())) {
                    
                     jCPatologia.setSelectedIndex(i);
-                     jTDescripcion.setText("");
+                    jTDescripcion.setText("");
                     break;
 
                 } else {
-                    jCPatologia.setSelectedIndex(total - 1);
+                  jCPatologia.setSelectedIndex(total-1);
                   jTDescripcion.setText(info.getPatologia());
 
                 }
@@ -464,10 +465,10 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
 
             } else {
 
-                String apellido = jTApellido.getText();
+                String apellido = jTApellido1.getText();
                 String nombre = jTNombre.getText();
                 int dni = Integer.parseInt(jTDni.getText());
-                String email = jTEmail.getText();
+                String email = jTEmail1.getText();
                 int celular = Integer.parseInt(jTCelular.getText());
                 String zona = (String) jCBZona.getSelectedItem();
                 boolean ocupacion = jRBOcupacion.isSelected();

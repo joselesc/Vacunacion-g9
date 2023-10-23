@@ -20,23 +20,24 @@ public class CitaData {
     
     Timestamp time;
     private Connection con = null;
-    private int dniReg=5070989;
+    private static int dniReg;
 
     public CitaData(){
          con = Conexion.getConexion();
     }
     
-//    public CitaData(int dniReg) {
-//        System.out.println(dniReg);
-//        con = Conexion.getConexion();
-////        this.dniReg=dniReg;
-////      System.out.println(this.dniReg);
-//    }
+    public CitaData(int dniReg) {
+        System.out.println(dniReg);
+        con = Conexion.getConexion();
+        this.dniReg=dniReg;
+      System.out.println(this.dniReg);
+    }
 
     public void mostrarCitaCiudadano() {
 
-      
+        System.out.println(dniReg);
         if (dniReg == 0) {
+            System.out.println(getDniReg() == 0);
             JOptionPane.showMessageDialog(null, "Debe loguearse primero");
 
         } else {
@@ -68,7 +69,7 @@ public class CitaData {
                         JOptionPane.showMessageDialog(null, cita, "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Debe loguearse primero");
+                        JOptionPane.showMessageDialog(null, "El usuario no tiene una cita o no esta logueado ");
                     };
 
                 }
@@ -263,7 +264,7 @@ public class CitaData {
         return citas;
     }
 
-       public int getDniReg() {
+      public static int getDniReg() {
         return dniReg;
     }
 

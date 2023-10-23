@@ -268,8 +268,8 @@ public class CiudadanoVista extends javax.swing.JInternalFrame {
 
                 if (jCheckBox2.isSelected()) {
 
-                    patologia = (String) jCPatologia.getSelectedItem();
-                    if (patologia.equals("otros")) {
+                    patologia = jCPatologia.getSelectedItem().toString();
+                    if (patologia.equals("OTROS..")) {
                         patologia = jTDescripcion.getText();
                     }
                 }
