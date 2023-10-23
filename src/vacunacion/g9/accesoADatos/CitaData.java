@@ -126,7 +126,8 @@ public class CitaData {
                         }
 
                     } else {
-                        JOptionPane.showMessageDialog(null, "Debe loguearse primero");
+
+                        JOptionPane.showMessageDialog(null, "El usuario no tiene una cita o no esta logueado ");
                     }
 
                 }

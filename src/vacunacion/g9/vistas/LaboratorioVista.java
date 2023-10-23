@@ -309,7 +309,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             // Si el CUIT no existe en la base de datos, continúa con la modificación
             Laboratorio nl = new Laboratorio(cuit, NomLaboratorio, pais, DomComercial);
             ld.modificar(nl);
-            JOptionPane.showMessageDialog(this, "LABORATORIO MODIFICADO!!!");
+           
             limpiar();
         }
     }//GEN-LAST:event_jBModificarActionPerformed

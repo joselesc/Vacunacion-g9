@@ -402,7 +402,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
                 limpiar();
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(this, "Formato no valido \n" + ex);
+            JOptionPane.showMessageDialog(this, "Formato no valido \n" + ex.getMessage());
         }
     }//GEN-LAST:event_jBAgregarActionPerformed
 
@@ -418,7 +418,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
             Centro c = new Centro(id, nombre, direccion, telefono, zona, activo);
             centro.modificarCentro(c);
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex);
+            JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex.getMessage());
         } finally {
             cargarDatosATabla();
         }
@@ -433,7 +433,7 @@ public class AdministracionCentrosVacunacion extends javax.swing.JInternalFrame 
                 centro.eliminarCentro(id);
             }
         } catch (NumberFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex);
+            JOptionPane.showMessageDialog(null, "Algo salio mal \n" + ex.getMessage());
         } finally {
             cargarDatosATabla();
         }

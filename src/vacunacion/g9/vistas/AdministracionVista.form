@@ -46,14 +46,6 @@
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMAdministracionVacunasActionPerformed"/>
               </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="jMAdministracionDosis">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Administrar dosis"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMAdministracionDosisActionPerformed"/>
-              </Events>
-            </MenuItem>
           </SubComponents>
         </Menu>
         <Menu class="javax.swing.JMenu" name="jMCitas">
@@ -87,14 +79,6 @@
             <Property name="text" type="java.lang.String" value="CIudadanos"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="jMAdministracionCIudadanos">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Administrar ciudadano"/>
-              </Properties>
-              <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jMAdministracionCIudadanosActionPerformed"/>
-              </Events>
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="jMListarCiudadanos">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Listar ciudadanos"/>

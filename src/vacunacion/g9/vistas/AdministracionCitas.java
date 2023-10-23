@@ -88,10 +88,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
         jTListadoDeCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "ID", "DNI", "Lote", "Fecha hora", "Centro", "Colocada", "Cancelada"

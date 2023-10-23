@@ -30,11 +30,6 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         jLDni.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLDni.setText("Buscar por DNI");
 
-        jTDni.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTDniActionPerformed(evt);
-            }
-        });
         jTDni.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTDniKeyPressed(evt);
@@ -158,10 +153,6 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
             }
         }
     }//GEN-LAST:event_jTDniKeyPressed
-
-    private void jTDniActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTDniActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTDniActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCerrar;
