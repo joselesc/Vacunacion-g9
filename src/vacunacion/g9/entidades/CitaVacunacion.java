@@ -20,7 +20,7 @@ public class CitaVacunacion {
         this.colocada = colocada;
         this.cancelada = cancelada;
     }
-
+    
     public CitaVacunacion(int dni, int lote, int id_centro, LocalDateTime fechaHoraCita) {
         this.dni = dni;
         this.lote = lote;

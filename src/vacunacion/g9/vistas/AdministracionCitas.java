@@ -1,7 +1,6 @@
 package vacunacion.g9.vistas;
 
 import java.awt.Component;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -9,16 +8,19 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 import vacunacion.g9.accesoADatos.CentroData;
 import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.accesoADatos.CiudadanoData;
 import vacunacion.g9.accesoADatos.VacunaData;
 import vacunacion.g9.entidades.Centro;
+import vacunacion.g9.entidades.CitaVacunacion;
 import vacunacion.g9.entidades.Ciudadano;
 import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionCitas extends javax.swing.JInternalFrame {
 
+    DefaultTableModel modelo = new DefaultTableModel();
     Calendar calendario = Calendar.getInstance();
     java.util.Date fechaMin = calendario.getTime();
 
@@ -32,7 +34,8 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         initComponents();
         cargarComboBoxCentros();
         cargarComboBoxVacunas();
-        jDCFechaCita.setMinSelectableDate(fechaMin);
+        //jDCFechaCita.setMinSelectableDate(fechaMin);
+        cargarDatosTabla();
 
     }
 
@@ -44,7 +47,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTListadoDeCitas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -83,35 +86,34 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLabel1.setText("Administracion Citas");
         jLabel1.setToolTipText("");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTListadoDeCitas.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "DNI", "Lote", "Fecha hora", "Centro", "Dosis", "Colocada", "Cancelada"
+                "ID", "DNI", "Lote", "Fecha hora", "Centro", "Colocada", "Cancelada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(2).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(3).setPreferredWidth(50);
-            jTable1.getColumnModel().getColumn(4).setPreferredWidth(90);
-            jTable1.getColumnModel().getColumn(5).setPreferredWidth(5);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(5);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(5);
+        jScrollPane1.setViewportView(jTListadoDeCitas);
+        if (jTListadoDeCitas.getColumnModel().getColumnCount() > 0) {
+            jTListadoDeCitas.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTListadoDeCitas.getColumnModel().getColumn(1).setPreferredWidth(30);
+            jTListadoDeCitas.getColumnModel().getColumn(2).setPreferredWidth(30);
+            jTListadoDeCitas.getColumnModel().getColumn(3).setPreferredWidth(50);
+            jTListadoDeCitas.getColumnModel().getColumn(4).setPreferredWidth(90);
+            jTListadoDeCitas.getColumnModel().getColumn(5).setPreferredWidth(5);
+            jTListadoDeCitas.getColumnModel().getColumn(6).setPreferredWidth(5);
         }
 
         jButton1.setBackground(new java.awt.Color(0, 52, 89));
@@ -557,11 +559,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         if (jCZonas.getSelectedItem().toString().equals("Todos")) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una zona");
         } else {
-                for (Ciudadano ciudadano : ciudadanos) {
-                    cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaCita.getDate());
-                    if (contador == cantTurnos) {
-                        break;
-                    }
+            for (Ciudadano ciudadano : ciudadanos) {
+                cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaCita.getDate());
+                if (contador == cantTurnos) {
+                    break;
+                }
             }
         }
     }//GEN-LAST:event_jBAgregarActionPerformed
@@ -601,8 +603,27 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTCantidadDePersonas;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTListadoDeCitas;
     // End of variables declaration//GEN-END:variables
+    private void cabecera() {
+        modelo = (DefaultTableModel) jTListadoDeCitas.getModel();
+    }
+
+    private void cargarDatosTabla() {
+        modelo.setRowCount(0);
+        for (CitaVacunacion cita : cd.listarCitas()) {
+            System.out.println(cita);
+            modelo.addRow(new Object[]{
+                cita.getCodCita(),
+                cita.getDni(),
+                cita.getLote(),
+                cita.getFechaHoraCita(),
+                cita.getId_centro(),
+                cita.isColocada(),
+                cita.isCancelada()});
+        }
+    }
+
     private void cargarCantidadDeCiudadanos() {
         zona = (String) jCZonas.getSelectedItem();
         CitaData cd = new CitaData();

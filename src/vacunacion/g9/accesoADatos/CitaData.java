@@ -17,20 +17,20 @@ import vacunacion.g9.entidades.Ciudadano;
 import vacunacion.g9.entidades.Vacuna;
 
 public class CitaData {
-    
+
     Timestamp time;
     private Connection con = null;
     private static int dniReg;
 
-    public CitaData(){
-         con = Conexion.getConexion();
+    public CitaData() {
+        con = Conexion.getConexion();
     }
-    
+
     public CitaData(int dniReg) {
         System.out.println(dniReg);
         con = Conexion.getConexion();
-        this.dniReg=dniReg;
-      System.out.println(this.dniReg);
+        this.dniReg = dniReg;
+        System.out.println(this.dniReg);
     }
 
     public void mostrarCitaCiudadano() {
@@ -112,8 +112,8 @@ public class CitaData {
 
                         String cita = " El señor/a " + ciuNom + " " + ape + " con dni " + dniReg + " tiene como fecha y horario de vacunacion el dia " + fhc + "\n  en el centro de vacunacion "
                                 + cenNom + " con domicilio " + dire + " en la zona " + zona;
-                  int conf= JOptionPane.showConfirmDialog(null, cita+"\n ¿Esta seguro que desea cancelar la cita?", "Mensaje",  JOptionPane.YES_NO_OPTION,JOptionPane.PLAIN_MESSAGE,icono);
-                  if (conf == JOptionPane.YES_OPTION) {
+                        int conf = JOptionPane.showConfirmDialog(null, cita + "\n ¿Esta seguro que desea cancelar la cita?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, icono);
+                        if (conf == JOptionPane.YES_OPTION) {
 
                             String sql = "UPDATE citavacunacion SET cancelado=1 WHERE dni=?";
                             try (PreparedStatement ps1 = con.prepareStatement(sql)) {
@@ -127,7 +127,7 @@ public class CitaData {
 
                     } else {
                         JOptionPane.showMessageDialog(null, "Debe loguearse primero");
-                    };
+                    }
 
                 }
 
@@ -137,7 +137,35 @@ public class CitaData {
         }
     }
 
-    public void listarCitas(int idCita) {
+    public List<CitaVacunacion> listarCitas() {
+        List<CitaVacunacion> citas = new ArrayList<>();
+        String sql;
+
+        try {
+
+            sql = "SELECT * FROM citavacunacion";
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CitaVacunacion cita = new CitaVacunacion();
+
+                cita.setCodCita(rs.getInt("codCita"));
+                cita.setDni(rs.getInt("dni"));
+                cita.setLote(rs.getInt("lote"));
+                Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
+                LocalDateTime lc = timestamp.toLocalDateTime();
+                cita.setColocada(rs.getBoolean("colocada"));
+                cita.setCancelada(rs.getBoolean("cancelado"));
+
+
+            }
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "    Error al acceder a la tabla\n " + ex.getMessage());
+        }
+        return citas;
     }
 
     public void modificarCita(int idCita) {
@@ -147,7 +175,7 @@ public class CitaData {
     }
 
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
-       
+
         String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
                 + "VALUES (?, ?, ?, ?, false, false)";
 
@@ -169,7 +197,7 @@ public class CitaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Algo salió mal:\n" + ex);
         }
-}
+    }
 
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
@@ -232,7 +260,7 @@ public class CitaData {
         String sql = "SELECT * FROM citavacunacion WHERE fechaHoraCita = ? AND id_centro = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
-            
+
 //            Timestamp fechaTimestamp = Timestamp.valueOf(fecha);
             ps.setTimestamp(1, new java.sql.Timestamp(fecha.getTime()));
             ps.setInt(2, idCentro);
@@ -247,9 +275,9 @@ public class CitaData {
                     cita.setId_centro(rs.getInt("id_centro"));
 //                    cita.setFechaHoraCita(rs.getDate("fechaCaduca").toLocalDate());
 //                    cita.setFechaHoraCita(new java.util.Date(rs.getTimestamp("fechaHoraCita").getTime()));
-                   Timestamp timestamp=rs.getTimestamp("fechaHoraCita");
-                   LocalDateTime lc=timestamp.toLocalDateTime();
-                   cita.setFechaHoraCita(lc);
+                    Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
+                    LocalDateTime lc = timestamp.toLocalDateTime();
+                    cita.setFechaHoraCita(lc);
                     cita.setColocada(rs.getBoolean("colocada"));
 //                    cita.setCancelada(rs.getBoolean("cancelada"));
 
@@ -264,12 +292,12 @@ public class CitaData {
         return citas;
     }
 
-      public static int getDniReg() {
+    public static int getDniReg() {
         return dniReg;
     }
 
     public void setDniReg(int dniReg) {
         this.dniReg = dniReg;
     }
-  
+
 }
