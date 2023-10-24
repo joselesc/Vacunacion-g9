@@ -195,7 +195,10 @@ public class CitaData {
                 JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal:\n" + ex);
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexion a la base de datos");
+        }catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
+        
         }
     }
     
