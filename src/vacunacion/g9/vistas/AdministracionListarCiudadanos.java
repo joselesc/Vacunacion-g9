@@ -26,15 +26,10 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jBCerrar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         jLDni.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLDni.setText("Buscar por DNI");
-
-        jTDni.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jTDniKeyPressed(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -47,9 +42,16 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
             Class[] types = new Class [] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -69,6 +71,17 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LISTA DE CIUDADANOS REGISTRADOS");
 
+        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButton1.setText("Buscar");
+        jButton1.setMaximumSize(new java.awt.Dimension(150, 30));
+        jButton1.setMinimumSize(new java.awt.Dimension(150, 30));
+        jButton1.setPreferredSize(new java.awt.Dimension(150, 30));
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -84,6 +97,8 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
                         .addComponent(jLDni, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(39, 39, 39)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(23, 23, 23))))
@@ -99,7 +114,8 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTDni, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLDni)
-                    .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
 
@@ -126,19 +142,16 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         }
     }//GEN-LAST:event_jBCerrarActionPerformed
 
-    private void jTDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTDniKeyPressed
-
-        borrarFilas();
-      
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+         borrarFilas();
+      try{
         CiudadanoData cd = new CiudadanoData();
 
         for (Ciudadano c : cd.listarCiudadano()) {
 
-            String dni = Integer.toString(c.getDni());
-            System.out.println(dni + "");
-
-            if (dni.startsWith(jTDni.getText())) {
-
+              if (c.getDni()==Integer.parseInt(jTDni.getText())) {
+                
                 modelo.addRow(new Object[]{
                     c.getDni(),
                     c.getApellido(),
@@ -152,10 +165,16 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
                 );
             }
         }
-    }//GEN-LAST:event_jTDniKeyPressed
+      }catch(NumberFormatException ex){
+          JOptionPane.showMessageDialog(this,"Error en el ingreso del numero de dni" + ex.getMessage());
+          jTDni.setText("");
+          cargarTabla();
+      }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBCerrar;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLDni;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
