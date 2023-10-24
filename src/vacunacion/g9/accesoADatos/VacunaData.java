@@ -232,7 +232,7 @@ public class VacunaData {
         
 }
     //Utilizado en AdministracionCita
-    public void buscarVacuna(int lote) {
+    public Vacuna buscarVacuna(int lote) {
 
         String sql = "SELECT * FROM vacuna WHERE lote = ?";
 
@@ -257,5 +257,6 @@ public class VacunaData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "ERROR AL ACCEDER A LA TABLE LABORATORIO" + ex.getMessage());
         }
+        return v;
     }
 }

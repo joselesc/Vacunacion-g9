@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 22-10-2023 a las 02:33:09
+-- Tiempo de generación: 25-10-2023 a las 01:57:45
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -78,9 +78,40 @@ CREATE TABLE `citavacunacion` (
 --
 
 INSERT INTO `citavacunacion` (`codCita`, `dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) VALUES
-(3, 5070989, 1, '2023-10-21 09:00:00', 19, 1, 0),
-(4, 5252856, 2, '2023-10-21 09:00:00', 20, 1, 0),
-(5, 5330578, 3, '2023-10-21 09:00:00', 21, 1, 0);
+(327, 5918470, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(328, 9675043, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(329, 13707414, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(330, 14685989, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(331, 23132657, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(332, 30676602, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(333, 32661338, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(334, 33594397, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(335, 39304462, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(336, 42166921, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(337, 44802138, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(338, 45418998, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(339, 46640645, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(340, 51340686, 1, '2023-10-17 20:14:33', 21, 0, 0),
+(341, 6890434, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(342, 10398404, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(343, 10692313, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(344, 13194180, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(345, 20767783, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(346, 24376754, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(347, 29805066, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(348, 30035322, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(349, 30098418, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(350, 33196812, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(351, 34105300, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(352, 38381752, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(353, 38812690, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(354, 39465075, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(355, 45840038, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(356, 46898795, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(357, 47760017, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(358, 50533394, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(359, 51030200, 1, '2023-10-17 20:15:54', 19, 0, 0),
+(360, 54680901, 1, '2023-10-17 20:15:54', 19, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -1119,20 +1150,18 @@ CREATE TABLE `laboratorio` (
   `cuit` bigint(20) NOT NULL,
   `nombreLaboratorio` varchar(25) NOT NULL,
   `pais` varchar(30) NOT NULL,
-  `domComercial` varchar(50) NOT NULL,
-  `activo` tinyint(4) NOT NULL
+  `domComercial` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `laboratorio`
 --
 
-INSERT INTO `laboratorio` (`cuit`, `nombreLaboratorio`, `pais`, `domComercial`, `activo`) VALUES
-(1, 'a', 'g', 'g', 0),
-(30500772324, 'Astra Zéneca S.A.', 'Inglaterra', 'Calle Puerto De Somport 21 23. 28050, Madrid', 0),
-(30501152826, 'Laboratorios Richmond S.A', 'Rusia', 'Av. Elcano 4938', 0),
-(30503518518, 'PFIZER S.R.L', 'Estados Unidos', 'Calle Carlos Berg 3669', 0),
-(30598129246, 'Janssen Cilag Farmacéutic', 'Estados Unidos', 'Mendoza 1259', 0);
+INSERT INTO `laboratorio` (`cuit`, `nombreLaboratorio`, `pais`, `domComercial`) VALUES
+(30500772324, 'Astra Zéneca S.A.', 'Inglaterra', 'Calle Puerto De Somport 21 23. 28050, Madrid'),
+(30501152826, 'Laboratorios Richmond S.A', 'Rusia', 'Av. Elcano 4938'),
+(30503518518, 'PFIZER S.R.L', 'Estados Unidos', 'Calle Carlos Berg 3669'),
+(30598129246, 'Janssen Cilag Farmacéutic', 'Estados Unidos', 'Mendoza 1259');
 
 -- --------------------------------------------------------
 
@@ -1158,27 +1187,26 @@ CREATE TABLE `vacuna` (
   `marca` varchar(30) NOT NULL,
   `medida` double NOT NULL,
   `fechaCaduca` date NOT NULL,
-  `stock` int(11) NOT NULL,
-  `colocada` tinyint(1) NOT NULL
+  `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `vacuna`
 --
 
-INSERT INTO `vacuna` (`lote`, `cuit`, `marca`, `medida`, `fechaCaduca`, `stock`, `colocada`) VALUES
-(1, 30500772324, 'Comirnaty', 3, '2023-12-31', 1000, 0),
-(2, 30501152826, 'Spikevax', 3, '2023-12-31', 800, 0),
-(3, 30503518518, 'Vaxzevria', 3, '2023-12-31', 1200, 0),
-(4, 30598129246, 'Janssen COVID-19 Vaccine', 3, '2023-12-31', 600, 0),
-(5, 30500772324, 'Comirnaty', 5, '2023-12-31', 1000, 0),
-(6, 30501152826, 'Spikevax', 5, '2023-12-31', 800, 0),
-(7, 30503518518, 'Vaxzevria', 5, '2023-12-31', 1200, 0),
-(8, 30598129246, 'Janssen COVID-19 Vaccine', 5, '2023-12-31', 600, 0),
-(9, 30500772324, 'Comirnaty', 9, '2023-12-31', 1000, 0),
-(10, 30501152826, 'Spikevax', 9, '2023-12-31', 800, 0),
-(11, 30503518518, 'Vaxzevria', 9, '2023-12-31', 1200, 0),
-(12, 30598129246, 'Janssen COVID-19 Vaccine', 9, '2023-12-31', 600, 0);
+INSERT INTO `vacuna` (`lote`, `cuit`, `marca`, `medida`, `fechaCaduca`, `stock`) VALUES
+(1, 30500772324, 'Comirnaty', 0.3, '2023-12-31', 1000),
+(2, 30501152826, 'Spikevax', 0.3, '2023-12-31', 800),
+(3, 30503518518, 'Vaxzevria', 0.3, '2023-12-31', 1200),
+(4, 30598129246, 'Janssen COVID-19 Vaccine', 0.3, '2023-12-31', 600),
+(5, 30500772324, 'Comirnaty', 0.5, '2023-12-31', 1000),
+(6, 30501152826, 'Spikevax', 0.5, '2023-12-31', 800),
+(7, 30503518518, 'Vaxzevria', 0.5, '2023-12-31', 1200),
+(8, 30598129246, 'Janssen COVID-19 Vaccine', 0.5, '2023-12-31', 600),
+(9, 30500772324, 'Comirnaty', 0.9, '2023-12-31', 1000),
+(10, 30501152826, 'Spikevax', 0.9, '2023-12-31', 800),
+(11, 30503518518, 'Vaxzevria', 0.9, '2023-12-31', 1200),
+(12, 30598129246, 'Janssen COVID-19 Vaccine', 0.9, '2023-12-31', 600);
 
 --
 -- Índices para tablas volcadas
@@ -1240,7 +1268,7 @@ ALTER TABLE `centro`
 -- AUTO_INCREMENT de la tabla `citavacunacion`
 --
 ALTER TABLE `citavacunacion`
-  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=361;
 
 --
 -- AUTO_INCREMENT de la tabla `login`

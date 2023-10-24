@@ -92,14 +92,14 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "Apellido", "Nombre", "Lote", "Fecha y Hora", "Centro", "Colocada", "Cancelada"
+                "ID", "DNI", "Apellido", "Nombre", "Lote", "Marca", "Dosis", "Fecha y Hora", "Centro", "Colocada", "Cancelada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -119,12 +119,16 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             jTListadoDeCitas.getColumnModel().getColumn(2).setResizable(false);
             jTListadoDeCitas.getColumnModel().getColumn(3).setResizable(false);
             jTListadoDeCitas.getColumnModel().getColumn(4).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(4).setPreferredWidth(5);
             jTListadoDeCitas.getColumnModel().getColumn(5).setResizable(false);
             jTListadoDeCitas.getColumnModel().getColumn(6).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(6).setPreferredWidth(5);
             jTListadoDeCitas.getColumnModel().getColumn(7).setResizable(false);
-            jTListadoDeCitas.getColumnModel().getColumn(7).setPreferredWidth(10);
             jTListadoDeCitas.getColumnModel().getColumn(8).setResizable(false);
-            jTListadoDeCitas.getColumnModel().getColumn(8).setPreferredWidth(10);
+            jTListadoDeCitas.getColumnModel().getColumn(9).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(9).setPreferredWidth(10);
+            jTListadoDeCitas.getColumnModel().getColumn(10).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(10).setPreferredWidth(10);
         }
 
         jButton1.setBackground(new java.awt.Color(0, 52, 89));
@@ -336,20 +340,36 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jRNorteCitas)
+                .addGap(120, 120, 120)
+                .addComponent(jRSurCitas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jREsteCitas)
+                .addGap(216, 216, 216)
+                .addComponent(jROesteCItas)
+                .addGap(106, 106, 106)
+                .addComponent(jRTodosCitas)
+                .addGap(83, 83, 83))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jSeparator1)
+                .addContainerGap())
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1)
+                        .addContainerGap())
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -399,22 +419,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                     .addComponent(jLCantidadDeTurnosPorDia)
                                     .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addContainerGap(19, Short.MAX_VALUE))))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jRNorteCitas)
-                .addGap(120, 120, 120)
-                .addComponent(jRSurCitas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jREsteCitas)
-                .addGap(216, 216, 216)
-                .addComponent(jROesteCItas)
-                .addGap(106, 106, 106)
-                .addComponent(jRTodosCitas)
-                .addGap(83, 83, 83))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -632,12 +636,15 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
             centro = centroData.buscarCentros(cita.getId_centro());
             ciudadano = ciudadanoData.buscarCiudadano(cita.getDni());
+            vacuna = vacunaData.buscarVacuna(cita.getLote());
             modelo.addRow(new Object[]{
                 cita.getCodCita(),
                 cita.getDni(),
                 ciudadano.getApellido(),
                 ciudadano.getNombre(),
-                cita.getLote(),
+                vacuna.getLote(),
+                vacuna.getMarca(),
+                vacuna.getMedida(),
                 cita.getFechaHoraCita().format(fecha),
                 centro.getNombre(),
                 cita.isColocada(),
