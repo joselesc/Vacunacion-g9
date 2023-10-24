@@ -46,6 +46,8 @@
                           <Component id="jLDni" min="-2" pref="118" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jTDni" min="-2" pref="248" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="jBCerrar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
@@ -66,6 +68,7 @@
                       <Component id="jTDni" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
                       <Component id="jLDni" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="jBCerrar" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="57" max="32767" attributes="0"/>
               </Group>
@@ -82,9 +85,6 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="jTDni">
-          <Events>
-            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jTDniKeyPressed"/>
-          </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">
           <AuxValues>
@@ -97,15 +97,15 @@
               <Properties>
                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
                   <Table columnCount="9" rowCount="0">
-                    <Column editable="true" title="DNI" type="java.lang.Object"/>
-                    <Column editable="true" title="Apellido" type="java.lang.Object"/>
-                    <Column editable="true" title="Nombre" type="java.lang.Object"/>
-                    <Column editable="true" title="email" type="java.lang.Object"/>
-                    <Column editable="true" title="Celular" type="java.lang.Object"/>
-                    <Column editable="true" title="Zona" type="java.lang.Object"/>
-                    <Column editable="true" title="Patologia" type="java.lang.Object"/>
-                    <Column editable="true" title="Esencial" type="java.lang.Boolean"/>
-                    <Column editable="true" title="Riesgo" type="java.lang.Boolean"/>
+                    <Column editable="false" title="DNI" type="java.lang.Object"/>
+                    <Column editable="false" title="Apellido" type="java.lang.Object"/>
+                    <Column editable="false" title="Nombre" type="java.lang.Object"/>
+                    <Column editable="false" title="email" type="java.lang.Object"/>
+                    <Column editable="false" title="Celular" type="java.lang.Object"/>
+                    <Column editable="false" title="Zona" type="java.lang.Object"/>
+                    <Column editable="false" title="Patologia" type="java.lang.Object"/>
+                    <Column editable="false" title="Esencial" type="java.lang.Boolean"/>
+                    <Column editable="false" title="Riesgo" type="java.lang.Boolean"/>
                   </Table>
                 </Property>
                 <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -192,6 +192,26 @@
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="text" type="java.lang.String" value="LISTA DE CIUDADANOS REGISTRADOS"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JButton" name="jButton1">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Tahoma" size="15" style="1"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Buscar"/>
+            <Property name="maximumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[150, 30]"/>
+            </Property>
+            <Property name="minimumSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[150, 30]"/>
+            </Property>
+            <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
+              <Dimension value="[150, 30]"/>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
