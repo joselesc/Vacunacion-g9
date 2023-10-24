@@ -167,8 +167,45 @@ public class CitaData {
     return citas;
 }
 
-    public void modificarCita(int idCita) {
+    public void modificarCita(int idCita, boolean aplicada, int lote) {
+
+    String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
+    String sqlActualizaStock = "UPDATE vacunas SET stock = -1 WHERE lote = ?"; 
+
+    try {
+        // Inicia una transacción si es necesario, dependiendo de tu implementación de acceso a la base de datos
+
+        
+        PreparedStatement psUpdateCita = con.prepareStatement(sqlActualizaCita);
+        psUpdateCita.setBoolean(1, aplicada);
+        psUpdateCita.setInt(2, idCita);
+        int rowsAffectedCita = psUpdateCita.executeUpdate();
+
+        // Actualiza el stock de vacunas en la tabla 'vacunas'
+        PreparedStatement ps = con.prepareStatement(sqlActualizaStock);
+
+        ps.setInt(1, lote); // Debes obtener el lote de la vacuna asociada a la cita
+        int rowsAffectedStock = ps.executeUpdate();
+
+        
+        ps.close();
+
+        if (rowsAffectedCita > 0 && rowsAffectedStock > 0) {
+           
+            JOptionPane.showMessageDialog(null, "Cita modificada con éxito.");
+        } else {
+           
+            JOptionPane.showMessageDialog(null, "Error al modificar la cita o el stock de vacunas.");
+        }
+    } catch (SQLException ex) {
+        
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
     }
+}
+
+    
+    
 
     public void eliminarCita(int idCita) {
     }
