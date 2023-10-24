@@ -1,6 +1,7 @@
 package vacunacion.g9.vistas;
 
 import java.awt.Component;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -20,11 +21,12 @@ import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionCitas extends javax.swing.JInternalFrame {
 
-    DefaultTableModel modelo = new DefaultTableModel();
+    private DefaultTableModel modelo = new DefaultTableModel();
     Calendar calendario = Calendar.getInstance();
     java.util.Date fechaMin = calendario.getTime();
 
     CentroData centroData = new CentroData();
+    
     VacunaData vacunaData = new VacunaData();
     CitaData cd = new CitaData();
     CiudadanoData ciudadanoData = new CiudadanoData();
@@ -32,10 +34,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     public AdministracionCitas() {
         initComponents();
+        cabecera();
+        cargarDatosTabla();
         cargarComboBoxCentros();
         cargarComboBoxVacunas();
         //jDCFechaCita.setMinSelectableDate(fechaMin);
-        cargarDatosTabla();
 
     }
 
@@ -91,11 +94,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "Lote", "Fecha hora", "Centro", "Colocada", "Cancelada"
+                "ID", "DNI", "Lote", "Fecha y Hora", "Centro", "Colocada", "Cancelada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Integer.class, java.lang.Integer.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -103,15 +106,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTListadoDeCitas);
-        if (jTListadoDeCitas.getColumnModel().getColumnCount() > 0) {
-            jTListadoDeCitas.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTListadoDeCitas.getColumnModel().getColumn(1).setPreferredWidth(30);
-            jTListadoDeCitas.getColumnModel().getColumn(2).setPreferredWidth(30);
-            jTListadoDeCitas.getColumnModel().getColumn(3).setPreferredWidth(50);
-            jTListadoDeCitas.getColumnModel().getColumn(4).setPreferredWidth(90);
-            jTListadoDeCitas.getColumnModel().getColumn(5).setPreferredWidth(5);
-            jTListadoDeCitas.getColumnModel().getColumn(6).setPreferredWidth(5);
-        }
 
         jButton1.setBackground(new java.awt.Color(0, 52, 89));
         jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -606,20 +600,27 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         modelo = (DefaultTableModel) jTListadoDeCitas.getModel();
     }
 
-    private void cargarDatosTabla() {
-        modelo.setRowCount(0);
-        for (CitaVacunacion cita : cd.listarCitas()) {
-            System.out.println(cita);
-            modelo.addRow(new Object[]{
-                cita.getCodCita(),
-                cita.getDni(),
-                cita.getLote(),
-                cita.getFechaHoraCita(),
-                cita.getId_centro(),
-                cita.isColocada(),
-                cita.isCancelada()});
-        }
+   private void cargarDatosTabla() {
+    modelo.setRowCount(0);
+    Centro centro = new Centro();
+    for (CitaVacunacion cita : cd.listarCitas()) {
+        DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
+        System.out.println("id " + cita.getId_centro());
+        
+        centro = centroData.buscarCentros(cita.getId_centro());
+        modelo.addRow(new Object[]{
+            cita.getCodCita(),
+            cita.getDni(),
+            cita.getLote(),
+            cita.getFechaHoraCita().format(fecha), 
+            centro.getNombre(),
+            cita.isColocada(),
+            cita.isCancelada()
+        });
+        
     }
+}
+
 
     private void cargarCantidadDeCiudadanos() {
         zona = (String) jCZonas.getSelectedItem();

@@ -139,35 +139,34 @@ public class CitaData {
     }
 
     public List<CitaVacunacion> listarCitas() {
-        List<CitaVacunacion> citas = new ArrayList<>();
-        String sql;
+    List<CitaVacunacion> citas = new ArrayList<>();
+    String sql = "SELECT * FROM citavacunacion";
 
-        try {
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
 
-            sql = "SELECT * FROM citavacunacion";
+        while (rs.next()) {
+            CitaVacunacion cita = new CitaVacunacion();
 
-            PreparedStatement ps = con.prepareStatement(sql);
-            ResultSet rs = ps.executeQuery();
+            cita.setCodCita(rs.getInt("codCita"));
+            cita.setDni(rs.getInt("dni"));
+            cita.setLote(rs.getInt("lote"));
+            Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
+            LocalDateTime lc = timestamp.toLocalDateTime();
+            cita.setFechaHoraCita(lc);
+            cita.setId_centro(rs.getInt("id_centro"));
+            cita.setColocada(rs.getBoolean("colocada"));
+            cita.setCancelada(rs.getBoolean("cancelado"));
 
-            while (rs.next()) {
-                CitaVacunacion cita = new CitaVacunacion();
-
-                cita.setCodCita(rs.getInt("codCita"));
-                cita.setDni(rs.getInt("dni"));
-                cita.setLote(rs.getInt("lote"));
-                Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
-                LocalDateTime lc = timestamp.toLocalDateTime();
-                cita.setColocada(rs.getBoolean("colocada"));
-                cita.setCancelada(rs.getBoolean("cancelado"));
-
-
-            }
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "    Error al acceder a la tabla\n " + ex.getMessage());
+            citas.add(cita);
         }
-        return citas;
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla\n" + ex.getMessage());
     }
+    return citas;
+}
+
 
     public void modificarCita(int idCita) {
     }

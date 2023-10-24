@@ -48,7 +48,7 @@ public class CentroData {
 
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
-        } 
+        }
 
     }
 
@@ -65,7 +65,7 @@ public class CentroData {
             ps.setString(4, c.getZona());
             ps.setBoolean(5, c.isActivo());
             ps.setInt(6, c.getId());
-           
+
             int mod = ps.executeUpdate();
 
             if (mod == 1) {
@@ -75,8 +75,7 @@ public class CentroData {
                 JOptionPane.showMessageDialog(null, "El codigo del Centro no existe");
             }
             ps.close();
-           
-           
+
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
@@ -108,16 +107,48 @@ public class CentroData {
 
     }
 
+    public Centro buscarCentros(int id) {
+            Centro c = null;
+            PreparedStatement ps = null;
+            String sql = "SELECT * FROM centro WHERE activo = 1 AND id_centro = ?";
+        try {
+            System.out.println(id);
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+        
+            if (rs.next()) {
+                c = new Centro();
+                c.setId(rs.getInt("id_centro"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setTelefono(rs.getInt("telefono"));
+                c.setZona(rs.getString("zona"));
+                c.setActivo(rs.getBoolean("activo"));
+            }else{
+                ps.close();
+                rs.close();
+            }
+
+            
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
+        }
+        System.out.println(c);
+        return c;
+    }
+    
     public List<Centro> listarCentros(String zona) {
 
         List<Centro> centros = new ArrayList<>();
         String sql;
-        
+
         try {
             if (zona == null) {
                 sql = "SELECT * FROM centro WHERE activo = 1";
-            }else {
-                sql = "SELECT * FROM centro WHERE activo = 1 AND zona = ?"; 
+            } else {
+                sql = "SELECT * FROM centro WHERE activo = 1 AND zona = ?";
             }
             PreparedStatement ps = con.prepareStatement(sql);
             if (zona != null) {
