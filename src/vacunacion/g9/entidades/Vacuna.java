@@ -13,6 +13,15 @@ public class Vacuna {
     private int stock;
     private boolean colocada;
 
+    public Vacuna(int lote, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock) {
+        this.lote = lote;
+        this.cuit = cuit;
+        this.marca = marca;
+        this.medida = medida;
+        this.fechaCaduca = fechaCaduca;
+        this.stock = stock;
+    }
+
     public Vacuna() {
     }
 

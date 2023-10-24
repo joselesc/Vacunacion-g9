@@ -40,8 +40,6 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jRColocada = new javax.swing.JRadioButton();
         jTFMarca = new javax.swing.JTextField();
         jTFMedida = new javax.swing.JTextField();
         jTFStock = new javax.swing.JTextField();
@@ -86,12 +84,6 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("STOCK");
-
-        jLabel8.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel8.setText("COLOCADA");
-
-        jRColocada.setBackground(new java.awt.Color(255, 255, 204));
-        jRColocada.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
         jTFLote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -187,8 +179,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                                 .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                                                 .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING))))
+                                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -196,10 +187,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                                         .addComponent(jTFFechaVenc)
                                         .addComponent(jTFMedida)
                                         .addComponent(jTFMarca)
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addGap(11, 11, 11)
-                                            .addComponent(jRColocada)
-                                            .addGap(39, 39, 39)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                             .addComponent(jBModificar)
                                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jBEliminar)
@@ -253,15 +241,9 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                         .addGap(4, 4, 4)
                         .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(29, 29, 29)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jBModificar)
-                        .addComponent(jBEliminar))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(3, 3, 3)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jRColocada)
-                            .addComponent(jLabel8))))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jBModificar)
+                    .addComponent(jBEliminar))
                 .addGap(28, 28, 28)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -291,7 +273,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         String medidaText = jTFMedida.getText();
         String fechaVenc = jTFFechaVenc.getText();
         String stockText = jTFStock.getText();
-        boolean colocada = jRColocada.isSelected();
+//        boolean colocada = jRColocada.isSelected();
 
         // Validación de entrada
         if (loteText.isEmpty() || cuitText.isEmpty() || marca.isEmpty() || medidaText.isEmpty() || fechaVenc.isEmpty() || stockText.isEmpty()) {
@@ -306,7 +288,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
 
                 // Verificar si el lote y el CUIT existen en la tabla de vacunas antes de insertar.
                 if (laboratorios.existeCuit(cuit) && !vd.existeLote(lote)) {
-                    Vacuna nuevaVacuna = new Vacuna(lote, cuit, marca, medida, fechaCaduca, stock, colocada);
+                    Vacuna nuevaVacuna = new Vacuna(lote, cuit, marca, medida, fechaCaduca, stock);
                     vd.insertarVacuna(nuevaVacuna);
                     JOptionPane.showMessageDialog(this, "VACUNA AGREGADA CON ÉXITO.");
                     listarVacunas();
@@ -362,14 +344,14 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         double medida = Double.parseDouble(jTListarVac.getValueAt(filaS, 3).toString());
         LocalDate fechaDeVen = LocalDate.parse(jTListarVac.getValueAt(filaS, 4).toString());
         int stock = Integer.parseInt(jTListarVac.getValueAt(filaS, 5).toString());
-        boolean activo = Boolean.parseBoolean(jTListarVac.getValueAt(filaS, 6).toString());
+//        boolean activo = Boolean.parseBoolean(jTListarVac.getValueAt(filaS, 6).toString());
         jTFLote.setText(Integer.toString(lote));
         jTFCuit.setText(Long.toString(cuit));
         jTFMarca.setText(marca);
         jTFMedida.setText(Double.toString(medida));
         jTFFechaVenc.setText(fechaDeVen.toString());
         jTFStock.setText(Integer.toString(stock));
-        jRColocada.setSelected(activo);
+//        jRColocada.setSelected(activo);
     }//GEN-LAST:event_jTListarVacMouseClicked
 
     private void jBModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBModificarActionPerformed
@@ -386,7 +368,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         double medida = Double.parseDouble(jTFMedida.getText());
         LocalDate fechaCaduca = LocalDate.parse(jTFFechaVenc.getText(), DateTimeFormatter.ISO_DATE);
         int stock = Integer.parseInt(jTFStock.getText());
-        boolean colocada = jRColocada.isSelected();
+//        boolean colocada = jRColocada.isSelected();
 
         // Validación de entrada
         if (cuit > 0 && !marca.isEmpty() && medida > 0 && stock >= 0) {
@@ -399,7 +381,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
             model.setValueAt(medida, filaS, 3);
             model.setValueAt(fechaCaduca, filaS, 4);
             model.setValueAt(stock, filaS, 5);
-            model.setValueAt(colocada, filaS, 6);
+//            model.setValueAt(colocada, filaS, 6);
 
             // Actualiza la vista de la tabla
             jTListarVac.setModel(model);
@@ -423,9 +405,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JRadioButton jRColocada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField jTFCuit;
     private javax.swing.JTextField jTFFechaVenc;
@@ -455,7 +435,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                 v.getMedida(),
                 v.getFechaCaduca(),
                 v.getStock(),
-                v.isColocada()
+//                v.isColocada()
             });
         }
     }
@@ -467,7 +447,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         modelo.addColumn("MEDIDA");
         modelo.addColumn("FEC DE VENC");
         modelo.addColumn("STOCK");
-        modelo.addColumn("COLOCADA");
+//        modelo.addColumn("COLOCADA");
         jTListarVac.setModel(modelo);
     }
 
@@ -478,7 +458,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jTFMarca.setText("");
         jTFMedida.setText("");
         jTFStock.setText("");
-        jRColocada.setSelected(false);
+//        jRColocada.setSelected(false);
     }
 
 ////    private void cargarComboBox() {
