@@ -26,7 +26,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     java.util.Date fechaMin = calendario.getTime();
 
     CentroData centroData = new CentroData();
-    
     VacunaData vacunaData = new VacunaData();
     CitaData cd = new CitaData();
     CiudadanoData ciudadanoData = new CiudadanoData();
@@ -39,7 +38,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         cargarComboBoxCentros();
         cargarComboBoxVacunas();
         //jDCFechaCita.setMinSelectableDate(fechaMin);
-
     }
 
     @SuppressWarnings("unchecked")
@@ -63,13 +61,13 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jCZonas = new javax.swing.JComboBox<>();
         jLCentrosDeVacunacion1 = new javax.swing.JLabel();
         jRDeRiesgo = new javax.swing.JRadioButton();
-        jRadioButton2 = new javax.swing.JRadioButton();
-        jRadioButton3 = new javax.swing.JRadioButton();
-        jRadioButton4 = new javax.swing.JRadioButton();
-        jRadioButton5 = new javax.swing.JRadioButton();
+        jRSurCitas = new javax.swing.JRadioButton();
+        jREsteCitas = new javax.swing.JRadioButton();
+        jROesteCItas = new javax.swing.JRadioButton();
+        jRTodosCitas = new javax.swing.JRadioButton();
         jTCantidadDePersonas = new javax.swing.JTextField();
         jLCantidadDeTurnosPorDia1 = new javax.swing.JLabel();
-        jRadioButton6 = new javax.swing.JRadioButton();
+        jRNorteCitas = new javax.swing.JRadioButton();
         jREsencial = new javax.swing.JRadioButton();
         jRMostrarTodosCiudadanos = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -94,18 +92,40 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
             },
             new String [] {
-                "ID", "DNI", "Lote", "Fecha y Hora", "Centro", "Colocada", "Cancelada"
+                "ID", "DNI", "Apellido", "Nombre", "Lote", "Fecha y Hora", "Centro", "Colocada", "Cancelada"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
         jScrollPane1.setViewportView(jTListadoDeCitas);
+        if (jTListadoDeCitas.getColumnModel().getColumnCount() > 0) {
+            jTListadoDeCitas.getColumnModel().getColumn(0).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTListadoDeCitas.getColumnModel().getColumn(1).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(1).setPreferredWidth(10);
+            jTListadoDeCitas.getColumnModel().getColumn(2).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(3).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(4).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(5).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(6).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(7).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(7).setPreferredWidth(10);
+            jTListadoDeCitas.getColumnModel().getColumn(8).setResizable(false);
+            jTListadoDeCitas.getColumnModel().getColumn(8).setPreferredWidth(10);
+        }
 
         jButton1.setBackground(new java.awt.Color(0, 52, 89));
         jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -193,29 +213,29 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             }
         });
 
-        jRadioButton2.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton2.setText("Sur");
+        jRSurCitas.setBackground(new java.awt.Color(0, 52, 89));
+        bGZonas.add(jRSurCitas);
+        jRSurCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jRSurCitas.setForeground(new java.awt.Color(255, 255, 255));
+        jRSurCitas.setText("Sur");
 
-        jRadioButton3.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRadioButton3);
-        jRadioButton3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton3.setText("Este");
+        jREsteCitas.setBackground(new java.awt.Color(0, 52, 89));
+        bGZonas.add(jREsteCitas);
+        jREsteCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jREsteCitas.setForeground(new java.awt.Color(255, 255, 255));
+        jREsteCitas.setText("Este");
 
-        jRadioButton4.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRadioButton4);
-        jRadioButton4.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton4.setText("Oeste");
+        jROesteCItas.setBackground(new java.awt.Color(0, 52, 89));
+        bGZonas.add(jROesteCItas);
+        jROesteCItas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jROesteCItas.setForeground(new java.awt.Color(255, 255, 255));
+        jROesteCItas.setText("Oeste");
 
-        jRadioButton5.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRadioButton5);
-        jRadioButton5.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton5.setText("Todos");
+        jRTodosCitas.setBackground(new java.awt.Color(0, 52, 89));
+        bGZonas.add(jRTodosCitas);
+        jRTodosCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jRTodosCitas.setForeground(new java.awt.Color(255, 255, 255));
+        jRTodosCitas.setText("Todos");
 
         jTCantidadDePersonas.setEditable(false);
         jTCantidadDePersonas.setBackground(new java.awt.Color(255, 255, 255));
@@ -226,11 +246,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLCantidadDeTurnosPorDia1.setForeground(new java.awt.Color(255, 255, 255));
         jLCantidadDeTurnosPorDia1.setText("Cantidad de personas");
 
-        jRadioButton6.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRadioButton6);
-        jRadioButton6.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRadioButton6.setForeground(new java.awt.Color(255, 255, 255));
-        jRadioButton6.setText("Norte");
+        jRNorteCitas.setBackground(new java.awt.Color(0, 52, 89));
+        bGZonas.add(jRNorteCitas);
+        jRNorteCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jRNorteCitas.setForeground(new java.awt.Color(255, 255, 255));
+        jRNorteCitas.setText("Norte");
 
         jREsencial.setBackground(new java.awt.Color(0, 52, 89));
         jREsencial.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -381,15 +401,15 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addContainerGap(19, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(22, 22, 22)
-                .addComponent(jRadioButton6)
+                .addComponent(jRNorteCitas)
                 .addGap(120, 120, 120)
-                .addComponent(jRadioButton2)
+                .addComponent(jRSurCitas)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRadioButton3)
+                .addComponent(jREsteCitas)
                 .addGap(216, 216, 216)
-                .addComponent(jRadioButton4)
+                .addComponent(jROesteCItas)
                 .addGap(106, 106, 106)
-                .addComponent(jRadioButton5)
+                .addComponent(jRTodosCitas)
                 .addGap(83, 83, 83))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
@@ -446,11 +466,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRadioButton6)
-                    .addComponent(jRadioButton5)
-                    .addComponent(jRadioButton4)
-                    .addComponent(jRadioButton2)
-                    .addComponent(jRadioButton3))
+                    .addComponent(jRNorteCitas)
+                    .addComponent(jRTodosCitas)
+                    .addComponent(jROesteCItas)
+                    .addComponent(jRSurCitas)
+                    .addComponent(jREsteCitas))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -542,21 +562,23 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         List<Ciudadano> ciudadanos = new ArrayList<>();
         ciudadanos = ciudadanoData.listarCiudadano2(jDCFechaInscripcion.getDate(), jREsencial.isSelected(),
                 jRDeRiesgo.isSelected(), (String) jCZonas.getSelectedItem(), jRMostrarTodosCiudadanos.isSelected());
-        String selectedValue = (String) jCTurnosPorDia.getSelectedItem();
+        int selectedValue = Integer.parseInt((String) jCTurnosPorDia.getSelectedItem());
         Vacuna vacunaSeleccionada = (Vacuna) jCVacunasPorLotes.getSelectedItem();
         Centro centroSeleccionada = (Centro) jCCentrosDeVacunacion.getSelectedItem();
-        int cantTurnos = Integer.parseInt(selectedValue);
+        int cantTurnos = selectedValue;
         int contador = 0;
         if (jCZonas.getSelectedItem().toString().equals("Todos")) {
             JOptionPane.showMessageDialog(null, "Debe seleccionar una zona");
         } else {
             for (Ciudadano ciudadano : ciudadanos) {
-                cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaCita.getDate());
-                if (contador == cantTurnos) {
+                contador++;
+                if (contador > cantTurnos) {
                     break;
                 }
+                cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaCita.getDate());
             }
         }
+        cargarDatosTabla();
     }//GEN-LAST:event_jBAgregarActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -585,12 +607,12 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRDeRiesgo;
     private javax.swing.JRadioButton jREsencial;
+    private javax.swing.JRadioButton jREsteCitas;
     private javax.swing.JRadioButton jRMostrarTodosCiudadanos;
-    private javax.swing.JRadioButton jRadioButton2;
-    private javax.swing.JRadioButton jRadioButton3;
-    private javax.swing.JRadioButton jRadioButton4;
-    private javax.swing.JRadioButton jRadioButton5;
-    private javax.swing.JRadioButton jRadioButton6;
+    private javax.swing.JRadioButton jRNorteCitas;
+    private javax.swing.JRadioButton jROesteCItas;
+    private javax.swing.JRadioButton jRSurCitas;
+    private javax.swing.JRadioButton jRTodosCitas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTCantidadDePersonas;
@@ -598,29 +620,32 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     private void cabecera() {
         modelo = (DefaultTableModel) jTListadoDeCitas.getModel();
+        jRTodosCitas.setSelected(true);
     }
 
-   private void cargarDatosTabla() {
-    modelo.setRowCount(0);
-    Centro centro = new Centro();
-    for (CitaVacunacion cita : cd.listarCitas()) {
-        DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
-        System.out.println("id " + cita.getId_centro());
-        
-        centro = centroData.buscarCentros(cita.getId_centro());
-        modelo.addRow(new Object[]{
-            cita.getCodCita(),
-            cita.getDni(),
-            cita.getLote(),
-            cita.getFechaHoraCita().format(fecha), 
-            centro.getNombre(),
-            cita.isColocada(),
-            cita.isCancelada()
-        });
-        
-    }
-}
+    private void cargarDatosTabla() {
+        modelo.setRowCount(0);
+        Centro centro = new Centro();
+        Ciudadano ciudadano = new Ciudadano();
+        Vacuna vacuna = new Vacuna();
+        for (CitaVacunacion cita : cd.listarCitas()) {
+            DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
+            centro = centroData.buscarCentros(cita.getId_centro());
+            ciudadano = ciudadanoData.buscarCiudadano(cita.getDni());
+            modelo.addRow(new Object[]{
+                cita.getCodCita(),
+                cita.getDni(),
+                ciudadano.getApellido(),
+                ciudadano.getNombre(),
+                cita.getLote(),
+                cita.getFechaHoraCita().format(fecha),
+                centro.getNombre(),
+                cita.isColocada(),
+                cita.isCancelada()
+            });
 
+        }
+    }
 
     private void cargarCantidadDeCiudadanos() {
         zona = (String) jCZonas.getSelectedItem();

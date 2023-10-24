@@ -137,7 +137,7 @@ public class CitaData {
             }
         }
     }
-
+    //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitas() {
     List<CitaVacunacion> citas = new ArrayList<>();
     String sql = "SELECT * FROM citavacunacion";
@@ -167,15 +167,52 @@ public class CitaData {
     return citas;
 }
 
+    public void modificarCita(int idCita, boolean aplicada, int lote) {
 
-    public void modificarCita(int idCita) {
+    String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
+    String sqlActualizaStock = "UPDATE vacunas SET stock = -1 WHERE lote = ?"; 
+
+    try {
+        // Inicia una transacción si es necesario, dependiendo de tu implementación de acceso a la base de datos
+
+        
+        PreparedStatement psUpdateCita = con.prepareStatement(sqlActualizaCita);
+        psUpdateCita.setBoolean(1, aplicada);
+        psUpdateCita.setInt(2, idCita);
+        int rowsAffectedCita = psUpdateCita.executeUpdate();
+
+        // Actualiza el stock de vacunas en la tabla 'vacunas'
+        PreparedStatement ps = con.prepareStatement(sqlActualizaStock);
+
+        ps.setInt(1, lote); // Debes obtener el lote de la vacuna asociada a la cita
+        int rowsAffectedStock = ps.executeUpdate();
+
+        
+        ps.close();
+
+        if (rowsAffectedCita > 0 && rowsAffectedStock > 0) {
+           
+            JOptionPane.showMessageDialog(null, "Cita modificada con éxito.");
+        } else {
+           
+            JOptionPane.showMessageDialog(null, "Error al modificar la cita o el stock de vacunas.");
+        }
+    } catch (SQLException ex) {
+        
+        ex.printStackTrace();
+        JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
     }
+}
+
+    
+    
 
     public void eliminarCita(int idCita) {
     }
-
+    //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
 
+        
         String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
                 + "VALUES (?, ?, ?, ?, false, false)";
 
@@ -195,10 +232,14 @@ public class CitaData {
                 JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
             }
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal:\n" + ex);
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexion a la base de datos");
+        }catch (NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
+        
         }
     }
-
+    
+    //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
         String sql;
@@ -227,7 +268,7 @@ public class CitaData {
         }
         return conteo;
     }
-
+    //Utilizado por AdministracionCita
     public int conteoTodosLosCiudadano(java.util.Date fecha, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01';
         String sql;
@@ -254,7 +295,7 @@ public class CitaData {
         }
         return conteo;
     }
-
+    //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitasPorFechaYCentro(java.util.Date fecha, int idCentro) {
         List<CitaVacunacion> citas = new ArrayList<>();
         String sql = "SELECT * FROM citavacunacion WHERE fechaHoraCita = ? AND id_centro = ?";

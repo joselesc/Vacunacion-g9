@@ -177,6 +177,7 @@ public class VacunaData {
         }
         return false;
     }
+    
     public boolean laboratorioTieneVacunas(long cuit) {
     try {
         // Realiza una consulta para verificar si existen vacunas relacionadas con el laboratorio.
@@ -230,4 +231,31 @@ public class VacunaData {
 
         
 }
+    //Utilizado en AdministracionCita
+    public void buscarVacuna(int lote) {
+
+        String sql = "SELECT * FROM vacuna WHERE lote = ?";
+
+        Vacuna v = null;
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, lote);
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                v = new Vacuna();
+                v.setLote(lote);
+                v.setMarca(rs.getString("marca"));
+                v.setMedida(rs.getDouble("medida"));
+                v.setFechaCaduca(rs.getDate("fechaCaduca").toLocalDate());
+                v.setStock(rs.getInt("stock"));
+                v.setColocada(rs.getBoolean("colocada"));
+
+            } else {
+                JOptionPane.showMessageDialog(null, "LABORATORIO INEXISTENTE!");
+            }
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "ERROR AL ACCEDER A LA TABLE LABORATORIO" + ex.getMessage());
+        }
+    }
 }
