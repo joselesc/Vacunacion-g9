@@ -106,13 +106,12 @@ public class CentroData {
         }
 
     }
-
+    //Utilizado por AdministracionCitas
     public Centro buscarCentros(int id) {
             Centro c = null;
             PreparedStatement ps = null;
             String sql = "SELECT * FROM centro WHERE activo = 1 AND id_centro = ?";
         try {
-            System.out.println(id);
             ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();

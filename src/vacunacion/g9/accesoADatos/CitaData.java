@@ -175,6 +175,7 @@ public class CitaData {
     //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
 
+        
         String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
                 + "VALUES (?, ?, ?, ?, false, false)";
 
@@ -197,6 +198,7 @@ public class CitaData {
             JOptionPane.showMessageDialog(null, "Algo salió mal:\n" + ex);
         }
     }
+    
     //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
