@@ -272,9 +272,7 @@ public class CitaData {
                     cita.setCodCita(rs.getInt("codCita"));
                     cita.setDni(rs.getInt("dni"));
                     cita.setLote(rs.getInt("lote"));
-                    cita.setId_centro(rs.getInt("id_centro"));
-//                    cita.setFechaHoraCita(rs.getDate("fechaCaduca").toLocalDate());
-//                    cita.setFechaHoraCita(new java.util.Date(rs.getTimestamp("fechaHoraCita").getTime()));
+//                    cita.setId_centro(rs.getInt("id_centro"));
                     Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
                     LocalDateTime lc = timestamp.toLocalDateTime();
                     cita.setFechaHoraCita(lc);

@@ -36,6 +36,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
         initComponents();
         cargarCentros();
+        armarCabecera();
     }
 
     @SuppressWarnings("unchecked")
@@ -262,6 +263,9 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTablaxFecha;
     // End of variables declaration//GEN-END:variables
 
+    private void armarCabecera(){
+    modelo=(DefaultTableModel)jTablaxFecha.getModel();
+    }
 
     private void cargarCentros() {
 
