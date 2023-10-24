@@ -241,7 +241,39 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTablaxFechaMouseClicked
 
     private void jBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConfirmarActionPerformed
-        // TODO add your handling code here:
+  // Obtén la fila seleccionada
+int filaSeleccionada = jTablaxFecha.getSelectedRow();
+
+// Asegúrate de que se haya seleccionado una fila
+if (filaSeleccionada != -1) {
+    DefaultTableModel model = (DefaultTableModel) jTablaxFecha.getModel();
+
+    // Obtén los datos de la fila seleccionada
+    int codCita = (int) model.getValueAt(filaSeleccionada, 0);
+    boolean aplicada = (boolean) model.getValueAt(filaSeleccionada, 4);
+    int lote = (int) model.getValueAt(filaSeleccionada, 2);
+
+    // Realiza las modificaciones necesarias
+    if (!aplicada) {
+        // Cambia el estado en la base de datos a 'true'
+        // Actualiza el stock de vacunas (restando 1)
+
+        // Luego, actualiza la fila en la tabla para reflejar el cambio en el estado 'Aplicada'
+        model.setValueAt(true, filaSeleccionada, 4);
+    } else {
+        JOptionPane.showMessageDialog(null, "La cita ya ha sido aplicada.");
+    }
+
+    // Guarda los cambios en la base de datos (paso 3)
+    // Debes implementar los métodos en tu clase CitaData para realizar estas operaciones
+    CitaData citaData = new CitaData();
+    citaData.modificarCita(codCita, aplicada, lote);
+    // También, actualiza el stock de vacunas en la base de datos
+
+} else {
+    JOptionPane.showMessageDialog(null, "Seleccione una fila antes de modificar la base de datos.");
+}
+
     }//GEN-LAST:event_jBConfirmarActionPerformed
 
     private void jTablaxFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTablaxFechaPropertyChange
