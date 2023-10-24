@@ -137,7 +137,7 @@ public class CitaData {
             }
         }
     }
-
+    //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitas() {
     List<CitaVacunacion> citas = new ArrayList<>();
     String sql = "SELECT * FROM citavacunacion";
@@ -167,13 +167,12 @@ public class CitaData {
     return citas;
 }
 
-
     public void modificarCita(int idCita) {
     }
 
     public void eliminarCita(int idCita) {
     }
-
+    //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
 
         String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
@@ -198,7 +197,7 @@ public class CitaData {
             JOptionPane.showMessageDialog(null, "Algo salió mal:\n" + ex);
         }
     }
-
+    //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
         String sql;
@@ -227,7 +226,7 @@ public class CitaData {
         }
         return conteo;
     }
-
+    //Utilizado por AdministracionCita
     public int conteoTodosLosCiudadano(java.util.Date fecha, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01';
         String sql;
@@ -254,7 +253,7 @@ public class CitaData {
         }
         return conteo;
     }
-
+    //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitasPorFechaYCentro(java.util.Date fecha, int idCentro) {
         List<CitaVacunacion> citas = new ArrayList<>();
         String sql = "SELECT * FROM citavacunacion WHERE fechaHoraCita = ? AND id_centro = ?";

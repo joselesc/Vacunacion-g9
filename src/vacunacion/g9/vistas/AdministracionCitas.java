@@ -26,7 +26,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     java.util.Date fechaMin = calendario.getTime();
 
     CentroData centroData = new CentroData();
-    
+
     VacunaData vacunaData = new VacunaData();
     CitaData cd = new CitaData();
     CiudadanoData ciudadanoData = new CiudadanoData();
@@ -600,27 +600,24 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         modelo = (DefaultTableModel) jTListadoDeCitas.getModel();
     }
 
-   private void cargarDatosTabla() {
-    modelo.setRowCount(0);
-    Centro centro = new Centro();
-    for (CitaVacunacion cita : cd.listarCitas()) {
-        DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
-        System.out.println("id " + cita.getId_centro());
-        
-        centro = centroData.buscarCentros(cita.getId_centro());
-        modelo.addRow(new Object[]{
-            cita.getCodCita(),
-            cita.getDni(),
-            cita.getLote(),
-            cita.getFechaHoraCita().format(fecha), 
-            centro.getNombre(),
-            cita.isColocada(),
-            cita.isCancelada()
-        });
-        
-    }
-}
+    private void cargarDatosTabla() {
+        modelo.setRowCount(0);
+        Centro centro = new Centro();
+        for (CitaVacunacion cita : cd.listarCitas()) {
+            DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
+            centro = centroData.buscarCentros(cita.getId_centro());
+            modelo.addRow(new Object[]{
+                cita.getCodCita(),
+                cita.getDni(),
+                cita.getLote(),
+                cita.getFechaHoraCita().format(fecha),
+                centro.getNombre(),
+                cita.isColocada(),
+                cita.isCancelada()
+            });
 
+        }
+    }
 
     private void cargarCantidadDeCiudadanos() {
         zona = (String) jCZonas.getSelectedItem();
