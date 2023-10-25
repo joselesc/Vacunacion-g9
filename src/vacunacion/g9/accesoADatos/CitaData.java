@@ -216,26 +216,31 @@ public class CitaData {
 
     try {
         PreparedStatement ps = con.prepareStatement(sql);
+        //aumenta la fecha 14 dias para la primera dosis
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(fecha);
+        cal.add(java.util.Calendar.DATE, 14);
+        java.util.Date fecha14DiasDespues = cal.getTime();
+        
         ps.setInt(1, ciudadano.getDni());
         ps.setInt(2, vacuna.getLote());
         ps.setTimestamp(3, new java.sql.Timestamp(fecha.getTime()));
         ps.setInt(4, centro.getId());
 
-        // Copiamos la fecha y sumamos 14 días
-        java.util.Calendar cal = java.util.Calendar.getInstance();
+        //aumenta la fecha 28 dias para la segunda dosis
         cal.setTime(fecha);
         cal.add(java.util.Calendar.DATE, 28);
-        java.util.Date fecha14DiasDespues = cal.getTime();
+        java.util.Date fecha28DiasDespues = cal.getTime();
 
         ps.setInt(5, ciudadano.getDni());
         ps.setInt(6, vacuna.getLote()+4);
         ps.setTimestamp(7, new java.sql.Timestamp(fecha14DiasDespues.getTime()));
         ps.setInt(8, centro.getId());
 
-        // Copiamos la fecha y sumamos 28 días
+        //aumenta la fecha 56 dias para la primera dosis
         cal.setTime(fecha);
         cal.add(java.util.Calendar.DATE, 56);
-        java.util.Date fecha28DiasDespues = cal.getTime();
+        java.util.Date fecha56DiasDespues = cal.getTime();
 
         ps.setInt(9, ciudadano.getDni());
         ps.setInt(10, vacuna.getLote()+8);
@@ -246,7 +251,7 @@ public class CitaData {
         ps.close();
 
         if (rowsAffected > 0) {
-            //JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
+            JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
         } else {
             JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
         }

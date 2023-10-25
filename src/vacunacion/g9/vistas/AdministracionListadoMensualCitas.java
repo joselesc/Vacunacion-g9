@@ -1,11 +1,28 @@
 package vacunacion.g9.vistas;
 
+import java.time.format.DateTimeFormatter;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import vacunacion.g9.accesoADatos.CentroData;
+import vacunacion.g9.accesoADatos.CitaData;
+import vacunacion.g9.accesoADatos.CiudadanoData;
+import vacunacion.g9.accesoADatos.VacunaData;
+import vacunacion.g9.entidades.Centro;
+import vacunacion.g9.entidades.CitaVacunacion;
+import vacunacion.g9.entidades.Ciudadano;
+import vacunacion.g9.entidades.Vacuna;
 
 public class AdministracionListadoMensualCitas extends javax.swing.JInternalFrame {
 
+    private DefaultTableModel modelo = new DefaultTableModel();
+    CitaData citaData = new CitaData();
+    CiudadanoData ciudadanoData = new CiudadanoData();
+    CentroData centroData = new CentroData();
+    VacunaData vacunaData = new VacunaData();
     public AdministracionListadoMensualCitas() {
         initComponents();
+        armarCabecera();
+        cargarDatosATabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -16,7 +33,7 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTListadoMensual = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         jRadioButton1 = new javax.swing.JRadioButton();
         jRadioButton2 = new javax.swing.JRadioButton();
@@ -28,30 +45,48 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Listado Mensuales");
 
-        jTable1.setBackground(new java.awt.Color(0, 52, 89));
-        jTable1.setForeground(new java.awt.Color(255, 255, 255));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTListadoMensual.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "ID", "DNI", "Lote", "Fecha y hora", "Centro", "Fecha y hora colocada", "Dosis", "Estado"
+                "ID", "DNI", "Apellido", "Nombre", "Lote", "Marca", "Dosis", "Fecha y hora", "Centro", "Estado", "Cancelado"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Boolean.class, java.lang.Boolean.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
             }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
         });
-        jScrollPane1.setViewportView(jTable1);
-        if (jTable1.getColumnModel().getColumnCount() > 0) {
-            jTable1.getColumnModel().getColumn(0).setPreferredWidth(5);
-            jTable1.getColumnModel().getColumn(1).setPreferredWidth(60);
-            jTable1.getColumnModel().getColumn(6).setPreferredWidth(30);
-            jTable1.getColumnModel().getColumn(7).setPreferredWidth(20);
+        jScrollPane1.setViewportView(jTListadoMensual);
+        if (jTListadoMensual.getColumnModel().getColumnCount() > 0) {
+            jTListadoMensual.getColumnModel().getColumn(0).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(0).setPreferredWidth(3);
+            jTListadoMensual.getColumnModel().getColumn(1).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(1).setPreferredWidth(11);
+            jTListadoMensual.getColumnModel().getColumn(2).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(3).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(4).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(4).setPreferredWidth(3);
+            jTListadoMensual.getColumnModel().getColumn(5).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(6).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(6).setPreferredWidth(4);
+            jTListadoMensual.getColumnModel().getColumn(7).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(8).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(9).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(9).setPreferredWidth(1);
+            jTListadoMensual.getColumnModel().getColumn(10).setResizable(false);
+            jTListadoMensual.getColumnModel().getColumn(10).setPreferredWidth(1);
         }
 
         jButton1.setBackground(new java.awt.Color(0, 52, 89));
@@ -87,27 +122,27 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jScrollPane1))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                        .addGap(296, 296, 296)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(202, 202, 202)
                                 .addComponent(jRadioButton1)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton2)
                                 .addGap(18, 18, 18)
                                 .addComponent(jRadioButton3))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(266, 266, 266)
+                                .addGap(64, 64, 64)
                                 .addComponent(jLabel1)))
-                        .addGap(0, 232, Short.MAX_VALUE)))
+                        .addGap(0, 376, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -159,6 +194,37 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
     private javax.swing.JRadioButton jRadioButton2;
     private javax.swing.JRadioButton jRadioButton3;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable jTListadoMensual;
     // End of variables declaration//GEN-END:variables
+    private void armarCabecera(){
+        modelo = (DefaultTableModel) jTListadoMensual.getModel();
+    }
+    
+    private void cargarDatosATabla(){
+        modelo.setRowCount(0);
+        Centro centro = new Centro();
+        Ciudadano ciudadano = new Ciudadano();
+        Vacuna vacuna = new Vacuna();
+        for (CitaVacunacion cita : citaData.listarCitas()) {
+            DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
+            centro = centroData.buscarCentros(cita.getId_centro());
+            ciudadano = ciudadanoData.buscarCiudadano(cita.getDni());
+            vacuna = vacunaData.buscarVacuna(cita.getLote());
+            modelo.addRow(new Object[]{
+                cita.getCodCita(),
+                cita.getDni(),
+                ciudadano.getApellido(),
+                ciudadano.getNombre(),
+                vacuna.getLote(),
+                vacuna.getMarca(),
+                vacuna.getMedida(),
+                cita.getFechaHoraCita().format(fecha),
+                centro.getNombre(),
+                cita.isColocada(),
+                cita.isCancelada()
+            });
+
+        }
+    }
+    
 }
