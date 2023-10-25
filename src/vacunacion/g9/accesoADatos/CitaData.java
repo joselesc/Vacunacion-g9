@@ -170,8 +170,10 @@ public class CitaData {
 
     public void modificarCita(int idCita, boolean aplicada, int lote) {
 
-        String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
-        String sqlActualizaStock = "UPDATE vacunas SET stock = 1 WHERE lote = ?";
+
+    String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
+    String sqlActualizaStock = "UPDATE vacuna SET stock = stock-1 WHERE lote = ?"; 
+
 
         try {
             // Inicia una transacción si es necesario, dependiendo de tu implementación de acceso a la base de datos
@@ -200,30 +202,6 @@ public class CitaData {
 
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
-        }
-    }
-
-    public void eliminarCita(int idCita) {
-        
-        String sql = "DELETE FROM citavacunacion WHERE codCita = ?";
-
-        try {
-
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, idCita);
-
-            int mod = ps.executeUpdate();
-
-            if (mod == 1) {
-                JOptionPane.showMessageDialog(null, "Cita borrado.");
-
-            } else {
-                JOptionPane.showMessageDialog(null, "La cita inexistente.");
-            }
-            ps.close();
-
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
     }
 
