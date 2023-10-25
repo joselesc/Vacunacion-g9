@@ -24,29 +24,37 @@ public class CiudadanoData {
 
     public void registrarCiudadano(Ciudadano ciudadano) {
 
+        int dni1= compareCiu(ciudadano.getDni());
+        
+        if(dni1==ciudadano.getDni()){
+            
+             JOptionPane.showMessageDialog(null, "El ciudadano ya esta registrado");
+             
+        }else{
         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/Inscripcion.png"));
 
         String sql = "INSERT INTO ciudadano(dni, apellido, nombre, email, celular, zona, patologia, ambitoTrabajo, deRiesgo) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,? )";
+                    + "VALUES (?, ?, ?, ?, ?, ?, ?, ?,? )";
 
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, ciudadano.getDni());
-            ps.setString(2, ciudadano.getApellido());
-            ps.setString(3, ciudadano.getNombre());
-            ps.setString(4, ciudadano.getEmail());
-            ps.setInt(5, ciudadano.getCelular());
-            ps.setString(6, ciudadano.getZona());
-            ps.setString(7, ciudadano.getPatologia());
-            ps.setBoolean(8, ciudadano.isAmbitoTrabajo());
-            ps.setBoolean(9, ciudadano.isRiesgo());
-            ps.executeUpdate();
-            ps.close();
-            JOptionPane.showMessageDialog(null, "Registro exitoso!!!", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setInt(1, ciudadano.getDni());
+                ps.setString(2, ciudadano.getApellido());
+                ps.setString(3, ciudadano.getNombre());
+                ps.setString(4, ciudadano.getEmail());
+                ps.setInt(5, ciudadano.getCelular());
+                ps.setString(6, ciudadano.getZona());
+                ps.setString(7, ciudadano.getPatologia());
+                ps.setBoolean(8, ciudadano.isAmbitoTrabajo());
+                ps.setBoolean(9, ciudadano.isRiesgo());
+                ps.executeUpdate();
+                ps.close();
+                JOptionPane.showMessageDialog(null, "Registro exitoso!!!", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error al conectar database " + ex);
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Error al conectar database " + ex);
+            }
         }
     }
 
@@ -301,6 +309,34 @@ public class CiudadanoData {
         return validar;
     }
 
+     private int compareCiu(int dni) {
+
+        String sql = "SELECT dni FROM ciudadano where dni=?";
+
+        int igual = 0;
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                igual = rs.getInt("dni");
+
+            }
+            ps.close();
+            rs.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+
+        }
+      
+        return igual;
+     }
+     
     public int getDniReg() {
         return dniReg;
     }
