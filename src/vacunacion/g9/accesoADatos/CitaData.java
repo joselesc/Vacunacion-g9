@@ -170,7 +170,7 @@ public class CitaData {
     public void modificarCita(int idCita, boolean aplicada, int lote) {
 
     String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
-    String sqlActualizaStock = "UPDATE vacunas SET stock = 1 WHERE lote = ?"; 
+    String sqlActualizaStock = "UPDATE vacuna SET stock = stock-1 WHERE lote = 3;"; 
 
     try {
         // Inicia una transacción si es necesario, dependiendo de tu implementación de acceso a la base de datos
