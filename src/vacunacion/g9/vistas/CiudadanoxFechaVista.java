@@ -325,6 +325,7 @@ if (filaSeleccionada != -1) {
                         c.getLote(),
                         c.getFechaHoraCita(),
                         c.isColocada(),
+                        
                     });
                 }
             } else {
