@@ -73,11 +73,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
         jCTurnosPorDia = new javax.swing.JComboBox<>();
         jCVacunasPorLotes = new javax.swing.JComboBox<>();
-        jDCFechaCita = new com.toedter.calendar.JDateChooser();
-        jLFechaCita1 = new javax.swing.JLabel();
-        jCPrimeraDosis = new javax.swing.JCheckBox();
-        jCSegundaDosis = new javax.swing.JCheckBox();
-        jCTerceraDosis = new javax.swing.JCheckBox();
         jLFechaCita2 = new javax.swing.JLabel();
 
         jPanel1.setBackground(new java.awt.Color(0, 52, 89));
@@ -240,6 +235,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jRTodosCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jRTodosCitas.setForeground(new java.awt.Color(255, 255, 255));
         jRTodosCitas.setText("Todos");
+        jRTodosCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRTodosCitasActionPerformed(evt);
+            }
+        });
 
         jTCantidadDePersonas.setEditable(false);
         jTCantidadDePersonas.setBackground(new java.awt.Color(255, 255, 255));
@@ -255,6 +255,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jRNorteCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jRNorteCitas.setForeground(new java.awt.Color(255, 255, 255));
         jRNorteCitas.setText("Norte");
+        jRNorteCitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRNorteCitasActionPerformed(evt);
+            }
+        });
 
         jREsencial.setBackground(new java.awt.Color(0, 52, 89));
         jREsencial.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -290,48 +295,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jCVacunasPorLotes.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jCVacunasPorLotes.setForeground(new java.awt.Color(0, 23, 31));
 
-        jDCFechaCita.setBackground(new java.awt.Color(255, 255, 255));
-        jDCFechaCita.setForeground(new java.awt.Color(0, 23, 31));
-        jDCFechaCita.setDateFormatString("yyyy-MM-dd");
-        jDCFechaCita.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jDCFechaCita.setMinSelectableDate(new java.util.Date(1696132867000L));
-
-        jLFechaCita1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jLFechaCita1.setForeground(new java.awt.Color(255, 255, 255));
-        jLFechaCita1.setText("Fecha incripcion");
-
-        jCPrimeraDosis.setBackground(new java.awt.Color(0, 52, 89));
-        jCPrimeraDosis.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jCPrimeraDosis.setForeground(new java.awt.Color(255, 255, 255));
-        jCPrimeraDosis.setText("0.3 ml");
-        jCPrimeraDosis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCPrimeraDosisActionPerformed(evt);
-            }
-        });
-
-        jCSegundaDosis.setBackground(new java.awt.Color(0, 52, 89));
-        jCSegundaDosis.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jCSegundaDosis.setForeground(new java.awt.Color(255, 255, 255));
-        jCSegundaDosis.setText("0.5 ml");
-        jCSegundaDosis.setEnabled(false);
-        jCSegundaDosis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCSegundaDosisActionPerformed(evt);
-            }
-        });
-
-        jCTerceraDosis.setBackground(new java.awt.Color(0, 52, 89));
-        jCTerceraDosis.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jCTerceraDosis.setForeground(new java.awt.Color(255, 255, 255));
-        jCTerceraDosis.setText("0.9 ml");
-        jCTerceraDosis.setEnabled(false);
-        jCTerceraDosis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCTerceraDosisActionPerformed(evt);
-            }
-        });
-
         jLFechaCita2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLFechaCita2.setForeground(new java.awt.Color(255, 255, 255));
         jLFechaCita2.setText("Vacunas por lote");
@@ -340,22 +303,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(jRNorteCitas)
-                .addGap(120, 120, 120)
-                .addComponent(jRSurCitas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jREsteCitas)
-                .addGap(216, 216, 216)
-                .addComponent(jROesteCItas)
-                .addGap(106, 106, 106)
-                .addComponent(jRTodosCitas)
-                .addGap(83, 83, 83))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator1)
-                .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,7 +319,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jDCFechaInscripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -384,22 +331,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLCentrosDeVacunacion)
-                                    .addComponent(jCCentrosDeVacunacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jDCFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLFechaCita1))
-                                .addGap(18, 18, 18)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jCPrimeraDosis)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLFechaCita2))
-                                    .addComponent(jCTerceraDosis)
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jCSegundaDosis)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 657, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jCCentrosDeVacunacion, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(373, 373, 373)
                                 .addComponent(jLabel1))
@@ -417,8 +349,25 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLCantidadDeTurnosPorDia)
-                                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, 421, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLFechaCita2))))
                         .addContainerGap(19, Short.MAX_VALUE))))
+            .addComponent(jSeparator1)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(41, 41, 41)
+                .addComponent(jRNorteCitas)
+                .addGap(146, 146, 146)
+                .addComponent(jRSurCitas)
+                .addGap(192, 192, 192)
+                .addComponent(jREsteCitas)
+                .addGap(188, 188, 188)
+                .addComponent(jROesteCItas)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jRTodosCitas)
+                .addGap(85, 85, 85))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -442,31 +391,18 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLCantidadDeTurnosPorDia1)
-                    .addComponent(jLCantidadDeTurnosPorDia))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLCantidadDeTurnosPorDia)
+                        .addComponent(jLFechaCita2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jRDeRiesgo)
                     .addComponent(jREsencial)
                     .addComponent(jRMostrarTodosCiudadanos)
-                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLFechaCita1)
-                            .addComponent(jCPrimeraDosis))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jDCFechaCita, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLFechaCita2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jCSegundaDosis))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jCTerceraDosis)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -475,8 +411,8 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                     .addComponent(jROesteCItas)
                     .addComponent(jRSurCitas)
                     .addComponent(jREsteCitas))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -484,7 +420,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addComponent(jButton3)
                         .addComponent(jBAgregar))
                     .addComponent(jButton1))
-                .addGap(72, 72, 72))
+                .addGap(24, 24, 24))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -495,7 +431,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 761, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -550,18 +486,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         cargarComboBoxCentros();
     }//GEN-LAST:event_jCZonasActionPerformed
 
-    private void jCPrimeraDosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCPrimeraDosisActionPerformed
-        habilitarDosis();
-    }//GEN-LAST:event_jCPrimeraDosisActionPerformed
-
-    private void jCSegundaDosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCSegundaDosisActionPerformed
-        habilitarDosis();
-    }//GEN-LAST:event_jCSegundaDosisActionPerformed
-
-    private void jCTerceraDosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCTerceraDosisActionPerformed
-        habilitarDosis();
-    }//GEN-LAST:event_jCTerceraDosisActionPerformed
-
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
         List<Ciudadano> ciudadanos = new ArrayList<>();
         ciudadanos = ciudadanoData.listarCiudadano2(jDCFechaInscripcion.getDate(), jREsencial.isSelected(),
@@ -579,11 +503,19 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 if (contador > cantTurnos) {
                     break;
                 }
-                cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaCita.getDate());
+                cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaInscripcion.getDate());
             }
         }
         cargarDatosTabla();
     }//GEN-LAST:event_jBAgregarActionPerformed
+
+    private void jRTodosCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRTodosCitasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRTodosCitasActionPerformed
+
+    private void jRNorteCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRNorteCitasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRNorteCitasActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup bGZonas;
@@ -592,20 +524,15 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
-    private javax.swing.JCheckBox jCPrimeraDosis;
-    private javax.swing.JCheckBox jCSegundaDosis;
-    private javax.swing.JCheckBox jCTerceraDosis;
     private javax.swing.JComboBox<String> jCTurnosPorDia;
     private javax.swing.JComboBox<Vacuna> jCVacunasPorLotes;
     private javax.swing.JComboBox<String> jCZonas;
-    private com.toedter.calendar.JDateChooser jDCFechaCita;
     private com.toedter.calendar.JDateChooser jDCFechaInscripcion;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia;
     private javax.swing.JLabel jLCantidadDeTurnosPorDia1;
     private javax.swing.JLabel jLCentrosDeVacunacion;
     private javax.swing.JLabel jLCentrosDeVacunacion1;
     private javax.swing.JLabel jLFechaCita;
-    private javax.swing.JLabel jLFechaCita1;
     private javax.swing.JLabel jLFechaCita2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
@@ -721,20 +648,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             }
         });
-    }
-
-    private void habilitarDosis() {
-        if (jCPrimeraDosis.isSelected() && !jCSegundaDosis.isSelected()
-                && !jCTerceraDosis.isSelected()) {
-            jCSegundaDosis.setEnabled(true);
-            jCPrimeraDosis.setEnabled(false);
-        } else if (jCPrimeraDosis.isSelected() && jCSegundaDosis.isSelected()
-                && !jCTerceraDosis.isSelected()) {
-            jCTerceraDosis.setEnabled(true);
-            jCSegundaDosis.setEnabled(false);
-        } else if (jCTerceraDosis.isSelected()) {
-            jCTerceraDosis.setEnabled(false);
-        }
     }
 
     private void fechaMinCita() {

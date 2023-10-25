@@ -211,7 +211,7 @@ public class CitaData {
     }
     //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
-    String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
+    String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
             + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
 
     try {
