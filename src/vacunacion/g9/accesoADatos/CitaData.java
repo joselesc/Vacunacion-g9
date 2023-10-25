@@ -137,132 +137,149 @@ public class CitaData {
             }
         }
     }
+
     //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitas() {
-    List<CitaVacunacion> citas = new ArrayList<>();
-    String sql = "SELECT * FROM citavacunacion";
+        List<CitaVacunacion> citas = new ArrayList<>();
+        String sql = "SELECT * FROM citavacunacion";
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ResultSet rs = ps.executeQuery();
 
-        while (rs.next()) {
-            CitaVacunacion cita = new CitaVacunacion();
+            while (rs.next()) {
+                CitaVacunacion cita = new CitaVacunacion();
 
-            cita.setCodCita(rs.getInt("codCita"));
-            cita.setDni(rs.getInt("dni"));
-            cita.setLote(rs.getInt("lote"));
-            Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
-            LocalDateTime lc = timestamp.toLocalDateTime();
-            cita.setFechaHoraCita(lc);
-            cita.setId_centro(rs.getInt("id_centro"));
-            cita.setColocada(rs.getBoolean("colocada"));
-            cita.setCancelada(rs.getBoolean("cancelado"));
+                cita.setCodCita(rs.getInt("codCita"));
+                cita.setDni(rs.getInt("dni"));
+                cita.setLote(rs.getInt("lote"));
+                Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
+                LocalDateTime lc = timestamp.toLocalDateTime();
+                cita.setFechaHoraCita(lc);
+                cita.setId_centro(rs.getInt("id_centro"));
+                cita.setColocada(rs.getBoolean("colocada"));
+                cita.setCancelada(rs.getBoolean("cancelado"));
 
-            citas.add(cita);
+                citas.add(cita);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla\n" + ex.getMessage());
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Error al acceder a la tabla\n" + ex.getMessage());
+        return citas;
     }
-    return citas;
-}
 
     public void modificarCita(int idCita, boolean aplicada, int lote) {
 
-    String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
-    String sqlActualizaStock = "UPDATE vacunas SET stock = 1 WHERE lote = ?"; 
+        String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
+        String sqlActualizaStock = "UPDATE vacunas SET stock = 1 WHERE lote = ?";
 
-    try {
-        // Inicia una transacción si es necesario, dependiendo de tu implementación de acceso a la base de datos
+        try {
+            // Inicia una transacción si es necesario, dependiendo de tu implementación de acceso a la base de datos
 
-        
-        PreparedStatement psUpdateCita = con.prepareStatement(sqlActualizaCita);
-        psUpdateCita.setBoolean(1, aplicada);
-        psUpdateCita.setInt(2, idCita);
-        int rowsAffectedCita = psUpdateCita.executeUpdate();
+            PreparedStatement psUpdateCita = con.prepareStatement(sqlActualizaCita);
+            psUpdateCita.setBoolean(1, aplicada);
+            psUpdateCita.setInt(2, idCita);
+            int rowsAffectedCita = psUpdateCita.executeUpdate();
 
-        // Actualiza el stock de vacunas en la tabla 'vacunas'
-        PreparedStatement ps = con.prepareStatement(sqlActualizaStock);
+            // Actualiza el stock de vacunas en la tabla 'vacunas'
+            PreparedStatement ps = con.prepareStatement(sqlActualizaStock);
 
-        ps.setInt(1, lote); // Debes obtener el lote de la vacuna asociada a la cita
-        int rowsAffectedStock = ps.executeUpdate();
+            ps.setInt(1, lote); // Debes obtener el lote de la vacuna asociada a la cita
+            int rowsAffectedStock = ps.executeUpdate();
 
-        
-        ps.close();
+            ps.close();
 
-        if (rowsAffectedCita > 0 && rowsAffectedStock > 0) {
-           
-            JOptionPane.showMessageDialog(null, "Cita modificada con éxito.");
-        } else {
-           
-            JOptionPane.showMessageDialog(null, "Error al modificar la cita o el stock de vacunas.");
+            if (rowsAffectedCita > 0 && rowsAffectedStock > 0) {
+
+                JOptionPane.showMessageDialog(null, "Cita modificada con éxito.");
+            } else {
+
+                JOptionPane.showMessageDialog(null, "Error al modificar la cita o el stock de vacunas.");
+            }
+        } catch (SQLException ex) {
+
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
         }
-    } catch (SQLException ex) {
-        
-        ex.printStackTrace();
-        JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
     }
-}
-
-    
-    
 
     public void eliminarCita(int idCita) {
+        
+        String sql = "DELETE FROM citavacunacion WHERE codCita = ?";
+
+        try {
+
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, idCita);
+
+            int mod = ps.executeUpdate();
+
+            if (mod == 1) {
+                JOptionPane.showMessageDialog(null, "Cita borrado.");
+
+            } else {
+                JOptionPane.showMessageDialog(null, "La cita inexistente.");
+            }
+            ps.close();
+
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
     }
+
     //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
-    String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
-            + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
+        String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
+                + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        //aumenta la fecha 14 dias para la primera dosis
-        java.util.Calendar cal = java.util.Calendar.getInstance();
-        cal.setTime(fecha);
-        cal.add(java.util.Calendar.DATE, 14);
-        java.util.Date fecha14DiasDespues = cal.getTime();
-        
-        ps.setInt(1, ciudadano.getDni());
-        ps.setInt(2, vacuna.getLote());
-        ps.setTimestamp(3, new java.sql.Timestamp(fecha.getTime()));
-        ps.setInt(4, centro.getId());
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            //aumenta la fecha 14 dias para la primera dosis
+            java.util.Calendar cal = java.util.Calendar.getInstance();
+            cal.setTime(fecha);
+            cal.add(java.util.Calendar.DATE, 14);
+            java.util.Date fecha14DiasDespues = cal.getTime();
 
-        //aumenta la fecha 28 dias para la segunda dosis
-        cal.setTime(fecha);
-        cal.add(java.util.Calendar.DATE, 28);
-        java.util.Date fecha28DiasDespues = cal.getTime();
+            ps.setInt(1, ciudadano.getDni());
+            ps.setInt(2, vacuna.getLote());
+            ps.setTimestamp(3, new java.sql.Timestamp(fecha.getTime()));
+            ps.setInt(4, centro.getId());
 
-        ps.setInt(5, ciudadano.getDni());
-        ps.setInt(6, vacuna.getLote()+4);
-        ps.setTimestamp(7, new java.sql.Timestamp(fecha14DiasDespues.getTime()));
-        ps.setInt(8, centro.getId());
+            //aumenta la fecha 28 dias para la segunda dosis
+            cal.setTime(fecha);
+            cal.add(java.util.Calendar.DATE, 28);
+            java.util.Date fecha28DiasDespues = cal.getTime();
 
-        //aumenta la fecha 56 dias para la primera dosis
-        cal.setTime(fecha);
-        cal.add(java.util.Calendar.DATE, 56);
-        java.util.Date fecha56DiasDespues = cal.getTime();
+            ps.setInt(5, ciudadano.getDni());
+            ps.setInt(6, vacuna.getLote() + 4);
+            ps.setTimestamp(7, new java.sql.Timestamp(fecha14DiasDespues.getTime()));
+            ps.setInt(8, centro.getId());
 
-        ps.setInt(9, ciudadano.getDni());
-        ps.setInt(10, vacuna.getLote()+8);
-        ps.setTimestamp(11, new java.sql.Timestamp(fecha28DiasDespues.getTime()));
-        ps.setInt(12, centro.getId());
+            //aumenta la fecha 56 dias para la primera dosis
+            cal.setTime(fecha);
+            cal.add(java.util.Calendar.DATE, 56);
+            java.util.Date fecha56DiasDespues = cal.getTime();
 
-        int rowsAffected = ps.executeUpdate();
-        ps.close();
+            ps.setInt(9, ciudadano.getDni());
+            ps.setInt(10, vacuna.getLote() + 8);
+            ps.setTimestamp(11, new java.sql.Timestamp(fecha28DiasDespues.getTime()));
+            ps.setInt(12, centro.getId());
 
-        if (rowsAffected > 0) {
-            JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
+            int rowsAffected = ps.executeUpdate();
+            ps.close();
+
+            if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
-    } catch (NullPointerException ex) {
-        JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
     }
-}
 
-    
     //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
@@ -292,6 +309,7 @@ public class CitaData {
         }
         return conteo;
     }
+
     //Utilizado por AdministracionCita
     public int conteoTodosLosCiudadano(java.util.Date fecha, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01';
@@ -319,6 +337,7 @@ public class CitaData {
         }
         return conteo;
     }
+
     //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitasPorFechaYCentro(java.util.Date fecha, int idCentro) {
         List<CitaVacunacion> citas = new ArrayList<>();

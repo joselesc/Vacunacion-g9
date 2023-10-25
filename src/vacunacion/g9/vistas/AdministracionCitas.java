@@ -27,7 +27,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     CentroData centroData = new CentroData();
     VacunaData vacunaData = new VacunaData();
-    CitaData cd = new CitaData();
+    CitaData citaData = new CitaData();
     CiudadanoData ciudadanoData = new CiudadanoData();
     String zona;
 
@@ -50,7 +50,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTListadoDeCitas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jBAgregar = new javax.swing.JButton();
         jLFechaCita = new javax.swing.JLabel();
@@ -135,11 +134,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jButton2.setBackground(new java.awt.Color(0, 52, 89));
-        jButton2.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Eliminar");
 
         jButton3.setBackground(new java.awt.Color(0, 52, 89));
         jButton3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -313,8 +307,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
@@ -416,7 +408,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2)
                         .addComponent(jButton3)
                         .addComponent(jBAgregar))
                     .addComponent(jButton1))
@@ -503,7 +494,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 if (contador > cantTurnos) {
                     break;
                 }
-                cd.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaInscripcion.getDate());
+                citaData.agregarCita(ciudadano, vacunaSeleccionada, jCZonas.getSelectedItem().toString(), centroSeleccionada, jDCFechaInscripcion.getDate());
             }
         }
         cargarDatosTabla();
@@ -521,7 +512,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.ButtonGroup bGZonas;
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
     private javax.swing.JComboBox<String> jCTurnosPorDia;
@@ -559,7 +549,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         Centro centro = new Centro();
         Ciudadano ciudadano = new Ciudadano();
         Vacuna vacuna = new Vacuna();
-        for (CitaVacunacion cita : cd.listarCitas()) {
+        for (CitaVacunacion cita : citaData.listarCitas()) {
             DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
             centro = centroData.buscarCentros(cita.getId_centro());
             ciudadano = ciudadanoData.buscarCiudadano(cita.getDni());
