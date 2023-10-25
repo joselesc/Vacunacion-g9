@@ -211,33 +211,52 @@ public class CitaData {
     }
     //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
+    String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
+            + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
 
-        
-        String sql = "INSERT INTO `citavacunacion` (`dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) "
-                + "VALUES (?, ?, ?, ?, false, false)";
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        ps.setInt(1, ciudadano.getDni());
+        ps.setInt(2, vacuna.getLote());
+        ps.setTimestamp(3, new java.sql.Timestamp(fecha.getTime()));
+        ps.setInt(4, centro.getId());
 
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, ciudadano.getDni());
-            ps.setInt(2, vacuna.getLote());
-            ps.setTimestamp(3, new java.sql.Timestamp(fecha.getTime()));
-            ps.setInt(4, centro.getId());
+        // Copiamos la fecha y sumamos 14 días
+        java.util.Calendar cal = java.util.Calendar.getInstance();
+        cal.setTime(fecha);
+        cal.add(java.util.Calendar.DATE, 28);
+        java.util.Date fecha14DiasDespues = cal.getTime();
 
-            int rowsAffected = ps.executeUpdate();
-            ps.close();
+        ps.setInt(5, ciudadano.getDni());
+        ps.setInt(6, vacuna.getLote()+4);
+        ps.setTimestamp(7, new java.sql.Timestamp(fecha14DiasDespues.getTime()));
+        ps.setInt(8, centro.getId());
 
-            if (rowsAffected > 0) {
-                //JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexion a la base de datos");
-        }catch (NullPointerException ex){
-            JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
-        
+        // Copiamos la fecha y sumamos 28 días
+        cal.setTime(fecha);
+        cal.add(java.util.Calendar.DATE, 56);
+        java.util.Date fecha28DiasDespues = cal.getTime();
+
+        ps.setInt(9, ciudadano.getDni());
+        ps.setInt(10, vacuna.getLote()+8);
+        ps.setTimestamp(11, new java.sql.Timestamp(fecha28DiasDespues.getTime()));
+        ps.setInt(12, centro.getId());
+
+        int rowsAffected = ps.executeUpdate();
+        ps.close();
+
+        if (rowsAffected > 0) {
+            //JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
         }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
+    } catch (NullPointerException ex) {
+        JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
     }
+}
+
     
     //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {

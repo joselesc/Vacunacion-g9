@@ -213,8 +213,8 @@ public class VacunaData {
                         rs.getString("marca"),
                         rs.getDouble("medida"),
                         rs.getDate("fechaCaduca").toLocalDate(),
-                        rs.getInt("stock"),
-                        rs.getBoolean("colocada")
+                        rs.getInt("stock")//,
+                        //rs.getBoolean("colocada")
                 );
                 vacunas.add(vacuna);
             }
@@ -248,7 +248,7 @@ public class VacunaData {
                 v.setMedida(rs.getDouble("medida"));
                 v.setFechaCaduca(rs.getDate("fechaCaduca").toLocalDate());
                 v.setStock(rs.getInt("stock"));
-                v.setColocada(rs.getBoolean("colocada"));
+                //v.setColocada(rs.getBoolean("colocada"));
 
             } else {
                 JOptionPane.showMessageDialog(null, "LABORATORIO INEXISTENTE!");

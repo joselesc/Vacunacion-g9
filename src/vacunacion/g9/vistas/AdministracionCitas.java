@@ -715,7 +715,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
                 if (value instanceof Vacuna) {
                     Vacuna vacuna = (Vacuna) value;
-                    String nombreCompleto = vacuna.getMarca() + " - " + vacuna.getLote();
+                    String nombreCompleto = vacuna.getLote() + ". " + vacuna.getMarca();
                     value = nombreCompleto;
                 }
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
