@@ -362,7 +362,7 @@ public class CitaData {
                     cita.setCodCita(rs.getInt("codCita"));
                     cita.setDni(rs.getInt("dni"));
                     cita.setLote(rs.getInt("lote"));
-//                    cita.setId_centro(rs.getInt("id_centro"));
+                    cita.setId_centro(rs.getInt("id_centro"));
                     Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
                     LocalDateTime lc = timestamp.toLocalDateTime();
                     cita.setFechaHoraCita(lc);
@@ -387,7 +387,7 @@ public class CitaData {
     public void setDniReg(int dniReg) {
         this.dniReg = dniReg;
     }
-
+    
     private java.util.Date primeraFecha(Ciudadano ciudadano) {
         java.util.Date primeraFecha;
         if (ciudadano.isAmbitoTrabajo() == true && ciudadano.isRiesgo() == true) {

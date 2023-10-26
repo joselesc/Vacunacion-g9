@@ -321,7 +321,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                         c.getDni(),
                         c.getLote(),
                         c.getFechaHoraCita(),
-                        c.isColocada(),});
+                        c.isColocada()});
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un centro primero.");
