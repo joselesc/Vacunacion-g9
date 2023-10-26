@@ -30,8 +30,11 @@ public class VacunacionVista extends javax.swing.JFrame {
             setLocation(new java.awt.Point(50, 50));
             setUndecorated(true);
 
-            jBSalir.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-            jBSalir.setForeground(new java.awt.Color(255, 153, 0));
+            jDesktopPane1.setMaximumSize(new java.awt.Dimension(1443, 1000));
+            jDesktopPane1.setMinimumSize(new java.awt.Dimension(1443, 1000));
+
+            jBSalir.setFont(new java.awt.Font("Tahoma", 1, 30)); // NOI18N
+            jBSalir.setForeground(new java.awt.Color(255, 102, 102));
             jBSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/exit.png"))); // NOI18N
             jBSalir.setText("SALIR");
             jBSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -41,10 +44,10 @@ public class VacunacionVista extends javax.swing.JFrame {
                 }
             });
 
-            jButton1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-            jButton1.setForeground(new java.awt.Color(255, 153, 0));
+            jButton1.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+            jButton1.setForeground(new java.awt.Color(255, 102, 102));
             jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/calendario.png"))); // NOI18N
-            jButton1.setText("BUSCAR POR FECHA");
+            jButton1.setText("VACUNATORIOS");
             jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
             jButton1.addActionListener(new java.awt.event.ActionListener() {
                 public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,7 +69,7 @@ public class VacunacionVista extends javax.swing.JFrame {
                 .addGroup(jDesktopPane1Layout.createSequentialGroup()
                     .addGap(110, 110, 110)
                     .addComponent(jButton1)
-                    .addContainerGap(547, Short.MAX_VALUE))
+                    .addContainerGap(490, Short.MAX_VALUE))
             );
             jDesktopPane1Layout.setVerticalGroup(
                 jDesktopPane1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

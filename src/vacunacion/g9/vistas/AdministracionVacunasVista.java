@@ -54,45 +54,61 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jTFCuit = new javax.swing.JTextField();
         jMenuBar1 = new javax.swing.JMenuBar();
 
-        setBackground(new java.awt.Color(255, 255, 204));
-        setForeground(new java.awt.Color(255, 255, 204));
+        setBackground(new java.awt.Color(0, 52, 89));
+        setForeground(new java.awt.Color(255, 255, 255));
         setTitle("ADMINISTRACION DE VACUNAS");
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel1.setText("AGREGAR VACUNA");
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel2.setText("LOTE");
 
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel3.setText("CUIT");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel4.setText("MARCA");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel5.setText("MEDIDA");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel6.setText("FECHA DE VENC.");
 
-        jLabel7.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel7.setText("STOCK");
 
+        jTFMarca.setForeground(new java.awt.Color(0, 23, 3));
+
+        jTFMedida.setForeground(new java.awt.Color(0, 23, 3));
+
+        jTFStock.setForeground(new java.awt.Color(0, 23, 3));
+
+        jTFLote.setForeground(new java.awt.Color(0, 23, 3));
         jTFLote.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTFLoteActionPerformed(evt);
             }
         });
 
-        jBModificar.setBackground(new java.awt.Color(255, 255, 204));
-        jBModificar.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
+        jTFFechaVenc.setForeground(new java.awt.Color(0, 23, 3));
+
+        jBModificar.setBackground(new java.awt.Color(0, 126, 167));
+        jBModificar.setFont(new java.awt.Font("Consolas", 1, 21)); // NOI18N
+        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
         jBModificar.setText("MODIFICAR");
         jBModificar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -100,8 +116,9 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBEliminar.setBackground(new java.awt.Color(255, 255, 204));
-        jBEliminar.setFont(new java.awt.Font("Tahoma", 1, 21)); // NOI18N
+        jBEliminar.setBackground(new java.awt.Color(0, 126, 167));
+        jBEliminar.setFont(new java.awt.Font("Consolas", 1, 21)); // NOI18N
+        jBEliminar.setForeground(new java.awt.Color(255, 255, 255));
         jBEliminar.setText("ELIMINAR");
         jBEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -137,8 +154,9 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTListarVac);
 
-        jBAgregar.setBackground(new java.awt.Color(255, 255, 204));
+        jBAgregar.setBackground(new java.awt.Color(0, 126, 167));
         jBAgregar.setFont(new java.awt.Font("Tahoma", 1, 21));
+        jBAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jBAgregar.setText("<html>A<br>G<br>R<br>E<br>G<br>A<br>R</html>");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -146,14 +164,17 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton2.setBackground(new java.awt.Color(255, 0, 51));
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jButton2.setBackground(new java.awt.Color(0, 126, 167));
+        jButton2.setFont(new java.awt.Font("Consolas", 1, 21)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
         jButton2.setText("SALIR");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
+
+        jTFCuit.setForeground(new java.awt.Color(0, 23, 3));
         setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

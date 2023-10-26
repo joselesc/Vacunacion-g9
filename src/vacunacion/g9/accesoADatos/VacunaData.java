@@ -21,8 +21,8 @@ public class VacunaData {
 
     public void insertarVacuna(Vacuna vacuna) {
 
-        String sql = "INSERT INTO vacuna (lote, cuit, marca, medida, fechaCaduca, stock, colocada) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO vacuna (lote, cuit, marca, medida, fechaCaduca, stock) "
+                + "VALUES (?, ?, ?, ?, ?, ? )";
 
         try (PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
             ps.setInt(1, vacuna.getLote());
@@ -31,15 +31,14 @@ public class VacunaData {
             ps.setDouble(4, vacuna.getMedida());
             ps.setDate(5, Date.valueOf(vacuna.getFechaCaduca()));
             ps.setInt(6, vacuna.getStock());
-            ps.setBoolean(7, vacuna.isColocada());
+
 
             ps.executeUpdate();
 
             try (ResultSet rs = ps.getGeneratedKeys()) {
                 if (rs.next()) {
-                    long primaryKey = rs.getLong(1); // Suponiendo que la clave generada es de tipo numérico.            
-//                vacuna.setPrimaryKey(primaryKey); 
-// Almacena la clave generada en la entidad Vacuna si es necesario.
+                    long primaryKey = rs.getLong(1);          
+
                 }
             }
         } catch (SQLException e) {
@@ -108,8 +107,7 @@ public class VacunaData {
                         rs.getString("marca"),
                         rs.getDouble("medida"),
                         rs.getDate("fechaCaduca").toLocalDate(),
-                        rs.getInt("stock")
-                       // rs.getBoolean("colocada")
+                        rs.getInt("stock")              
                 );
                 vacunas.add(vacuna);
             }
@@ -120,11 +118,11 @@ public class VacunaData {
         return vacunas;
     }
 
-    public void actualizarEstadoVacuna(int lote, boolean colocada) {
+    public void actualizarEstadoVacuna(int lote, int stock) {
         try {
-            String sql = "UPDATE vacuna SET colocada = ? WHERE lote = ?";
+            String sql = "UPDATE vacuna SET stock = ? WHERE lote = ?";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setBoolean(1, colocada);
+            ps.setInt(1, stock);
             ps.setInt(2, lote);
             ps.executeUpdate();
             ps.close();
@@ -149,7 +147,7 @@ public class VacunaData {
                 v.setMedida(rs.getDouble("medida"));
                 v.setFechaCaduca(rs.getDate("fechaCaduca").toLocalDate());
                 v.setStock(rs.getInt("stock"));
-                v.setColocada(rs.getBoolean("colocada"));
+
 
             } else {
                 JOptionPane.showMessageDialog(null, "LABORATORIO INEXISTENTE!");
@@ -214,7 +212,7 @@ public class VacunaData {
                         rs.getDouble("medida"),
                         rs.getDate("fechaCaduca").toLocalDate(),
                         rs.getInt("stock")//,
-                        //rs.getBoolean("colocada")
+
                 );
                 vacunas.add(vacuna);
             }
@@ -223,10 +221,7 @@ public class VacunaData {
             System.err.println("ERROR AL OBTENER VACUNAS DISPONIBLES!!! " + e.getMessage());
         }
         return vacunas;
-//////////////////////////////////////////////////////////////////////////////////////////////////////////////        
-//        LaboratorioData laboratorioData = new LaboratorioData();
-//        List<Vacuna> vacunasOrdenadasPorLote = laboratorioData.obtenerVacunasDisponiblesOrdenadasPorLote();
-/////////////////////////copia y pega para utilizar el metodo/////////////////////////////////////////////////
+
 
 
         
@@ -248,7 +243,7 @@ public class VacunaData {
                 v.setMedida(rs.getDouble("medida"));
                 v.setFechaCaduca(rs.getDate("fechaCaduca").toLocalDate());
                 v.setStock(rs.getInt("stock"));
-                //v.setColocada(rs.getBoolean("colocada"));
+
 
             } else {
                 JOptionPane.showMessageDialog(null, "LABORATORIO INEXISTENTE!");

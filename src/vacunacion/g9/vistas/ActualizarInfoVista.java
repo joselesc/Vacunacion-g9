@@ -1,12 +1,6 @@
 
 package vacunacion.g9.vistas;
 
-import java.awt.Dimension;
-import java.util.ArrayList;
-import java.util.List;
-import javafx.scene.control.ComboBox;
-import javax.swing.ComboBoxModel;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import vacunacion.g9.accesoADatos.CiudadanoData;
 import vacunacion.g9.entidades.Ciudadano;
@@ -66,8 +60,10 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
         jTDescripcion = new javax.swing.JTextField();
         jBActualizar = new javax.swing.JButton();
 
+        setBackground(new java.awt.Color(0, 52, 89));
         setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.awt.Color(255, 51, 51)));
         setClosable(true);
+        setForeground(java.awt.Color.blue);
         setMaximumSize(new java.awt.Dimension(800, 800));
         setMinimumSize(new java.awt.Dimension(800, 328));
         setPreferredSize(new java.awt.Dimension(800, 800));
@@ -81,24 +77,29 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
         jLabel2.setText("Para poder actualizar sus datos llene los siguientes campos:");
 
         jTDni.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTDni.setForeground(new java.awt.Color(0, 23, 3));
 
         jTApellido.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTApellido.setForeground(new java.awt.Color(0, 23, 3));
 
         jTEmail.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jTEmail.setForeground(new java.awt.Color(0, 23, 3));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
         jLabel3.setText("Los datos ingresados deben coincidir con los registrados. Una vez chequeados se habilitara el boton modificar.");
 
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jLabel4.setText("DNI");
 
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jLabel5.setText("APELLIDO");
 
-        jLabel6.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jLabel6.setText("EMAIL");
 
-        jBEnviar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBEnviar.setBackground(new java.awt.Color(0, 126, 167));
+        jBEnviar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jBEnviar.setForeground(new java.awt.Color(255, 255, 255));
         jBEnviar.setText("Enviar");
         jBEnviar.setMaximumSize(new java.awt.Dimension(150, 30));
         jBEnviar.setMinimumSize(new java.awt.Dimension(150, 30));
@@ -111,7 +112,9 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
 
-        jBModificar.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jBModificar.setBackground(new java.awt.Color(0, 126, 167));
+        jBModificar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jBModificar.setForeground(new java.awt.Color(255, 255, 255));
         jBModificar.setText("Modificar");
         jBModificar.setMaximumSize(new java.awt.Dimension(150, 30));
         jBModificar.setMinimumSize(new java.awt.Dimension(150, 30));
@@ -122,34 +125,45 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("NOMBRE:");
 
         jTNombre.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTNombre.setForeground(new java.awt.Color(0, 23, 3));
         jTNombre.setMinimumSize(new java.awt.Dimension(574, 28));
         jTNombre.setPreferredSize(new java.awt.Dimension(574, 28));
 
-        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("APELLIDO:");
 
         jTApellido1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTApellido1.setForeground(new java.awt.Color(0, 23, 3));
 
-        jLabel10.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("DNI:");
 
         jTDni1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTDni1.setForeground(new java.awt.Color(0, 23, 3));
 
-        jLabel11.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("EM@IL:");
 
         jTEmail1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTEmail1.setForeground(new java.awt.Color(0, 23, 3));
 
-        jLabel12.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("CELULAR:");
 
         jTCelular.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTCelular.setForeground(new java.awt.Color(0, 23, 3));
 
-        jLabel13.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("ZONA:");
         jLabel13.setMinimumSize(new java.awt.Dimension(100, 22));
         jLabel13.setPreferredSize(new java.awt.Dimension(100, 22));
@@ -157,13 +171,16 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
         jCBZona.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jCBZona.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "NORTE", "SUR", "ESTE", "OESTE" }));
 
-        jLabel14.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("PERSONAL ESCENCIAL");
 
-        jLabel15.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("DE RIESGO");
 
-        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("PATOLOGIA PREEXISTENTE:");
 
         jCheckBox2.addActionListener(new java.awt.event.ActionListener() {
@@ -175,14 +192,18 @@ public class ActualizarInfoVista extends javax.swing.JInternalFrame {
         jCPatologia.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jCPatologia.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SOBREPESO", "HIPERTENSO", "DIABETES", "ASMA", "OTROS.." }));
 
-        jLDescripcion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLDescripcion.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
+        jLDescripcion.setForeground(new java.awt.Color(255, 255, 255));
         jLDescripcion.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLDescripcion.setText("DESCRIBA SU ENFERMEDAD BASE:");
 
         jTDescripcion.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTDescripcion.setForeground(new java.awt.Color(0, 23, 3));
         jTDescripcion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        jBActualizar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBActualizar.setBackground(new java.awt.Color(0, 126, 167));
+        jBActualizar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jBActualizar.setForeground(new java.awt.Color(255, 255, 255));
         jBActualizar.setText("Actualizar");
         jBActualizar.setMaximumSize(new java.awt.Dimension(150, 30));
         jBActualizar.setMinimumSize(new java.awt.Dimension(150, 30));

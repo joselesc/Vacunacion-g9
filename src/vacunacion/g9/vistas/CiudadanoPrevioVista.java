@@ -10,9 +10,7 @@ import java.awt.Graphics;
 import java.awt.Image;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 import vacunacion.g9.accesoADatos.CitaData;
-import vacunacion.g9.accesoADatos.CiudadanoData;
 
 /**
  *
@@ -32,8 +30,6 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jMenuItem1 = new javax.swing.JMenuItem();
-        jMenuItem4 = new javax.swing.JMenuItem();
         ImageIcon icono=new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/vacunacion-covid-fullhd.png"));
         Image miImagen=icono.getImage();
         EscritorioCiudadano = new javax.swing.JDesktopPane(){
@@ -55,25 +51,25 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
         jMSalir = new javax.swing.JMenu();
         jMIExit = new javax.swing.JMenuItem();
 
-        jMenuItem1.setText("jMenuItem1");
+        setMaximumSize(new java.awt.Dimension(0, 0));
+        setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(1443, 1000));
 
-        jMenuItem4.setText("jMenuItem4");
-
-        setMinimumSize(new java.awt.Dimension(1448, 966));
-
-        EscritorioCiudadano.setMinimumSize(new java.awt.Dimension(1448, 966));
+        EscritorioCiudadano.setMaximumSize(new java.awt.Dimension(1443, 1000));
+        EscritorioCiudadano.setMinimumSize(new java.awt.Dimension(1443, 1000));
 
         javax.swing.GroupLayout EscritorioCiudadanoLayout = new javax.swing.GroupLayout(EscritorioCiudadano);
         EscritorioCiudadano.setLayout(EscritorioCiudadanoLayout);
         EscritorioCiudadanoLayout.setHorizontalGroup(
             EscritorioCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1448, Short.MAX_VALUE)
+            .addGap(0, 1443, Short.MAX_VALUE)
         );
         EscritorioCiudadanoLayout.setVerticalGroup(
             EscritorioCiudadanoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
+        jMenuBar1.setMaximumSize(new java.awt.Dimension(204, 50));
         jMenuBar1.setMinimumSize(new java.awt.Dimension(204, 50));
         jMenuBar1.setPreferredSize(new java.awt.Dimension(204, 50));
 
@@ -294,8 +290,6 @@ public class CiudadanoPrevioVista extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
-    private javax.swing.JMenuItem jMenuItem4;
     // End of variables declaration//GEN-END:variables
 
 }
