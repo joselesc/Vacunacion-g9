@@ -112,17 +112,17 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
         jTListarVac.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jTListarVac.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "LOTE", "CUIT", "MARCA", "MEDIDA", "FEC DE VENC", "STOCK", "COLOCADA"
+                "LOTE", "CUIT", "MARCA", "MEDIDA", "FEC DE VENC", "STOCK"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {

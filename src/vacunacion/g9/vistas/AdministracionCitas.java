@@ -37,14 +37,12 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         cargarDatosTabla();
         cargarComboBoxCentros();
         cargarComboBoxVacunas();
-        //jDCFechaCita.setMinSelectableDate(fechaMin);
     }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        bGZonas = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -60,13 +58,8 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jCZonas = new javax.swing.JComboBox<>();
         jLCentrosDeVacunacion1 = new javax.swing.JLabel();
         jRDeRiesgo = new javax.swing.JRadioButton();
-        jRSurCitas = new javax.swing.JRadioButton();
-        jREsteCitas = new javax.swing.JRadioButton();
-        jROesteCItas = new javax.swing.JRadioButton();
-        jRTodosCitas = new javax.swing.JRadioButton();
         jTCantidadDePersonas = new javax.swing.JTextField();
         jLCantidadDeTurnosPorDia1 = new javax.swing.JLabel();
-        jRNorteCitas = new javax.swing.JRadioButton();
         jREsencial = new javax.swing.JRadioButton();
         jRMostrarTodosCiudadanos = new javax.swing.JRadioButton();
         jSeparator1 = new javax.swing.JSeparator();
@@ -206,35 +199,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
             }
         });
 
-        jRSurCitas.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRSurCitas);
-        jRSurCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRSurCitas.setForeground(new java.awt.Color(255, 255, 255));
-        jRSurCitas.setText("Sur");
-
-        jREsteCitas.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jREsteCitas);
-        jREsteCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jREsteCitas.setForeground(new java.awt.Color(255, 255, 255));
-        jREsteCitas.setText("Este");
-
-        jROesteCItas.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jROesteCItas);
-        jROesteCItas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jROesteCItas.setForeground(new java.awt.Color(255, 255, 255));
-        jROesteCItas.setText("Oeste");
-
-        jRTodosCitas.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRTodosCitas);
-        jRTodosCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRTodosCitas.setForeground(new java.awt.Color(255, 255, 255));
-        jRTodosCitas.setText("Todos");
-        jRTodosCitas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRTodosCitasActionPerformed(evt);
-            }
-        });
-
         jTCantidadDePersonas.setEditable(false);
         jTCantidadDePersonas.setBackground(new java.awt.Color(255, 255, 255));
         jTCantidadDePersonas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -243,17 +207,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jLCantidadDeTurnosPorDia1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLCantidadDeTurnosPorDia1.setForeground(new java.awt.Color(255, 255, 255));
         jLCantidadDeTurnosPorDia1.setText("Cantidad de personas");
-
-        jRNorteCitas.setBackground(new java.awt.Color(0, 52, 89));
-        bGZonas.add(jRNorteCitas);
-        jRNorteCitas.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jRNorteCitas.setForeground(new java.awt.Color(255, 255, 255));
-        jRNorteCitas.setText("Norte");
-        jRNorteCitas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jRNorteCitasActionPerformed(evt);
-            }
-        });
 
         jREsencial.setBackground(new java.awt.Color(0, 52, 89));
         jREsencial.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -348,18 +301,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                                     .addComponent(jLFechaCita2))))
                         .addContainerGap(19, Short.MAX_VALUE))))
             .addComponent(jSeparator1)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addComponent(jRNorteCitas)
-                .addGap(146, 146, 146)
-                .addComponent(jRSurCitas)
-                .addGap(192, 192, 192)
-                .addComponent(jREsteCitas)
-                .addGap(188, 188, 188)
-                .addComponent(jROesteCItas)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jRTodosCitas)
-                .addGap(85, 85, 85))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -387,24 +328,18 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addComponent(jLCantidadDeTurnosPorDia)
                         .addComponent(jLFechaCita2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jRDeRiesgo)
-                    .addComponent(jREsencial)
-                    .addComponent(jRMostrarTodosCiudadanos)
-                    .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jCVacunasPorLotes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jTCantidadDePersonas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jRDeRiesgo)
+                        .addComponent(jREsencial)
+                        .addComponent(jRMostrarTodosCiudadanos)
+                        .addComponent(jCTurnosPorDia, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jRNorteCitas)
-                    .addComponent(jRTodosCitas)
-                    .addComponent(jROesteCItas)
-                    .addComponent(jRSurCitas)
-                    .addComponent(jREsteCitas))
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 368, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -475,6 +410,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private void jCZonasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCZonasActionPerformed
         cargarCantidadDeCiudadanos();
         cargarComboBoxCentros();
+        cargarDatosTabla();
     }//GEN-LAST:event_jCZonasActionPerformed
 
     private void jBAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAgregarActionPerformed
@@ -500,16 +436,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         cargarDatosTabla();
     }//GEN-LAST:event_jBAgregarActionPerformed
 
-    private void jRTodosCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRTodosCitasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRTodosCitasActionPerformed
-
-    private void jRNorteCitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRNorteCitasActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jRNorteCitasActionPerformed
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.ButtonGroup bGZonas;
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
@@ -528,12 +455,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton jRDeRiesgo;
     private javax.swing.JRadioButton jREsencial;
-    private javax.swing.JRadioButton jREsteCitas;
     private javax.swing.JRadioButton jRMostrarTodosCiudadanos;
-    private javax.swing.JRadioButton jRNorteCitas;
-    private javax.swing.JRadioButton jROesteCItas;
-    private javax.swing.JRadioButton jRSurCitas;
-    private javax.swing.JRadioButton jRTodosCitas;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTextField jTCantidadDePersonas;
@@ -541,7 +463,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     // End of variables declaration//GEN-END:variables
     private void cabecera() {
         modelo = (DefaultTableModel) jTListadoDeCitas.getModel();
-        jRTodosCitas.setSelected(true);
     }
 
     private void cargarDatosTabla() {
@@ -638,12 +559,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 return super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             }
         });
-    }
-
-    private void fechaMinCita() {
-    }
-
-    private void fechaMaxCita() {
     }
 
 }

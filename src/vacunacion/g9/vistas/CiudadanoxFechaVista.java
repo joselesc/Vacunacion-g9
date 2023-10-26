@@ -68,6 +68,8 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
         jLabel1.setText("VACUNAS POR DIA");
 
+        jDDesde.setDateFormatString("dd-MM-yyyy");
+
         jBuscarxFecha.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jBuscarxFecha.setText("BUSCAR");
         jBuscarxFecha.addActionListener(new java.awt.event.ActionListener() {
@@ -220,7 +222,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
 
     private void jBuscarxFechaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBuscarxFechaActionPerformed
-       
+
         listarcitas();
     }//GEN-LAST:event_jBuscarxFechaActionPerformed
 
@@ -241,34 +243,29 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jTablaxFechaMouseClicked
 
     private void jBConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBConfirmarActionPerformed
- 
-int filaSeleccionada = jTablaxFecha.getSelectedRow();
 
+        int filaSeleccionada = jTablaxFecha.getSelectedRow();
 
-if (filaSeleccionada != -1) {
-    DefaultTableModel model = (DefaultTableModel) jTablaxFecha.getModel();
+        if (filaSeleccionada != -1) {
+            DefaultTableModel model = (DefaultTableModel) jTablaxFecha.getModel();
 
-  
-    int codCita = (int) model.getValueAt(filaSeleccionada, 0);
-    boolean aplicada = (boolean) model.getValueAt(filaSeleccionada, 4);
-    int lote = (int) model.getValueAt(filaSeleccionada, 2);
+            int codCita = (int) model.getValueAt(filaSeleccionada, 0);
+            boolean aplicada = (boolean) model.getValueAt(filaSeleccionada, 4);
+            int lote = (int) model.getValueAt(filaSeleccionada, 2);
 
- 
-    if (!aplicada) {
-  
-        model.setValueAt(true, filaSeleccionada, 4);
-    } else {
-        JOptionPane.showMessageDialog(null, "La cita ya ha sido aplicada.");
-    }
+            if (!aplicada) {
 
+                model.setValueAt(true, filaSeleccionada, 4);
+            } else {
+                JOptionPane.showMessageDialog(null, "La cita ya ha sido aplicada.");
+            }
 
-    CitaData citaData = new CitaData();
-    citaData.modificarCita(codCita, aplicada, lote);
-    
+            CitaData citaData = new CitaData();
+            citaData.modificarCita(codCita, aplicada, lote);
 
-} else {
-    JOptionPane.showMessageDialog(null, "Seleccione una fila antes de modificar la base de datos.");
-}
+        } else {
+            JOptionPane.showMessageDialog(null, "Seleccione una fila antes de modificar la base de datos.");
+        }
 
     }//GEN-LAST:event_jBConfirmarActionPerformed
 
@@ -291,8 +288,8 @@ if (filaSeleccionada != -1) {
     private javax.swing.JTable jTablaxFecha;
     // End of variables declaration//GEN-END:variables
 
-    private void armarCabecera(){
-    modelo=(DefaultTableModel)jTablaxFecha.getModel();
+    private void armarCabecera() {
+        modelo = (DefaultTableModel) jTablaxFecha.getModel();
     }
 
     private void cargarCentros() {
@@ -310,7 +307,7 @@ if (filaSeleccionada != -1) {
         if (fecha != null) {
 
             Centro centroSeleccionado = (Centro) jCBoxCentros.getSelectedItem();
- 
+
             if (centroSeleccionado != null) {
                 int idCentro = centroSeleccionado.getId();
                 List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(fecha, idCentro);
@@ -324,9 +321,7 @@ if (filaSeleccionada != -1) {
                         c.getDni(),
                         c.getLote(),
                         c.getFechaHoraCita(),
-                        c.isColocada(),
-                        
-                    });
+                        c.isColocada(),});
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Seleccione un centro primero.");

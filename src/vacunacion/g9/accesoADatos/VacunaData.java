@@ -108,8 +108,8 @@ public class VacunaData {
                         rs.getString("marca"),
                         rs.getDouble("medida"),
                         rs.getDate("fechaCaduca").toLocalDate(),
-                        rs.getInt("stock"),
-                        rs.getBoolean("colocada")
+                        rs.getInt("stock")
+                       // rs.getBoolean("colocada")
                 );
                 vacunas.add(vacuna);
             }
