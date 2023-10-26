@@ -28,7 +28,9 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
-        jLDni.setFont(new java.awt.Font("Tahoma", 0, 15)); // NOI18N
+        jPanel1.setBackground(new java.awt.Color(0, 52, 89));
+
+        jLDni.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jLDni.setText("Buscar por DNI");
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -56,7 +58,9 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         });
         jScrollPane1.setViewportView(jTable1);
 
-        jBCerrar.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jBCerrar.setBackground(new java.awt.Color(0, 126, 167));
+        jBCerrar.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
+        jBCerrar.setForeground(new java.awt.Color(255, 255, 255));
         jBCerrar.setText("Cerrar");
         jBCerrar.setMaximumSize(new java.awt.Dimension(150, 50));
         jBCerrar.setMinimumSize(new java.awt.Dimension(150, 50));
@@ -67,11 +71,13 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LISTA DE CIUDADANOS REGISTRADOS");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 15)); // NOI18N
+        jButton1.setBackground(new java.awt.Color(0, 126, 167));
+        jButton1.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Buscar");
         jButton1.setMaximumSize(new java.awt.Dimension(150, 30));
         jButton1.setMinimumSize(new java.awt.Dimension(150, 30));
@@ -116,7 +122,7 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
                     .addComponent(jLDni)
                     .addComponent(jBCerrar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

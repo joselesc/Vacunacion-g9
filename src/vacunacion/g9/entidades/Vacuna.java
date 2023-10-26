@@ -10,18 +10,9 @@ public class Vacuna {
     private String marca;
     private double medida;
     private LocalDate fechaCaduca;
-    private int stock;
-    private boolean colocada;
+    private int stock;  
 
-    public Vacuna(int lote, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock) {
-        this.lote = lote;
-        this.cuit = cuit;
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaCaduca = fechaCaduca;
-        this.stock = stock;
-    }
-
+  
     public Vacuna() {
     }
 
@@ -31,25 +22,16 @@ public class Vacuna {
         this.medida = medida;
         this.fechaCaduca = fechaCaduca;
         this.stock = stock;
-    }
+    }  
 
-    public Vacuna(long cuit, String marca, double medida, LocalDate fechaCaduca, int stock, boolean colocada) {
-        this.cuit = cuit;
-        this.marca = marca;
-        this.medida = medida;
-        this.fechaCaduca = fechaCaduca;
-        this.stock = stock;
-        this.colocada = colocada;
-    }
-
-    public Vacuna(int lote, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock, boolean colocada) {
+    public Vacuna(int lote, long cuit, String marca, double medida, LocalDate fechaCaduca, int stock) {
         this.lote = lote;
         this.cuit = cuit;
         this.marca = marca;
         this.medida = medida;
         this.fechaCaduca = fechaCaduca;
         this.stock = stock;
-        this.colocada = colocada;
+        
     }
 
     public int getLote() {
@@ -100,17 +82,9 @@ public class Vacuna {
         this.stock = stock;
     }
 
-    public boolean isColocada() {
-        return colocada;
-    }
-
-    public void setColocada(boolean colocada) {
-        this.colocada = colocada;
-    }
-
     @Override
     public String toString() {
-        return "Vacuna{" + "lote=" + lote + ", cuit=" + cuit + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + ", colocada=" + colocada + '}';
+        return "Vacuna{" + "lote=" + lote + ", cuit=" + cuit + ", marca=" + marca + ", medida=" + medida + ", fechaCaduca=" + fechaCaduca + ", stock=" + stock + '}';
     }
 
 }

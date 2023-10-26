@@ -6,7 +6,6 @@ import java.awt.Image;
 import java.awt.Point;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 
 public class VacunacionG9Vista extends javax.swing.JFrame {
@@ -55,6 +54,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         jBAdministracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/minimizar.png"))); // NOI18N
         jBAdministracion.setText("ADMINISTRACION");
         jBAdministracion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBAdministracion.setOpaque(false);
         jBAdministracion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBAdministracionActionPerformed(evt);
@@ -67,6 +67,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         jBPerosnalSalud.setText("VACUNATORIO");
         jBPerosnalSalud.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBPerosnalSalud.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jBPerosnalSalud.setOpaque(false);
         jBPerosnalSalud.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBPerosnalSaludActionPerformed(evt);
@@ -79,6 +80,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         jBSalir.setText("SALIR");
         jBSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBSalir.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jBSalir.setOpaque(false);
         jBSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBSalirActionPerformed(evt);
@@ -91,6 +93,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
         jBCiudadano.setText("CIUDADANO");
         jBCiudadano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBCiudadano.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jBCiudadano.setOpaque(false);
         jBCiudadano.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBCiudadanoActionPerformed(evt);
@@ -147,12 +150,12 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jBCiudadano, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jBPerosnalSalud, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 283, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jBAdministracion, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jBSalir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                .addGap(94, 94, 94))
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 510, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(141, 141, 141))
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1443, Short.MAX_VALUE)
         );
         escritorioLayout.setVerticalGroup(
             escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
