@@ -8,14 +8,14 @@ import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 public class AdministracionVista extends javax.swing.JFrame {
-    
+
     private Point point;
-    
+
     public AdministracionVista() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,6 +40,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMListarCiudadanos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
+        jMVacunaxCentro = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -167,6 +168,14 @@ public class AdministracionVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jMVacunaxCentro.setText("Vacunas por Centro");
+        jMVacunaxCentro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMVacunaxCentroMouseClicked(evt);
+            }
+        });
+        jMenuBar1.add(jMVacunaxCentro);
+
         jMenu4.setText("Volver");
         jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenu4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
@@ -206,13 +215,13 @@ public class AdministracionVista extends javax.swing.JFrame {
         try {
             int CurrentX = this.getLocation().x;
             int CurrentY = this.getLocation().y;
-            
+
             int MoveX = (CurrentX + evt.getX()) - (CurrentX + point.x);
             int MoveY = (CurrentY + evt.getY()) - (CurrentY + point.y);
-            
+
             int x = CurrentX + MoveX;
             int y = CurrentY + MoveY;
-            
+
             this.setLocation(x, y);
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, ex);
@@ -234,7 +243,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         centro.setVisible(true);
         escritorio.add(centro);
         escritorio.moveToFront(centro);
-        
+
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = centro.getSize();
         centro.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -247,7 +256,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         vacunas.setVisible(true);
         escritorio.add(vacunas);
         escritorio.moveToFront(vacunas);
-        
+
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = vacunas.getSize();
         vacunas.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -260,7 +269,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         citas.setVisible(true);
         escritorio.add(citas);
         escritorio.moveToFront(citas);
-        
+
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = citas.getSize();
         citas.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -273,7 +282,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         lb.setVisible(true);
         escritorio.add(lb);
         escritorio.moveToFront(lb);
-        
+
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = lb.getSize();
         lb.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -282,13 +291,13 @@ public class AdministracionVista extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMListarCiudadanosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMListarCiudadanosActionPerformed
-        
+
         escritorioR();
         AdministracionListarCiudadanos aec = new AdministracionListarCiudadanos();
         aec.setVisible(true);
         escritorio.add(aec);
         escritorio.moveToFront(aec);
-        
+
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = aec.getSize();
         aec.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
@@ -301,12 +310,25 @@ public class AdministracionVista extends javax.swing.JFrame {
         cita.setVisible(true);
         escritorio.add(cita);
         escritorio.moveToFront(cita);
-        
+
         Dimension desktopSize = escritorio.getSize();
         Dimension FrameSize = cita.getSize();
         cita.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
         cita.show();
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMVacunaxCentroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMVacunaxCentroMouseClicked
+        escritorioR();
+        VacunaXCentro vc = new VacunaXCentro();
+        vc.setVisible(true);
+        escritorio.add(vc);
+        escritorio.moveToFront(vc);
+
+        Dimension desktopSize = escritorio.getSize();
+        Dimension FrameSize = vc.getSize();
+        vc.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
+        vc.show();
+    }//GEN-LAST:event_jMVacunaxCentroMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane escritorio;
@@ -318,6 +340,7 @@ public class AdministracionVista extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMListadoMensual;
     private javax.swing.JMenuItem jMListarCiudadanos;
     private javax.swing.JMenu jMManejoDeDosis;
+    private javax.swing.JMenu jMVacunaxCentro;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar1;
@@ -329,5 +352,5 @@ public class AdministracionVista extends javax.swing.JFrame {
         escritorio.removeAll();
         escritorio.repaint();
     }
-    
+
 }

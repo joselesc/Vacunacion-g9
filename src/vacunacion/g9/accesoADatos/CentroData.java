@@ -263,6 +263,37 @@ public class CentroData {
         return centros;
 
     }
+    public List<Centro> listarCentros() {
+
+        List<Centro> centros = new ArrayList<>();
+        String sql;
+
+        try {           
+                sql = "SELECT * FROM centro WHERE activo = 1";          
+            
+            PreparedStatement ps = con.prepareStatement(sql);           
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                Centro c = new Centro();
+
+                c.setId(rs.getInt("id_centro"));
+                c.setNombre(rs.getString("nombre"));
+                c.setDireccion(rs.getString("direccion"));
+                c.setTelefono(rs.getInt("telefono"));
+                c.setZona(rs.getString("zona"));
+                c.setActivo(rs.getBoolean("activo"));
+                centros.add(c);
+
+            }
+            ps.close();
+            rs.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
+        }
+
+        return centros;
+
+    }
 
     public List<Centro> listarCentrosOeste() {
 
