@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 26-10-2023 a las 00:54:02
+-- Tiempo de generación: 27-10-2023 a las 00:27:10
 -- Versión del servidor: 10.4.28-MariaDB
 -- Versión de PHP: 8.2.4
 
@@ -44,11 +44,11 @@ CREATE TABLE `centro` (
 
 INSERT INTO `centro` (`id_centro`, `nombre`, `direccion`, `telefono`, `zona`, `activo`) VALUES
 (19, 'Hospital San Juan', 'Calle Principal 123', 1234567890, 'Norte', 1),
-(20, 'Hospital Santa María', 'Avenida Central 456', 2147483647, 'Norte', 0),
+(20, 'Hospital Santa María', 'Avenida Central 456', 2147483647, 'Norte', 1),
 (21, 'Hospital Santo Tomás', 'Calle Norte 789', 2147483647, 'Sur', 1),
 (22, 'Hospital San Pedro', 'Avenida Sur 123', 2147483647, 'Sur', 0),
 (23, 'Hospital Santa Clara', 'Calle Sur 456a', 2147483647, 'Sur', 1),
-(24, 'Hospital Santo Domingo', 'Avenida Este 123', 2147483647, 'Este', 0),
+(24, 'Hospital Santo Domingo', 'Avenida Este 123', 2147483647, 'Este', 1),
 (25, 'Hospital San Antonio', 'Calle Este 456', 2147483647, 'Este', 1),
 (26, 'Hospital San Francisco', 'Avenida Oeste 123', 123456789, 'Oeste', 1),
 (27, 'Hospital Santa Rosa', 'Calle Oeste 456', 1112223333, 'Oeste', 1),
@@ -78,65 +78,9 @@ CREATE TABLE `citavacunacion` (
 --
 
 INSERT INTO `citavacunacion` (`codCita`, `dni`, `lote`, `fechaHoraCita`, `id_centro`, `colocada`, `cancelado`) VALUES
-(3, 5070989, 1, '2023-10-24 20:56:19', 19, 0, 0),
-(4, 5252856, 2, '2023-10-24 20:57:39', 20, 0, 0),
-(5, 5330578, 3, '2023-10-24 20:57:50', 21, 0, 0),
-(6, 6890434, 1, '2023-10-24 20:38:40', 19, 1, 0),
-(7, 10398404, 1, '2023-10-24 20:39:01', 19, 1, 0),
-(8, 10692313, 1, '2023-10-24 20:39:11', 19, 1, 0),
-(9, 13194180, 1, '2023-10-24 20:58:53', 19, 1, 0),
-(10, 20767783, 1, '2023-10-24 20:59:08', 19, 1, 0),
-(11, 24376754, 1, '2023-10-24 20:59:22', 19, 1, 0),
-(12, 29805066, 1, '2023-10-24 20:59:39', 19, 1, 0),
-(13, 30035322, 1, '2023-10-24 20:59:58', 19, 1, 0),
-(14, 30098418, 1, '2023-10-24 20:59:48', 19, 1, 0),
-(15, 33196812, 1, '2023-10-25 17:51:04', 19, 1, 0),
-(16, 34105300, 1, '2023-10-24 20:54:28', 19, 1, 0),
-(17, 38381752, 1, '2023-10-25 17:53:14', 19, 1, 0),
-(18, 38812690, 1, '2023-10-24 20:55:38', 19, 1, 0),
-(19, 39465075, 1, '2023-10-24 20:59:30', 19, 1, 0),
-(20, 45840038, 1, '2023-10-25 17:53:37', 19, 1, 0),
-(21, 46898795, 1, '2023-10-25 17:53:45', 19, 1, 0),
-(22, 47760017, 1, '2023-10-25 18:05:38', 19, 1, 0),
-(23, 50533394, 1, '2023-10-25 18:05:51', 19, 1, 0),
-(24, 51030200, 1, '2023-10-25 18:05:57', 19, 1, 0),
-(25, 54680901, 1, '2023-10-25 18:06:04', 19, 1, 0),
-(26, 5918470, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(27, 9675043, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(28, 13707414, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(29, 14685989, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(30, 23132657, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(31, 30676602, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(32, 32661338, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(33, 33594397, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(34, 39304462, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(35, 42166921, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(36, 44802138, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(37, 45418998, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(38, 46640645, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(39, 51340686, 1, '2023-10-22 00:00:00', 21, 0, 0),
-(40, 7752799, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(41, 10195680, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(42, 16126015, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(43, 23669188, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(44, 28678431, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(45, 29430011, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(46, 35435619, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(47, 41048230, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(48, 45976744, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(49, 46427170, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(50, 54219440, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(51, 54910190, 1, '2023-10-22 00:00:00', 24, 0, 0),
-(52, 5330578, 1, '2023-10-25 18:10:16', 26, 1, 0),
-(53, 12248328, 1, '2023-10-25 18:10:24', 26, 1, 0),
-(54, 12533813, 1, '2023-10-25 18:10:30', 26, 1, 0),
-(55, 13513534, 1, '2023-10-25 18:10:35', 26, 1, 0),
-(56, 31007752, 1, '2023-10-25 18:10:40', 26, 1, 0),
-(57, 31884863, 1, '2023-10-25 18:10:45', 26, 1, 0),
-(58, 34932255, 1, '2023-10-25 18:10:51', 26, 1, 0),
-(59, 38797560, 1, '2023-10-22 00:00:00', 26, 0, 0),
-(60, 42565204, 1, '2023-10-22 00:00:00', 26, 0, 0),
-(61, 47812980, 1, '2023-10-22 00:00:00', 26, 0, 0);
+(3, 5070989, 1, '2023-10-21 09:00:00', 19, 0, 1),
+(4, 5252856, 2, '2023-10-21 09:00:00', 20, 0, 0),
+(5, 5330578, 3, '2023-10-21 09:00:00', 21, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -162,8 +106,6 @@ CREATE TABLE `ciudadano` (
 --
 
 INSERT INTO `ciudadano` (`dni`, `apellido`, `nombre`, `email`, `celular`, `zona`, `patologia`, `ambitoTrabajo`, `deRiesgo`, `FechaInscripcion`) VALUES
-(1, 'fer', 'fer', 'j@', 1, 'SUR', 'crack', 1, 1, '2023-10-07'),
-(10, 'a', 'a', '1', 1, 'NORTE', NULL, 0, 0, '2023-10-07'),
 (5070989, 'Fernandez', 'Julia', 'anelps@example.com', 2147483647, 'Norte', NULL, 0, 1, '2023-10-05'),
 (5252856, 'Fernandez', 'Julia', 'aancketillft@comsenz.com', 2147483647, 'Oeste', 'Obesidad', 0, 0, '2023-10-05'),
 (5330578, 'Martinez', 'Andrea', 'arobesonqm@quantcast.com', 2147483647, 'Oeste', NULL, 1, 1, '2023-10-01'),
@@ -633,9 +575,9 @@ INSERT INTO `ciudadano` (`dni`, `apellido`, `nombre`, `email`, `celular`, `zona`
 (28203601, 'Gonzalez', 'Roxana', 'ldrewet1j@google.com.hk', 2147483647, 'Oeste', NULL, 0, 0, '2023-10-02'),
 (28260340, 'Martinez', 'Andrea', 'bdibiagiid@forbes.com', 2147483647, 'Oeste', NULL, 0, 1, '2023-10-01'),
 (28261883, 'Rodriguez', 'Yanina', 'ggoftong8@si.edu', 2147483647, 'Este', NULL, 1, 0, '2023-10-04'),
-(28474463, 'Chazarreta', 'Eliana', 'sdegogay6p@prweb.com', 2147483647, 'Sur', NULL, 1, 1, '2023-10-06');
+(28474463, 'Chazarreta', 'Eliana', 'sdegogay6p@prweb.com', 2147483647, 'Sur', NULL, 1, 1, '2023-10-06'),
+(28528460, 'Martinez', 'Fernando', 'faugiemt@geocities.com', 2147483647, 'Norte', 'Asma', 0, 1, '2023-10-01');
 INSERT INTO `ciudadano` (`dni`, `apellido`, `nombre`, `email`, `celular`, `zona`, `patologia`, `ambitoTrabajo`, `deRiesgo`, `FechaInscripcion`) VALUES
-(28528460, 'Martinez', 'Fernando', 'faugiemt@geocities.com', 2147483647, 'Norte', 'Asma', 0, 1, '2023-10-01'),
 (28558439, 'Lopez', 'Julia', 'trubbertsk0@jiathis.com', 2147483647, 'Sur', 'Asma', 1, 0, '2023-10-03'),
 (28580778, 'Chazarreta', 'Roxana', 'jbrahmsj3@wsj.com', 2147483647, 'Norte', NULL, 0, 1, '2023-10-03'),
 (28609336, 'Gonzalez', 'Yanina', 'hrosewallp0@comsenz.com', 2147483647, 'Sur', NULL, 0, 1, '2023-10-01'),
@@ -1104,9 +1046,9 @@ INSERT INTO `ciudadano` (`dni`, `apellido`, `nombre`, `email`, `celular`, `zona`
 (51557520, 'Ramirez', 'Carlos', 'ssevernmg@wsj.com', 2147483647, 'Norte', 'Asma', 0, 0, '2023-10-01'),
 (51561378, 'Gonzalez', 'Jose', 'amctiernankp@java.com', 2147483647, 'Sur', 'Asma', 1, 0, '2023-10-02'),
 (51586473, 'Perez', 'Martin', 'vtrelease4s@1688.com', 2147483647, 'Norte', 'Asma', 1, 0, '2023-10-02'),
-(51697441, 'Gutierrez', 'Andrea', 'fducketthk@e-recht24.de', 2147483647, 'Este', NULL, 1, 1, '2023-10-03');
+(51697441, 'Gutierrez', 'Andrea', 'fducketthk@e-recht24.de', 2147483647, 'Este', NULL, 1, 1, '2023-10-03'),
+(51706448, 'Fernandez', 'Eliana', 'bburetnd@facebook.com', 2147483647, 'Norte', NULL, 0, 0, '2023-10-04');
 INSERT INTO `ciudadano` (`dni`, `apellido`, `nombre`, `email`, `celular`, `zona`, `patologia`, `ambitoTrabajo`, `deRiesgo`, `FechaInscripcion`) VALUES
-(51706448, 'Fernandez', 'Eliana', 'bburetnd@facebook.com', 2147483647, 'Norte', NULL, 0, 0, '2023-10-04'),
 (51776504, 'Chazarreta', 'Roxana', 'ldemcak9z@printfriendly.com', 1912198551, 'Norte', NULL, 0, 0, '2023-10-03'),
 (51782418, 'Martinez', 'Claudio', 'cweedalls@time.com', 1751219067, 'Sur', 'Hipertencion', 1, 1, '2023-10-04'),
 (51825656, 'Fernandez', 'Fernando', 'vstruijskw@constantcontact.com', 2147483647, 'Sur', 'Obesidad', 1, 0, '2023-10-04'),
@@ -1186,6 +1128,7 @@ CREATE TABLE `laboratorio` (
 --
 
 INSERT INTO `laboratorio` (`cuit`, `nombreLaboratorio`, `pais`, `domComercial`, `activo`) VALUES
+(1, 'a', 'g', 'g', 0),
 (30500772324, 'Astra Zéneca S.A.', 'Inglaterra', 'Calle Puerto De Somport 21 23. 28050, Madrid', 0),
 (30501152826, 'Laboratorios Richmond S.A', 'Rusia', 'Av. Elcano 4938', 0),
 (30503518518, 'PFIZER S.R.L', 'Estados Unidos', 'Calle Carlos Berg 3669', 0),
@@ -1215,27 +1158,26 @@ CREATE TABLE `vacuna` (
   `marca` varchar(30) NOT NULL,
   `medida` double NOT NULL,
   `fechaCaduca` date NOT NULL,
-  `stock` int(11) NOT NULL,
-  `colocada` tinyint(1) NOT NULL
+  `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `vacuna`
 --
 
-INSERT INTO `vacuna` (`lote`, `cuit`, `marca`, `medida`, `fechaCaduca`, `stock`, `colocada`) VALUES
-(1, 30500772324, 'Comirnaty', 3, '2023-12-31', -1, 0),
-(2, 30501152826, 'Spikevax', 3, '2023-12-31', 800, 0),
-(3, 30503518518, 'Vaxzevria', 3, '2023-12-31', 1173, 0),
-(4, 30598129246, 'Janssen COVID-19 Vaccine', 3, '2023-12-31', 600, 0),
-(5, 30500772324, 'Comirnaty', 5, '2023-12-31', 1000, 0),
-(6, 30501152826, 'Spikevax', 5, '2023-12-31', 800, 0),
-(7, 30503518518, 'Vaxzevria', 5, '2023-12-31', 1200, 0),
-(8, 30598129246, 'Janssen COVID-19 Vaccine', 5, '2023-12-31', 600, 0),
-(9, 30500772324, 'Comirnaty', 9, '2023-12-31', 1000, 0),
-(10, 30501152826, 'Spikevax', 9, '2023-12-31', 800, 0),
-(11, 30503518518, 'Vaxzevria', 9, '2023-12-31', 1200, 0),
-(12, 30598129246, 'Janssen COVID-19 Vaccine', 9, '2023-12-31', 600, 0);
+INSERT INTO `vacuna` (`lote`, `cuit`, `marca`, `medida`, `fechaCaduca`, `stock`) VALUES
+(1, 30500772324, 'Comirnaty', 3, '2023-12-31', 1000),
+(2, 30501152826, 'Spikevax', 3, '2023-12-31', 800),
+(3, 30503518518, 'Vaxzevria', 3, '2023-12-31', 1200),
+(4, 30598129246, 'Janssen COVID-19 Vaccine', 3, '2023-12-31', 600),
+(5, 30500772324, 'Comirnaty', 5, '2023-12-31', 1000),
+(6, 30501152826, 'Spikevax', 5, '2023-12-31', 800),
+(7, 30503518518, 'Vaxzevria', 5, '2023-12-31', 1200),
+(8, 30598129246, 'Janssen COVID-19 Vaccine', 5, '2023-12-31', 600),
+(9, 30500772324, 'Comirnaty', 9, '2023-12-31', 1000),
+(10, 30501152826, 'Spikevax', 9, '2023-12-31', 800),
+(11, 30503518518, 'Vaxzevria', 9, '2023-12-31', 1200),
+(12, 30598129246, 'Janssen COVID-19 Vaccine', 9, '2023-12-31', 600);
 
 --
 -- Índices para tablas volcadas
@@ -1297,7 +1239,7 @@ ALTER TABLE `centro`
 -- AUTO_INCREMENT de la tabla `citavacunacion`
 --
 ALTER TABLE `citavacunacion`
-  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=62;
+  MODIFY `codCita` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de la tabla `login`
