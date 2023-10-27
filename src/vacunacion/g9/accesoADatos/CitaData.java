@@ -39,7 +39,7 @@ public class CitaData {
     public void mostrarCitaCiudadano() {
 
         CitaVacunacion cv = new CitaVacunacion();
-        List< CitaVacunacion> citas = new ArrayList();
+        List<CitaVacunacion> citas = new ArrayList<>();
         int id = Integer.MAX_VALUE;
         Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fechaVac.png"));
 
