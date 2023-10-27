@@ -437,7 +437,7 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
     private javax.swing.JTable jTListarVac;
     // End of variables declaration//GEN-END:variables
 
-    public void listarVacunas() {
+    private void listarVacunas() {
         VacunaData vD = new VacunaData();
         DefaultTableModel model = (DefaultTableModel) jTListarVac.getModel();
 
@@ -456,7 +456,6 @@ public class AdministracionVacunasVista extends javax.swing.JInternalFrame {
                 v.getMedida(),
                 v.getFechaCaduca(),
                 v.getStock(),
-//                v.isColocada()
             });
         }
     }

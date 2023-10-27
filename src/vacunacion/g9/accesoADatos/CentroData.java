@@ -355,7 +355,9 @@ public class CentroData {
 
     }
 
-    public void listarVacunasPorCentros(int idcentro, LocalDateTime fecha) {
+    public  List<Vacuna> listarVacunasPorCentros(int idcentro, LocalDateTime fecha) {
+        System.out.println(idcentro);
+        System.out.println(fecha);
 
         List<Vacuna> vac = new ArrayList<>();
 
@@ -383,6 +385,7 @@ public class CentroData {
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, " Error al acceder a la tabla Centro " + ex.getMessage());
         }
+        return vac;
     }
 
 }
