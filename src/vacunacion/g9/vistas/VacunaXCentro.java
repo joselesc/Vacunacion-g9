@@ -29,7 +29,7 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
     public VacunaXCentro() {
         centroData=new CentroData();
         initComponents();
-        jDCDia.setDate(new java.util.Date(2023,11,12));
+//        jDCDia.setDate(new java.util.Date(2023,11,12));
         cargarComboBoxCentros();
         jCBCentros.setSelectedIndex(0);
         cabecera();
@@ -52,27 +52,12 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         jPanel1.setBackground(new java.awt.Color(0, 52, 89));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
         jDCDia.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jDCDia.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jDCDiaPropertyChange(evt);
-            }
-        });
-
-        jCBCentros.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jCBCentrosActionPerformed(evt);
-            }
-        });
-        jCBCentros.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                jCBCentrosPropertyChange(evt);
-            }
-        });
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -100,6 +85,16 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
             }
         });
 
+        jButton2.setBackground(new java.awt.Color(0, 126, 167));
+        jButton2.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(255, 255, 255));
+        jButton2.setText("ACTUALIZAR");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -120,9 +115,11 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
                         .addComponent(jCBCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(59, 59, 59))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(366, 366, 366)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(204, 204, 204)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(182, 182, 182))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -135,8 +132,10 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
                     .addComponent(jCBCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 40, Short.MAX_VALUE)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(34, 34, 34)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(32, 32, 32)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGap(41, 41, 41))
         );
 
@@ -157,26 +156,18 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jCBCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBCentrosActionPerformed
-        cargarComboBoxCentros();
-    }//GEN-LAST:event_jCBCentrosActionPerformed
-
-    private void jDCDiaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDCDiaPropertyChange
-
-        listarVacunas();
-    }//GEN-LAST:event_jDCDiaPropertyChange
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jCBCentrosPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jCBCentrosPropertyChange
-//   listarVacunas();
-    }//GEN-LAST:event_jCBCentrosPropertyChange
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        listarVacunas();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JComboBox<Centro> jCBCentros;
     private com.toedter.calendar.JDateChooser jDCDia;
     private javax.swing.JLabel jLabel1;
@@ -237,30 +228,4 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
                 v.getStock(),});
         }
     }
-
-//    private void listarVacunas() {
-//        VacunaData vD = new VacunaData();
-//        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-//
-//        // Eliminar todas las filas existentes en la tabla
-//        int rowCount = model.getRowCount();
-//        for (int i = rowCount - 1; i >= 0; i--) {
-//            model.removeRow(i);
-//        }
-//        Date fecha = jDCDia.getDate();
-//        Timestamp fe=(Timestamp) fecha;
-//        LocalDateTime f=fe.toLocalDateTime();
-//        Centro c = (Centro) jCBCentros.getSelectedItem();
-//
-//        // Obtener las vacunas disponibles y agregarlas a la tabla
-//        for (Vacuna v : centroData.listarVacunasPorCentros(c.getId(), f)) {
-//            model.addRow(new Object[]{
-//                v.getLote(),
-//                v.getCuit(),
-//                v.getMarca(),
-//                v.getMedida(),
-//                v.getFechaCaduca(),
-//                v.getStock(),});
-//        }
-//    }
 }

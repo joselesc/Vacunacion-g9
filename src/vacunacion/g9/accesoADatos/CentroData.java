@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -358,17 +357,17 @@ public class CentroData {
     public  List<Vacuna> listarVacunasPorCentros(int idcentro, LocalDateTime fecha) {
         System.out.println(idcentro);
         System.out.println(fecha);
-
+        java.sql.Date fec=java.sql.Date.valueOf(fecha.toLocalDate());
         List<Vacuna> vac = new ArrayList<>();
 
         try {
             String sql = "SELECT * "
-                    + "FROM vacuna INNER JOIN citavacunacion ON citavacunacion.lote=vacuna.lote"
-                    + "JOIN centro ON citavacunacion.id_centro=centro.id_centro"
-                    + " where colocada=1 and id_centro=? and fechacolocada=?";
+                    + "FROM vacuna INNER JOIN citavacunacion ON citavacunacion.lote=vacuna.lote "
+                    + "JOIN centro ON citavacunacion.id_centro=centro.id_centro "
+                    + "where colocada=1 and centro.id_centro=? and DATE(fechaHoraCita)=?";
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idcentro);
-            ps.setTimestamp(2, Timestamp.valueOf(fecha));//
+            ps.setDate(2, fec);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 Vacuna v = new Vacuna();
