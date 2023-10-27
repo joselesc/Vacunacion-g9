@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -245,46 +249,52 @@ public class CitaData {
 
     //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
-        String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
-                + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
-        globalFecha = fecha;
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
+    String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
+            + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
+    globalFecha = fecha;
 
-            ps.setInt(1, ciudadano.getDni());
-            ps.setInt(2, vacuna.getLote());
-            ps.setTimestamp(3, new java.sql.Timestamp(primeraFecha(ciudadano).getTime()));
-            ps.setInt(4, centro.getId());
+    try {
+        PreparedStatement ps = con.prepareStatement(sql);
+        List<Date> horariosTurnos = generarTurnosAutomaticamente(primeraFecha(ciudadano));
+        int randon1 = (int) (Math.random() * horariosTurnos.size());
+        List<Date> horariosTurnos2 = generarTurnosAutomaticamente(segundaFecha(primeraFecha(ciudadano)));
+        int randon2 = (int) (Math.random() * horariosTurnos2.size());
+        List<Date> horariosTurnos3 = generarTurnosAutomaticamente(terceraFecha(segundaFecha(primeraFecha(ciudadano))));
+        int randon3 = (int) (Math.random() * horariosTurnos3.size());
 
-            ps.setInt(5, ciudadano.getDni());
-            ps.setInt(6, vacuna.getLote() + 4);
-            ps.setTimestamp(7, new java.sql.Timestamp(segundaFecha(primeraFecha(ciudadano)).getTime()));
-            ps.setInt(8, centro.getId());
 
-            ps.setInt(9, ciudadano.getDni());
-            ps.setInt(10, vacuna.getLote() + 8);
-            ps.setTimestamp(11, new java.sql.Timestamp(terceraFecha(segundaFecha(primeraFecha(ciudadano))).getTime()));
-            ps.setInt(12, centro.getId());
+        // Asigna los valores para el primer turno
+        ps.setInt(1, ciudadano.getDni());
+        ps.setInt(2, vacuna.getLote());
+        ps.setTimestamp(3, new java.sql.Timestamp(horariosTurnos.get(randon1).getTime())); // Primer turno
+        ps.setInt(4, centro.getId());
 
-            int rowsAffected = ps.executeUpdate();
-            ps.close();
+        // Asigna los valores para el segundo turno
+        ps.setInt(5, ciudadano.getDni());
+        ps.setInt(6, vacuna.getLote() + 4);
+        ps.setTimestamp(7, new java.sql.Timestamp(horariosTurnos2.get(randon2).getTime())); // Segundo turno
+        ps.setInt(8, centro.getId());
 
-            boolean bandera = false;
-            if (rowsAffected > 0) {
-                bandera = true;
-                if (bandera == true) {
-                    JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
-            }
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
+        // Asigna los valores para el tercer turno
+        ps.setInt(9, ciudadano.getDni());
+        ps.setInt(10, vacuna.getLote() + 8);
+        ps.setTimestamp(11, new java.sql.Timestamp(horariosTurnos3.get(randon3).getTime())); // Tercer turno
+        ps.setInt(12, centro.getId());
+
+        int rowsAffected = ps.executeUpdate();
+        ps.close();
+        if (rowsAffected > 0) {
+                JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
         }
-
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
+    } catch (NullPointerException ex) {
+        JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
     }
+}
+
 
     //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
@@ -408,7 +418,7 @@ public class CitaData {
         } else {
             java.util.Calendar cal = java.util.Calendar.getInstance();
             cal.setTime(globalFecha);
-            cal.add(java.util.Calendar.DATE, 35);
+            cal.add(java.util.Calendar.DATE, 28);
             primeraFecha = cal.getTime();
         }
         return primeraFecha;
@@ -429,5 +439,39 @@ public class CitaData {
         java.util.Date terceraFecha = cal.getTime();
         return terceraFecha;
     }
+    
+    public List<Date> generarTurnosAutomaticamente(Date fecha) {
+    //rango horario (de 08:00 AM a 18:00 PM)
+    Calendar cal = Calendar.getInstance();
+    cal.setTime(fecha);
 
+    int horaInicio = 8;  // Hora de inicio
+    int horaFin = 18;   // Hora de finalización
+    int intervaloMinutos = 15;  // Intervalo de generación de turnos (15 minutos)
+
+    cal.set(Calendar.HOUR_OF_DAY, horaInicio);
+    cal.set(Calendar.MINUTE, 0);
+    //cal.set(Calendar.SECOND, 0);
+    Date horaInicioDate = cal.getTime();
+
+    cal.set(Calendar.HOUR_OF_DAY, horaFin);
+    cal.set(Calendar.MINUTE, 0);
+    cal.set(Calendar.SECOND, 0);
+    Date horaFinDate = cal.getTime();
+
+    List<Date> turnos = new ArrayList<>();
+
+    // Genera los turnos automáticamente en intervalos de 15 minutos
+    while (horaInicioDate.before(horaFinDate)) {
+        // Agregar la hora actual (horaInicioDate) a la lista de turnos
+        turnos.add(horaInicioDate);
+
+        // Incrementa la hora actual en 15 minutos
+        cal.setTime(horaInicioDate);
+        cal.add(Calendar.MINUTE, intervaloMinutos);
+        horaInicioDate = cal.getTime();
+    }
+        //Collections.shuffle(turnos);
+        return turnos;
+    }
 }
