@@ -247,51 +247,51 @@ public class CitaData {
 
     //Utilizado por AdministracionCita
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
-    String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
-            + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
-    globalFecha = fecha;
+        String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
+                + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
+        globalFecha = fecha;
 
-    try {
-        PreparedStatement ps = con.prepareStatement(sql);
-        List<Date> horariosTurnos = generarTurnosAutomaticamente(primeraFecha(ciudadano));
-        int randon1 = (int) (Math.random() * horariosTurnos.size());
-        List<Date> horariosTurnos2 = generarTurnosAutomaticamente(segundaFecha(primeraFecha(ciudadano)));
-        int randon2 = (int) (Math.random() * horariosTurnos2.size());
-        List<Date> horariosTurnos3 = generarTurnosAutomaticamente(terceraFecha(segundaFecha(primeraFecha(ciudadano))));
-        int randon3 = (int) (Math.random() * horariosTurnos3.size());
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            List<Date> horariosTurnos = generarTurnosAutomaticamente(primeraFecha(ciudadano));
+            int randon1 = (int) (Math.random() * horariosTurnos.size());
+            List<Date> horariosTurnos2 = generarTurnosAutomaticamente(segundaFecha(primeraFecha(ciudadano)));
+            int randon2 = (int) (Math.random() * horariosTurnos2.size());
+            List<Date> horariosTurnos3 = generarTurnosAutomaticamente(terceraFecha(segundaFecha(primeraFecha(ciudadano))));
+            int randon3 = (int) (Math.random() * horariosTurnos3.size());
 
 
-        // Asigna los valores para el primer turno
-        ps.setInt(1, ciudadano.getDni());
-        ps.setInt(2, vacuna.getLote());
-        ps.setTimestamp(3, new java.sql.Timestamp(horariosTurnos.get(randon1).getTime())); // Primer turno
-        ps.setInt(4, centro.getId());
+            // Asigna los valores para el primer turno
+            ps.setInt(1, ciudadano.getDni());
+            ps.setInt(2, vacuna.getLote());
+            ps.setTimestamp(3, new java.sql.Timestamp(horariosTurnos.get(randon1).getTime())); // Primer turno
+            ps.setInt(4, centro.getId());
 
-        // Asigna los valores para el segundo turno
-        ps.setInt(5, ciudadano.getDni());
-        ps.setInt(6, vacuna.getLote() + 4);
-        ps.setTimestamp(7, new java.sql.Timestamp(horariosTurnos2.get(randon2).getTime())); // Segundo turno
-        ps.setInt(8, centro.getId());
+            // Asigna los valores para el segundo turno
+            ps.setInt(5, ciudadano.getDni());
+            ps.setInt(6, vacuna.getLote() + 4);
+            ps.setTimestamp(7, new java.sql.Timestamp(horariosTurnos2.get(randon2).getTime())); // Segundo turno
+            ps.setInt(8, centro.getId());
 
-        // Asigna los valores para el tercer turno
-        ps.setInt(9, ciudadano.getDni());
-        ps.setInt(10, vacuna.getLote() + 8);
-        ps.setTimestamp(11, new java.sql.Timestamp(horariosTurnos3.get(randon3).getTime())); // Tercer turno
-        ps.setInt(12, centro.getId());
+            // Asigna los valores para el tercer turno
+            ps.setInt(9, ciudadano.getDni());
+            ps.setInt(10, vacuna.getLote() + 8);
+            ps.setTimestamp(11, new java.sql.Timestamp(horariosTurnos3.get(randon3).getTime())); // Tercer turno
+            ps.setInt(12, centro.getId());
 
-        int rowsAffected = ps.executeUpdate();
-        ps.close();
-        if (rowsAffected > 0) {
-                JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
-        } else {
-            JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
+            int rowsAffected = ps.executeUpdate();
+            ps.close();
+            if (rowsAffected > 0) {
+                    JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
+        } catch (NullPointerException ex) {
+            JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
         }
-    } catch (SQLException ex) {
-        JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
-    } catch (NullPointerException ex) {
-        JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
     }
-}
 
     //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
@@ -354,7 +354,7 @@ public class CitaData {
     //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitasPorFechaYCentro(java.util.Date fecha, int idCentro) {
         List<CitaVacunacion> citas = new ArrayList<>();
-        String sql = "SELECT * FROM citavacunacion WHERE fechaHoraCita = ? AND id_centro = ?";
+        String sql = "SELECT * FROM citavacunacion WHERE DATE(fechaHoraCita) = ? AND id_centro = ?";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
 

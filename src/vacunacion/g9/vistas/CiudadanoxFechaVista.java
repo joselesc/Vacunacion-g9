@@ -322,7 +322,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
             if (centroSeleccionado != null) {
                 int idCentro = centroSeleccionado.getId();
                 List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(fecha, idCentro);
-
+                
                 modelo.setRowCount(0); // Limpia las filas existentes en la tabla
 
                 for (CitaVacunacion c : citas) {
