@@ -48,7 +48,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTListadoDeCitas = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         jBAgregar = new javax.swing.JButton();
         jLFechaCita = new javax.swing.JLabel();
         jDCFechaInscripcion = new com.toedter.calendar.JDateChooser();
@@ -127,11 +126,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-
-        jButton3.setBackground(new java.awt.Color(0, 52, 89));
-        jButton3.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("Modificar");
 
         jBAgregar.setBackground(new java.awt.Color(0, 52, 89));
         jBAgregar.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -258,8 +252,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(17, 17, 17))
@@ -342,9 +334,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton3)
-                        .addComponent(jBAgregar))
+                    .addComponent(jBAgregar)
                     .addComponent(jButton1))
                 .addGap(24, 24, 24))
         );
@@ -439,7 +429,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JComboBox<Centro> jCCentrosDeVacunacion;
     private javax.swing.JComboBox<String> jCTurnosPorDia;
     private javax.swing.JComboBox<Vacuna> jCVacunasPorLotes;
@@ -541,10 +530,10 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
     private void cargarComboBoxVacunas() {
         DefaultComboBoxModel<Vacuna> modeloCB = new DefaultComboBoxModel<>();
-        ArrayList<Vacuna> vacunas;
-        vacunas = (ArrayList<Vacuna>) vacunaData.obtenerVacunasDisponiblesxLote();
+        ArrayList<Vacuna> vacunas = (ArrayList<Vacuna>) vacunaData.obtenerVacunasDisponiblesxLote();
 
-        for (Vacuna vacuna : vacunas) {
+        for (int i = 0; i < 4 && i < vacunas.size(); i++) {
+            Vacuna vacuna = vacunas.get(i);
             modeloCB.addElement(vacuna);
         }
         jCVacunasPorLotes.setModel(modeloCB);

@@ -8,10 +8,8 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.List;
-import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -295,7 +293,6 @@ public class CitaData {
     }
 }
 
-
     //Utilizado por AdministracionCita
     public int conteoCiudadanoPorDia(java.util.Date fecha, boolean esencial, boolean riesgo, String zona) {
         //SELECT COUNT(*) FROM ciudadano WHERE FechaInscripcion = '2023-10-01' AND ambitoTrabajo = 0 AND deRiesgo = 0;
@@ -463,7 +460,6 @@ public class CitaData {
 
     // Genera los turnos automáticamente en intervalos de 15 minutos
     while (horaInicioDate.before(horaFinDate)) {
-        // Agregar la hora actual (horaInicioDate) a la lista de turnos
         turnos.add(horaInicioDate);
 
         // Incrementa la hora actual en 15 minutos
@@ -471,7 +467,6 @@ public class CitaData {
         cal.add(Calendar.MINUTE, intervaloMinutos);
         horaInicioDate = cal.getTime();
     }
-        //Collections.shuffle(turnos);
         return turnos;
     }
 }
