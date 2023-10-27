@@ -33,7 +33,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         cd = new CentroData();
         listaC = cd.listarCentrosDepositoCentral();
         System.out.println("Número de elementos en listaC: " + listaC.size());
-
+//////////////////////////////////////////////////////////////////////////
         initComponents();
         cargarCentros();
         armarCabecera();
