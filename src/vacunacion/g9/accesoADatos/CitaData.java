@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -133,7 +134,7 @@ public class CitaData {
 
             String query = " SELECT ciudadano.nombre, apellido, fechaHoraCita, centro.nombre,direccion,centro.zona "
                     + "FROM ciudadano JOIN citavacunacion ON (ciudadano.dni=citavacunacion.dni) JOIN centro ON (citavacunacion.id_centro=centro.id_centro) "
-                    + "WHERE ciudadano.dni=? and cancelada=0";
+                    + "WHERE ciudadano.dni=? and cancelado=0 and colocada=0" ;
 
             try (PreparedStatement ps = con.prepareStatement(query)) {
                 ps.setInt(1, dniReg);
@@ -169,11 +170,52 @@ public class CitaData {
                     }
 
                 }
+                CitaVacunacion cv = new CitaVacunacion();
+                List< CitaVacunacion> citas = new ArrayList();
+                Timestamp fh2;
+                LocalDateTime fhc2 = null;
+                String sql1 = "SELECT * FROM citavacunacion where dni=? and cancelado=1";
+                try (PreparedStatement ps2 = con.prepareStatement(sql1)) {
+                    ps2.setInt(1, dniReg);
+                    try (ResultSet rs1 = ps.executeQuery()) {
+
+                        while (rs1.next()) {
+
+                            cv = new CitaVacunacion();
+                            cv.setCodCita(rs1.getInt("codCita"));
+                            cv.setDni(rs1.getInt("dni"));
+                            cv.setLote(rs1.getInt("lote"));
+                            fh2 = rs1.getTimestamp("fechaHoraCita");
+                            cv.setFechaHoraCita(fhc2 = fh2.toLocalDateTime());
+                            cv.setId_centro(rs1.getInt("id_centro"));
+                            cv.setColocada(rs1.getBoolean("colocada"));
+                            cv.setCancelada(rs1.getBoolean("cancelado"));
+                            citas.add(cv);
+
+                        }
+                        for (CitaVacunacion cita : citas) {
+                            
+                             String sql3 = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
+                             + "VALUES (?, ?, ?, ?, false, false)";
+                             try (PreparedStatement ps3 = con.prepareStatement(sql3)) {
+                                 System.out.println("llego");
+                                 ps3.setInt(1, cita.getDni());
+                                 ps3.setInt(2, cita.getLote());
+                                 cita.setFechaHoraCita(cita.getFechaHoraCita().plusDays(14));
+                                 ps3.setTimestamp(3, Timestamp.valueOf(cita.getFechaHoraCita()));
+                                 ps3.setInt(4, cita.getId_centro());
+                             }  
+                            
+                        }
+
+                    }
+                }
 
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
             }
         }
+            
     }
 
     //Utilizado por AdministracionCita
