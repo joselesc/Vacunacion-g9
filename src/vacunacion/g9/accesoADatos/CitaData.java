@@ -319,46 +319,55 @@ public class CitaData {
         }
     }
 
-    //Utilizado por AdministracionCita
+    //Utilizado por AdministracionCita    
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
-        String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
-                + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
-        globalFecha = fecha;
         int filasAfectadas = 0;
-        try {
-            PreparedStatement ps = con.prepareStatement(sql);
-            List<Date> horariosTurnos = generarTurnosAutomaticamente(primeraFecha(ciudadano));
-            int randon1 = (int) (Math.random() * horariosTurnos.size());
-            List<Date> horariosTurnos2 = generarTurnosAutomaticamente(segundaFecha(primeraFecha(ciudadano)));
-            int randon2 = (int) (Math.random() * horariosTurnos2.size());
-            List<Date> horariosTurnos3 = generarTurnosAutomaticamente(terceraFecha(segundaFecha(primeraFecha(ciudadano))));
-            int randon3 = (int) (Math.random() * horariosTurnos3.size());
 
-            // Asigna los valores para el primer turno
-            ps.setInt(1, ciudadano.getDni());
-            ps.setInt(2, vacuna.getLote());
-            ps.setTimestamp(3, new java.sql.Timestamp(horariosTurnos.get(randon1).getTime())); // Primer turno
-            ps.setInt(4, centro.getId());
+        // Verifica si ya existe un registro con el mismo DNI y lote
+        if (!existeCitaDuplicada(ciudadano.getDni(), vacuna)) {
+            String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
+                    + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false)";
+            globalFecha = fecha;
 
-            // Asigna los valores para el segundo turno
-            ps.setInt(5, ciudadano.getDni());
-            ps.setInt(6, vacuna.getLote() + 4);
-            ps.setTimestamp(7, new java.sql.Timestamp(horariosTurnos2.get(randon2).getTime())); // Segundo turno
-            ps.setInt(8, centro.getId());
+            try {
+                PreparedStatement ps = con.prepareStatement(sql);
+                List<Date> horariosTurnos = generarTurnosAutomaticamente(primeraFecha(ciudadano));
+                int randon1 = (int) (Math.random() * horariosTurnos.size());
+                List<Date> horariosTurnos2 = generarTurnosAutomaticamente(segundaFecha(primeraFecha(ciudadano)));
+                int randon2 = (int) (Math.random() * horariosTurnos2.size());
+                List<Date> horariosTurnos3 = generarTurnosAutomaticamente(terceraFecha(segundaFecha(primeraFecha(ciudadano))));
+                int randon3 = (int) (Math.random() * horariosTurnos3.size());
 
-            // Asigna los valores para el tercer turno
-            ps.setInt(9, ciudadano.getDni());
-            ps.setInt(10, vacuna.getLote() + 8);
-            ps.setTimestamp(11, new java.sql.Timestamp(horariosTurnos3.get(randon3).getTime())); // Tercer turno
-            ps.setInt(12, centro.getId());
+                // Asigna los valores para el primer turno
+                ps.setInt(1, ciudadano.getDni());
+                ps.setInt(2, vacuna.getLote());
+                ps.setTimestamp(3, new java.sql.Timestamp(horariosTurnos.get(randon1).getTime())); 
+                ps.setInt(4, centro.getId());
 
-            ps.executeUpdate();
+                // Asigna los valores para el segundo turno
+                ps.setInt(5, ciudadano.getDni());
+                int segundaDosisRamdon = ((int) (Math.random() * 4) + 4);
+                ps.setInt(6, vacuna.getLote() + segundaDosisRamdon);
+                ps.setTimestamp(7, new java.sql.Timestamp(horariosTurnos2.get(randon2).getTime())); 
+                ps.setInt(8, centro.getId());
 
-            ps.close();
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
-        } catch (NullPointerException ex) {
-            JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
+                // Asigna los valores para el tercer turno
+                ps.setInt(9, ciudadano.getDni());
+                int terceraDosisRamdon = ((int) (Math.random() * 4) + 8);
+                ps.setInt(10, (vacuna.getLote() + terceraDosisRamdon));
+                ps.setTimestamp(11, new java.sql.Timestamp(horariosTurnos3.get(randon3).getTime())); 
+                ps.setInt(12, centro.getId());
+
+                filasAfectadas = ps.executeUpdate();
+
+                ps.close();
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
+            } catch (NullPointerException ex) {
+                JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Ya existe una cita con el mismo DNI y lote.");
         }
     }
 
@@ -420,7 +429,6 @@ public class CitaData {
         return conteo;
     }
 
-    //Utilizado por AdministracionCita
     public List<CitaVacunacion> listarCitasPorFechaYCentro(java.util.Date fecha, int idCentro) {
         List<CitaVacunacion> citas = new ArrayList<>();
         String sql = "SELECT * FROM citavacunacion WHERE DATE(fechaHoraCita) = ? AND id_centro = ?";
@@ -538,4 +546,30 @@ public class CitaData {
         }
         return turnos;
     }
+
+    private boolean existeCitaDuplicada(int dni, Vacuna vacuna) {
+        String sql = "SELECT COUNT(*) FROM citavacunacion "
+                + "INNER JOIN vacuna ON citavacunacion.lote = vacuna.lote "
+                + "WHERE citavacunacion.dni = ? AND vacuna.medida = ? AND citavacunacion.cancelado = false";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, dni);
+            ps.setDouble(2, vacuna.getMedida());
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                int count = rs.getInt(1);
+                return count > 0;
+            }
+
+            rs.close();
+            ps.close();
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al conectarse a la base de datos");
+        }
+
+        return false;
+    }
+
 }

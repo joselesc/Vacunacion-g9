@@ -187,7 +187,6 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
         Ciudadano ciudadano = new Ciudadano();
         Vacuna vacuna = new Vacuna();
         int mes = jMCListadoMensuales.getMonth() + 1;
-        System.out.println("mes: " + mes);
         for (CitaVacunacion cita : citaData.listarCitas(mes)) {
             DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
             centro = centroData.buscarCentros(cita.getId_centro());

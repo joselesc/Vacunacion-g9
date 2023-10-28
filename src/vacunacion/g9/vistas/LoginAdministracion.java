@@ -51,12 +51,12 @@ public class LoginAdministracion extends javax.swing.JFrame {
         jLEmail.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLEmail.setForeground(new java.awt.Color(255, 255, 255));
         jLEmail.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLEmail.setText("e-mail");
+        jLEmail.setText("Usuario");
 
         jLDocumento.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLDocumento.setForeground(new java.awt.Color(255, 255, 255));
         jLDocumento.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLDocumento.setText("Documento");
+        jLDocumento.setText("Contraseña");
 
         jBCancelar.setBackground(new java.awt.Color(0, 52, 89));
         jBCancelar.setForeground(new java.awt.Color(255, 255, 255));
