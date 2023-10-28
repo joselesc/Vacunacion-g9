@@ -58,8 +58,17 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         jPanel1.setBackground(new java.awt.Color(0, 52, 89));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
-        jDCDia.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jDCDia.setBackground(new java.awt.Color(255, 255, 255));
+        jDCDia.setForeground(new java.awt.Color(0, 23, 31));
+        jDCDia.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
 
+        jCBCentros.setBackground(new java.awt.Color(255, 255, 255));
+        jCBCentros.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
+        jCBCentros.setForeground(new java.awt.Color(0, 23, 31));
+
+        jTable1.setBackground(new java.awt.Color(255, 255, 255));
+        jTable1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(0, 23, 31));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -106,15 +115,13 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(45, 45, 45)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jDCDia, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
-                        .addComponent(jCBCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(59, 59, 59))))
+                        .addGap(34, 34, 34)
+                        .addComponent(jCBCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton2)
