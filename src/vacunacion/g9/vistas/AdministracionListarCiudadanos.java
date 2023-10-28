@@ -62,6 +62,7 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         jBCerrar.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jBCerrar.setForeground(new java.awt.Color(255, 255, 255));
         jBCerrar.setText("Cerrar");
+        jBCerrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBCerrar.setMaximumSize(new java.awt.Dimension(150, 50));
         jBCerrar.setMinimumSize(new java.awt.Dimension(150, 50));
         jBCerrar.setPreferredSize(new java.awt.Dimension(150, 50));
@@ -72,6 +73,7 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         });
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("LISTA DE CIUDADANOS REGISTRADOS");
 
@@ -79,6 +81,7 @@ public class AdministracionListarCiudadanos extends javax.swing.JInternalFrame {
         jButton1.setFont(new java.awt.Font("Consolas", 1, 15)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Buscar");
+        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton1.setMaximumSize(new java.awt.Dimension(150, 30));
         jButton1.setMinimumSize(new java.awt.Dimension(150, 30));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 30));

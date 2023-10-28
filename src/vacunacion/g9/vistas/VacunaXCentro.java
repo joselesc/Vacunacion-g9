@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListCellRenderer;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import vacunacion.g9.accesoADatos.CentroData;
 import vacunacion.g9.accesoADatos.VacunaData;
@@ -211,6 +212,7 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
+        try{
 //        CitaVacunacion cv=new CitaVacunacion();
         java.util.Date f= jDCDia.getDate();
         Instant fe=f.toInstant();
@@ -226,6 +228,9 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
                 v.getMedida(),
                 v.getFechaCaduca(),
                 v.getStock(),});
+        }
+        }catch(NullPointerException ex){
+            JOptionPane.showMessageDialog(null, "Debe indicar la fecha.");
         }
     }
 }

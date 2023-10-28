@@ -31,6 +31,7 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMCentro = new javax.swing.JMenu();
         jMAdministrarCentros = new javax.swing.JMenuItem();
+        jMVacunaxCentro = new javax.swing.JMenu();
         jMManejoDeDosis = new javax.swing.JMenu();
         jMAdministracionVacunas = new javax.swing.JMenuItem();
         jMCitas = new javax.swing.JMenu();
@@ -40,7 +41,6 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMListarCiudadanos = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem2 = new javax.swing.JMenuItem();
-        jMVacunaxCentro = new javax.swing.JMenu();
         jMenu4 = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -88,10 +88,11 @@ public class AdministracionVista extends javax.swing.JFrame {
 
         jMCentro.setText("Centros de vacunacion");
         jMCentro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMCentro.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMCentro.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
 
-        jMAdministrarCentros.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMAdministrarCentros.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMAdministrarCentros.setText("Administrar centros");
+        jMAdministrarCentros.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMAdministrarCentros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMAdministrarCentrosActionPerformed(evt);
@@ -99,14 +100,25 @@ public class AdministracionVista extends javax.swing.JFrame {
         });
         jMCentro.add(jMAdministrarCentros);
 
+        jMVacunaxCentro.setText("Vacunas por Centro");
+        jMVacunaxCentro.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMVacunaxCentro.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jMVacunaxCentro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMVacunaxCentroMouseClicked(evt);
+            }
+        });
+        jMCentro.add(jMVacunaxCentro);
+
         jMenuBar1.add(jMCentro);
 
         jMManejoDeDosis.setText("Manejo de dosis");
         jMManejoDeDosis.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMManejoDeDosis.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMManejoDeDosis.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
 
-        jMAdministracionVacunas.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMAdministracionVacunas.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMAdministracionVacunas.setText("Administracion vacunas");
+        jMAdministracionVacunas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMAdministracionVacunas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMAdministracionVacunasActionPerformed(evt);
@@ -118,10 +130,11 @@ public class AdministracionVista extends javax.swing.JFrame {
 
         jMCitas.setText("Citas");
         jMCitas.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMCitas.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMCitas.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
 
-        jMListadoMensual.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMListadoMensual.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMListadoMensual.setText("Listado mensual");
+        jMListadoMensual.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMListadoMensual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMListadoMensualActionPerformed(evt);
@@ -129,8 +142,9 @@ public class AdministracionVista extends javax.swing.JFrame {
         });
         jMCitas.add(jMListadoMensual);
 
-        jMenuItem1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenuItem1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMenuItem1.setText("Administrar citas");
+        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem1ActionPerformed(evt);
@@ -140,11 +154,13 @@ public class AdministracionVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMCitas);
 
-        jMCiudadano.setText("CIudadanos");
-        jMCiudadano.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMCiudadano.setText("Ciudadanos");
+        jMCiudadano.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMCiudadano.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
 
-        jMListarCiudadanos.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMListarCiudadanos.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMListarCiudadanos.setText("Listar ciudadanos");
+        jMListarCiudadanos.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMListarCiudadanos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMListarCiudadanosActionPerformed(evt);
@@ -155,10 +171,12 @@ public class AdministracionVista extends javax.swing.JFrame {
         jMenuBar1.add(jMCiudadano);
 
         jMenu1.setText("Laboratorio");
-        jMenu1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jMenu1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
 
-        jMenuItem2.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenuItem2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMenuItem2.setText("Aministar Laboratorio");
+        jMenuItem2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItem2ActionPerformed(evt);
@@ -168,17 +186,9 @@ public class AdministracionVista extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jMVacunaxCentro.setText("Vacunas por Centro");
-        jMVacunaxCentro.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jMVacunaxCentroMouseClicked(evt);
-            }
-        });
-        jMenuBar1.add(jMVacunaxCentro);
-
         jMenu4.setText("Volver");
         jMenu4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jMenu4.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        jMenu4.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jMenu4MouseClicked(evt);

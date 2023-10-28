@@ -87,7 +87,7 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
             jTListadoMensual.getColumnModel().getColumn(10).setPreferredWidth(1);
         }
 
-        jButton1.setBackground(new java.awt.Color(0, 52, 89));
+        jButton1.setBackground(new java.awt.Color(0, 126, 167));
         jButton1.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Cerrar");
@@ -98,6 +98,7 @@ public class AdministracionListadoMensualCitas extends javax.swing.JInternalFram
             }
         });
 
+        jMCListadoMensuales.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
         jMCListadoMensuales.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
             public void propertyChange(java.beans.PropertyChangeEvent evt) {
                 jMCListadoMensualesPropertyChange(evt);

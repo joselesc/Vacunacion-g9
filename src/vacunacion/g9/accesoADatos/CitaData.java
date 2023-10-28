@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -507,7 +506,7 @@ public class CitaData {
         return terceraFecha;
     }
 
-    public List<Date> generarTurnosAutomaticamente(Date fecha) {
+    private List<Date> generarTurnosAutomaticamente(Date fecha) {
         //rango horario (de 08:00 AM a 18:00 PM)
         Calendar cal = Calendar.getInstance();
         cal.setTime(fecha);
