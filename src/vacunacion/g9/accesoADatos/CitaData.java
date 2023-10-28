@@ -154,7 +154,7 @@ public class CitaData {
                         int conf = JOptionPane.showConfirmDialog(null, cita + "\n ¿Esta seguro que desea cancelar la cita?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, icono);
                         if (conf == JOptionPane.YES_OPTION) {
 
-                            String sql = "UPDATE citavacunacion SET cancelado=1 WHERE dni=?";
+                            String sql = "UPDATE citavacunacion SET cancelado=1 WHERE dni=? and colocada=0" ;
                             try (PreparedStatement ps1 = con.prepareStatement(sql)) {
                                 ps1.setInt(1, dniReg);
                                 ps1.executeUpdate();
