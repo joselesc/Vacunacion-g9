@@ -216,7 +216,7 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         Instant fe=f.toInstant();
         LocalDateTime fecha=fe.atZone(ZoneId.systemDefault()).toLocalDateTime();
         Centro c = (Centro) jCBCentros.getSelectedItem();
-
+        
         // Obtener las vacunas disponibles y agregarlas a la tabla
         for (Vacuna v : centroData.listarVacunasPorCentros(c.getId(), fecha)) {
             model.addRow(new Object[]{

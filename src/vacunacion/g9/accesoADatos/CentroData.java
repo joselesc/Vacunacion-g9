@@ -369,16 +369,19 @@ public class CentroData {
             ps.setInt(1, idcentro);
             ps.setDate(2, fec);
             ResultSet rs = ps.executeQuery();
+            int conteo = 0;
             while (rs.next()) {
                 Vacuna v = new Vacuna();
+                conteo ++;
                 v.setLote(rs.getInt("lote"));
                 v.setCuit(rs.getLong("cuit"));
                 v.setMarca(rs.getString("marca"));
                 v.setMedida(rs.getDouble("medida"));
                 v.setFechaCaduca(rs.getDate("fechaCaduca").toLocalDate());
                 vac.add(v);
-
+                
             }
+            
             ps.close();
             rs.close();
         } catch (SQLException ex) {

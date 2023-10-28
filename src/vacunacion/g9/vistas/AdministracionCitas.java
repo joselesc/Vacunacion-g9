@@ -143,7 +143,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
 
         jDCFechaInscripcion.setBackground(new java.awt.Color(255, 255, 255));
         jDCFechaInscripcion.setForeground(new java.awt.Color(0, 23, 31));
-        jDCFechaInscripcion.setDateFormatString("yyyy-MM-dd");
+        jDCFechaInscripcion.setDateFormatString("dd/MM/yyyy");
         jDCFechaInscripcion.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jDCFechaInscripcion.setMinSelectableDate(new java.util.Date(-62135755133000L));
         jDCFechaInscripcion.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -459,6 +459,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         Centro centro = new Centro();
         Ciudadano ciudadano = new Ciudadano();
         Vacuna vacuna = new Vacuna();
+        boolean bandera = false;
         for (CitaVacunacion cita : citaData.listarCitas()) {
             DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
             centro = centroData.buscarCentros(cita.getId_centro());
@@ -477,7 +478,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 cita.isColocada(),
                 cita.isCancelada()
             });
-
         }
     }
 
@@ -502,7 +502,7 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
                 }
             }
         } catch (Exception ex) {
-            System.out.println("Error " + ex);
+            JOptionPane.showMessageDialog(null, "Error al cargar ciudadanos");
         }
     }
 

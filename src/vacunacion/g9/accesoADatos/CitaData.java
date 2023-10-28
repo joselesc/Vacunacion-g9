@@ -250,7 +250,7 @@ public class CitaData {
         String sql = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
                 + "VALUES (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false), (?, ?, ?, ?, false, false);";
         globalFecha = fecha;
-
+        int filasAfectadas = 0;
         try {
             PreparedStatement ps = con.prepareStatement(sql);
             List<Date> horariosTurnos = generarTurnosAutomaticamente(primeraFecha(ciudadano));
@@ -278,14 +278,10 @@ public class CitaData {
             ps.setInt(10, vacuna.getLote() + 8);
             ps.setTimestamp(11, new java.sql.Timestamp(horariosTurnos3.get(randon3).getTime())); // Tercer turno
             ps.setInt(12, centro.getId());
-
-            int rowsAffected = ps.executeUpdate();
+            
+            ps.executeUpdate();
+           
             ps.close();
-            if (rowsAffected > 0) {
-                    JOptionPane.showMessageDialog(null, "Registro exitoso!!!");
-            } else {
-                JOptionPane.showMessageDialog(null, "No se pudo insertar el registro.");
-            }
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
         } catch (NullPointerException ex) {
