@@ -134,7 +134,7 @@ public class CitaData {
 
             String query = " SELECT ciudadano.nombre, apellido, fechaHoraCita, centro.nombre,direccion,centro.zona "
                     + "FROM ciudadano JOIN citavacunacion ON (ciudadano.dni=citavacunacion.dni) JOIN centro ON (citavacunacion.id_centro=centro.id_centro) "
-                    + "WHERE ciudadano.dni=? and cancelado=0 and colocada=0" ;
+                    + "WHERE ciudadano.dni=? and cancelado=0 and colocada=0";
 
             try (PreparedStatement ps = con.prepareStatement(query)) {
                 ps.setInt(1, dniReg);
@@ -154,7 +154,7 @@ public class CitaData {
                         int conf = JOptionPane.showConfirmDialog(null, cita + "\n ¿Esta seguro que desea cancelar la cita?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, icono);
                         if (conf == JOptionPane.YES_OPTION) {
 
-                            String sql = "UPDATE citavacunacion SET cancelado=1 WHERE dni=? and colocada=0" ;
+                            String sql = "UPDATE citavacunacion SET cancelado=1 WHERE dni=? and colocada=0";
                             try (PreparedStatement ps1 = con.prepareStatement(sql)) {
                                 ps1.setInt(1, dniReg);
                                 ps1.executeUpdate();
@@ -171,7 +171,7 @@ public class CitaData {
 
                 }
                 CitaVacunacion cv = new CitaVacunacion();
-                List< CitaVacunacion> citas = new ArrayList();
+                List<CitaVacunacion> citas = new ArrayList<>();//este estaba dando el error -Xlint:unchecked dejarlo asi
                 Timestamp fh2;
                 LocalDateTime fhc2 = null;
                 String sql1 = "SELECT * FROM citavacunacion where dni=? and cancelado=1";
@@ -194,18 +194,18 @@ public class CitaData {
 
                         }
                         for (CitaVacunacion cita : citas) {
-                            
-                             String sql3 = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
-                             + "VALUES (?, ?, ?, ?, false, false)";
-                             try (PreparedStatement ps3 = con.prepareStatement(sql3)) {
-                                 System.out.println("llego");
-                                 ps3.setInt(1, cita.getDni());
-                                 ps3.setInt(2, cita.getLote());
-                                 cita.setFechaHoraCita(cita.getFechaHoraCita().plusDays(14));
-                                 ps3.setTimestamp(3, Timestamp.valueOf(cita.getFechaHoraCita()));
-                                 ps3.setInt(4, cita.getId_centro());
-                             }  
-                            
+
+                            String sql3 = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
+                                    + "VALUES (?, ?, ?, ?, false, false)";
+                            try (PreparedStatement ps3 = con.prepareStatement(sql3)) {
+                                System.out.println("llego");
+                                ps3.setInt(1, cita.getDni());
+                                ps3.setInt(2, cita.getLote());
+                                cita.setFechaHoraCita(cita.getFechaHoraCita().plusDays(14));
+                                ps3.setTimestamp(3, Timestamp.valueOf(cita.getFechaHoraCita()));
+                                ps3.setInt(4, cita.getId_centro());
+                            }
+
                         }
 
                     }
@@ -215,7 +215,7 @@ public class CitaData {
                 JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
             }
         }
-            
+
     }
 
     //Utilizado por AdministracionCita
@@ -229,6 +229,39 @@ public class CitaData {
         try {
             PreparedStatement ps = con.prepareStatement(sql);
 
+            ResultSet rs = ps.executeQuery();
+
+            while (rs.next()) {
+                CitaVacunacion cita = new CitaVacunacion();
+
+                cita.setCodCita(rs.getInt("codCita"));
+                cita.setDni(rs.getInt("dni"));
+                cita.setLote(rs.getInt("lote"));
+                Timestamp timestamp = rs.getTimestamp("fechaHoraCita");
+                LocalDateTime lc = timestamp.toLocalDateTime();
+                cita.setFechaHoraCita(lc);
+                cita.setId_centro(rs.getInt("id_centro"));
+                cita.setColocada(rs.getBoolean("colocada"));
+                cita.setCancelada(rs.getBoolean("cancelado"));
+
+                citas.add(cita);
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error al acceder a la tabla\n" + ex.getMessage());
+        }
+        return citas;
+    }
+
+    public List<CitaVacunacion> listarCitas(int mes) {
+
+        List<CitaVacunacion> citas = new ArrayList<>();
+        String sql = "SELECT * "
+                + "FROM citavacunacion "
+                + "WHERE MONTH(fechaHoraCita) = ?;";
+
+        try {
+            PreparedStatement ps = con.prepareStatement(sql);
+            ps.setInt(1, mes);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
@@ -302,7 +335,6 @@ public class CitaData {
             List<Date> horariosTurnos3 = generarTurnosAutomaticamente(terceraFecha(segundaFecha(primeraFecha(ciudadano))));
             int randon3 = (int) (Math.random() * horariosTurnos3.size());
 
-
             // Asigna los valores para el primer turno
             ps.setInt(1, ciudadano.getDni());
             ps.setInt(2, vacuna.getLote());
@@ -320,9 +352,9 @@ public class CitaData {
             ps.setInt(10, vacuna.getLote() + 8);
             ps.setTimestamp(11, new java.sql.Timestamp(horariosTurnos3.get(randon3).getTime())); // Tercer turno
             ps.setInt(12, centro.getId());
-            
+
             ps.executeUpdate();
-           
+
             ps.close();
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
@@ -432,7 +464,7 @@ public class CitaData {
     public void setDniReg(int dniReg) {
         this.dniReg = dniReg;
     }
-    
+
     private java.util.Date primeraFecha(Ciudadano ciudadano) {
         java.util.Date primeraFecha;
         if (ciudadano.isAmbitoTrabajo() == true && ciudadano.isRiesgo() == true) {
@@ -474,37 +506,37 @@ public class CitaData {
         java.util.Date terceraFecha = cal.getTime();
         return terceraFecha;
     }
-    
+
     public List<Date> generarTurnosAutomaticamente(Date fecha) {
-    //rango horario (de 08:00 AM a 18:00 PM)
-    Calendar cal = Calendar.getInstance();
-    cal.setTime(fecha);
+        //rango horario (de 08:00 AM a 18:00 PM)
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(fecha);
 
-    int horaInicio = 8;  // Hora de inicio
-    int horaFin = 18;   // Hora de finalización
-    int intervaloMinutos = 15;  // Intervalo de generación de turnos (15 minutos)
+        int horaInicio = 8;  // Hora de inicio
+        int horaFin = 18;   // Hora de finalización
+        int intervaloMinutos = 15;  // Intervalo de generación de turnos (15 minutos)
 
-    cal.set(Calendar.HOUR_OF_DAY, horaInicio);
-    cal.set(Calendar.MINUTE, 0);
-    //cal.set(Calendar.SECOND, 0);
-    Date horaInicioDate = cal.getTime();
+        cal.set(Calendar.HOUR_OF_DAY, horaInicio);
+        cal.set(Calendar.MINUTE, 0);
+        //cal.set(Calendar.SECOND, 0);
+        Date horaInicioDate = cal.getTime();
 
-    cal.set(Calendar.HOUR_OF_DAY, horaFin);
-    cal.set(Calendar.MINUTE, 0);
-    cal.set(Calendar.SECOND, 0);
-    Date horaFinDate = cal.getTime();
+        cal.set(Calendar.HOUR_OF_DAY, horaFin);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.SECOND, 0);
+        Date horaFinDate = cal.getTime();
 
-    List<Date> turnos = new ArrayList<>();
+        List<Date> turnos = new ArrayList<>();
 
-    // Genera los turnos automáticamente en intervalos de 15 minutos
-    while (horaInicioDate.before(horaFinDate)) {
-        turnos.add(horaInicioDate);
+        // Genera los turnos automáticamente en intervalos de 15 minutos
+        while (horaInicioDate.before(horaFinDate)) {
+            turnos.add(horaInicioDate);
 
-        // Incrementa la hora actual en 15 minutos
-        cal.setTime(horaInicioDate);
-        cal.add(Calendar.MINUTE, intervaloMinutos);
-        horaInicioDate = cal.getTime();
-    }
+            // Incrementa la hora actual en 15 minutos
+            cal.setTime(horaInicioDate);
+            cal.add(Calendar.MINUTE, intervaloMinutos);
+            horaInicioDate = cal.getTime();
+        }
         return turnos;
     }
 }
