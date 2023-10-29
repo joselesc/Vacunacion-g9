@@ -126,7 +126,7 @@ public class CitaData {
 
         } else {
 
-            Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fechaVac.png"));
+             Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fechaVac.png"));
             String ciuNom = "", ape = "", cenNom = "", dire = "", zona = "";
             Timestamp fh;
             LocalDateTime fhc = null;
@@ -140,6 +140,7 @@ public class CitaData {
                 try (ResultSet rs = ps.executeQuery()) {
 
                     if (rs.next()) {
+                        
                         ciuNom = rs.getString("ciudadano.nombre");
                         ape = rs.getString("apellido");
                         fh = rs.getTimestamp("fechaHoraCita");
@@ -153,13 +154,8 @@ public class CitaData {
                         int conf = JOptionPane.showConfirmDialog(null, cita + "\n ¿Esta seguro que desea cancelar la cita?", "Mensaje", JOptionPane.YES_NO_OPTION, JOptionPane.PLAIN_MESSAGE, icono);
                         if (conf == JOptionPane.YES_OPTION) {
 
-                            String sql = "UPDATE citavacunacion SET cancelado=1 WHERE dni=? and colocada=0";
-                            try (PreparedStatement ps1 = con.prepareStatement(sql)) {
-                                ps1.setInt(1, dniReg);
-                                ps1.executeUpdate();
-                                JOptionPane.showMessageDialog(null, "Su cita a sido cancelada", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
-
-                            }
+                           citaCancelada();
+                           nuevasFechas();
 
                         }
 
@@ -169,47 +165,7 @@ public class CitaData {
                     }
 
                 }
-                CitaVacunacion cv = new CitaVacunacion();
-                List<CitaVacunacion> citas = new ArrayList<>();//este estaba dando el error -Xlint:unchecked dejarlo asi
-                Timestamp fh2;
-                LocalDateTime fhc2 = null;
-                String sql1 = "SELECT * FROM citavacunacion where dni=? and cancelado=1";
-                try (PreparedStatement ps2 = con.prepareStatement(sql1)) {
-                    ps2.setInt(1, dniReg);
-                    try (ResultSet rs1 = ps.executeQuery()) {
-
-                        while (rs1.next()) {
-
-                            cv = new CitaVacunacion();
-                            cv.setCodCita(rs1.getInt("codCita"));
-                            cv.setDni(rs1.getInt("dni"));
-                            cv.setLote(rs1.getInt("lote"));
-                            fh2 = rs1.getTimestamp("fechaHoraCita");
-                            cv.setFechaHoraCita(fhc2 = fh2.toLocalDateTime());
-                            cv.setId_centro(rs1.getInt("id_centro"));
-                            cv.setColocada(rs1.getBoolean("colocada"));
-                            cv.setCancelada(rs1.getBoolean("cancelado"));
-                            citas.add(cv);
-
-                        }
-                        for (CitaVacunacion cita : citas) {
-
-                            String sql3 = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
-                                    + "VALUES (?, ?, ?, ?, false, false)";
-                            try (PreparedStatement ps3 = con.prepareStatement(sql3)) {
-                                System.out.println("llego");
-                                ps3.setInt(1, cita.getDni());
-                                ps3.setInt(2, cita.getLote());
-                                cita.setFechaHoraCita(cita.getFechaHoraCita().plusDays(14));
-                                ps3.setTimestamp(3, Timestamp.valueOf(cita.getFechaHoraCita()));
-                                ps3.setInt(4, cita.getId_centro());
-                            }
-
-                        }
-
-                    }
-                }
-
+    
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
             }
@@ -571,5 +527,71 @@ public class CitaData {
 
         return false;
     }
+ 
+    private void nuevasFechas(){
+     
+        CitaVacunacion cv = new CitaVacunacion();
+        List<CitaVacunacion> citas = new ArrayList<>();//este estaba dando el error -Xlint:unchecked dejarlo asi
+        String sql1 = "SELECT * FROM citavacunacion where dni=? and cancelado=1 ";
 
-}
+        try (PreparedStatement ps2 = con.prepareStatement(sql1)) {
+            ps2.setInt(1, dniReg);
+            try (ResultSet rs1 = ps2.executeQuery()) {
+                while (rs1.next()) {
+                   
+                    cv = new CitaVacunacion();
+                    cv.setCodCita(rs1.getInt("codCita"));
+                    cv.setDni(rs1.getInt("dni"));
+                    cv.setLote(rs1.getInt("lote"));
+                    Timestamp fh2 = rs1.getTimestamp("fechaHoraCita");
+                    LocalDateTime fhc2=fh2.toLocalDateTime();
+                    cv.setFechaHoraCita(fhc2);
+                    cv.setId_centro(rs1.getInt("id_centro"));
+                    cv.setColocada(rs1.getBoolean("colocada"));
+                    cv.setCancelada(rs1.getBoolean("cancelado"));
+                    System.out.println(cv);
+                    citas.add(cv);
+    
+                }
+                 for (CitaVacunacion cita1 : citas) {
+                        System.out.println("siguio");
+                        String sql3 = "INSERT INTO citavacunacion (dni, lote, fechaHoraCita, id_centro, colocada, cancelado) "
+                                + "VALUES (?, ?, ?, ?, false, false)";
+                        try (PreparedStatement ps3 = con.prepareStatement(sql3)) {
+                            System.out.println("llegofinal");
+                            ps3.setInt(1, cita1.getDni());
+                            System.out.println(cita1.getDni());
+                            ps3.setInt(2, cita1.getLote());
+                            System.out.println(cita1.getLote());
+                            cita1.setFechaHoraCita(cita1.getFechaHoraCita().plusDays(14));
+                            ps3.setTimestamp(3, Timestamp.valueOf(cita1.getFechaHoraCita()));
+                            System.out.println(cita1.getFechaHoraCita());
+                            ps3.setInt(4, cita1.getId_centro());
+                            System.out.println(cita1.getId_centro());
+                            System.out.println(ps3);
+                            ps3.executeUpdate();
+                        }
+
+                    }
+
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
+    }
+    
+    private void citaCancelada(){
+        
+        Icon icono = new ImageIcon(getClass().getResource("/vacunacion/g9/imagenes/fechaVac.png"));
+         String sql = "UPDATE citavacunacion SET cancelado=1 WHERE dni=? and colocada=0";
+                            try (PreparedStatement ps1 = con.prepareStatement(sql)) {
+                                ps1.setInt(1, dniReg);
+                                ps1.executeUpdate();
+                                JOptionPane.showMessageDialog(null, "Su cita a sido cancelada", "Mensaje", JOptionPane.PLAIN_MESSAGE, icono);
+                        
+                            }catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
+        }
+        
+    }
+ }
