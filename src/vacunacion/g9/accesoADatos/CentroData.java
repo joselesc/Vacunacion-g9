@@ -361,7 +361,7 @@ public class CentroData {
         List<Vacuna> vac = new ArrayList<>();
 
         try {
-            String sql = "SELECT * "
+            String sql = "SELECT vacuna.*, COUNT (colocada) AS cantidad"
                     + "FROM vacuna INNER JOIN citavacunacion ON citavacunacion.lote=vacuna.lote "
                     + "JOIN centro ON citavacunacion.id_centro=centro.id_centro "
                     + "where colocada=1 and centro.id_centro=? and DATE(fechaHoraCita)=?";
