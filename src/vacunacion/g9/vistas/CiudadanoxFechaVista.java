@@ -13,10 +13,7 @@ import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.CitaVacunacion;
 
-/**
- *
- * @author jfaja
- */
+
 public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
     private List<Centro> listaC;
@@ -32,8 +29,6 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
         cd = new CentroData();
         listaC = cd.listarCentrosDepositoCentral();
-        System.out.println("Número de elementos en listaC: " + listaC.size());
-//////////////////////////////////////////////////////////////////////////
         initComponents();
         cargarCentros();
         armarCabecera();
@@ -68,9 +63,12 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("VACUNAS POR DIA");
 
+        jDDesde.setForeground(new java.awt.Color(255, 255, 255));
         jDDesde.setDateFormatString("dd-MM-yyyy");
+        jDDesde.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
 
         jBuscarxFecha.setBackground(new java.awt.Color(0, 126, 167));
         jBuscarxFecha.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
@@ -82,7 +80,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jLabel4.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Consolas", 1, 20)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SELECCIONE DIA A CONSULTAR");
 
@@ -96,6 +94,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
             }
         });
 
+        jTablaxFecha.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jTablaxFecha.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -119,6 +118,8 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTablaxFecha.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jTablaxFecha.getTableHeader().setReorderingAllowed(false);
         jTablaxFecha.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTablaxFechaMouseClicked(evt);
@@ -130,13 +131,6 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane1.setViewportView(jTablaxFecha);
-        if (jTablaxFecha.getColumnModel().getColumnCount() > 0) {
-            jTablaxFecha.getColumnModel().getColumn(0).setResizable(false);
-            jTablaxFecha.getColumnModel().getColumn(1).setResizable(false);
-            jTablaxFecha.getColumnModel().getColumn(2).setResizable(false);
-            jTablaxFecha.getColumnModel().getColumn(3).setResizable(false);
-            jTablaxFecha.getColumnModel().getColumn(4).setResizable(false);
-        }
 
         jCBoxCentros.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jCBoxCentros.addActionListener(new java.awt.event.ActionListener() {
@@ -178,10 +172,6 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                                 .addComponent(jDDesde, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(229, 229, 229)
-                .addComponent(jLabel1)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(136, 136, 136)
@@ -194,6 +184,10 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                         .addGap(229, 229, 229)
                         .addComponent(jLabel2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(249, 249, 249)
+                .addComponent(jLabel1)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -264,20 +258,18 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
             boolean aplicada = (boolean) model.getValueAt(filaSeleccionada, 4);
             int lote = (int) model.getValueAt(filaSeleccionada, 2);
 
-            if (!aplicada) {
+            if (aplicada) {
 
                 model.setValueAt(true, filaSeleccionada, 4);
+                CitaData citaData = new CitaData();
+                citaData.modificarCita(codCita, aplicada, lote);
             } else {
                 JOptionPane.showMessageDialog(null, "La cita ya ha sido aplicada.");
             }
-
-            CitaData citaData = new CitaData();
-            citaData.modificarCita(codCita, aplicada, lote);
-
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila antes de modificar la base de datos.");
         }
-
+        listarcitas();
     }//GEN-LAST:event_jBConfirmarActionPerformed
 
     private void jTablaxFechaPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jTablaxFechaPropertyChange
@@ -312,21 +304,18 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
     public void listarcitas() {
         CitaData cd = new CitaData();
-
         java.util.Date fecha = jDDesde.getDate();
 
         if (fecha != null) {
-
             Centro centroSeleccionado = (Centro) jCBoxCentros.getSelectedItem();
 
             if (centroSeleccionado != null) {
                 int idCentro = centroSeleccionado.getId();
                 List<CitaVacunacion> citas = cd.listarCitasPorFechaYCentro(fecha, idCentro);
-                
-                modelo.setRowCount(0); // Limpia las filas existentes en la tabla
 
-                for (CitaVacunacion c : citas) {
-                    System.out.println(c);
+                modelo.setRowCount(0);
+
+                for (CitaVacunacion c : citas) { 
                     modelo.addRow(new Object[]{
                         c.getCodCita(),
                         c.getDni(),

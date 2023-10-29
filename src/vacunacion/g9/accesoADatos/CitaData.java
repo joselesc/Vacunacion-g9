@@ -239,42 +239,37 @@ public class CitaData {
         }
         return citas;
     }
-
+//se usa en ciudadano x fecha vista
     public void modificarCita(int idCita, boolean aplicada, int lote) {
 
-        String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
-        String sqlActualizaStock = "UPDATE vacuna SET stock = stock-1 WHERE lote = ?";
+    String sqlActualizaCita = "UPDATE citavacunacion SET colocada = ? WHERE codCita = ?";
+    String sqlActualizaStock = "UPDATE vacuna SET stock = stock - 1 WHERE lote = ?";
 
-        try {
-            // Inicia una transacción si es necesario, dependiendo de tu implementación de acceso a la base de datos
+    try {
+        PreparedStatement psUpdateCita = con.prepareStatement(sqlActualizaCita);
+        psUpdateCita.setBoolean(1, aplicada);
+        psUpdateCita.setInt(2, idCita);
+        int rowsAffectedCita = psUpdateCita.executeUpdate();
+        psUpdateCita.close();
 
-            PreparedStatement psUpdateCita = con.prepareStatement(sqlActualizaCita);
-            psUpdateCita.setBoolean(1, aplicada);
-            psUpdateCita.setInt(2, idCita);
-            int rowsAffectedCita = psUpdateCita.executeUpdate();
+        // Actualizar el stock 
+        PreparedStatement psUpdateStock = con.prepareStatement(sqlActualizaStock);
+        psUpdateStock.setInt(1, lote);
+        int rowsAffectedStock = psUpdateStock.executeUpdate();
+        psUpdateStock.close();
 
-            // Actualiza el stock de vacunas en la tabla 'vacunas'
-            PreparedStatement ps = con.prepareStatement(sqlActualizaStock);
-
-            ps.setInt(1, lote); // Debes obtener el lote de la vacuna asociada a la cita
-            int rowsAffectedStock = ps.executeUpdate();
-
-            ps.close();
-
-            if (rowsAffectedCita > 0 && rowsAffectedStock > 0) {
-
-                JOptionPane.showMessageDialog(null, "Cita modificada con éxito.");
-            } else {
-
-                JOptionPane.showMessageDialog(null, "Error al modificar la cita o el stock de vacunas.");
-            }
-        } catch (SQLException ex) {
-
-            ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
+        if (rowsAffectedCita > 0 && rowsAffectedStock > 0) {
+            JOptionPane.showMessageDialog(null, "VACUANA APLICADA.!!!");
+        } else {
+            JOptionPane.showMessageDialog(null, "Error al modificar la cita o el stock de vacunas.");
         }
+    } catch (SQLException ex) {
+        JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
     }
-
+    
+}
+ 
+   
     //Utilizado por AdministracionCita    
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
         int filasAfectadas = 0;
@@ -378,8 +373,7 @@ public class CitaData {
                 }
             }
 
-        } catch (SQLException ex) {
-            ex.printStackTrace();
+        } catch (SQLException ex) {            
             JOptionPane.showMessageDialog(null, "Error de conexion -" + ex.getMessage());
         }
         return conteo;
@@ -387,11 +381,10 @@ public class CitaData {
 
     public List<CitaVacunacion> listarCitasPorFechaYCentro(java.util.Date fecha, int idCentro) {
         List<CitaVacunacion> citas = new ArrayList<>();
-        String sql = "SELECT * FROM citavacunacion WHERE DATE(fechaHoraCita) = ? AND id_centro = ?";
+        String sql = "SELECT * FROM citavacunacion WHERE DATE(fechaHoraCita) = ? AND id_centro = ? and colocada =0";
 
         try (PreparedStatement ps = con.prepareStatement(sql)) {
 
-//            Timestamp fechaTimestamp = Timestamp.valueOf(fecha);
             ps.setTimestamp(1, new java.sql.Timestamp(fecha.getTime()));
             ps.setInt(2, idCentro);
 
@@ -407,8 +400,6 @@ public class CitaData {
                     LocalDateTime lc = timestamp.toLocalDateTime();
                     cita.setFechaHoraCita(lc);
                     cita.setColocada(rs.getBoolean("colocada"));
-//                    cita.setCancelada(rs.getBoolean("cancelada"));
-
                     citas.add(cita);
                 }
             }
@@ -416,7 +407,6 @@ public class CitaData {
             ex.printStackTrace();
             JOptionPane.showMessageDialog(null, "Error de conexión - " + ex.getMessage());
         }
-
         return citas;
     }
 

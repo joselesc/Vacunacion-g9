@@ -113,8 +113,9 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             }
         });
 
-        jBAgregar.setBackground(new java.awt.Color(255, 255, 204));
-        jBAgregar.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
+        jBAgregar.setBackground(new java.awt.Color(0, 126, 167));
+        jBAgregar.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jBAgregar.setForeground(new java.awt.Color(255, 255, 255));
         jBAgregar.setText("<html>A<br>G<br>R<br>E<br>G<br>A<br>R</html>");
         jBAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -169,7 +170,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(82, 82, 82)
                 .addComponent(jBEliminar)
-                .addGap(94, 94, 94)
+                .addGap(121, 121, 121)
                 .addComponent(jBModificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jBLimpiar)
@@ -177,9 +178,7 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 728, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
@@ -189,7 +188,6 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
                             .addComponent(jLabel5))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jTFCuit)
@@ -197,7 +195,10 @@ public class LaboratorioVista extends javax.swing.JInternalFrame {
                                     .addComponent(jTFPais)
                                     .addComponent(jTFnomComercial, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
-                                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(jBAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(29, 29, 29)
+                                .addComponent(jLabel1)))))
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
