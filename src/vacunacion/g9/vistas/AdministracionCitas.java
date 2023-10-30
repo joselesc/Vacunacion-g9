@@ -34,9 +34,9 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
     public AdministracionCitas() {
         initComponents();
         cabecera();
-        cargarDatosTabla();
         cargarComboBoxCentros();
         cargarComboBoxVacunas();
+        cargarDatosTabla();
     }
 
     @SuppressWarnings("unchecked")
@@ -157,6 +157,11 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         jCCentrosDeVacunacion.setBackground(new java.awt.Color(255, 255, 255));
         jCCentrosDeVacunacion.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jCCentrosDeVacunacion.setForeground(new java.awt.Color(0, 23, 31));
+        jCCentrosDeVacunacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jCCentrosDeVacunacionActionPerformed(evt);
+            }
+        });
 
         jLCentrosDeVacunacion.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jLCentrosDeVacunacion.setForeground(new java.awt.Color(255, 255, 255));
@@ -428,6 +433,10 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         cargarDatosTabla();
     }//GEN-LAST:event_jBAgregarActionPerformed
 
+    private void jCCentrosDeVacunacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCCentrosDeVacunacionActionPerformed
+        cargarDatosTabla();
+    }//GEN-LAST:event_jCCentrosDeVacunacionActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBAgregar;
     private javax.swing.JButton jButton1;
@@ -458,28 +467,33 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
  
     private void cargarDatosTabla() {
         modelo.setRowCount(0);
-        Centro centro = new Centro();
-        Ciudadano ciudadano = new Ciudadano();
-        Vacuna vacuna = new Vacuna();
-        boolean bandera = false;
-        for (CitaVacunacion cita : citaData.listarCitas()) {
-            DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
-            centro = centroData.buscarCentros(cita.getId_centro());
-            ciudadano = ciudadanoData.buscarCiudadano(cita.getDni());
-            vacuna = vacunaData.buscarVacuna(cita.getLote());
-            modelo.addRow(new Object[]{
-                cita.getCodCita(),
-                cita.getDni(),
-                ciudadano.getApellido(),
-                ciudadano.getNombre(),
-                vacuna.getLote(),
-                vacuna.getMarca(),
-                vacuna.getMedida(),
-                cita.getFechaHoraCita().format(fecha),
-                centro.getNombre(),
-                cita.isColocada(),
-                cita.isCancelada()
-            });
+        String z = (String) jCZonas.getSelectedItem();
+        Centro c = (Centro) jCCentrosDeVacunacion.getSelectedItem();
+        System.out.println("combobox = " + jCCentrosDeVacunacion.getSelectedItem());
+        System.out.println("zona = " + z + "centro = " + c);
+        if (c != null) { 
+            Centro centro = new Centro();
+            Ciudadano ciudadano = new Ciudadano();
+            Vacuna vacuna = new Vacuna();
+            for (CitaVacunacion cita : citaData.listarCitas(z, c)) {
+                DateTimeFormatter fecha = DateTimeFormatter.ofPattern("dd/MM/yyyy   HH:mm");
+                centro = centroData.buscarCentros(cita.getId_centro());
+                ciudadano = ciudadanoData.buscarCiudadano(cita.getDni());
+                vacuna = vacunaData.buscarVacuna(cita.getLote());
+                modelo.addRow(new Object[]{
+                    cita.getCodCita(),
+                    cita.getDni(),
+                    ciudadano.getApellido(),
+                    ciudadano.getNombre(),
+                    vacuna.getLote(),
+                    vacuna.getMarca(),
+                    vacuna.getMedida(),
+                    cita.getFechaHoraCita().format(fecha),
+                    centro.getNombre(),
+                    cita.isColocada(),
+                    cita.isCancelada()
+                });
+            }
         }
     }
 
