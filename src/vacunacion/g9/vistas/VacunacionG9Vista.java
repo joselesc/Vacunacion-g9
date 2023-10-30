@@ -230,6 +230,7 @@ public class VacunacionG9Vista extends javax.swing.JFrame {
     /*metodo al apretar el jbuttomAdministracion() 
     llama al loginAdministracionVista()*/
     private void jBAdministracionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdministracionActionPerformed
+        dispose();
         LoginAdministracion ingresoPersonal = new LoginAdministracion();
         ingresoPersonal.setVisible(true);
         this.setVisible(false);

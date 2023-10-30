@@ -56,6 +56,7 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
 
         jDCDia.setBackground(new java.awt.Color(255, 255, 255));
         jDCDia.setForeground(new java.awt.Color(0, 23, 31));
+        jDCDia.setDateFormatString("dd/MM/yyyy");
         jDCDia.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
 
         jCBCentros.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
@@ -199,7 +200,7 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jBListarActionPerformed
 
     private void jBDisponibleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBDisponibleActionPerformed
-     listarVacunasDisponible();
+        listarVacunasDisponible();
     }//GEN-LAST:event_jBDisponibleActionPerformed
 
 
@@ -252,6 +253,7 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         try {
 
             java.util.Date f = jDCDia.getDate();
+            System.out.println("fecha f " + f);
             Instant fe = f.toInstant();
             LocalDateTime fecha = fe.atZone(ZoneId.systemDefault()).toLocalDateTime();
             Centro c = (Centro) jCBCentros.getSelectedItem();

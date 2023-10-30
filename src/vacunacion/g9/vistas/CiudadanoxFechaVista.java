@@ -13,7 +13,6 @@ import vacunacion.g9.accesoADatos.CitaData;
 import vacunacion.g9.entidades.Centro;
 import vacunacion.g9.entidades.CitaVacunacion;
 
-
 public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
     private List<Centro> listaC;
@@ -43,7 +42,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         jDDesde = new com.toedter.calendar.JDateChooser();
         jBuscarxFecha = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        jBSalir2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTablaxFecha = new javax.swing.JTable();
         jCBoxCentros = new javax.swing.JComboBox<>();
@@ -84,13 +83,13 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("SELECCIONE DIA A CONSULTAR");
 
-        jButton1.setBackground(new java.awt.Color(0, 126, 167));
-        jButton1.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("SALIR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBSalir2.setBackground(new java.awt.Color(0, 126, 167));
+        jBSalir2.setFont(new java.awt.Font("Consolas", 1, 18)); // NOI18N
+        jBSalir2.setForeground(new java.awt.Color(255, 255, 255));
+        jBSalir2.setText("SALIR");
+        jBSalir2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBSalir2ActionPerformed(evt);
             }
         });
 
@@ -179,7 +178,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                         .addGap(71, 71, 71)
                         .addComponent(jBConfirmar)
                         .addGap(96, 96, 96)
-                        .addComponent(jButton1))
+                        .addComponent(jBSalir2))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(229, 229, 229)
                         .addComponent(jLabel2)))
@@ -207,7 +206,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBConfirmar)
                     .addComponent(jBuscarxFecha)
-                    .addComponent(jButton1))
+                    .addComponent(jBSalir2))
                 .addGap(15, 15, 15))
         );
 
@@ -231,13 +230,14 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
         listarcitas();
     }//GEN-LAST:event_jBuscarxFechaActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void jBSalir2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBSalir2ActionPerformed
 
-        dispose();
+        this.dispose();
         VacunacionVista vV = new VacunacionVista();
         vV.setVisible(true);
+        this.setVisible(false);
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBSalir2ActionPerformed
 
     private void jCBoxCentrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCBoxCentrosActionPerformed
         // TODO add your handling code here:
@@ -264,7 +264,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
                 CitaData citaData = new CitaData();
                 citaData.modificarCita(codCita, aplicada, lote);
             } else {
-                JOptionPane.showMessageDialog(null, "La cita ya ha sido aplicada.");
+                JOptionPane.showMessageDialog(null, "Tilde la casilla de seleccion.");
             }
         } else {
             JOptionPane.showMessageDialog(null, "Seleccione una fila antes de modificar la base de datos.");
@@ -279,8 +279,8 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jBConfirmar;
+    private javax.swing.JButton jBSalir2;
     private javax.swing.JButton jBuscarxFecha;
-    private javax.swing.JButton jButton1;
     private javax.swing.JComboBox<Centro> jCBoxCentros;
     private com.toedter.calendar.JDateChooser jDDesde;
     private javax.swing.JLabel jLabel1;
@@ -315,7 +315,7 @@ public class CiudadanoxFechaVista extends javax.swing.JInternalFrame {
 
                 modelo.setRowCount(0);
 
-                for (CitaVacunacion c : citas) { 
+                for (CitaVacunacion c : citas) {
                     modelo.addRow(new Object[]{
                         c.getCodCita(),
                         c.getDni(),

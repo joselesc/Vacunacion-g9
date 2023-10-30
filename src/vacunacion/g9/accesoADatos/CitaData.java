@@ -325,6 +325,7 @@ public class CitaData {
     //Utilizado por AdministracionCita    
     public void agregarCita(Ciudadano ciudadano, Vacuna vacuna, String zona, Centro centro, java.util.Date fecha) {
         int filasAfectadas = 0;
+        boolean bandera = false;
 
         // Verifica si ya existe un registro con el mismo DNI y lote
         if (!existeCitaDuplicada(ciudadano.getDni(), vacuna)) {
@@ -362,15 +363,16 @@ public class CitaData {
                 ps.setInt(12, centro.getId());
 
                 filasAfectadas = ps.executeUpdate();
-
                 ps.close();
+                JOptionPane.showMessageDialog(null, "Registros exitosos");
             } catch (SQLException ex) {
                 JOptionPane.showMessageDialog(null, "Algo salió mal\n no hay conexión a la base de datos");
             } catch (NullPointerException ex) {
                 JOptionPane.showMessageDialog(null, "Algo salió mal\n no has cargado una fecha");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Ya existe una cita con el mismo DNI y lote.");
+            JOptionPane.showMessageDialog(null, "    Puede que algunos registro no se carguen\n "
+                    + "ya que se encuentran con citas programadas.");
         }
     }
 

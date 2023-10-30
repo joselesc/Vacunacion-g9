@@ -109,6 +109,7 @@ public void transparencia() {
         this.dispose();
         VacunacionG9Vista v = new VacunacionG9Vista();
         v.setVisible(true);
+        this.setVisible(false);
 
     }//GEN-LAST:event_jBSalirActionPerformed
 
@@ -126,7 +127,7 @@ public void transparencia() {
         Dimension desktopSize = jDesktopPane1.getSize();
         Dimension FrameSize = cxF.getSize();
         cxF.setLocation((desktopSize.width - FrameSize.width) / 2, (desktopSize.height - FrameSize.height) / 2);
-        cxF.show();
+        //cxF.show();
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

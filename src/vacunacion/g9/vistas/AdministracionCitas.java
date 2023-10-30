@@ -469,8 +469,6 @@ public class AdministracionCitas extends javax.swing.JInternalFrame {
         modelo.setRowCount(0);
         String z = (String) jCZonas.getSelectedItem();
         Centro c = (Centro) jCCentrosDeVacunacion.getSelectedItem();
-        System.out.println("combobox = " + jCCentrosDeVacunacion.getSelectedItem());
-        System.out.println("zona = " + z + "centro = " + c);
         if (c != null) { 
             Centro centro = new Centro();
             Ciudadano ciudadano = new Ciudadano();
