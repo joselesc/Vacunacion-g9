@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -353,31 +354,31 @@ public class CentroData {
 
     }
 
-    public  List<Vacuna> listarVacunasPorCentros(int idcentro) {
+    public  List<Vacuna> listarVacunasPorCentros(int idcentro, LocalDateTime fecha) {
 
-//        java.sql.Date fec=java.sql.Date.valueOf(fecha.toLocalDate());
+        java.sql.Date fec=java.sql.Date.valueOf(fecha.toLocalDate());
         List<Vacuna> vac = new ArrayList<>();
 
         try {
-            String sql = "SELECT vacuna.*"
+            String sql = "SELECT vacuna.*, count(*) as cantidad "
                     + "FROM vacuna INNER JOIN citavacunacion ON citavacunacion.lote=vacuna.lote "
                     + "JOIN centro ON citavacunacion.id_centro=centro.id_centro "
-                    + "where colocada=1 and centro.id_centro=? order by lote";
+                    + "where colocada=1 and centro.id_centro=? and Date (fechaHoraCita)=? ";
+            
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idcentro);
-//            ps.setDate(2, fec);
+            ps.setDate(2, fec);
             ResultSet rs = ps.executeQuery();
-//            int conteo = 0;
+
             while (rs.next()) { 
                 Vacuna v = new Vacuna();
-//                conteo ++;
                 
                 v.setLote(rs.getInt("lote"));
                 v.setCuit(rs.getLong("cuit"));
                 v.setMarca(rs.getString("marca"));
                 v.setMedida(rs.getDouble("medida"));
                 v.setFechaCaduca(rs.getDate("fechaCaduca").toLocalDate());
-                v.setStock(rs.getInt("stock"));
+                v.setStock(rs.getInt("cantidad"));
                 vac.add(v);
                 
             }

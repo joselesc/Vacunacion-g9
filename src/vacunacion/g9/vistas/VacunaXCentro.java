@@ -58,11 +58,9 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         jDCDia.setForeground(new java.awt.Color(0, 23, 31));
         jDCDia.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
 
-        jCBCentros.setBackground(new java.awt.Color(255, 255, 255));
         jCBCentros.setFont(new java.awt.Font("Consolas", 1, 14)); // NOI18N
         jCBCentros.setForeground(new java.awt.Color(0, 23, 31));
 
-        jTable1.setBackground(new java.awt.Color(255, 255, 255));
         jTable1.setFont(new java.awt.Font("Consolas", 0, 18)); // NOI18N
         jTable1.setForeground(new java.awt.Color(0, 23, 31));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -72,8 +70,25 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
             new String [] {
                 "CANTIDAD", "LOTE", "CUIT", "MARCA", "MEDIDA", "FECHA DE VENC.", "STOCK"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
+        if (jTable1.getColumnModel().getColumnCount() > 0) {
+            jTable1.getColumnModel().getColumn(0).setHeaderValue("CANTIDAD");
+            jTable1.getColumnModel().getColumn(1).setHeaderValue("LOTE");
+            jTable1.getColumnModel().getColumn(2).setHeaderValue("CUIT");
+            jTable1.getColumnModel().getColumn(3).setHeaderValue("MARCA");
+            jTable1.getColumnModel().getColumn(4).setHeaderValue("MEDIDA");
+            jTable1.getColumnModel().getColumn(5).setHeaderValue("FECHA DE VENC.");
+            jTable1.getColumnModel().getColumn(6).setHeaderValue("STOCK");
+        }
 
         jLabel1.setFont(new java.awt.Font("Consolas", 1, 21)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -128,7 +143,7 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
                         .addComponent(jDCDia, javax.swing.GroupLayout.PREFERRED_SIZE, 194, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(34, 34, 34)
                         .addComponent(jCBCentros, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 768, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(46, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -242,19 +257,21 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
             Centro c = (Centro) jCBCentros.getSelectedItem();
 
             // Obtener las vacunas disponibles y agregarlas a la tabla
-            for (Vacuna v : centroData.listarVacunasPorCentros(c.getId())) {
+            for (Vacuna v : centroData.listarVacunasPorCentros(c.getId(),fecha)) {
+               
                 model.addRow(new Object[]{
+                    v.getStock(),
                     v.getLote(),
                     v.getCuit(),
                     v.getMarca(),
                     v.getMedida(),
-//                    v.getFechaCaduca(),
-                    v.getStock(),});
+                    v.getFechaCaduca(),});
             }
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Debe indicar la fecha." + ex.getMessage());
         }
     }
+    
     private void listarVacunasDisponible() {
         VacunaData vD = new VacunaData();
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -263,29 +280,24 @@ public class VacunaXCentro extends javax.swing.JInternalFrame {
         for (int i = rowCount - 1; i >= 0; i--) {
             model.removeRow(i);
         }
+        String vacia="";
         try {
-
-//            java.util.Date f = jDCDia.getDate();
-//            Instant fe = f.toInstant();
-//            LocalDateTime fecha = fe.atZone(ZoneId.systemDefault()).toLocalDateTime();
-//            Centro c = (Centro) jCBCentros.getSelectedItem();
-
-            // Obtener las vacunas disponibles y agregarlas a la tabla
-//            for (Vacuna v : vD.obtenerVacunasDisponibles()) {
-              for (int i = rowCount - 1; i >= 0; i--) {
-            
-        
-              model.addRow(new Object[]{
-                  
+       
+            for (Vacuna v : vD.obtenerVacunasDisponibles()) {
+    
+                model.addRow(new Object[]{
+                    vacia,
                     v.getLote(),
                     v.getCuit(),
                     v.getMarca(),
                     v.getMedida(),
                     v.getFechaCaduca(),
                     v.getStock(),});
-            }
+                  }
+        
         } catch (NullPointerException ex) {
             JOptionPane.showMessageDialog(null, "Debe indicar la fecha." + ex.getMessage());
         }
     }
 }
+
